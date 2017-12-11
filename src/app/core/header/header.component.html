@@ -1,0 +1,141 @@
+<!-- SITE HEADER -->
+<header class="site-header">
+	<div class="top-header">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-8">
+					<ul class="customer-links" *ngIf="authService.isLoggedIn">
+						<li>
+							<i class="fa fa-sign-out" aria-hidden="true"></i>
+							<a (click)="logout()" style="cursor: pointer;" title="Uitloggen">Uitloggen</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-sm-4">
+					<a id="cart-number" routerLink="/winkelwagen" class="cart-toggle js-drawer-open-right" aria-controls="CartDrawer" aria-expanded="false" *ngIf="authService.isLoggedIn">
+						<span class="icon icon-cart" aria-hidden="true"></span>
+						<span class="CartCount">{{ count() }}</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="main-header">
+		<div class="container">
+			<div class="row row-table">
+				<div class="col-xs-12 col-sm-4 col-md-3 row-cell">
+					<div class="site-header_logo" itemscope="" itemtype="http://schema.org/Organization"><a routerLink="/home" title="Quecom QuickShop"><img src="assets/images/logo.png" alt="Quecom QuickShop"> </a> </div>
+				</div>
+				<div class="col-xs-12 col-sm-8 col-md-9 row-cell">
+					<div class="shiping_text"> <span class="icon"> <i class="fa fa-truck"></i> </span>
+						<p>Voor 19:00 besteld*<span>Morgen al in huis</span></p>
+					</div>
+					<div class="order_text"> <span class="icon"> <i class="fa fa-phone-square"></i> </span>
+						<p>Vragen? Mail ons<span>info@gezamenlijkvoordeel.nl</span></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+
+<!-- SITE NAVIGATION -->
+<nav class="nav-bar" *ngIf="authService.isLoggedIn">
+	<a href="#" class="sticky-home-logo" title="Home"><i class="fa fa-home" aria-hidden="true"></i></a>
+	<div class="container">
+		<div class="main-menu"> 
+			<!-- begin site-nav -->
+			<ul class="clearfix main-nav" id="AccessibleNav">
+			
+				<li [ngClass]="useCategories ? 'border-right' : ''" routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/home" class="site-nav__link">Home</a></li>
+				<li class="has-dropdown megamenu" *ngFor="let category of categories">
+					<a class="site-nav__link" (mouseenter)="forceHideMenu = false" (click)="goToPage('categorie', category.id)">{{ category.name }}</a> 
+					<i class="fa fa-plus"></i>
+					<div class="megamenu" *ngIf="forceHideMenu === false">
+						<ul class="sub-menu">
+							<li *ngFor="let subcategory of category.subcategories">
+								<a class="site-nav__link" (click)="goToPage('subcategorie', subcategory.id)">{{ subcategory.name }}</a> 
+								<i class="fa fa-plus"></i>
+								<ul class="sub-menu">
+									<li *ngFor="let productgroup of subcategory.product_groups">
+										<a class="site-nav__link" (click)="goToPage('product-groep', productgroup.id)">{{ productgroup.name }}</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</li>
+				<li [ngClass]="useCategories ? 'border-left' : ''" routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/over-ons" class="site-nav__link">Over ons</a></li>
+				<li class="has-dropdown dropdown" routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}">
+					<a class="site-nav__link" (mouseenter)="forceHideMenu = false">Klantenservice</a>
+					<ul class="sub-menu" *ngIf="forceHideMenu === false">
+						<li> <a routerLink="/klantenservice/bestelling" (click)="forceHideMenu = true" class="site-nav__link">Bestelling</a></li>
+						<li> <a routerLink="/klantenservice/betaling" (click)="forceHideMenu = true" class="site-nav__link">Betaling</a></li>
+						<li> <a routerLink="/klantenservice/verzending" (click)="forceHideMenu = true" class="site-nav__link">Verzending & Bezorging</a></li>
+						<li> <a routerLink="/klantenservice/retouren" (click)="forceHideMenu = true" class="site-nav__link">Retouren & Garantie</a></li>
+						<li> <a routerLink="/klantenservice/voorwaarden" (click)="forceHideMenu = true" class="site-nav__link">Algemene voorwaarden</a></li>
+						<li> <a routerLink="/klantenservice/privacy" (click)="forceHideMenu = true" class="site-nav__link">Privacy & Cookie Policy</a></li>
+					</ul>
+				</li>
+				<li routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/contact" class="site-nav__link">Contact</a></li>
+			
+			</ul>
+			<!-- end site-nav --> 
+		</div>
+		<div class="mobileview">
+			<div class="row">
+				<div class="col-xs-6 mobilecol">
+					<div class="site-nav--mobile">
+						<button type="button" class="site-nav__link" (click)="toggleMenu = !toggleMenu"> <span class="icon icon-hamburger" aria-hidden="true"></span></button>
+					</div>
+				</div>
+				<div class="col-xs-6 mobilecol">
+					<div class="site-nav--mobile"><a routerLink="/winkelwagen" class="site-nav__link"><span class="icon icon-cart" aria-hidden="true"></span></a> </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<a routerLink="/winkelwagen" class="cart-toggle sticky-cart">
+		<span class="icon icon-cart" aria-hidden="true"></span> <span class="CartCount">{{ count }}</span> 
+	</a>
+</nav>
+
+<!-- MOBILE HANDLE -->
+<div class="drawer drawer--left" [ngClass]="toggleMenu ? 'op-left' : ''">
+	<div class="drawer__header">
+		<div class="drawer__title h3">Gezamenlijk Voordeel</div>
+		<div class="drawer__close js-drawer-close">
+			<button type="button" (click)="toggleMenu = !toggleMenu"> <span class="icon icon-x" aria-hidden="true"></span></button>
+		</div>
+	</div>
+	<!-- MOBILE NAV -->
+	<ul class="mobile-nav">
+		<li class="mobile-nav__item" routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/home" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Home</a></li>
+		<li class="mobile-nav__item" routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}">
+			<a routerLink="/over-ons" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Over ons</a>
+		</li>
+		<li class="mobile-nav__item" *ngFor="let category of categories">
+			<a (click)="goToPage('categorie', category.id, true)" class="mobile-nav__link">{{ category.name }}</a>
+		</li>
+		<li class="mobile-nav__item" routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}">
+			<div class="mobile-nav__has-sublist">
+				<a class="mobile-nav__link">Klantenservice </a>
+				<div class="mobile-nav__toggle">
+					<button [hidden]="toggleCustomerService" (click)="toggleCustomerService = !toggleCustomerService" type="button" class="mobile-nav__toggle-open"> <span class="icon icon-plus" aria-hidden="true"></span></button>
+					<button [hidden]="!toggleCustomerService" (click)="toggleCustomerService = !toggleCustomerService" type="button" class="mobile-nav__toggle-open"> <span class="icon icon-minus" aria-hidden="true"></span></button>
+				</div>
+			</div>
+			<ul class="mobile-nav__sublist" [ngClass]="toggleCustomerService ? 'show-cs' : 'hide-cs'">
+				<li class="mobile-nav__item"><a routerLink="/klantenservice/bestelling" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Bestelling</a> </li>
+				<li class="mobile-nav__item"><a routerLink="/klantenservice/betaling" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Betaling</a> </li>
+				<li class="mobile-nav__item"><a routerLink="/klantenservice/verzending" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Verzending & Bezorging</a> </li>
+				<li class="mobile-nav__item"><a routerLink="/klantenservice/retouren" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Retouren & Garantie</a> </li>
+				<li class="mobile-nav__item"><a routerLink="/klantenservice/voorwaarden" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Algemene voorwaarden</a> </li>
+				<li class="mobile-nav__item"><a routerLink="/klantenservice/privacy" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Privacy & Cookie Policy</a> </li>
+			</ul>
+		</li>
+		<li class="mobile-nav__item" routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/contact" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Contact</a></li>
+	</ul>
+	<!-- MOBILE NAV END --> 
+</div>
+<!-- MOBILE HANDLE END --> 

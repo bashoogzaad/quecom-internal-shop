@@ -1,0 +1,22 @@
+.force-image {
+	min-height: 255px;
+	height: 255px;
+}
+
+.force-image .specific-image {
+	object-position: center;
+	object-fit: cover;
+	max-height: 100%;
+  	max-width: 100%;
+}
+
+.product-cont {
+	line-height: 2.5ex;
+  	height: 7.5ex; /* 2.5ex for each visible line */
+  	overflow: hidden;
+}
+
+.border_bottom {
+	border-bottom: solid 5px #D9221E;
+	border-radius: 2px;
+}

@@ -1,0 +1,236 @@
+<!-- SITE MAIN CONTENT -->
+<main class="main-content"> 
+	<div class="bredcrumbWrap">
+		<div class="container">
+			<nav class="breadcrumb">
+				<a routerLink="/winkelwagen" title="Terug naar winkelwagen">Winkelwagen</a>
+				<span aria-hidden="true">›</span>
+				<span>Bestellen</span>
+			</nav>
+		</div>
+	</div>
+	<div class="container">
+		<h1 class="pageTitle">Bestellen</h1>
+		<div class="check-outwraper">
+			<form id="checkoutform" #customerDataForm="ngForm">
+				<div class="row">
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<div class="shipping-details">
+							<h4 class="checkout-title">Verzendadres</h4>
+							<div class="row">
+								<div class="col-md-3 col-sm-12">
+									<div class="form-group">
+										<select class="form-control selectpicker" name="genderSh" [(ngModel)]="customerData.genderSh" (ngModelChange)="change($event, 'gender')" required>
+											<option>Mevr.</option>
+											<option>De heer</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-3 col-sm-12">
+									<div class="form-group">
+										<input placeholder="Voornaam" type="text" class="form-control" name="firstNameSh" [(ngModel)]="customerData.firstNameSh" (ngModelChange)="change($event, 'firstName')"  required />
+									</div>
+								</div>
+								<div class="col-md-6 col-sm-12">
+									<div class="form-group">
+										<input placeholder="Achternaam" type="text" class="form-control" name="lastNameSh" [(ngModel)]="customerData.lastNameSh" (ngModelChange)="change($event, 'lastName')" required />
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="form-group"><input placeholder="Emailadres" type="email" class="form-control" name="emailaddressSh" [(ngModel)]="customerData.emailAddressSh" (ngModelChange)="change($event, 'emailAddress')" required /></div>
+							</div>
+							<div class="form-group">
+								<input placeholder="Bedrijfsnaam (optioneel)" type="text" class="form-control" name="companyNameSh" [(ngModel)]="customerData.companyNameSh" (ngModelChange)="change($event, 'companyName')" />
+							</div>
+							<div class="row">
+								<div class="col-md-6 col-sm-12">
+									<div class="form-group"><input placeholder="Adres" type="text" class="form-control" name="addressSh" [(ngModel)]="customerData.addressSh" (ngModelChange)="change($event, 'address')" required /></div>
+								</div>
+								<div class="col-md-3 col-sm-12">
+									<div class="form-group"><input placeholder="Huisnr." type="number" class="form-control" name="houseNumberSh" [(ngModel)]="customerData.houseNumberSh" (ngModelChange)="change($event, 'houseNumber')" required /></div>
+								</div>
+								<div class="col-md-3 col-sm-12">
+									<div class="form-group"><input placeholder="Toev." type="text" class="form-control" name="houseNumberExtensionSh" [(ngModel)]="customerData.houseNumberExtensionSh" (ngModelChange)="change($event, 'houseNumberExtension')" /></div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6 col-sm-12">
+									<div class="form-group"><input placeholder="Postcode" type="text" pattern="[1-9][0-9]{3} [a-zA-Z]{2}" class="form-control" name="postalCodeSh" [(ngModel)]="customerData.postalCodeSh" (ngModelChange)="change($event, 'postalCode')" required /></div>
+								</div>
+								<div class="col-md-6 col-sm-12">
+									<div class="form-group"><input placeholder="Woonplaats" type="text" class="form-control" name="citySh" [(ngModel)]="customerData.citySh" (ngModelChange)="change($event, 'city')" required /></div>
+								</div>
+							</div>
+							<div class="form-group"><input placeholder="Telefoonnummer" type="tel" class="form-control" name="phoneNumberSh" [(ngModel)]="customerData.phoneNumberSh" (ngModelChange)="change($event, 'phoneNumber')" /></div>
+							<div class="row">
+								<div class="col-md-12 col-sm-12">
+									<div class="form-group">
+										<select class="form-control selectpicker" disabled="true">
+											<option>Nederland</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 col-sm-12">
+								<div class="checkbox">
+									<label><input type="checkbox" value="" (change)="toggleBillingToShipment()" checked>Factuuradres is hetzelfde als verzendadres.</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-xs-12">
+						<div class="billing-details">
+							<h4 class="checkout-title">Factuuradres</h4>
+							<div class="row">
+								<div class="col-md-3 col-sm-12">
+									<div class="form-group">
+										<select class="form-control selectpicker" name="gender" [(ngModel)]="customerData.gender" required [disabled]="billingToShipment">
+											<option>Mevr.</option>
+											<option>De heer</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-3 col-sm-12">
+									<div class="form-group">
+										<input placeholder="Voornaam" type="text" class="form-control" name="firstName" [(ngModel)]="customerData.firstName" required [disabled]="billingToShipment" />
+									</div>
+								</div>
+								<div class="col-md-6 col-sm-12">
+									<div class="form-group">
+										<input placeholder="Achternaam" type="text" class="form-control" name="lastName" [(ngModel)]="customerData.lastName" required [disabled]="billingToShipment" />
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="form-group"><input placeholder="Emailadres" type="text" class="form-control" name="emailaddress" [(ngModel)]="customerData.emailAddress" required [disabled]="billingToShipment" /></div>
+							</div>
+							<div class="form-group">
+								<input placeholder="Bedrijfsnaam (optioneel)" type="text" class="form-control" name="companyName" [(ngModel)]="customerData.companyName" [disabled]="billingToShipment" />
+							</div>
+							<div class="row">
+								<div class="col-md-6 col-sm-12">
+									<div class="form-group"><input placeholder="Adres" type="text" class="form-control" name="address" [(ngModel)]="customerData.address" required [disabled]="billingToShipment" /></div>
+								</div>
+								<div class="col-md-3 col-sm-12">
+									<div class="form-group"><input placeholder="Huisnr." type="text" class="form-control" name="houseNumber" [(ngModel)]="customerData.houseNumber" required [disabled]="billingToShipment" /></div>
+								</div>
+								<div class="col-md-3 col-sm-12">
+									<div class="form-group"><input placeholder="Toev." type="text" class="form-control" name="houseNumberExtension" [(ngModel)]="customerData.houseNumberExtension" [disabled]="billingToShipment" /></div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6 col-sm-12">
+									<div class="form-group"><input placeholder="Postcode" type="text" class="form-control" name="postalCode" [(ngModel)]="customerData.postalCode" required [disabled]="billingToShipment" /></div>
+								</div>
+								<div class="col-md-6 col-sm-12">
+									<div class="form-group"><input placeholder="Woonplaats" type="text" class="form-control" name="city" [(ngModel)]="customerData.city" required [disabled]="billingToShipment" /></div>
+								</div>
+							</div>
+							<div class="form-group"><input placeholder="Telefoonnummer" type="text" class="form-control" name="phoneNumber" [(ngModel)]="customerData.phoneNumber" [disabled]="billingToShipment" /></div>
+							<div class="row">
+								<div class="col-md-12 col-sm-12">
+									<div class="form-group">
+										<select class="form-control selectpicker" disabled="true">
+											<option>Nederland</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12 col-sm-12 col-xs-12">
+						<h4 class="checkout-title">Kortingscode</h4>
+						<div class="form-group">
+							<strong>Heeft u een kortingscode? Voer deze dan hieronder in.</strong>
+							<div class="row">
+								<div class="col-md-10 col-sm-10 col-xs-10">
+									<input placeholder="Kortingscode" type="text" class="form-control" name="coupon_code" [(ngModel)]="couponCode" />
+								</div>
+								<div class="col-md-2 col-sm-2 col-xs-2">
+									<button class="btn" [disabled]="!couponCode" (click)="checkCouponCode()">Toepassen</button>
+								</div>
+							</div>
+							<div *ngIf="showError">{{ errorMessage }}</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<div class="payment-method mt-60  pl-20">
+							<h4 class="checkout-title">Verzendmethode</h4>
+							<div class="form-group">
+								<strong>Afhalen in het magazijn</strong>
+								<div class="checkbox"><label>Vandaag besteld, eerst volgende woensdag afhalen.</label></div>
+							</div>
+							<h4 class="checkout-title">Betaalmethode</h4>
+							<div class="panel-group" id="accordion">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion">Buckaroo</a></h4>
+									</div>
+									<div id="directBank" class="panel-collapse collapse in">
+										<div class="panel-body">
+											<p>Voor de betaling wordt u doorgestuurd naar de beveiligde betaalomgeving van Buckaroo. Hier kunt u kiezen de betaalmethoden iDeal, Mastercard en PayPal.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<div class="our-order payment-details mt-60 pr-20">
+							<h4 class="checkout-title">Uw bestelling</h4>
+							<div class="cart table-wrap">
+								<table class="cart-table full table--responsive">
+									<thead class="cart__row cart__header-labels">
+										<tr>
+											<th class="text-left">Product</th>
+											<th class="text-center">Prijs</th>
+											<th class="text-center">Aantal</th>
+											<th class="text-right">Totaal</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="cart__row" *ngFor="let orderLine of order.orderLines">
+											<td>
+												<a [routerLink]="['/product', orderLine.product.id]">{{ orderLine.product.title }}</a>
+												<p class="cart-variant">{{ orderLine.product.category_name }}, {{ orderLine.product.brand_name }}</p>
+											</td>
+											<td data-label="Prijs" class="price">{{ orderLine.product.price_total_netto*1.21 | currency:'EUR':'true' }}</td>
+											<td data-label="Aantal" class="qty text-right">{{ orderLine.count }}</td>
+											<td data-label="Totaal" class="text-right">{{ getOrderLineSubtotal(orderLine) | currency:'EUR':'true' }}</td>
+										</tr>
+									</tbody>
+								</table>
+								<div class="cat-total text-right">
+									<span class="cart__subtotal-title" *ngIf="discounts.length === 0">Totaal</span>
+									<span class="cart__subtotal-title" *ngIf="discounts.length > 0">Subtotaal</span> 
+									<span class="h3 cart__subtotal"><span class=money>{{ getOrderTotal() | currency:'EUR':'true' }}</span></span>
+								</div>
+								<div class="cat-total text-right" *ngIf="discounts.length > 0">
+									<span class="cart__subtotal-title">Korting</span> 
+									<span class="h3 cart__subtotal"><span class=money>{{ getDiscountTotal() | currency:'EUR':'true' }}</span></span>
+								</div>
+								<div class="cat-total text-right" *ngIf="discounts.length > 0">
+									<span class="cart__subtotal-title">Totaal</span> 
+									<span class="h3 cart__subtotal"><span class=money>{{ getTotal() | currency:'EUR':'true' }}</span></span>
+								</div>
+								<div class="text-right">
+									<button class="btn btn--full cart__checkout" type="submit" [disabled]="!customerDataForm.form.valid" (click)="placeOrder()" [promiseBtn]="orderPromise">
+										&nbsp; Betalen <i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp;
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<p>&nbsp;</p>
+	</div>
+</main>

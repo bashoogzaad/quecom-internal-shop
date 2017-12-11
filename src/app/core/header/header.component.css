@@ -1,0 +1,18 @@
+.op-left {
+    display: block;
+    -ms-transform: translateX(300px);
+    -webkit-transform: translateX(300px);
+    transform: translateX(300px);
+}
+
+.show-cs {
+	display: block !important;
+}
+
+.border-right {
+	border-right: solid 2px white;
+}
+
+.border-left {
+	border-left: solid 2px white;
+}

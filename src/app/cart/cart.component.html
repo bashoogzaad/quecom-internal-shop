@@ -1,0 +1,65 @@
+<main class="main-content"> 
+	<div class="container">
+		<h1 class="pageTitle">Winkelwagen</h1>
+		
+		<div *ngIf="order && order.orderLines.length === 0">
+			<div class="lead">De winkelwagen is leeg.</div>
+		</div>
+		
+		<form novalidate class="cart table-wrap" *ngIf="order && order.orderLines.length > 0">
+			<table class="cart-table full table--responsive">
+				<thead class="cart__row cart__header-labels">
+					<tr>
+						<th colspan="2" class="text-center">Product</th>
+						<th class="text-center">Prijs</th>
+						<th class="text-center">Aantal</th>
+						<th class="text-right">Totaal</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="cart__row" *ngFor="let order_line of order.orderLines">
+						<td>
+							<a class="cart__remove" title="Remove" (click)="removeFromCart(order_line)">
+								<i class="fa fa-times" aria-hidden="true"></i>
+							</a>
+							<a [routerLink]="['/product', order_line.product.id]" class="cart__image">
+								<img [src]="order_line.product.image_url" alt="">
+							</a>
+						</td>
+						<td>
+							<a [routerLink]="['/product', order_line.product.id]">
+								{{ order_line.product.title }}
+							</a>
+							<br />
+							<small>{{ order_line.product.category_name }}</small>
+							<p class="cart-variant">{{ order_line.product.brand_name }}</p>
+						</td>
+						<td data-label="Prijs" class="price">{{ order_line.product?.price_total_netto*1.21 | currency:'EUR':true }}</td>
+						<td data-label="Aantal" class="qty" style="text-align: center; vertical-align: middle;">
+							<div class="input-group spinner number" style="float: none !important;">
+								<button class="spinbtn btnminus" type="button" [disabled]="order_line.count === getOrderQuantity(order_line)" (click)="adjustOrderLine(order_line, -getOrderQuantity(order_line))">
+									<span aria-hidden="true" class="icon icon-minus"></span>
+								</button>
+								<input type="text" class="txt-qty" [value]="order_line.count">
+								<button class="spinbtn btnplus" type="button" (click)="adjustOrderLine(order_line, getOrderQuantity(order_line))">
+									<span aria-hidden="true" class="icon icon-plus"></span>
+								</button>
+							</div>
+						</td>
+						<td data-label="Totaal" class="text-right">{{ getOrderLineSubtotal(order_line) | currency:'EUR':true }}</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="row cart__row">
+				<div class="col-sm-8 col-lg-9">
+					<label for="CartSpecialInstructions" class="orderNote">Opmerkingen</label>
+					<textarea name="note" class="input-full" id="CartSpecialInstructions" [(ngModel)]="remarks"></textarea>
+				</div>
+				<div class="col-sm-4 col-lg-3 text-right pull-right cat-total">
+					<p><span class="cart__subtotal-title">Totaal</span> <span class="h3 cart__subtotal"><span class=money>{{ getOrderTotal() | currency:'EUR':true }}</span></span></p>
+					<button name="checkout" class="btn" type="button" (click)="goToPlaceOrder()">Bestellen</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</main>

@@ -1,0 +1,111 @@
+<main class="main-content" [hidden]="!product"> 		
+	
+	<!-- BREADCRUMB -->
+	<div class="bredcrumbWrap">
+		<div class="container">
+			<nav class="breadcrumb">
+				<a routerLink="/home" title="Terug naar home">Home</a> 
+				<span aria-hidden="true">&rsaquo;</span>
+				<span>{{ product?.title }}</span>
+			</nav>
+		</div>
+	</div>
+	
+	<div class="container" style="margin-top: 20px;" itemscope itemtype="http://schema.org/Product">
+		<div class="row product-single"> 
+			
+			<!-- PRODUCT GALLERY -->
+			<div class="col-sm-6 text-center">
+				<div class="product-single_photos" id="ProductPhoto">
+					<img [src]="product?.image_url"alt="" class="ProductPhotoImg zoom">
+				</div>
+			</div>
+			
+			<!-- PRODUCT GALLERY -->
+			<div class="col-sm-6">
+				<h1 itemprop="name">{{ product?.title }}</h1>
+				
+				<!-- PRODUCT prev-next -->
+				<span class="spr-badge">
+					<span class="spr-starrating spr-badge-starrating">
+						<i class="fa fa-star" aria-hidden="true"></i>
+						<i class="fa fa-star" aria-hidden="true"></i>
+						<i class="fa fa-star" aria-hidden="true"></i>
+						<i class="fa fa-star" aria-hidden="true"></i>
+						<i class="fa fa-star" aria-hidden="true"></i> 
+				
+						<!-- remove hidden class from below line as per your requirment --> 
+						<i class="fa fa-star hidden" aria-hidden="true"></i>
+						<i class="fa fa-star-half hidden" aria-hidden="true"></i>
+						<i class="fa fa-star-half-o hidden" aria-hidden="true"></i>
+					</span>
+<!-- 					<span class="spr-badge-caption">No reviews</span> -->
+				</span> 
+				
+				<!-- PRICE-->
+				<div class="product-price">
+					<span class="ProductPrice h2">{{ product?.price_total_netto*1.21 | currency:'EUR':true }}</span>
+				</div>
+				
+				<!-- AVAILABILITY , TYPE,	SKU -->
+				<div class="product-info">
+					<p class="product-sku">Reguliere prijs <span>{{ product?.retail_price | currency:'EUR':true }}</span></p>
+					<p class="product-sku">BTW <span>21%</span></p>
+					<p class="product-stock">Voorraad <span class="instock">Beschikbaar </span> </p>
+					<p class="product-type">Product type <span>{{ product?.category_name }}</span></p>
+					<p class="product-type">Merk <span>{{ product?.brand_name }}</span></p>
+					<p class="product-sku">EAN <span>{{ product?.ean }}</span></p>
+				</div>
+				
+				<!-- PRODUCT SHORT DESC. -->
+				<p class="product-short-des" style="white-space: pre-line;" *ngIf="minimumOrderQuantity === 3">
+					<b>Let op:</b> dit artikel is enkel per {{ minimumOrderQuantity }} te bestellen.
+				</p>
+				<p class="product-short-des" style="white-space: pre-line;">
+					{{ product?.unique_selling_points }}
+				</p>
+				<div class="product-attribute">
+					<form class="form-vertical">
+						<hr/>
+						<div class="actions">
+							<div class="product-qty">
+								<label class="quantity-selector">Aantal</label>
+								<div class="input-group spinner number">
+									<button class="spinbtn btnminus" type="button" [disabled]="amount === minimumOrderQuantity" (click)="amount = amount - minimumOrderQuantity">
+										<span aria-hidden="true" class="icon icon-minus"></span>
+									</button>
+									<input type="text" class="txt-qty" [value]="amount">
+									<button class="spinbtn btnplus" type="button" (click)="amount = amount + minimumOrderQuantity">
+										<span aria-hidden="true" class="icon icon-plus"></span>
+									</button>
+								</div>
+							</div>
+							<button type="submit" class="btn" (click)="addToCart()"> 
+								<span class="icon icon-cart" aria-hidden="true"></span>
+								Voeg toe
+							</button>
+						</div>
+					</form>
+					<hr/>
+				</div>
+				
+			</div>
+		</div>
+		
+		<!-- TABS -->
+		<div class="product-tabs">
+			<ul class="nav nav-tabs">
+				<li [ngClass]="selectedTab === 'product-detail' ? 'active' : ''">
+					<a data-toggle="tab" (click)="selectedTab = 'product-detail'" title="Product Details">Product details</a>
+				</li>
+			</ul>
+			<div class="tab-content">
+				<div id="tab1" class="tab-pane fade in active" *ngIf="selectedTab === 'product-detail'">
+					<div class="product-description" itemprop="description" style="white-space: pre-line;"> 
+						{{ product?.description_long }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>

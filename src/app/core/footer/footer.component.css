@@ -1,0 +1,12 @@
+.footer--top h3 { font-size:13px; font-weight:700; letter-spacing:0.05em; margin:0 0 16px; text-transform:uppercase; color:#ffffff;}
+
+.footer--top ul { margin:0 }
+.footer--top ul li { list-style:none }
+.footer--top ul li a { color:#d6e7ea; font-size:13px; }
+.footer--top ul.social li { display:inline-block; margin-right:8px }
+.footer--top ul.social li a {  color:#fff; height:30px; width:30px; text-align:center; line-height:30px; font-size:14px; border:1px solid #fff; border-radius:50%; display:block }
+.footer--top ul.social li a:hover { opacity:0.8 }
+
+.footer--top .addressFooter { margin-bottom:20px }
+.footer--top .addressFooter li { text-transform:capitalize; font-size:14px }
+.footer--top .addressFooter li .fa { float:left; margin:1px 6px 6px 0; width:15px; color:#ffffff; }
