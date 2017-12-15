@@ -1,0 +1,25 @@
+.custom-bg {
+	background-color: #f1f1f1;
+	margin-bottom: 30px;
+}
+
+.flexing {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.banner {
+	margin-top: 30px;
+	background-color: #523C87;
+}
+
+.banner h4 {
+	color: white;
+}
+
+.show-coupon {
+	color: #523C87;
+	font-weight: bold;
+	font-size: 60px;
+}

@@ -1,29 +1,20 @@
 <main class="main-content" [hidden]="!product"> 		
 	
-	<!-- BREADCRUMB -->
-	<div class="bredcrumbWrap">
-		<div class="container">
-			<nav class="breadcrumb">
-				<a routerLink="/home" title="Terug naar home">Home</a> 
-				<span aria-hidden="true">&rsaquo;</span>
-				<span>{{ product?.title }}</span>
-			</nav>
-		</div>
-	</div>
-	
 	<div class="container" style="margin-top: 20px;" itemscope itemtype="http://schema.org/Product">
+	
 		<div class="row product-single"> 
 			
 			<!-- PRODUCT GALLERY -->
-			<div class="col-sm-6 text-center">
+			<div class="col-sm-7 text-center">
 				<div class="product-single_photos" id="ProductPhoto">
 					<img [src]="product?.image_url"alt="" class="ProductPhotoImg zoom">
 				</div>
 			</div>
 			
 			<!-- PRODUCT GALLERY -->
-			<div class="col-sm-6">
-				<h1 itemprop="name">{{ product?.title }}</h1>
+			<div class="col-sm-5">
+			
+				<h1 class="custom-size">{{ product?.title }}</h1>
 				
 				<!-- PRODUCT prev-next -->
 				<span class="spr-badge">
@@ -39,19 +30,24 @@
 						<i class="fa fa-star-half hidden" aria-hidden="true"></i>
 						<i class="fa fa-star-half-o hidden" aria-hidden="true"></i>
 					</span>
-<!-- 					<span class="spr-badge-caption">No reviews</span> -->
 				</span> 
 				
-				<!-- PRICE-->
-				<div class="product-price">
-					<span class="ProductPrice h2">{{ product?.price_total_netto*1.21 | currency:'EUR':true }}</span>
+				<div class="usp-background">
+					<ul class="product-short-des" style="white-space: pre-line;">
+						<li *ngFor="let usp of extractUniqueSellingPoints(product?.unique_selling_points)">{{ usp }}</li>
+					</ul>
 				</div>
 				
-				<!-- AVAILABILITY , TYPE,	SKU -->
+				<!-- PRICE -->
+				<div class="product-price">
+					<span class="ProductPrice h2">{{ product?.price_total_netto*1.21 | currency:'EUR':'true' }}</span>
+				</div>
+				
+				<!-- AVAILABILITY, SKU -->
 				<div class="product-info">
-					<p class="product-sku">Reguliere prijs <span>{{ product?.retail_price | currency:'EUR':true }}</span></p>
+					<p class="product-sku">Reguliere prijs   <span>{{ product?.retail_price | currency:'EUR':'true' }}</span></p>
 					<p class="product-sku">BTW <span>21%</span></p>
-					<p class="product-stock">Voorraad <span class="instock">Beschikbaar </span> </p>
+					<p class="product-stock">Voorraad <span class="instock" [ngClass]="getStockColor(product)">{{ getStockStatus(product) }} </span> </p>
 					<p class="product-type">Product type <span>{{ product?.category_name }}</span></p>
 					<p class="product-type">Merk <span>{{ product?.brand_name }}</span></p>
 					<p class="product-sku">EAN <span>{{ product?.ean }}</span></p>
@@ -61,9 +57,7 @@
 				<p class="product-short-des" style="white-space: pre-line;" *ngIf="minimumOrderQuantity === 3">
 					<b>Let op:</b> dit artikel is enkel per {{ minimumOrderQuantity }} te bestellen.
 				</p>
-				<p class="product-short-des" style="white-space: pre-line;">
-					{{ product?.unique_selling_points }}
-				</p>
+				
 				<div class="product-attribute">
 					<form class="form-vertical">
 						<hr/>
@@ -102,10 +96,11 @@
 			<div class="tab-content">
 				<div id="tab1" class="tab-pane fade in active" *ngIf="selectedTab === 'product-detail'">
 					<div class="product-description" itemprop="description" style="white-space: pre-line;"> 
-						{{ product?.description_long }}
+						<div *ngIf="product" [innerHTML]="getDescription(product)"></div>
 					</div>
 				</div>
 			</div>
 		</div>
+		
 	</div>
 </main>

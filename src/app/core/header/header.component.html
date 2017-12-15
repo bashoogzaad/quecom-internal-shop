@@ -28,7 +28,7 @@
 				</div>
 				<div class="col-xs-12 col-sm-8 col-md-9 row-cell">
 					<div class="shiping_text"> <span class="icon"> <i class="fa fa-truck"></i> </span>
-						<p>Voor 19:00 besteld*<span>Morgen al in huis</span></p>
+						<p>Vandaag besteld*<span>Eerst volgende woensdag afhalen</span></p>
 					</div>
 					<div class="order_text"> <span class="icon"> <i class="fa fa-phone-square"></i> </span>
 						<p>Vragen? Mail ons<span>info@gezamenlijkvoordeel.nl</span></p>
@@ -40,18 +40,39 @@
 </header>
 
 <!-- SITE NAVIGATION -->
-<nav class="nav-bar" *ngIf="authService.isLoggedIn">
+<nav class="nav-bar nav-bar-custom" *ngIf="authService.isLoggedIn">
 	<a href="#" class="sticky-home-logo" title="Home"><i class="fa fa-home" aria-hidden="true"></i></a>
+	<div class="container">
+		<div class="main-menu main-menu-custom"> 
+		<ul class="clearfix main-nav" id="AccessibleNav">
+			<li routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/home" class="site-nav__link">Home</a></li>
+			<li routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/over-ons" class="site-nav__link">Hoe werkt het?</a></li>
+			<li class="has-dropdown dropdown" routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}">
+				<a class="site-nav__link" (mouseenter)="forceHideMenu = false">Klantenservice</a>
+				<ul class="sub-menu" *ngIf="forceHideMenu === false">
+					<li> <a routerLink="/klantenservice/bestelling" (click)="forceHideMenu = true" class="site-nav__link">Bestelling</a></li>
+					<li> <a routerLink="/klantenservice/betaling" (click)="forceHideMenu = true" class="site-nav__link">Betaling</a></li>
+					<li> <a routerLink="/klantenservice/verzending" (click)="forceHideMenu = true" class="site-nav__link">Verzending & Bezorging</a></li>
+					<li> <a routerLink="/klantenservice/retouren" (click)="forceHideMenu = true" class="site-nav__link">Retouren & Garantie</a></li>
+					<li> <a routerLink="/klantenservice/voorwaarden" (click)="forceHideMenu = true" class="site-nav__link">Algemene voorwaarden</a></li>
+					<li> <a routerLink="/klantenservice/privacy" (click)="forceHideMenu = true" class="site-nav__link">Privacy & Cookie Policy</a></li>
+				</ul>
+			</li>
+			<li routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/contact" class="site-nav__link">Contact</a></li>
+		</ul>
+		</div>
+	</div>
+</nav>	
+<nav class="nav-bar" *ngIf="authService.isLoggedIn">	
 	<div class="container">
 		<div class="main-menu"> 
 			<!-- begin site-nav -->
 			<ul class="clearfix main-nav" id="AccessibleNav">
 			
-				<li [ngClass]="useCategories ? 'border-right' : ''" routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/home" class="site-nav__link">Home</a></li>
 				<li class="has-dropdown megamenu" *ngFor="let category of categories">
-					<a class="site-nav__link" (mouseenter)="forceHideMenu = false" (click)="goToPage('categorie', category.id)">{{ category.name }}</a> 
+					<a class="site-nav__link" (mouseenter)="forceHideMenu = false" (click)="goToPage('categorie', category.id)" routerLinkActive="site-nav--active">{{ category.name }}</a> 
 					<i class="fa fa-plus"></i>
-					<div class="megamenu" *ngIf="forceHideMenu === false">
+					<div class="megamenu" *ngIf="forceHideMenu === false && category.subcategories.length > 0">
 						<ul class="sub-menu">
 							<li *ngFor="let subcategory of category.subcategories">
 								<a class="site-nav__link" (click)="goToPage('subcategorie', subcategory.id)">{{ subcategory.name }}</a> 
@@ -65,19 +86,6 @@
 						</ul>
 					</div>
 				</li>
-				<li [ngClass]="useCategories ? 'border-left' : ''" routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/over-ons" class="site-nav__link">Over ons</a></li>
-				<li class="has-dropdown dropdown" routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}">
-					<a class="site-nav__link" (mouseenter)="forceHideMenu = false">Klantenservice</a>
-					<ul class="sub-menu" *ngIf="forceHideMenu === false">
-						<li> <a routerLink="/klantenservice/bestelling" (click)="forceHideMenu = true" class="site-nav__link">Bestelling</a></li>
-						<li> <a routerLink="/klantenservice/betaling" (click)="forceHideMenu = true" class="site-nav__link">Betaling</a></li>
-						<li> <a routerLink="/klantenservice/verzending" (click)="forceHideMenu = true" class="site-nav__link">Verzending & Bezorging</a></li>
-						<li> <a routerLink="/klantenservice/retouren" (click)="forceHideMenu = true" class="site-nav__link">Retouren & Garantie</a></li>
-						<li> <a routerLink="/klantenservice/voorwaarden" (click)="forceHideMenu = true" class="site-nav__link">Algemene voorwaarden</a></li>
-						<li> <a routerLink="/klantenservice/privacy" (click)="forceHideMenu = true" class="site-nav__link">Privacy & Cookie Policy</a></li>
-					</ul>
-				</li>
-				<li routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/contact" class="site-nav__link">Contact</a></li>
 			
 			</ul>
 			<!-- end site-nav --> 
@@ -112,7 +120,7 @@
 	<ul class="mobile-nav">
 		<li class="mobile-nav__item" routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/home" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Home</a></li>
 		<li class="mobile-nav__item" routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}">
-			<a routerLink="/over-ons" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Over ons</a>
+			<a routerLink="/over-ons" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Hoe werkt het?</a>
 		</li>
 		<li class="mobile-nav__item" *ngFor="let category of categories">
 			<a (click)="goToPage('categorie', category.id, true)" class="mobile-nav__link">{{ category.name }}</a>

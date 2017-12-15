@@ -40,14 +40,23 @@ export class ProductListingComponent implements OnInit {
         
         this.route.paramMap.subscribe(params => {
             
-            this.unparsedType = this.router.url.split("/")[1];
-            let type = this.groupMap.get(this.unparsedType);
-            this.groupId = params.get('id');
+            if (this.router.url.split("/")[1] !== 'producten') {
             
-            this.route.queryParams.subscribe(qp => {
-                this.page = qp['page'] ? Number.parseInt(qp['page']) : 1;
-                this.loadProducts(type);
-            });
+                this.unparsedType = this.router.url.split("/")[1];
+                let type = this.groupMap.get(this.unparsedType);
+                this.groupId = params.get('id');
+                
+                this.route.queryParams.subscribe(qp => {
+                    this.page = qp['page'] ? Number.parseInt(qp['page']) : 1;
+                    this.loadProducts(type);
+                });
+            
+            } else {
+                this.route.queryParams.subscribe(qp => {
+                    this.page = qp['page'] ? Number.parseInt(qp['page']) : 1;
+                    this.loadProducts();
+                });
+            }
             
         });
         
@@ -58,15 +67,25 @@ export class ProductListingComponent implements OnInit {
         return arr.map(function (x, i) { return i+1 });
     }
     
-    public loadProducts(type: string) {
+    public loadProducts(type?: string) {
         
-        this.quecomProvider.getProductsPerGroup(type, this.groupId, this.limit, this.page).subscribe(res => {
-            this.products = res.products;
-            this.pagination = res.pagination;
+        if (type) {
+        
+            this.quecomProvider.getProductsPerGroup(type, this.groupId, this.limit, this.page).subscribe(res => {
+                this.products = res.products;
+                this.pagination = res.pagination;
+                this.pageNumbers = this.fillArrayWithNumbers(this.pagination.number_of_pages);
+            });
+        
+        } else {
             
-            this.pageNumbers = this.fillArrayWithNumbers(this.pagination.number_of_pages);
-            console.log(this.pageNumbers);
-        });
+            this.quecomProvider.getProducts(this.limit, this.page).subscribe(res => {
+                this.products = res.products;
+                this.pagination = res.pagination;
+                this.pageNumbers = this.fillArrayWithNumbers(this.pagination.number_of_pages);
+            });
+            
+        }
         
     }
     

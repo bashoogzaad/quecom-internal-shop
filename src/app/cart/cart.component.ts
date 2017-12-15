@@ -25,6 +25,7 @@ export class CartComponent implements OnInit {
     }
     
     getOrderLineSubtotal(orderLine: OrderLine) {
+        console.log(orderLine.product);
         return orderLine.count*orderLine.product.price_total_netto*1.21;
     }
     

@@ -14,12 +14,20 @@ export class HomeComponent implements OnInit {
     public products: any[] = new Array();
     public useCategories: boolean = true;
     
+    public showCouponCheck: boolean = false;
+    public couponCode: string;
+    public errorMessage: string = 'Spannend!!!';
+
     constructor(
         public quecomProvider: QuecomProvider,
         public cartProvider: CartProvider,
         public router: Router
     ) {
         
+    }
+    
+    toggleCouponCheck() {
+        this.showCouponCheck = !this.showCouponCheck;
     }
 
     ngOnInit() {
@@ -44,6 +52,22 @@ export class HomeComponent implements OnInit {
         this.cartProvider.addOrderLine(orderLine);
         
         this.router.navigateByUrl('/winkelwagen');
+    }
+    
+    public checkCouponCode() {
+        
+        
+        this.quecomProvider.checkCouponCode(this.couponCode).subscribe(res => {
+            
+            if (res['status']) {
+                this.errorMessage = 'Kortingscode is niet gevonden of al gebruikt.';
+            } else {
+                this.errorMessage = 'Je hebt €'+res['value'].replace(".", ",")+' shoptegoed, have fun!';
+            }
+        });
+        
+        this.couponCode = undefined;
+        
     }
 
 }

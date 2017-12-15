@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
         
         if (this.useCategories) {
             this.quecomProvider.getCategories().subscribe(res => {
-                this.categories = res['categories'].slice(0, 6);
+                this.categories = res['categories'];
             });
         }
         

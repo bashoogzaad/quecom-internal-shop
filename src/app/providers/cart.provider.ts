@@ -68,6 +68,11 @@ export class CartProvider {
         shipment['house_number'] = customerData.houseNumberSh;
         shipment['house_number_extension'] = customerData.houseNumberExtensionSh;
         shipment['city'] = customerData.citySh;
+        
+        if (customerData.postalCodeSh.length === 6) {
+            customerData.postalCodeSh = customerData.postalCodeSh.substr(0, 4)+' '+customerData.postalCodeSh.substr(4, 2);
+        }
+        
         shipment['postal_code'] = customerData.postalCodeSh;
         shipment['country'] = customerData.countrySh;
         shipment['phone_number'] = customerData.phoneNumberSh;
@@ -81,6 +86,11 @@ export class CartProvider {
         billing['house_number'] = customerData.houseNumber;
         billing['house_number_extension'] = customerData.houseNumberExtension;
         billing['city'] = customerData.city;
+        
+        if (customerData.postalCode.length === 6) {
+            customerData.postalCode = customerData.postalCode.substr(0, 4)+' '+customerData.postalCode.substr(4, 2);
+        }
+        
         billing['postal_code'] = customerData.postalCode;
         billing['country'] = customerData.country;
         billing['phone_number'] = customerData.phoneNumber;
@@ -95,9 +105,9 @@ export class CartProvider {
                 shipment: shipment,
                 billing: billing,
                 remarks: this.order.remarks,
-                reference: 'FNV',
-                type: "dropshipment",
-                request_payment: "1"
+                reference: 'AMADEC',
+                type: 'dropshipment',
+                request_payment: '1'
         }
         
         if (discounts.length > 0) {

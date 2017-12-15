@@ -16,3 +16,19 @@
 .border-left {
 	border-left: solid 2px white;
 }
+
+.nav-bar-custom {
+	background-color: #f1f1f1;
+}
+
+.main-menu-custom .main-nav > li > a {
+	color: black;
+}
+
+.main-menu-custom .main-nav > li > a:hover {
+	color: white;
+}
+
+.main-menu-custom .main-nav > li.site-nav--active > a {
+	color: white !important;
+}

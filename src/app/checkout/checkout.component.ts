@@ -7,6 +7,8 @@ import { ActivatedRoute } from "@angular/router";
 import { DOCUMENT } from "@angular/common";
 import { QuecomProvider } from "../providers/quecom.provider";
 
+import swal from 'sweetalert2';
+
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -114,12 +116,38 @@ export class CheckoutComponent implements OnInit {
                 this.errorMessage = 'Kortingscode is niet gevonden of al gebruikt.';
                 this.showError = true;
             } else {
-                this.errorMessage = 'Kortingsbon ('+res['coupon_code']+') ter waarde van €'+res['value'].replace(".", ",")+' verwerkt.';
-                this.showError = true;
-                this.discounts.push({
-                    value: res['value'],
-                    coupon_code: res['coupon_code']
-                });
+                
+                if (res['value'] > this.getOrderTotal()) {
+                    
+                    swal({
+                        title: 'Weet je het zeker?',
+                        text: "De kortingsbon is meer waard dan de waarde van de order. Als je doorgaat, gaat de overige waarde van de bon verloren.",
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: 'green',
+                        cancelButtonColor: 'red',
+                        confirmButtonText: 'Voeg toe',
+                        cancelButtonText: 'Annuleer'
+                      }).then((result) => {
+                        if (result.value) {
+                            this.discounts.push({
+                                value: this.getOrderTotal(),
+                                coupon_code: res['coupon_code']
+                            });
+                            this.errorMessage = 'Kortingsbon ('+res['coupon_code']+') ter waarde van €'+res['value'].replace(".", ",")+' verwerkt.';
+                            this.showError = true;
+                        }
+                      });
+                    
+                } else {
+                    this.errorMessage = 'Kortingsbon ('+res['coupon_code']+') ter waarde van €'+res['value'].replace(".", ",")+' verwerkt.';
+                    this.showError = true;
+                    this.discounts.push({
+                        value: res['value'],
+                        coupon_code: res['coupon_code']
+                    });
+                }
+                
             }
         });
         
@@ -135,7 +163,14 @@ export class CheckoutComponent implements OnInit {
     
     placeOrder() {
         this.orderPromise = this.cartProvider.placeOrder(this.customerData, this.discounts).toPromise().then(res => {
-            this.document.location.href = res[0]['url'];
+            console.log(res);
+            if (res[0]['url']) {
+                this.document.location.href = res[0]['url'];
+            } else {
+                
+            }
+        }, error => {
+            console.log(error);
         });
     }
 

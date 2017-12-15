@@ -7,7 +7,7 @@
 				</div>
 				<div class="products" *ngIf="products.length > 0">
 					<div class="products-grid">
-						<div class="grid_item col-xs-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let product of products">
+						<div class="grid_item col-xs-12 col-sm-6 col-md-4 col-lg-3 spacer" *ngFor="let product of products">
 							<div class="product_image border_bottom">
 								<a [routerLink]="['/product', product.id]" class="force-image"> 
 									<img class="specific-image" [lazyLoad]="getImageUrl(product)" [defaultImage]="defaultImage" alt=""> 
@@ -21,14 +21,17 @@
 									</button>
 								</div>
 							</div>
-							<div class="product_detail">
+							<div class="product_detail custom-bg">
 								<h3 class="product_name product-cont">
-									<a [routerLink]="['/product', product.id]">{{ product.title }}</a>
+									<b><a [routerLink]="['/product', product.id]">{{ product.title }}</a></b>
 								</h3>
+								<p>
+									Van {{ product.retail_price | currency:'EUR':'true' }}
+								</p>
 								<p>
 									<label *ngIf="product.qs_choice === '1'" class="new">Qs Choice</label>
 									<span class="product_price">
-										<span>{{ product.price_total_netto*1.21 | currency:'EUR':'true' }}</span>
+										<span>Voor {{ product.price_total_netto*1.21 | currency:'EUR':'true' }}</span>
 									</span>
 								</p>
 							</div>
@@ -49,7 +52,8 @@
 						<div class="col-sm-9 right">
 							<ul>
 								<li [ngClass]="pageNumber === page ? 'active' : ''" *ngFor="let pageNumber of pageNumbers">
-									<a title="" [routerLink]="['', unparsedType, groupId]" [queryParams]="{ page: pageNumber }">{{ pageNumber }}</a>
+									<a *ngIf="unparsedType" title="" [routerLink]="['', unparsedType, groupId]" [queryParams]="{ page: pageNumber }">{{ pageNumber }}</a>
+									<a *ngIf="!unparsedType" title="" routerLink="/producten" [queryParams]="{ page: pageNumber }">{{ pageNumber }}</a>
 								</li>
 								<li *ngIf="pageNumbers.length > 5" class="next">
 									<a href="#" title=""><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>

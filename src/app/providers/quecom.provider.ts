@@ -12,6 +12,7 @@ export class QuecomProvider {
     baseUrl: string = "https://client.quecom.nl/api/latest/customer/";
     publicKey: string = "qUHd1MpxBH9UQ8QFksIoPn0Z2tQ8uSow";
     privateKey: string = "13NP45IPRB2UDlaRqHoOsjdcT4JP4HWo64OgvSFPNFZuFdLRpXJ4gDRk5Y371C9jh0A2aybTeojpWpTCW0ZhOvudlx8bPSC0";
+    debtorNumber: string = '103016';
 
     constructor(
         private http: Http
@@ -56,7 +57,7 @@ export class QuecomProvider {
     
     public checkCouponCode(couponCode: string) {
         let options = this.initRequestOptions('GET');
-        return this.http.get(this.baseUrl+'coupon?code='+couponCode, options).map(res => res.json());
+        return this.http.get(this.baseUrl+'coupon?code='+couponCode+'&debtor_number='+this.debtorNumber, options).map(res => res.json());
     }
     
     public getProduct(id: string) {
@@ -64,14 +65,13 @@ export class QuecomProvider {
         return this.http.get(this.baseUrl+'product/'+id, options).map(res => res.json());
     }
     
-    public getProducts() {
+    public getProducts(limit?: number, page?: number) {
         let options = this.initRequestOptions('GET');
-        return this.http.get(this.baseUrl+'product', options).map(res => res.json());
+        return this.http.get(this.baseUrl+'product?per_page='+limit+'&page='+page, options).map(res => res.json());
     }
     
     public getProductsPerGroup(type: string, id: string, limit: number, page: number) {
         let options = this.initRequestOptions('GET');
-        
         return this.http.get(this.baseUrl+'product?'+type+'='+id+'&per_page='+limit+'&page='+page, options)
                         .map(res => res.json());
     }

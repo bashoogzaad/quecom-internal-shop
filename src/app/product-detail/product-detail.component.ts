@@ -54,5 +54,44 @@ export class ProductDetailComponent implements OnInit {
         
         this.router.navigateByUrl('/winkelwagen');
     }
+    
+    getDescription(product: any) {
+        var s = product.description_long;
+        var idx = 0;
+        var q = ['<b>', '</b>'];
+        return s.replace(/\*\*/g, function() {
+            var ret = q[idx];
+            idx = 1 - idx;
+            return ret;
+        });
+        
+    }
+    
+    extractUniqueSellingPoints(usp: string) {
+        var re = /"(.*?)"/g;
+        var matches;
+        
+        var arr = [];
+        while ((matches = re.exec(usp)) != null) {
+            arr.push(matches[1]);
+        }
+        return arr;
+    }
+    
+    getStockStatus(product: any) {
+        if (product.available > 0) {
+            return "Beschikbaar";
+        } else {
+            return "Tijdelijk niet op voorraad";
+        }
+    }
+    
+    getStockColor(product: any) {
+        if (product.available > 0) {
+            return "green";
+        } else {
+            return "red";
+        }
+    }
 
 }

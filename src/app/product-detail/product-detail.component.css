@@ -1,0 +1,16 @@
+.usp-background {
+	background-color: #f1f1f1;
+	padding-left: 10px;
+}
+
+.custom-size {
+	font-size: 30px;
+}
+
+.red {
+	color: red !important;
+}
+
+.green {
+	color: green !important;
+}

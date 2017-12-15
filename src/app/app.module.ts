@@ -26,6 +26,7 @@ import { ShipmentComponent } from './shipment/shipment.component';
 import { ReturnsComponent } from './returns/returns.component';
 import { TermsComponent } from './terms/terms.component';
 import { PrivacyComponent } from './privacy/privacy.component';
+import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 
 import { registerLocaleData } from '@angular/common';
 import localeNl from '@angular/common/locales/nl';
@@ -39,6 +40,7 @@ const appRoutes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+    { path: 'producten', component: ProductListingComponent, canActivate: [AuthGuard] },
     { path: 'categorie/:id', component: ProductListingComponent, canActivate: [AuthGuard] },
     { path: 'subcategorie/:id', component: ProductListingComponent, canActivate: [AuthGuard] },
     { path: 'product-groep/:id', component: ProductListingComponent, canActivate: [AuthGuard] },
@@ -81,6 +83,7 @@ const appRoutes: Routes = [
         BrowserModule,
         RouterModule.forRoot(appRoutes),
         Angular2PromiseButtonModule.forRoot(),
+        SweetAlert2Module.forRoot(),
         Ng2Webstorage,
         HttpModule,
         FormsModule,
