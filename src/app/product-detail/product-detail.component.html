@@ -62,6 +62,14 @@
 					<form class="form-vertical">
 						<hr/>
 						<div class="actions">
+							
+							<div class="product-qty" *ngIf="product?.variations_count > 1">
+								<label class="quantity-selector">Kleur: </label>
+								<select>
+									
+								</select>
+							</div>
+						
 							<div class="product-qty">
 								<label class="quantity-selector">Aantal</label>
 								<div class="input-group spinner number">

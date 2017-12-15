@@ -38,6 +38,7 @@ export class ProductDetailComponent implements OnInit {
                 }
                 this.amount = Number(this.product['minimum_order_quantity']);
                 this.minimumOrderQuantity = this.amount;
+                
             });
             
         });
@@ -79,7 +80,7 @@ export class ProductDetailComponent implements OnInit {
     }
     
     getStockStatus(product: any) {
-        if (product.available > 0) {
+        if (product && product.available > 0) {
             return "Beschikbaar";
         } else {
             return "Tijdelijk niet op voorraad";
@@ -87,7 +88,7 @@ export class ProductDetailComponent implements OnInit {
     }
     
     getStockColor(product: any) {
-        if (product.available > 0) {
+        if (product && product.available > 0) {
             return "green";
         } else {
             return "red";
