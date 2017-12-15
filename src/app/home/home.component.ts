@@ -3,6 +3,7 @@ import { QuecomProvider } from "../providers/quecom.provider";
 import { OrderLine } from "../models/order-line";
 import { CartProvider } from "../providers/cart.provider";
 import { Router } from "@angular/router";
+import { Globals } from "../providers/globals";
 
 @Component({
   selector: 'app-home',
@@ -21,7 +22,8 @@ export class HomeComponent implements OnInit {
     constructor(
         public quecomProvider: QuecomProvider,
         public cartProvider: CartProvider,
-        public router: Router
+        public router: Router,
+        public globals: Globals
     ) {
         
     }
