@@ -3,7 +3,7 @@ import { Order } from "../models/order";
 import { CartProvider } from "../providers/cart.provider";
 import { OrderLine } from "../models/order-line";
 import { CustomerData } from "../models/customer-data";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { DOCUMENT } from "@angular/common";
 import { QuecomProvider } from "../providers/quecom.provider";
 
@@ -31,7 +31,8 @@ export class CheckoutComponent implements OnInit {
         public cartProvider: CartProvider,
         public route: ActivatedRoute,
         public quecomProvider: QuecomProvider,
-        @Inject(DOCUMENT) private document: any
+        @Inject(DOCUMENT) private document: any,
+        public router: Router
     ) {
         this.customerData = new CustomerData();
         this.route.paramMap.subscribe(res => {
@@ -167,7 +168,19 @@ export class CheckoutComponent implements OnInit {
             if (res[0]['url']) {
                 this.document.location.href = res[0]['url'];
             } else {
-                
+                swal({
+                    title: 'Bedankt voor je bestelling',
+                    text: "Je bestelling is geplaatst en wordt verwerkt.",
+                    type: 'success',
+                    showCancelButton: false,
+                    confirmButtonColor: 'green',
+                    confirmButtonText: 'Oke!'
+                  }).then((result) => {
+                    if (result.value) {
+                        this.cartProvider.resetCart();
+                        this.router.navigateByUrl('/home');
+                    }
+                  });
             }
         }, error => {
             console.log(error);
