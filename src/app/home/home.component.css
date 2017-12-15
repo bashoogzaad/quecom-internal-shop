@@ -23,3 +23,7 @@
 	font-weight: bold;
 	font-size: 60px;
 }
+
+.remove-padder {
+	padding-right: 0px !important;
+}

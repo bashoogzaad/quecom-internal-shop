@@ -5,6 +5,7 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/delay';
 import { LocalStorageService, LocalStorage } from "ngx-webstorage";
+import { Globals } from "./providers/globals";
 
 @Injectable()
 export class AuthService {
@@ -14,12 +15,13 @@ export class AuthService {
 
     constructor(
         private localStorage: LocalStorageService,
+        private globals: Globals
     ) {
         
     }
     
     login(checkPass: string): boolean {
-        let pass = 'AMADEC2017';
+        let pass = this.globals.password;
         let passed: boolean = (pass === checkPass);
         this.isLoggedIn = passed;
         

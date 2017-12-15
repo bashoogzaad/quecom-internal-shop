@@ -34,6 +34,7 @@ import { ProductListingComponent } from "./product-listing/product-listing.compo
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from "./auth-guard.service";
 import { AuthService } from "./auth.service";
+import { Globals } from "./providers/globals";
 registerLocaleData(localeNl);
 
 const appRoutes: Routes = [
@@ -94,6 +95,7 @@ const appRoutes: Routes = [
         QuecomProvider,
         CartProvider,
         AuthService,
+        Globals,
         AuthGuard
     ],
     bootstrap: [AppComponent]
