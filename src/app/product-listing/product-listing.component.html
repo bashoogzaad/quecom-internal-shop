@@ -1,4 +1,7 @@
-<main class="main-content">
+<main class="main-content loader" *ngIf="products.length === 0">
+	<!-- LOADER -->
+</main>
+<main class="main-content" *ngIf="products.length > 0">
 
 	<div class="container">
 		<div class="row">
@@ -52,8 +55,8 @@
 						<div class="col-sm-9 right">
 							<ul>
 								<li [ngClass]="pageNumber === page ? 'active' : ''" *ngFor="let pageNumber of pageNumbers">
-									<a *ngIf="unparsedType" title="" [routerLink]="['', unparsedType, groupId]" [queryParams]="{ page: pageNumber }">{{ pageNumber }}</a>
-									<a *ngIf="!unparsedType" title="" routerLink="/producten" [queryParams]="{ page: pageNumber }">{{ pageNumber }}</a>
+									<a *ngIf="unparsedType && groupId" title="" [routerLink]="['', unparsedType, groupId]" [queryParams]="{ page: pageNumber }">{{ pageNumber }}</a>
+									<a *ngIf="!unparsedType || !groupId" title="" routerLink="/producten" [queryParams]="{ page: pageNumber }">{{ pageNumber }}</a>
 								</li>
 								<li *ngIf="pageNumbers.length > 5" class="next">
 									<a href="#" title=""><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>

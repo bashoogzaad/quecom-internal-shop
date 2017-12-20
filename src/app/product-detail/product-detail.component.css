@@ -14,3 +14,7 @@
 .green {
 	color: green !important;
 }
+
+.loader {
+	height: 100vh;
+}

@@ -30,3 +30,7 @@
 .custom-bg {
 	background-color: #f1f1f1;
 }
+
+.loader {
+	height: 100vh;
+}

@@ -65,7 +65,6 @@ export class ProductDetailComponent implements OnInit {
             idx = 1 - idx;
             return ret;
         });
-        
     }
     
     extractUniqueSellingPoints(usp: string) {

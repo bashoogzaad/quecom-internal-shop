@@ -24,9 +24,12 @@ export class CartComponent implements OnInit {
         this.order = this.cartProvider.getCurrentOrder();
     }
     
+    roundToTwo(num) {    
+        return Math.round(num * 100) / 100;
+    }
+    
     getOrderLineSubtotal(orderLine: OrderLine) {
-        console.log(orderLine.product);
-        return orderLine.count*orderLine.product.price_total_netto*1.21;
+        return this.roundToTwo(orderLine.count*orderLine.product.price_total_netto*1.21);
     }
     
     adjustOrderLine(orderLine: OrderLine, amount: number): void {
@@ -46,7 +49,7 @@ export class CartComponent implements OnInit {
         for(let orderLine of this.order.orderLines) {
             total += this.getOrderLineSubtotal(orderLine);
         }
-        return total;
+        return this.roundToTwo(total);
     }
     
     goToPlaceOrder() {

@@ -8,6 +8,7 @@ import { DOCUMENT } from "@angular/common";
 import { QuecomProvider } from "../providers/quecom.provider";
 
 import swal from 'sweetalert2';
+import { Globals } from "../providers/globals";
 
 @Component({
   selector: 'app-checkout',
@@ -32,7 +33,8 @@ export class CheckoutComponent implements OnInit {
         public route: ActivatedRoute,
         public quecomProvider: QuecomProvider,
         @Inject(DOCUMENT) private document: any,
-        public router: Router
+        public router: Router,
+        public globals: Globals
     ) {
         this.customerData = new CustomerData();
         this.route.paramMap.subscribe(res => {
@@ -44,8 +46,12 @@ export class CheckoutComponent implements OnInit {
         this.order = this.cartProvider.getCurrentOrder();
     }
     
+    roundToTwo(num) {    
+        return Math.round(num * 100) / 100;
+    }
+    
     getOrderLineSubtotal(orderLine: OrderLine) {
-        return orderLine.count*orderLine.product.price_total_netto*1.21;
+        return this.roundToTwo(orderLine.count*orderLine.product.price_total_netto*1.21);
     }
     
     getOrderTotal() {
@@ -53,7 +59,7 @@ export class CheckoutComponent implements OnInit {
         for(let orderLine of this.order.orderLines) {
             total += this.getOrderLineSubtotal(orderLine);
         }
-        return total;
+        return this.roundToTwo(total);
     }
     
     getDiscountTotal() {
@@ -61,7 +67,7 @@ export class CheckoutComponent implements OnInit {
         for(let discount of this.discounts) {
             total += discount.value;
         }
-        return total;
+        return this.roundToTwo(total);
     }
     
     getTotal() {
@@ -118,7 +124,10 @@ export class CheckoutComponent implements OnInit {
                 this.showError = true;
             } else {
                 
-                if (res['value'] > this.getOrderTotal()) {
+                console.log('Order total: '+this.getOrderTotal());
+                console.log('Coupon: '+this.roundToTwo(res['value']));
+                
+                if (this.roundToTwo(res['value']) > this.getOrderTotal()) {
                     
                     swal({
                         title: 'Weet je het zeker?',

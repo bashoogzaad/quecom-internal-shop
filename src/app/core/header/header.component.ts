@@ -4,6 +4,7 @@ import { Order } from "../../models/order";
 import { QuecomProvider } from "../../providers/quecom.provider";
 import { Router } from "@angular/router";
 import { AuthService } from "../../auth.service";
+import { Globals } from "../../providers/globals";
 
 @Component({
   selector: 'app-header',
@@ -25,7 +26,8 @@ export class HeaderComponent implements OnInit {
         public localStorage: LocalStorageService,
         public quecomProvider: QuecomProvider,
         public router: Router,
-        public authService: AuthService
+        public authService: AuthService,
+        public globals: Globals
     ) { }
 
     ngOnInit() {
