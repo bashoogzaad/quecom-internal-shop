@@ -6,6 +6,10 @@ import { Order } from "../models/order";
 import { CartProvider } from "../providers/cart.provider";
 import { OrderLine } from "../models/order-line";
 
+import swal from 'sweetalert2';
+import { RequestOptions } from "@angular/http";
+import { MailProvider } from "../providers/mail.provider";
+
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
@@ -15,6 +19,7 @@ export class ProductDetailComponent implements OnInit {
 
     product: any;
     selectedTab: string = "product-detail";
+    couponCode: string = '';
 
     amount: number = 1;
     minimumOrderQuantity: number = 1;
@@ -23,7 +28,8 @@ export class ProductDetailComponent implements OnInit {
         public route: ActivatedRoute,
         public quecomProvider: QuecomProvider,
         public cartProvider: CartProvider,
-        public router: Router
+        public router: Router,
+        public mailProvider: MailProvider
     ) { }
 
     ngOnInit() {
@@ -54,6 +60,45 @@ export class ProductDetailComponent implements OnInit {
         this.cartProvider.addOrderLine(orderLine);
         
         this.router.navigateByUrl('/winkelwagen');
+    }
+    
+    orderBolCoupon() {
+        
+        this.quecomProvider.checkCouponCode(this.couponCode).subscribe(res => {
+            
+            let couponCode = this.couponCode;
+            
+            if (res['status']) {
+                swal('Niet geldig', 'Kortingsbon niet gevonden of reeds verbruikt.', 'error');
+            } else {
+            
+                if (res['value'] != 300.00) {
+                    swal('Niet mogelijk', 'Deze kortingsbon heeft niet de juiste waarde om om te wisselen voor een Bol.com cadeaukaart.', 'error');
+                } else {
+                    
+                    swal({
+                        title: 'Weet je het zeker?',
+                        text: "Door het verzilveren van je kortingsbon voor een Bol.com cadeaukaart vervalt je kortingsbon.",
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: 'green',
+                        cancelButtonColor: 'red',
+                        confirmButtonText: 'Akkoord',
+                        cancelButtonText: 'Annuleer'
+                      }).then((result) => {
+                        if (result.value) {
+                            this.orderingBolCoupon(couponCode);
+                        }
+                      });
+                    
+                }
+            
+            }
+            
+            this.couponCode = '';
+            
+        });
+        
     }
     
     getDescription(product: any) {
@@ -91,6 +136,62 @@ export class ProductDetailComponent implements OnInit {
             return "green";
         } else {
             return "red";
+        }
+    }
+    
+    public async orderingBolCoupon(couponCode: string) {
+        
+        const steps = ['1', '2', '3'];
+        const values = [];
+        let currentStep;
+        
+        swal.setDefaults({
+            input: 'text',
+            confirmButtonText: 'Volgende &rarr;',
+            cancelButtonText: 'Terug',
+            showCancelButton: true,
+            confirmButtonColor: 'green',
+            cancelButtonColor: 'red',
+            progressSteps: steps
+        });
+        
+        var stepData = [];
+        stepData[0] = 'Voor- & achternaam';
+        stepData[1] = 'E-mailadres';
+        stepData[2] = 'Telefoonnummer';
+        
+        for (currentStep = 0; currentStep < 3;) {
+            
+            const result = await swal({
+              title: stepData[currentStep],
+              inputValue: values[currentStep] ? values[currentStep] : '',
+              showCancelButton: true,
+              currentProgressStep: currentStep
+            });
+          
+            if (result.value) {
+                values[currentStep] = result.value
+                currentStep++;
+                if (currentStep === 3) {
+                    swal.resetDefaults();
+                    this.quecomProvider.disableCouponCode(couponCode).subscribe(r => {
+                        console.log(r);
+                        this.mailProvider.sendMail({ name: values[0], emailaddress: values[1], phone_number: values[2], message: 'Kortingsbon '+this.couponCode+" verzilverd voor Bol.com cadeaukaart." });
+                        swal('Gelukt!', 'Je Bol.com cadeaukaart ligt de eerstvolgende woensdag klaar bij de receptie', 'success');
+                    }, err => {
+                        console.log(err);
+                    });
+                    break;
+                }
+            } else if (result.dismiss === 'cancel') {
+                if (currentStep !== 0) {
+                    currentStep--;
+                } else {
+                    swal.resetDefaults();
+                    break;
+                }
+            }
+            
         }
     }
 

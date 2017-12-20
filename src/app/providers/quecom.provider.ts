@@ -57,6 +57,13 @@ export class QuecomProvider {
         return this.http.get(this.globals.baseUrl+'coupon?code='+couponCode+'&debtor_number='+this.globals.debtorNumber, options).map(res => res.json());
     }
     
+    public disableCouponCode(couponCode: string) {
+        let options = this.initRequestOptions('PUT');
+        let b = { coupon_code: couponCode, is_used: '1' };
+        let body = JSON.stringify(b);
+        return this.http.put(this.globals.baseUrl+'coupon', b, options).map(res => res.json());
+    }
+    
     public getProduct(id: string) {
         let options = this.initRequestOptions('GET');
         return this.http.get(this.globals.baseUrl+'product/'+id, options).map(res => res.json());

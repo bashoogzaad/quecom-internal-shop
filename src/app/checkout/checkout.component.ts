@@ -173,8 +173,8 @@ export class CheckoutComponent implements OnInit {
     
     placeOrder() {
         this.orderPromise = this.cartProvider.placeOrder(this.customerData, this.discounts).toPromise().then(res => {
-            console.log(res);
             if (res[0]['url']) {
+                this.cartProvider.resetCart();
                 this.document.location.href = res[0]['url'];
             } else {
                 swal({
