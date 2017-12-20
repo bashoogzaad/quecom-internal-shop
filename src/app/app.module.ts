@@ -35,6 +35,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from "./auth-guard.service";
 import { AuthService } from "./auth.service";
 import { Globals } from "./providers/globals";
+import { MailProvider } from "./providers/mail.provider";
 registerLocaleData(localeNl);
 
 const appRoutes: Routes = [
@@ -94,6 +95,7 @@ const appRoutes: Routes = [
         { provide: LOCALE_ID, useValue: "nl-NL" },
         QuecomProvider,
         CartProvider,
+        MailProvider,
         AuthService,
         Globals,
         AuthGuard

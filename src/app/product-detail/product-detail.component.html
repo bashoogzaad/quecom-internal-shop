@@ -50,8 +50,8 @@
 				<div class="product-info">
 					<p class="product-sku">Reguliere prijs   <span>{{ product?.retail_price | currency:'EUR':'true' }}</span></p>
 					<p class="product-sku">BTW <span>21%</span></p>
-					<p class="product-stock">Voorraad <span class="instock" [ngClass]="getStockColor(product)">{{ getStockStatus(product) }} </span> </p>
-					<p class="product-type">Product type <span>{{ product?.category_name }}</span></p>
+					<p *ngIf="product?.id !== '1471271'" class="product-stock">Voorraad <span class="instock" [ngClass]="getStockColor(product)">{{ getStockStatus(product) }} </span> </p>
+					<p *ngIf="product?.id !== '1471271'" class="product-type">Product type <span>{{ product?.category_name }}</span></p>
 					<p class="product-type">Merk <span>{{ product?.brand_name }}</span></p>
 					<p class="product-sku">EAN <span>{{ product?.ean }}</span></p>
 				</div>
@@ -61,7 +61,24 @@
 					<b>Let op:</b> dit artikel is enkel per {{ minimumOrderQuantity }} te bestellen.
 				</p>
 				
-				<div class="product-attribute">
+				<div class="product-attribute" *ngIf="product?.id === '1471271'">
+					<form class="form-vertical">
+						<hr/>
+						<h1>VERZILVER JE KORTINGSBON</h1>
+						<div class="actions">
+							
+							<div class="product-qty">
+								<input type="text" [(ngModel)]="couponCode" name="couponCode" />
+							</div>
+							<button type="submit" [disabled]="couponCode === ''" class="btn" (click)="orderBolCoupon()"> 
+								Verzilver
+							</button>
+						</div>
+					</form>
+					<hr/>
+				</div>
+				
+				<div class="product-attribute" *ngIf="product?.id !== '1471271'">
 					<form class="form-vertical">
 						<hr/>
 						<div class="actions">
