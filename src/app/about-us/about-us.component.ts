@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Globals } from "../providers/globals";
 
 @Component({
   selector: 'app-about-us',
@@ -7,12 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutUsComponent implements OnInit {
 
-    constructor() { }
+    constructor(
+        public globals: Globals
+    ) { }
 
     ngOnInit() {
     
         
         
+    }
+    
+    checkDebtor() {
+        return this.globals.debtorNumber;
     }
 
 }
