@@ -38,10 +38,8 @@
 @font-face { font-family:'icons'; src:url("fonts/icons.eot?15114457919048693142"); src:url("fonts/icons.eot?15114457919048693142#iefix")format("embedded-opentype"), 
 		url("fonts/icons.woff?15114457919048693142")format("woff"),	url("fonts/icons.ttf?15114457919048693142") format("truetype"), url("fonts/icons.svg?15114457919048693142#timber-icons")format("svg"); 
 		font-weight:normal; font-style:normal;}
-		
-$color-primary: #523C87;
-$color-secondary: #D9221E;
-$color-tertiary: #737373;
+	
+@import "~scss/variables.scss";
 		
 .icon:before { display:none }
 .icon:before { display:inline; font-family:"icons"; text-decoration:none; speak:none; font-style:normal; font-weight:normal; font-variant:normal; text-transform:none; line-height:1; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale }
@@ -1047,7 +1045,7 @@ h2.sub-title { font-size:14px; font-weight:700; background:#fafafa; color:#444; 
 /* ====================================================================================================================
    16. Checkout PAGE
  * ====================================================================================================================*/
-h4.checkout-title { color:#04373c; font-size:15px; font-weight:600; text-transform:uppercase; padding:10px; background-color:#f8ad95; }
+h4.checkout-title { color:#04373c; font-size:15px; font-weight:600; text-transform:uppercase; padding:10px; background-color: lighten($color-primary, 50%); }
 #checkoutform .cat-total { padding:10px; margin-bottom:12px; border-top:1px solid #ccc; border-bottom:1px solid #ccc; }
 
 input.form-control { border:1px solid #e5e5e5; box-shadow:none; border-radius:0; padding:8px 10px; }

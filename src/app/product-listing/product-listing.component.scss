@@ -1,3 +1,5 @@
+@import "~scss/variables.scss";
+
 .force-image {
 	min-height: 255px;
 	height: 255px;
@@ -17,7 +19,7 @@
 }
 
 .border_bottom {
-	border-bottom: solid 5px #D9221E;
+	border-bottom: solid 5px $color-secondary;
 	border-radius: 2px;
 }
 

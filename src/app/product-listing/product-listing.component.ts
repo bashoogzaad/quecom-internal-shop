@@ -8,7 +8,7 @@ import { CartProvider } from "../providers/cart.provider";
 @Component({
     selector: 'app-product-listing',
     templateUrl: './product-listing.component.html',
-    styleUrls: ['./product-listing.component.css']
+    styleUrls: ['./product-listing.component.scss']
 })
 export class ProductListingComponent implements OnInit {
 

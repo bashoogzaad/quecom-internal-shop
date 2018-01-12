@@ -15,5 +15,9 @@ export class FooterComponent implements OnInit {
   scrollTop() {
       window.scrollTo(0, 0);
   }
+  
+  getCurrentYear() {
+      return (new Date()).getFullYear();
+  }
 
 }

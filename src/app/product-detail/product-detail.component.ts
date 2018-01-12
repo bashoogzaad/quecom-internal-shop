@@ -45,6 +45,8 @@ export class ProductDetailComponent implements OnInit {
                 this.amount = Number(this.product['minimum_order_quantity']);
                 this.minimumOrderQuantity = this.amount;
                 
+                console.log(res);
+                
             });
             
         });

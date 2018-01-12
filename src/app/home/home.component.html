@@ -5,49 +5,6 @@
 		<img style="width: 100%; max-width: none !important;" src="assets/images/banner.jpg" />
 	</section>
 
-	<div *ngIf="globals.hasCoupons">
-
-		<div class="container banner">
-			<div class="row flexing">
-				<div class="col-md-12 col-sm-12 col-xs-12">
-					<div class="col-md-10 col-sm-10 col-xs-10">
-						<h4>Ik heb een Amazing Kerstcadeau!</h4>
-					</div>
-					<div class="col-md-2 col-sm-2 col-xs-2">
-						<button class="btn" (click)="toggleCouponCheck()">Direct checken</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	
-		<div class="container custom-bg" *ngIf="showCouponCheck">
-			<div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12">
-					<h1 class="text-center">Amazing Kerstcadeau</h1>
-					<div class="form-group">
-						<blockquote style="border-left: none !important;">
-							<p class="text-center">Check hier de waarde van jouw Amazing Kerstcadeau!</p>
-						</blockquote>
-						<div class="row">
-							<div class="col-md-10 col-sm-10 col-xs-10">
-								<input placeholder="Kortingscode" type="text" class="form-control" name="coupon_code" [(ngModel)]="couponCode" />
-							</div>
-							<div class="col-md-2 col-sm-2 col-xs-2">
-								<button class="btn" [disabled]="!couponCode" (click)="checkCouponCode()">Checken</button>
-							</div>
-						</div>
-						<div>
-							<blockquote style="border-left: none !important;">
-								<h1 class="text-center show-coupon">{{ errorMessage }}</h1>
-							</blockquote>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	
-	</div>
-
 <!-- 	<div class="container" style="text-align:center;"> -->
 <!-- 		<img src="assets/images/fnv_ledenvoordeel.jpg" /> -->
 <!-- 	</div> -->
