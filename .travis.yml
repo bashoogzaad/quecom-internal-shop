@@ -8,9 +8,17 @@ branches:
   only:
     - master
 
+env:
+  - API_URL="https://"
+  - API_KEY="xxx"
+  - DEBTOR_NUMBER="000000"
+
 before_script:
   - npm install -g firebase-tools
   - npm install -g @angular/cli
+  - npm config set quecom-internal-shop:apiUrl=$API_URL
+  - npm config set quecom-internal-shop:apiKey=$API_KEY
+  - npm config set quecom-internal-shop:debtorNumber=$DEBTOR_NUMBER
 
 script:
   - npm start
