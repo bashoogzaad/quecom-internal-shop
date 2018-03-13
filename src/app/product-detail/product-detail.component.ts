@@ -185,7 +185,7 @@ export class ProductDetailComponent implements OnInit {
                     });
                     break;
                 }
-            } else if (result.dismiss === 'cancel') {
+            } else if (result.dismiss === swal.DismissReason.cancel) {
                 if (currentStep !== 0) {
                     currentStep--;
                 } else {

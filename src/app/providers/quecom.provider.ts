@@ -23,11 +23,11 @@ export class QuecomProvider {
     
     private buildAuthToken(httpVerb: string, contentType: string, date: string) {
         
-        let quecomDate = date;
+        let quecomDate = date; 
         let quecomSignature = httpVerb+"\n"+contentType+"\n"+quecomDate;
-        let hmac = CryptoJS.HmacSHA256(quecomSignature, this.globals.privateKey);
+        let hmac = CryptoJS.HmacSHA256(quecomSignature, this.globals.apiKey);
         let base64 = CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(hmac.toString()));
-        let quecomKey = this.globals.publicKey+":"+base64;
+        let quecomKey = this.globals.apiKey+":"+base64;
         
         return quecomKey;
     }
@@ -38,7 +38,7 @@ export class QuecomProvider {
         let date: string = this.generateDate();
     
         let headers = new Headers();
-        headers.append('X-Quecom-Key', this.buildAuthToken(httpVerb, contentType, date));
+        headers.append('X-Api-Key', this.globals.apiKey);
         headers.append('X-Quecom-Date', date);
         headers.append('Content-Type', contentType);
         let options = new RequestOptions({ headers: headers });

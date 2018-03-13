@@ -2,11 +2,11 @@
   "name": "quecom-internal-shop",
   "version": "0.0.0",
   "license": "MIT",
-  "config" : { 
-  	"production" : "true",
-  	"apiUrl": "https://...",
-  	"apiKey": "fill",
-  	"debtorNumber": "000000"
+  "config": {
+    "production": "true",
+    "apiUrl": "https://...",
+    "apiKey": "fill",
+    "debtorNumber": "000000"
   },
   "scripts": {
     "ng": "ng",
@@ -32,6 +32,7 @@
     "angular2-promise-buttons": "^2.0.1",
     "bootstrap": "^4.0.0",
     "core-js": "^2.5.3",
+    "crypto-js": "^3.1.9-1",
     "moment": "^2.21.0",
     "ng-lazyload-image": "^3.4.2",
     "ngx-webstorage": "^2.0.1",

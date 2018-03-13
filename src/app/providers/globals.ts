@@ -5,7 +5,7 @@ import { environment } from "../../environments/environment";
 @Injectable()
 export class Globals {
         
-    public baseUrl: string = environment.apiUrl;
+    public baseUrl: string = environment.apiUrl.endsWith('/') ? environment.apiUrl : environment.apiUrl+'/';
     public apiKey: string = environment.apiKey;
     public debtorNumber: string = environment.debtorNumber;
     
