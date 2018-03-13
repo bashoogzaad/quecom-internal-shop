@@ -2477,10 +2477,10 @@ var TermsComponent = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
 var environment = {
-    production: true,
-    apiUrl: "https://api.quecom.nl",
-    apiKey: "fill",
-    debtorNumber: "000000"
+    production: undefined,
+    apiUrl: "undefined",
+    apiKey: "undefined",
+    debtorNumber: "undefined"
 };
 
 
