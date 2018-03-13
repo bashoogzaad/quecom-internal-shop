@@ -20,7 +20,8 @@ script:
   - npm config set quecom-internal-shop:apiUrl=$API_URL
   - npm config set quecom-internal-shop:apiKey=$API_KEY
   - npm config set quecom-internal-shop:debtorNumber=$DEBTOR_NUMBER
-  - npm start
+  - npm run config
+  - ng build --environment=env
 
 after_success:
   - firebase deploy --token $FIREBASE_TOKEN
