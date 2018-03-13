@@ -20,7 +20,7 @@ before_script:
   - npm config set quecom-internal-shop:debtorNumber=$DEBTOR_NUMBER
 
 script:
-  - npm start
+  - travis_wait npm start
 
 after_success:
   - firebase deploy --token $FIREBASE_TOKEN
