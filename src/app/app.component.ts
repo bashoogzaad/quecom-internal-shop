@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from "@angular/router";
+import { environment } from "../environments/environment";
 
 @Component({
     selector: 'app-root',
@@ -15,6 +16,8 @@ export class AppComponent implements OnInit {
     ) { }
     
     ngOnInit() {
+        
+        console.log(environment.apiUrl);
         
         //Subscribe on each event when route changes
         this.router.events.subscribe((event) => {

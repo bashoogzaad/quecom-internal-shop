@@ -74,7 +74,7 @@ export class CartProvider {
         }
         
         shipment['postal_code'] = customerData.postalCodeSh;
-        shipment['country'] = customerData.countrySh;
+        shipment['country'] = 'NL';
         shipment['phone_number'] = customerData.phoneNumberSh;
         shipment['email'] = customerData.emailAddressSh;
         
@@ -92,7 +92,7 @@ export class CartProvider {
         }
         
         billing['postal_code'] = customerData.postalCode;
-        billing['country'] = customerData.country;
+        billing['country'] = 'NL';
         billing['phone_number'] = customerData.phoneNumber;
         billing['email'] = customerData.emailAddress;
         
