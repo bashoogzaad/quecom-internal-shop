@@ -30,7 +30,7 @@
     "@angular/router": "^5.2.8",
     "@toverux/ngx-sweetalert2": "^3.4.0",
     "angular2-promise-buttons": "^2.0.1",
-    "bootstrap": "^4.0.0",
+    "bootstrap": "^3.3.7",
     "core-js": "^2.5.3",
     "crypto-js": "^3.1.9-1",
     "moment": "^2.21.0",
