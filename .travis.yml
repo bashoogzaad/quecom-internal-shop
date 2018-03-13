@@ -22,6 +22,9 @@ before_script:
 script:
   - npm start
 
+after_success:
+  - firebase deploy --token $FIREBASE_TOKEN
+
 notifications:
   email:
     on_failure: change
