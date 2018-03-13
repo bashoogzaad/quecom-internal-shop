@@ -17,8 +17,6 @@ export class AppComponent implements OnInit {
     
     ngOnInit() {
         
-        console.log(environment.apiUrl);
-        
         //Subscribe on each event when route changes
         this.router.events.subscribe((event) => {
             if (!(event instanceof NavigationEnd)) {
