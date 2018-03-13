@@ -9,9 +9,7 @@ branches:
     - master
 
 env:
-  - API_URL="https://"
-  - API_KEY="xxx"
-  - DEBTOR_NUMBER="000000"
+  - API_URL="https://" API_KEY="xxx" DEBTOR_NUMBER="000000"
 
 before_script:
   - npm install -g firebase-tools
