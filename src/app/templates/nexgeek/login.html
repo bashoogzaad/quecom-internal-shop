@@ -1,0 +1,29 @@
+<main class="main-content">
+
+	<section class="block-banner mb60">
+		<div class="container">
+			<div class="block-banner_caption">
+				<h2>Loyalty Shop</h2>
+			</div>
+		</div>
+	</section>
+
+	<div class="container">
+		<div class="row">
+			<div class="hidden-sm col-md-3"></div>
+			<div class="col-md-6">
+				<h1 class="pageTitle text-center">Toegang tot de loyalty shop</h1>
+				<div id="CustomerLoginForm" class="form-vertical">
+					<form accept-charset="UTF-8" (ngSubmit)="login()">
+						<label class="hidden-label">Wachtwoord</label>
+						<input type="password" class="input-full" placeholder="Wachtwoord" [(ngModel)]="pass" name="pass" >
+						<p>
+							<input type="button" class="btn btn--full" value="Inloggen" (click)="login()" />
+						</p>
+					</form>
+				</div>
+			</div>
+			<div class="hidden-sm col-md-3"></div>
+		</div>
+	</div>
+</main>

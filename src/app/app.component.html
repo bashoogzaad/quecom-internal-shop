@@ -1,5 +1,5 @@
 <!-- MAIN PAGE AREA -->
-<div id="PageContainer" > 
+<div id="{{ getId() }}" [ngClass]="this.globals.theme + '-theme'"> 
 
 	<app-header></app-header>
 	<router-outlet></router-outlet>

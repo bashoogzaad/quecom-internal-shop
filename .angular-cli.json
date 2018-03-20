@@ -25,7 +25,9 @@
         "assets/css/animation.scss",
         "../node_modules/bootstrap/dist/css/bootstrap.css",
         "assets/css/style.scss",
-        "assets/css/media.scss"
+        "assets/css/media.scss",
+        "assets/templates/mogo/css/style-markup.scss",
+        "assets/templates/mogo/css/style.scss"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",

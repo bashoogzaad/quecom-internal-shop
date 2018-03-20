@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../auth.service";
+import { Globals } from '../providers/globals';
 import { Router } from "@angular/router";
 
 @Component({
@@ -13,6 +14,7 @@ export class LoginComponent implements OnInit {
     
     constructor(
         public authService: AuthService,
+        public globals: Globals,
         public router: Router
     ) {
         if (this.authService.isLoggedIn) {
@@ -26,7 +28,7 @@ export class LoginComponent implements OnInit {
     
     login() {
         
-        let loggedIn = this.authService.login(this.pass);
+        const loggedIn = this.authService.login(this.pass);
         if (loggedIn) {
             this.router.navigate(['/home']);
         } else {

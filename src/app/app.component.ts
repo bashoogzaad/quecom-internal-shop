@@ -32,16 +32,25 @@ export class AppComponent implements OnInit {
         });
         
         this.pimcoreProvider.getMetaInfo().subscribe(res => {
-            let primaryColor = res['primary_color']['data'];
-            let secondaryColor = res['secondary_color']['data'];
+            const primaryColor = res['primary_color']['data'];
+            const secondaryColor = res['secondary_color']['data'];
             document.documentElement.style.setProperty('--color-primary-var', primaryColor);
             document.documentElement.style.setProperty('--color-secondary-var', secondaryColor);
+          
+          const theme = res['theme']['data'];
+          this.globals.theme = theme;
         });
       
-      this.pimcoreProvider.login("bash@gmail.com", "test").subscribe(res => {
-        console.log(res);
-      });
-        
+    }
+  
+    getId() {
+      
+      if (this.globals.theme === 'nexgeek') {
+        return 'PageContainer';
+      } else if (this.globals.theme === 'mogo') {
+        return 'theme';
+      }
+      
     }
     
 }

@@ -24,6 +24,8 @@
 ===================================================================================================================
    1. CSS RESET 
 ==================================================================================================================*/
+.nexgeek-theme {
+
 @font-face {
     font-family: 'Roboto'; src: url('fonts/Roboto-Light-webfont.eot'); src: url('fonts/Roboto-Light-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/Roboto-Light-webfont.woff') format('woff'),
          url('fonts/Roboto-Light-webfont.ttf') format('truetype'), url('fonts/Roboto-Light-webfont.svg#robotoregular') format('svg'); font-weight:300; font-style: normal; }
@@ -1081,4 +1083,6 @@ select.form-control:focus { border:1px solid #ccc; outline:none; box-shadow:none
 }
 @media screen and (max-width: 639px) and (-webkit-min-device-pixel-ratio: 0) {
 	::i-block-chrome, .mobile-currency select.currency-picker {	text-indent:44.01px	}
+}
+
 }

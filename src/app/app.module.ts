@@ -37,11 +37,13 @@ import { AuthService } from "./auth.service";
 import { Globals } from "./providers/globals";
 import { MailProvider } from "./providers/mail.provider";
 import { PimcoreProvider } from "./providers/pimcore.provider";
+import { RegisterComponent } from './register/register.component';
 registerLocaleData(localeNl);
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent },
     { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'producten', component: ProductListingComponent, canActivate: [AuthGuard] },
     { path: 'categorie/:id', component: ProductListingComponent, canActivate: [AuthGuard] },
@@ -80,7 +82,8 @@ const appRoutes: Routes = [
         TermsComponent,
         PrivacyComponent,
         ProductListingComponent,
-        LoginComponent
+        LoginComponent,
+        RegisterComponent
     ],
     imports: [
         BrowserModule,

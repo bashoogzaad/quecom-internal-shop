@@ -13,6 +13,7 @@ export class Globals {
     public version: string;
     
     //Config (later fill with api call to Pimcore)
+    public theme: string;
     public name: string = "HAMA";
     public password: string = 'GezamenlijkLoyaltyVoordeel';
     public hasCoupons: boolean = true;

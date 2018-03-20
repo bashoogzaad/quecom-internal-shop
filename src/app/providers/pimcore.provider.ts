@@ -49,7 +49,9 @@ export class PimcoreProvider {
   
     public login(username: string, password: string) {
         const options = this.initRequestOptions();
-        return this.http.get(this.globals.pimcoreUrl+'login?username='+username+'&password='+password, options).map(res => res.json());
+        options.headers.append('username', username);
+        options.headers.append('password', password);
+        return this.http.get(this.globals.pimcoreUrl+'login', options).map(res => res.json());
     }
     
 }
