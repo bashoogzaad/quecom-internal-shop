@@ -36,6 +36,7 @@ import { AuthGuard } from "./auth-guard.service";
 import { AuthService } from "./auth.service";
 import { Globals } from "./providers/globals";
 import { MailProvider } from "./providers/mail.provider";
+import { PimcoreProvider } from "./providers/pimcore.provider";
 registerLocaleData(localeNl);
 
 const appRoutes: Routes = [
@@ -98,6 +99,7 @@ const appRoutes: Routes = [
         MailProvider,
         AuthService,
         Globals,
+        PimcoreProvider,
         AuthGuard
     ],
     bootstrap: [AppComponent]
