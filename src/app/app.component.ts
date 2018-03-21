@@ -11,6 +11,7 @@ import { PimcoreProvider } from "./providers/pimcore.provider";
 })
 export class AppComponent implements OnInit {
     
+    public loading = true;
     title = 'Gezamenlijk Voordeel';
     
     constructor(
@@ -39,6 +40,11 @@ export class AppComponent implements OnInit {
           
           const theme = res['theme']['data'];
           this.globals.theme = theme;
+          
+          setTimeout(() => {
+            this.loading = false;
+          }, 1000);
+          
         });
       
     }

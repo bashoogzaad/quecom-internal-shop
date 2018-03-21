@@ -5,18 +5,11 @@
 	    <div class="tt-layout tt-sticky-block__parent ">
 	        <div class="tt-layout__content">
 	            <div class="container">
-	                <div class="tt-page__breadcrumbs">
-	                    <ul class="tt-breadcrumbs">
-	                        <li><a href="index.html"><i class="icon-home"></i></a></li>
-	                        <li><a href="listing-collections.html">Collections</a></li>
-	                        <li><span>Audio</span></li>
-	                    </ul>
-	                </div>
 	
 	                <div class="tt-page__name text-center">
-	                    <h1>Login</h1>
+	                    <h1>Inloggen</h1>
 	                    <span>/</span>
-	                    <a href="register.html">Register</a>
+	                    <a routerLink="/register">Registreren</a>
 	                </div>
 	
 	                <div class="tt-login">
@@ -28,8 +21,7 @@
 	                                        <div class="col-md-3"><span class="ttg__required">E-mailadres:</span>
 	                                        </div>
 	                                        <div class="col-md-9">
-	                                            <input type="text" class="form-control"
-	                                                   placeholder="E-mailadres..">
+	                                            <input type="text" class="form-control" [(ngModel)]="username" name="username"  placeholder="E-mailadres..">
 	                                        </div>
 	                                    </div>
 	                                </label>
@@ -37,8 +29,7 @@
 	                                    <div class="row">
 	                                        <div class="col-md-3"><span class="ttg__required">Wachtwoord:</span></div>
 	                                        <div class="col-md-9">
-	                                            <input type="password" class="form-control"
-	                                                   placeholder="Wachtwoord...">
+	                                            <input type="password" class="form-control" [(ngModel)]="password" name="password" placeholder="Wachtwoord...">
 	                                        </div>
 	                                    </div>
 	                                </label>
@@ -46,17 +37,10 @@
 	                        </div>
 	                        <div class="row ttg-mt--40">
 	                            <div class="col-md-9 offset-md-3">
-	                                <button type="submit" class="btn">Inloggen</button>
+	                                <button type="submit" [disabled]="!username || !password" class="btn" (click)="loginServer()" [promiseBtn]="loginPromise">Inloggen</button>
 	                            </div>
 	                        </div>
 	                        <div class="row ttg-mt--40">
-	                            <div class="col-md-5 col-sm-6 offset-md-3">
-	                                <label class="tt-checkbox">
-	                                    <input type="checkbox">
-	                                    <span></span>
-	                                    <p>Onthoud mij</p>
-	                                </label>
-	                            </div>
 	                            <div class="col-md-4 col-sm-6 text-right"><a href="#">Wachtwoord vergeten?</a></div>
 	                        </div>
 	                    </form>

@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
     
     public products: any[] = new Array();
     public useCategories: boolean = true;
+    public categories: any[] = new Array();
     
     public showCouponCheck: boolean = false;
     public couponCode: string;
@@ -34,13 +35,8 @@ export class HomeComponent implements OnInit {
 
     ngOnInit() {
         
-        this.quecomProvider.getProducts().subscribe(res => {
-            this.products = res.products;
-            for (let product of this.products) {
-                if (product['ean'] === '848061070668') {
-                    product['minimum_order_quantity'] = 3;
-                }
-            }
+        this.quecomProvider.getCategories().subscribe(res => {
+            this.categories = res['categories'];
         });
         
     }
@@ -70,6 +66,10 @@ export class HomeComponent implements OnInit {
         
         this.couponCode = undefined;
         
+    }
+  
+    goToPage(type: string, id: number) {
+        this.router.navigate(['/'+type, id]);
     }
 
 }

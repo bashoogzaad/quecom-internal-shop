@@ -1,6 +1,8 @@
 <!-- MAIN PAGE AREA -->
 <div id="{{ getId() }}" [ngClass]="this.globals.theme + '-theme'"> 
-
+	
+    <div class="tt-preloader" *ngIf="loading"></div>
+	
 	<app-header></app-header>
 	<router-outlet></router-outlet>
 	<app-footer></app-footer>

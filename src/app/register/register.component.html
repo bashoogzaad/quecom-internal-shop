@@ -9,26 +9,18 @@
 	<!-- MAIN -->
 	<main>
 	
-	    <div class="tt-layout tt-sticky-block__parent ">
+	    <div class="tt-layout tt-sticky-block__parent">
 	        <div class="tt-layout__content">
 	            <div class="container">
-	                <div class="tt-page__breadcrumbs">
-	                    <ul class="tt-breadcrumbs">
-	                        <li><a href="index.html"><i class="icon-home"></i></a></li>
-	                        <li><a href="index.html?page=listing-collections.html">Collections</a></li>
-	                        <li><span>Audio</span></li>
-	                    </ul>
-	                </div>
-	
 	                <div class="tt-page__name text-center">
-	                    <a href="index.html?page=login.html">Inloggen</a>
+	                    <a routerLink="/login">Inloggen</a>
 	                    <span>/</span>
 	                    <h1>Registreren</h1>
 	                </div>
 	
 	                <div class="tt-login">
 	                    <div class="tt-login__title">
-	                        <p>Persoonlijke informatie</p>
+	                        <p>Account informatie</p>
 	                    </div>
 	                    <form action="#">
 	                        <div class="tt-form">
@@ -37,26 +29,7 @@
 	                                    <div class="row">
 	                                        <div class="col-md-3"><span class="ttg__required">Global ID:</span></div>
 	                                        <div class="col-md-9">
-	                                            <input type="text" class="form-control"
-	                                                   placeholder="Global ID...">
-	                                        </div>
-	                                    </div>
-	                                </label>
-	                                <label>
-	                                    <div class="row">
-	                                        <div class="col-md-3"><span class="ttg__required">Voornaam:</span></div>
-	                                        <div class="col-md-9">
-	                                            <input type="text" class="form-control"
-	                                                   placeholder="Voornaam...">
-	                                        </div>
-	                                    </div>
-	                                </label>
-	                                <label>
-	                                    <div class="row">
-	                                        <div class="col-md-3"><span class="ttg__required">Achternaam:</span></div>
-	                                        <div class="col-md-9">
-	                                            <input type="text" class="form-control"
-	                                                   placeholder="Achternaam...">
+	                                            <input type="text" class="form-control" [(ngModel)]="user.global_id" name="global_id" placeholder="Global ID...">
 	                                        </div>
 	                                    </div>
 	                                </label>
@@ -64,8 +37,7 @@
 	                                    <div class="row">
 	                                        <div class="col-md-3"><span class="ttg__required">E-mailadres:</span></div>
 	                                        <div class="col-md-9">
-	                                            <input type="text" class="form-control"
-	                                                   placeholder="E-mailadres...">
+	                                            <input type="text" class="form-control" [(ngModel)]="user.username" name="username" placeholder="E-mailadres...">
 	                                        </div>
 	                                    </div>
 	                                </label>
@@ -73,8 +45,7 @@
 	                                    <div class="row">
 	                                        <div class="col-md-3"><span class="ttg__required">Wachtwoord:</span></div>
 	                                        <div class="col-md-9">
-	                                            <input type="password" class="form-control"
-	                                                   placeholder="Wachtwoord...">
+	                                            <input type="password" class="form-control" [(ngModel)]="user.password" name="password" placeholder="Wachtwoord...">
 	                                        </div>
 	                                    </div>
 	                                </label>
@@ -82,19 +53,86 @@
 	                                    <div class="row">
 	                                        <div class="col-md-3"><span class="ttg__required">Wachtwoord nogmaals:</span></div>
 	                                        <div class="col-md-9">
-	                                            <input type="password" class="form-control"
-	                                                   placeholder="Wachtwoord nogmaals...">
+	                                            <input type="password" class="form-control" placeholder="Wachtwoord nogmaals...">
 	                                        </div>
 	                                    </div>
 	                                </label>
-	                            </div>
+	                                <div class="tt-login__title">
+	                        		       <p>Persoonlijke informatie</p>
+	                    			   </div>
+		                            <label>
+	                                    <div class="row">
+	                                        <div class="col-md-3"><span class="ttg__required">Voornaam:</span></div>
+	                                        <div class="col-md-9">
+	                                            <input type="text" class="form-control" [(ngModel)]="user.first_name" name="first_name" placeholder="Voornaam...">
+	                                        </div>
+	                                    </div>
+	                                </label>
+	                                <label>
+	                                    <div class="row">
+	                                        <div class="col-md-3"><span class="ttg__required">Achternaam:</span></div>
+	                                        <div class="col-md-9">
+	                                            <input type="text" class="form-control" [(ngModel)]="user.last_name" name="last_name" placeholder="Achternaam...">
+	                                        </div>
+	                                    </div>
+	                                </label>
+	                                <label>
+	                                    <div class="row">
+	                                        <div class="col-md-3"><span class="ttg__required">Postcode:</span></div>
+	                                        <div class="col-md-9">
+	                                            <input type="text" class="form-control" [(ngModel)]="user.postal_code" name="postal_code" placeholder="Postcode...">
+	                                        </div>
+	                                    </div>
+	                                </label>
+	                                <label>
+	                                    <div class="row">
+	                                        <div class="col-md-3"><span class="ttg__required">Huisnummer:</span></div>
+	                                        <div class="col-md-9">
+	                                            <input type="text" class="form-control" [(ngModel)]="user.house_number" name="house_number" placeholder="Huisnummer...">
+	                                        </div>
+	                                    </div>
+	                                </label>
+	                                <label>
+	                                    <div class="row">
+	                                        <div class="col-md-3"><span class="">Huisnummer toevoeging:</span></div>
+	                                        <div class="col-md-9">
+	                                            <input type="text" class="form-control" [(ngModel)]="user.house_number_extension" name="house_number_extension" placeholder="Huisnummer toevoeging...">
+	                                        </div>
+	                                    </div>
+	                                </label>
+	                                <label>
+	                                    <div class="row">
+	                                        <div class="col-md-3"><span class="ttg__required">Straat:</span></div>
+	                                        <div class="col-md-9">
+	                                            <input type="text" class="form-control" [(ngModel)]="user.street" name="street" placeholder="Automatisch...">
+	                                        </div>
+	                                    </div>
+	                                </label>
+	                                <label>
+	                                    <div class="row">
+	                                        <div class="col-md-3"><span class="ttg__required">Woonplaats:</span></div>
+	                                        <div class="col-md-9">
+	                                            <input type="text" class="form-control" [(ngModel)]="user.city" name="city" placeholder="Automatisch...">
+	                                        </div>
+	                                    </div>
+	                                </label>
+	                                <label>
+	                                    <div class="row">
+	                                        <div class="col-md-3"><span class="ttg__required">Land:</span></div>
+	                                        <div class="col-md-9">
+	                                            <input type="text" class="form-control" [(ngModel)]="user.country" name="country" placeholder="Automatisch...">
+	                                        </div>
+	                                    </div>
+	                                </label>
+                                </div>
 	                        </div>
 	                        <div class="row">
 	                            <div class="col-md-9 offset-md-3 ttg-mt--40">
-	                                <button type="submit" class="btn">Registreren</button>
+	                                <button type="submit" class="btn" (click)="doRegister()" [promiseBtn]="registerPromise">Registreren</button>
 	                            </div>
 	                        </div>
 	                    </form>
+	                    
 	                </div>
 	            </div>
 	        </div>

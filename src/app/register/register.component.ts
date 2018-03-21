@@ -2,6 +2,7 @@ import { AuthService } from '../auth.service';
 import { Globals } from '../providers/globals';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -10,6 +11,9 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
+  public user: any = new Object();
+  public registerPromise: Subscription;
+  
   constructor(
     public authService: AuthService,
     public globals: Globals,
@@ -26,9 +30,11 @@ export class RegisterComponent implements OnInit {
     
   }
   
-  register() {
+  doRegister() {
     
-    
+    this.registerPromise = this.authService.register(this.user).subscribe(res => {
+      console.log(res);
+    });
     
   }
 

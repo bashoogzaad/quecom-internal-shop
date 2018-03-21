@@ -1,3 +1,5 @@
+<ng-container *ngIf="globals.theme == 'nexgeek'">
+
 <main class="main-content loader" *ngIf="!product"> 
 	<!-- LOADER -->
 </main>
@@ -132,3 +134,1027 @@
 		
 	</div>
 </main>
+
+</ng-container>
+
+<ng-container *ngIf="globals.theme == 'mogo'">
+
+	<!-- MAIN -->
+	<main>
+	
+	    <div class="tt-layout tt-sticky-block__parent ">
+	        <div class="tt-layout__content">
+	            <div class="container">
+	                <div class="tt-product-page">
+	
+	                    <div class="tt-product-head tt-sticky-block__parent">
+	                        <div class="tt-product-head__sticky tt-sticky-block tt-layout__mobile-full">
+	                        
+	                            <div class="tt-product-head__images tt-sticky-block__inner tt-product-head__single-mobile ">
+	                            
+	                                <div class="tt-product-head__image-main">
+	                                    <img src="assets/templates/mogo/images/products/product-02.jpg" alt="Image name">
+	                                </div>
+	                                <div class="tt-product-head__image-preview">
+	                                    <img src="assets/templates/mogo/images/products/product-02.jpg" alt="Image name">
+	                                    <img src="assets/templates/mogo/images/products/product-02-2.jpg" alt="Image name">
+	                                    <img src="assets/templates/mogo/images/products/product-02-3.jpg" alt="Image name">
+	                                    <img src="assets/templates/mogo/images/products/product-09.jpg" alt="Image name">
+	                                    <img src="assets/templates/mogo/images/products/product-09-2.jpg" alt="Image name">
+	                                    <img src="assets/templates/mogo/images/products/product-09-3.jpg" alt="Image name">
+	                                    <span class="tt-product-head__btn-video"><i class="icon-video"></i></span>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="tt-product-head__sticky tt-sticky-block">
+	                            <div class="tt-product-head__info tt-sticky-block__inner">
+	                                <form action="#">
+	                                    <div class="tt-product-head__category"><a
+	                                            href="index.html?page=listing-with-custom-html-block.html">Headphones</a>
+	                                    </div>
+	                                    <div class="tt-product-head__name"><h1>{{ product.title }}</h1></div>
+	                                    <div class="tt-product-head__review">
+	                                        <div class="tt-product-head__stars
+	                            tt-stars">
+	                                            <span class="ttg-icon"></span>
+	                                            <span class="ttg-icon" style="width: 70%;"></span>
+	                                        </div>
+	                                        <div class="tt-product-head__review-count"><a href="#">2 Review(s)</a></div>
+	                                        <div class="tt-product-head__review-add"><a href="#">Add Your Review</a></div>
+	                                    </div>
+	                                    <div class="tt-product-head__price">
+	                                        <div class="tt-price">
+	                                            <span>$25</span>
+	                                        </div>
+	                                    </div>
+	                                    <div class="tt-product-head__more-detailed"><p>Sed ut perspiciatis unde omnis iste
+	                                        natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
+	                                        eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+	                                        dicta sunt explicabo.</p></div>
+	                                    <div class="tt-product-head__control">
+	                                        <div class="tt-product-head__counter tt-counter tt-counter__inner" data-min="1"
+	                                             data-max="10">
+	                                            <input type="text" class="form-control" value="1">
+	                                            <div class="tt-counter__control">
+	                                                <span class="icon-up-circle" data-direction="next"></span>
+	                                                <span class="icon-down-circle" data-direction="prev"></span>
+	                                            </div>
+	                                        </div>
+	                                        <a href="#" class="tt-product-head__cart tt-btn tt-btn--cart colorize-btn6">
+	                                            <i class="icon-shop24"></i>
+	                                            <span>Add to Cart</span>
+	                                        </a>
+	                                        <a href="#" class="tt-product-head__like tt-btn colorize-btn4 tt-product__buttons_like">
+	                                            <i class="icon-heart-empty-2"></i>
+	                                        </a>
+	                                        <a href="#" class="tt-product-head__compare tt-btn colorize-btn4 tt-product__buttons_like">
+	                                            <i class="icon-untitled-1"></i>
+	                                        </a>
+	                                    </div>
+	                                    <div class="tt-product-head__tags"><span>Tags:</span>
+	                                        <a href="#">Wireless</a>,
+	                                        <a href="#">Built-In Microphone</a>,
+	                                        <a href="#">Bluetooth Enabled</a>
+	                                    </div>
+	                                    <div class="addthis_inline_share_toolbox"></div>
+	                                    <div class="tt-product-head__video tt-video">
+	                                        <!--<video src="media/video-01.mp4" controls="controls"></video>-->
+	                                        <iframe src="https://www.youtube.com/embed/AoPiLg8DZ3A" frameborder="0"
+	                                                allowfullscreen></iframe>
+	                                    </div>
+	                                </form>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="tt-product-page__tabs tt-tabs tt-layout__mobile-full" data-tt-type="horizontal">
+	                        <div class="tt-tabs__head">
+	                            <div class="tt-tabs__slider">
+	                                <div class="tt-tabs__btn" data-active="true"><span>Description</span></div>
+	                                <div class="tt-tabs__btn"><span>Additional</span></div>
+	                                <div class="tt-tabs__btn"><span>Tags</span></div>
+	                                <div class="tt-tabs__btn" data-tab="review"><span>Reviews</span></div>
+	                                <div class="tt-tabs__btn" data-tab="review-shopify"><span>Reviews Shopify</span></div>
+	                            </div>
+	                            <div class="tt-tabs__btn-prev"></div>
+	                            <div class="tt-tabs__btn-next"></div>
+	                            <div class="tt-tabs__border"></div>
+	                        </div>
+	                        <div class="tt-tabs__body tt-tabs-product">
+	                            <div>
+	                                <span>Description <i class="icon-down-open"></i></span>
+	                                <div class="tt-tabs__content">
+	                                    <div class="tt-tabs__content-head">Description</div>
+	                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+	                                        doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
+	                                        veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam
+	                                        voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
+	                                    <p>Omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam
+	                                        rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto
+	                                        beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+	                                        aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.</p>
+	                                    <ul class="tt-tabs-product__list">
+	                                        <li><span>Omnis iste natus error sit voluptatem</span></li>
+	                                        <li><span>Accusantium doloremque</span></li>
+	                                        <li><span>Laudantium, totam rem aperiam,</span></li>
+	                                        <li><span>Eaque ipsa quae ab illo inventore veritatis</span></li>
+	                                    </ul>
+	                                </div>
+	                            </div>
+	                            <div>
+	                                <span>Additional <i class="icon-down-open"></i></span>
+	                                <div class="tt-tabs__content">
+	                                    <div class="tt-tabs__content-head">Additional</div>
+	                                    <table class="table">
+	                                        <tr>
+	                                            <td>Headphone Fit</td>
+	                                            <td>Over-the-Ear</td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td>Wireless</td>
+	                                            <td>Yes</td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td>Headphone Fit</td>
+	                                            <td>Yes</td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td>Built-In Bluetooth</td>
+	                                            <td>Yes</td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td>Built-In Microphone</td>
+	                                            <td>Yes</td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td>Behind The Neck</td>
+	                                            <td>Yes</td>
+	                                        </tr>
+	                                    </table>
+	                                </div>
+	                            </div>
+	                            <div>
+	                                <span>Tags <i class="icon-down-open"></i></span>
+	                                <div class="tt-tabs__content">
+	                                    <div class="tt-tabs__content-head">Tags</div>
+	                                    <div class="tt-tabs-product__tags">
+	                                        <a href="#">Wireless</a>
+	                                        <a href="#">Built-In Microphone</a>
+	                                        <a href="#">Bluetooth Enabled</a>
+	                                        <a href="#">Bluetooth Built-In</a>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div>
+	                                <span>Reviews <i class="icon-down-open"></i></span>
+	                                <div class="tt-tabs__content">
+	                                    <div class="tt-tabs__content-head">Customer Reviews</div>
+	                                    <div class="tt-tabs-product__review tt-review">
+	                                        <div class="tt-review__head">
+	                                            <div class="tt-review__head-stars tt-stars">
+	                                                <span class="ttg-icon"></span>
+	                                                <span class="ttg-icon" style="width: 70%;"></span>
+	                                            </div>
+	                                            <span>Based on 2 review</span>
+	                                            <a href="#">Write a review</a>
+	                                        </div>
+	                                        <div class="tt-review__form">
+	                                            <span>Write a review</span>
+	                                            <form action="#">
+	                                                <div class="row">
+	                                                    <div class="col-sm-4"><label for="reviewName">Name:</label></div>
+	                                                    <div class="col-sm-8">
+	                                                        <input type="text" id="reviewName" class="form-control"
+	                                                               placeholder="Enter your name">
+	                                                    </div>
+	                                                </div>
+	                                                <div class="row ttg-mt--20">
+	                                                    <div class="col-sm-4"><label for="reviewEmail">E-mail:</label></div>
+	                                                    <div class="col-sm-8">
+	                                                        <input type="text" id="reviewEmail" class="form-control"
+	                                                               placeholder="John.smith@example.com">
+	                                                    </div>
+	                                                </div>
+	                                                <div class="row ttg-mt--20">
+	                                                    <div class="col-sm-4"><label>E-Rating:</label></div>
+	                                                    <div class="col-sm-8">
+	                                                        <div class="tt-review__form-stars tt-stars tt-stars__input">
+	                                                            <span class="ttg-icon"></span>
+	                                                            <span class="tt-stars__set ttg-icon"
+	                                                                  style="width: 70%;"></span>
+	                                                            <input type="hidden" id="reviewStars" value="70">
+	                                                        </div>
+	                                                    </div>
+	                                                </div>
+	                                                <div class="row ttg-mt--20">
+	                                                    <div class="col-sm-4"><label for="reviewTitle">Review Title:</label>
+	                                                    </div>
+	                                                    <div class="col-sm-8">
+	                                                        <input type="text" id="reviewTitle" class="form-control"
+	                                                               placeholder="Give your review a title">
+	                                                    </div>
+	                                                </div>
+	                                                <div class="row ttg-mt--20">
+	                                                    <div class="col-sm-4"><label for="reviewBody">Body of Review
+	                                                        (1500):</label></div>
+	                                                    <div class="col-sm-8">
+	                                                        <textarea id="reviewBody" class="form-control">Wtite your comments here</textarea>
+	                                                    </div>
+	                                                </div>
+	                                                <div class="row ttg-mt--20">
+	                                                    <div class="col-sm-8 offset-sm-4">
+	                                                        <button type="submit" class="btn">Submit Review</button>
+	                                                    </div>
+	                                                </div>
+	                                            </form>
+	                                        </div>
+	                                        <div class="tt-review__comments">
+	                                            <div>
+	                                                <div class="tt-stars">
+	                                                    <span class="ttg-icon"></span>
+	                                                    <span class="ttg-icon" style="width: 70%;"></span>
+	                                                </div>
+	                                                <div class="tt-review__comments-title">The Best Headphones Get Even
+	                                                    Better!
+	                                                </div>
+	                                                <span><span>Robert</span> on December 28, 2017</span>
+	                                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+	                                                    accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
+	                                                    quae ab illo inventore veritatis et quasi architecto beatae vitae
+	                                                    dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+	                                                    aspernatur aut odit aut fugit.</p>
+	                                            </div>
+	                                            <div>
+	                                                <div class="tt-stars">
+	                                                    <span class="ttg-icon"></span>
+	                                                    <span class="ttg-icon" style="width: 45%;"></span>
+	                                                </div>
+	                                                <div class="tt-review__comments-title">Awesome!!!</div>
+	                                                <span><span>Robert</span> on December 28, 2017</span>
+	                                                <p>Omnis iste natus error sit voluptatem accusantium doloremque
+	                                                    laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
+	                                                    veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div>
+	                                <span>Reviews Shopify <i class="icon-down-open"></i></span>
+	                                <div class="tt-tabs__content">
+	                                    <div class="tt-tabs-product__review tt-review-shopify">
+	                                        <div id="shopify-product-reviews" data-id="8934519185">
+	                                            <div class="spr-container">
+	                                                <div class="spr-header">
+	                                                    <h2 class="spr-header-title">Customer Reviews</h2>
+	                                                    <div class="spr-summary" itemscope="" itemprop="aggregateRating"
+	                                                         itemtype="">
+	                                                        <meta itemprop="itemreviewed" content="Beats Pill">
+	                                    <span class="spr-starrating spr-summary-starrating">
+	                                        <meta itemprop="bestRating" content="5">
+	                                        <meta itemprop="worstRating" content="1">
+	                                        <meta itemprop="reviewCount" content="1">
+	                                        <meta itemprop="ratingValue" content="4.0">
+	                                        <i class="spr-icon spr-icon-star" style=""></i>
+	                                        <i class="spr-icon spr-icon-star" style=""></i>
+	                                        <i class="spr-icon spr-icon-star" style=""></i>
+	                                        <i class="spr-icon spr-icon-star" style=""></i>
+	                                        <i class="spr-icon spr-icon-star-empty" style=""></i>
+	                                    </span>
+	                                    <span class="spr-summary-caption">
+	                                        <span class="spr-summary-actions-togglereviews">Based on 1 review</span>
+	                                    </span>
+	                                    <span class="spr-summary-actions">
+	                                        <a href="#" class="spr-summary-actions-newreview">Write a review</a>
+	                                    </span>
+	                                                    </div>
+	                                                </div>
+	                                                <div class="spr-content">
+	                                                    <div class="spr-form" id="form_8934519185">
+	                                                        <form method="post"
+	                                                              action="//productreviews.shopifycdn.com/api/reviews/create"
+	                                                              id="new-review-form_8934519185" class="new-review-form">
+	                                                            <input type="hidden" name="review[rating]"
+	                                                                   id="reviewNameShopify">
+	                                                            <input type="hidden" name="product_id" value="8934519185">
+	                                                            <h3 class="spr-form-title">Write a review</h3>
+	                                                            <fieldset class="spr-form-contact">
+	                                                                <div class="spr-form-contact-name">
+	                                                                    <label class="spr-form-label"
+	                                                                           for="review_author_8934519185">Name</label>
+	                                                                    <input class="spr-form-input spr-form-input-text "
+	                                                                           id="review_author_8934519185" type="text"
+	                                                                           name="review[author]" value=""
+	                                                                           placeholder="Enter your name">
+	                                                                </div>
+	                                                                <div class="spr-form-contact-email">
+	                                                                    <label class="spr-form-label"
+	                                                                           for="review_email_8934519185">Email</label>
+	                                                                    <input class="spr-form-input spr-form-input-email "
+	                                                                           id="review_email_8934519185" type="email"
+	                                                                           name="review[email]" value=""
+	                                                                           placeholder="john.smith@example.com">
+	                                                                </div>
+	                                                            </fieldset>
+	                                                            <fieldset class="spr-form-review">
+	                                                                <div class="spr-form-review-rating">
+	                                                                    <label class="spr-form-label" for="review[rating]">Rating</label>
+	                                                                    <div class="spr-form-input spr-starrating ">
+	                                                                        <a href="#"
+	                                                                           class="spr-icon spr-icon-star spr-icon-star-empty"
+	                                                                           data-value="1">&nbsp;</a>
+	                                                                        <a href="#"
+	                                                                           class="spr-icon spr-icon-star spr-icon-star-empty"
+	                                                                           data-value="2">&nbsp;</a>
+	                                                                        <a href="#"
+	                                                                           class="spr-icon spr-icon-star spr-icon-star-empty"
+	                                                                           data-value="3">&nbsp;</a>
+	                                                                        <a href="#"
+	                                                                           class="spr-icon spr-icon-star spr-icon-star-empty"
+	                                                                           data-value="4">&nbsp;</a>
+	                                                                        <a href="#"
+	                                                                           class="spr-icon spr-icon-star spr-icon-star-empty"
+	                                                                           data-value="5">&nbsp;</a>
+	                                                                    </div>
+	                                                                </div>
+	                                                                <div class="spr-form-review-title">
+	                                                                    <label class="spr-form-label"
+	                                                                           for="review_title_8934519185">Review
+	                                                                        Title</label>
+	                                                                    <input class="spr-form-input spr-form-input-text "
+	                                                                           id="review_title_8934519185" type="text"
+	                                                                           name="review[title]" value=""
+	                                                                           placeholder="Give your review a title">
+	                                                                </div>
+	                                                                <div class="spr-form-review-body">
+	                                                                    <label class="spr-form-label"
+	                                                                           for="review_body_8934519185">Body of Review
+	                                                                        <span class="spr-form-review-body-charactersremaining">(1500)</span>
+	                                                                    </label>
+	                                                                    <div class="spr-form-input">
+	                                                                        <textarea
+	                                                                                class="spr-form-input spr-form-input-textarea "
+	                                                                                id="review_body_8934519185"
+	                                                                                data-product-id="8934519185"
+	                                                                                name="review[body]" rows="10"
+	                                                                                placeholder="Write your comments here"></textarea>
+	                                                                    </div>
+	                                                                </div>
+	                                                            </fieldset>
+	                                                            <fieldset class="spr-form-actions">
+	                                                                <input type="submit"
+	                                                                       class="spr-button spr-button-primary button button-primary btn btn-primary"
+	                                                                       value="Submit Review">
+	                                                            </fieldset>
+	                                                        </form>
+	                                                    </div>
+	                                                    <div class="spr-reviews" id="reviews_8934519185">
+	                                                        <div class="spr-review" id="spr-review-11734104">
+	                                                            <div class="spr-review-header">
+	                                            <span class="spr-starratings spr-review-header-starratings">
+	                                                <i class="spr-icon spr-icon-star" style=""></i>
+	                                                <i class="spr-icon spr-icon-star" style=""></i>
+	                                                <i class="spr-icon spr-icon-star" style=""></i>
+	                                                <i class="spr-icon spr-icon-star" style=""></i>
+	                                                <i class="spr-icon spr-icon-star-empty" style=""></i>
+	                                            </span>
+	                                                                <h3 class="spr-review-header-title">The Best Headphones
+	                                                                    Get Even Better!</h3>
+	                                            <span class="spr-review-header-byline">
+	                                                <strong>Robert</strong> on December 28, 2017
+	                                            </span>
+	                                                            </div>
+	                                                            <div class="spr-review-content">
+	                                                                <p class="spr-review-content-body">Sed ut perspiciatis
+	                                                                    unde omnis iste natus error sit voluptatem
+	                                                                    accusantium doloremque laudantium, totam rem
+	                                                                    aperiam, eaque ipsa quae ab illo inventore veritatis
+	                                                                    et quasi architecto beatae vitae dicta sunt
+	                                                                    explicabo. Nemo enim ipsam voluptatem quia voluptas
+	                                                                    sit aspernatur aut odit aut fugit.</p>
+	                                                            </div>
+	                                                            <div class="spr-review-footer">
+	                                                                <a href="#" class="spr-review-reportreview"
+	                                                                   id="report_11734104"
+	                                                                   data-msg="This review has been reported">Report as
+	                                                                    Inappropriate</a>
+	                                                            </div>
+	                                                        </div>
+	                                                        <div class="spr-review" id="spr-review-11734104">
+	                                                            <div class="spr-review-header">
+	                                            <span class="spr-starratings spr-review-header-starratings">
+	                                                <i class="spr-icon spr-icon-star" style=""></i>
+	                                                <i class="spr-icon spr-icon-star" style=""></i>
+	                                                <i class="spr-icon spr-icon-star-empty" style=""></i>
+	                                                <i class="spr-icon spr-icon-star-empty" style=""></i>
+	                                                <i class="spr-icon spr-icon-star-empty" style=""></i>
+	                                            </span>
+	                                                                <h3 class="spr-review-header-title">Awesome!!!</h3>
+	                                            <span class="spr-review-header-byline">
+	                                                <strong>Robert</strong> on December 28, 2017
+	                                            </span>
+	                                                            </div>
+	                                                            <div class="spr-review-content">
+	                                                                <p class="spr-review-content-body">Omnis iste natus
+	                                                                    error sit voluptatem accusantium doloremque
+	                                                                    laudantium, totam rem aperiam, eaque ipsa quae ab
+	                                                                    illo inventore veritatis et quasi architecto beatae
+	                                                                    vitae dicta sunt explicabo.</p>
+	                                                            </div>
+	                                                            <div class="spr-review-footer">
+	                                                                <a href="#" class="spr-review-reportreview"
+	                                                                   id="report_11734104"
+	                                                                   data-msg="This review has been reported">Report as
+	                                                                    Inappropriate</a>
+	                                                            </div>
+	                                                        </div>
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="tt-product-page__upsell">
+	                        <div class="tt-product-page__upsell-title">You may also be interested in the follwing
+	                            product(s)
+	                        </div>
+	                        <div class="tt-carousel-box">
+	                            <div class="tt-product-view">
+	                                <div class="tt-carousel-box__slider">
+	                                    <div class="col-sm-6 col-xl-3">
+	                                        <div class="tt-product tt-product__view-overlay ttg-text-animation-parent">
+	                                            <div class="tt-product__image">
+	                                                <a href="product-simple-variant-1.html">
+	                                                    <img src="assets/templates/mogo/images/loader.svg" data-srcset="assets/templates/mogo/images/products/product-01.jpg"
+	                                                         data-retina="assets/templates/mogo/images/products/product-01.jpg"
+	                                                         alt="Elegant and fresh. A most attractive mobile power supply.">
+	                                                </a>
+	                                                <div class="tt-product__labels">
+	                                                    <span class="tt-label__new">New</span>
+	                                                    <span class="tt-label__hot">Hot</span>
+	
+	                                                    <span class="tt-label__sale">Sale</span>
+	                                                    <span class="tt-label__discount">$22</span>
+	
+	                                                    <div><span class="tt-label__out-stock">Out Stock</span></div>
+	                                                    <div><span class="tt-label__in-stock">In Stock</span></div>
+	                                                </div>
+	                                            </div>
+	                                            <div class="tt-product__hover tt-product__clr-clk-transp">
+	                                                <div class="tt-product__content">
+	                                                    <h3>
+	                                            <span class="ttg-text-animation--emersion">
+	                                                <a href="listing-with-custom-html-block.html">Headphones</a>
+	                                            </span>
+	                                                    </h3>
+	                                                    <p>
+	                                            <span class="ttg-text-animation--emersion">
+	                                                <a href="product-simple-variant-1.html">Elegant and fresh. A most attractive mobile power supply.</a>
+	                                            </span>
+	                                                    </p>
+	                                                    <p class="tt-product__description">Sed ut perspiciatis unde omnis iste natus
+	                                                        error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
+	                                                        eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+	                                                        dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+	                                                        aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.</p>
+	                                                    <div class="ttg-text-animation--emersion">
+	                                            <span class="tt-product__price">
+	                                                <span class="tt-price tt-price--sale">
+	                                                    <span>$22</span>
+	                                                    <span>$28</span>
+	                                                </span>
+	                                            </span>
+	                                                    </div>
+	
+	                                                    <div class="ttg-text-animation--emersion">
+	                                                        <div class="tt-product__stars tt-stars">
+	                                                            <span class="ttg-icon"></span>
+	                                                            <span class="ttg-icon" style="width:86%;"></span>
+	                                                        </div>
+	                                                    </div>
+	                                                    <div class="ttg-text-animation--emersion">
+	                                                        <div class="tt-product__buttons">
+	                                                            <a href="#" class="tt-btn colorize-btn5 tt-product__buttons_cart tt-btn__state--active">
+	                                                                <i class="icon-shop24"></i>
+	                                                                <span>Add to Cart</span>
+	                                                            </a>
+	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_like tt-btn__state--active">
+	                                                                <i class="icon-heart-empty-2"></i>
+	                                                            </a>
+	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_compare tt-btn__state--active">
+	                                                                <i class="icon-untitled-1"></i>
+	                                                            </a>
+	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_qv">
+	                                                                <i class="icon-eye"></i>
+	                                                            </a>
+	                                                        </div>
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                    <div class="col-sm-6 col-xl-3">
+	                                        <div class="tt-product tt-product__view-overlay ttg-text-animation-parent">
+	                                            <div class="tt-product__image">
+	                                                <a href="product-simple-variant-1.html">
+	                                                    <img src="assets/templates/mogo/images/loader.svg" data-srcset="assets/templates/mogo/images/products/product-02.jpg"
+	                                                         data-retina="assets/templates/mogo/images/products/product-02.jpg"
+	                                                         alt="Elegant and fresh. A most attractive mobile power supply.">
+	                                                </a>
+	                                            </div>
+	                                            <div class="tt-product__hover tt-product__clr-clk-transp">
+	                                                <div class="tt-product__content">
+	                                                    <h3>
+	                                            <span class="ttg-text-animation--emersion">
+	                                                <a href="listing-with-custom-html-block.html">Phone</a>
+	                                            </span>
+	                                                    </h3>
+	                                                    <p>
+	                                            <span class="ttg-text-animation--emersion">
+	                                                <a href="product-simple-variant-1.html">Elegant and fresh. A most attractive mobile power supply.</a>
+	                                            </span>
+	                                                    </p>
+	                                                    <p class="tt-product__description">Sed ut perspiciatis unde omnis iste natus
+	                                                        error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
+	                                                        eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+	                                                        dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+	                                                        aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.</p>
+	                                                    <div class="ttg-text-animation--emersion">
+	                                            <span class="tt-product__price">
+	                                                <span class="tt-price">
+	                                                    <span>$46</span>
+	                                                </span>
+	                                            </span>
+	                                                    </div>
+	                                                    <div class="ttg-text-animation--emersion">
+	                                                        <div class="tt-product__stars tt-stars">
+	                                                            <span class="ttg-icon"></span>
+	                                                            <span class="ttg-icon" style="width:35%;"></span>
+	                                                        </div>
+	                                                    </div>
+	                                                    <div class="ttg-text-animation--emersion">
+	                                                        <div class="tt-product__buttons">
+	                                                            <a href="#" class="tt-btn colorize-btn5 tt-product__buttons_cart">
+	                                                                <i class="icon-shop24"></i>
+	                                                                <span>Add to Cart</span>
+	                                                            </a>
+	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_like">
+	                                                                <i class="icon-heart-empty-2"></i>
+	                                                            </a>
+	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_compare">
+	                                                                <i class="icon-untitled-1"></i>
+	                                                            </a>
+	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_qv">
+	                                                                <i class="icon-eye"></i>
+	                                                            </a>
+	                                                        </div>
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                    <div class="col-sm-6 col-xl-3">
+	                                        <div class="tt-product tt-product__view-overlay ttg-text-animation-parent">
+	                                            <div class="tt-product__image">
+	                                                <a href="product-simple-variant-1.html">
+	                                                    <img src="assets/templates/mogo/images/loader.svg" data-srcset="assets/templates/mogo/images/products/product-03.jpg"
+	                                                         data-retina="assets/templates/mogo/images/products/product-03.jpg"
+	                                                         alt="Elegant and fresh. A most attractive mobile power supply.">
+	                                                </a>
+	                                                <div class="tt-product__labels">
+	                                                    <span class="tt-label__sale">Sale</span>
+	                                                    <span class="tt-label__discount">$32</span>
+	                                                </div>
+	                                            </div>
+	                                            <div class="tt-product__hover tt-product__clr-clk-transp">
+	                                                <div class="tt-product__content">
+	                                                    <h3>
+	                                            <span class="ttg-text-animation--emersion">
+	                                                <a href="listing-with-custom-html-block.html">USB</a>
+	                                            </span>
+	                                                    </h3>
+	                                                    <p>
+	                                            <span class="ttg-text-animation--emersion">
+	                                                <a href="product-simple-variant-1.html">Elegant and fresh. A most attractive mobile power supply.</a>
+	                                            </span>
+	                                                    </p>
+	                                                    <p class="tt-product__description">Sed ut perspiciatis unde omnis iste natus
+	                                                        error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
+	                                                        eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+	                                                        dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+	                                                        aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.</p>
+	                                                    <div class="ttg-text-animation--emersion">
+	                                            <span class="tt-product__price">
+	                                                <span class="tt-price tt-price--sale">
+	                                                    <span>$32</span>
+	                                                    <span>$38</span>
+	                                                </span>
+	                                            </span>
+	                                                    </div>
+	                                                    <div class="ttg-text-animation--emersion">
+	                                                        <div class="tt-product__buttons">
+	                                                            <a href="#" class="tt-btn colorize-btn5 tt-product__buttons_cart">
+	                                                                <i class="icon-shop24"></i>
+	                                                                <span>Add to Cart</span>
+	                                                            </a>
+	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_like">
+	                                                                <i class="icon-heart-empty-2"></i>
+	                                                            </a>
+	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_compare">
+	                                                                <i class="icon-untitled-1"></i>
+	                                                            </a>
+	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_qv">
+	                                                                <i class="icon-eye"></i>
+	                                                            </a>
+	                                                        </div>
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                    <div class="col-sm-6 col-xl-3">
+	                                        <div class="tt-product tt-product__view-overlay ttg-text-animation-parent">
+	                                            <div class="tt-product__image">
+	                                                <a href="product-simple-variant-1.html">
+	                                                    <img src="assets/templates/mogo/images/loader.svg" data-srcset="assets/templates/mogo/images/products/product-04.jpg"
+	                                                         data-retina="assets/templates/mogo/images/products/product-04.jpg"
+	                                                         alt="Elegant and fresh. A most attractive mobile power supply.">
+	                                                </a>
+	                                            </div>
+	                                            <div class="tt-product__hover tt-product__clr-clk-transp">
+	                                                <div class="tt-product__content">
+	                                                    <h3>
+	                                            <span class="ttg-text-animation--emersion">
+	                                                <a href="listing-with-custom-html-block.html">Category</a>
+	                                            </span>
+	                                                    </h3>
+	                                                    <p>
+	                                            <span class="ttg-text-animation--emersion">
+	                                                <a href="product-simple-variant-1.html">Elegant and fresh. A most attractive mobile power supply.</a>
+	                                            </span>
+	                                                    </p>
+	                                                    <p class="tt-product__description">Sed ut perspiciatis unde omnis iste natus
+	                                                        error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
+	                                                        eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+	                                                        dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+	                                                        aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.</p>
+	                                                    <div class="ttg-text-animation--emersion">
+	                                            <span class="tt-product__price">
+	                                                <span class="tt-price">
+	                                                    <span>$14</span>
+	                                                </span>
+	                                            </span>
+	                                                    </div>
+	                                                    <div class="ttg-text-animation--emersion">
+	                                                        <div class="tt-product__buttons">
+	                                                            <a href="#" class="tt-btn colorize-btn5 tt-product__buttons_cart">
+	                                                                <i class="icon-shop24"></i>
+	                                                                <span>Add to Cart</span>
+	                                                            </a>
+	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_like">
+	                                                                <i class="icon-heart-empty-2"></i>
+	                                                            </a>
+	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_compare">
+	                                                                <i class="icon-untitled-1"></i>
+	                                                            </a>
+	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_qv">
+	                                                                <i class="icon-eye"></i>
+	                                                            </a>
+	                                                        </div>
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                    <div class="col-sm-6 col-xl-3">
+	                                        <div class="tt-product tt-product__view-overlay ttg-text-animation-parent">
+	                                            <div class="tt-product__image">
+	                                                <a href="product-simple-variant-1.html">
+	                                                    <img src="assets/templates/mogo/images/loader.svg" data-srcset="assets/templates/mogo/images/products/product-05.jpg"
+	                                                         data-retina="assets/templates/mogo/images/products/product-05.jpg"
+	                                                         alt="Elegant and fresh. A most attractive mobile power supply.">
+	                                                </a>
+	                                            </div>
+	                                            <div class="tt-product__hover tt-product__clr-clk-transp">
+	                                                <div class="tt-product__content">
+	                                                    <h3>
+	                                            <span class="ttg-text-animation--emersion">
+	                                                <a href="listing-with-custom-html-block.html">Category</a>
+	                                            </span>
+	                                                    </h3>
+	                                                    <p>
+	                                            <span class="ttg-text-animation--emersion">
+	                                                <a href="product-simple-variant-1.html">Elegant and fresh. A most attractive mobile power supply.</a>
+	                                            </span>
+	                                                    </p>
+	                                                    <p class="tt-product__description">Sed ut perspiciatis unde omnis iste natus
+	                                                        error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
+	                                                        eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+	                                                        dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+	                                                        aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.</p>
+	                                                    <div class="ttg-text-animation--emersion">
+	                                            <span class="tt-product__price">
+	                                                <span class="tt-price">
+	                                                    <span>$24</span>
+	                                                </span>
+	                                            </span>
+	                                                    </div>
+	                                                    <div class="ttg-text-animation--emersion">
+	                                                        <div class="tt-product__buttons">
+	                                                            <a href="#" class="tt-btn colorize-btn5 tt-product__buttons_cart">
+	                                                                <i class="icon-shop24"></i>
+	                                                                <span>Add to Cart</span>
+	                                                            </a>
+	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_like">
+	                                                                <i class="icon-heart-empty-2"></i>
+	                                                            </a>
+	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_compare">
+	                                                                <i class="icon-untitled-1"></i>
+	                                                            </a>
+	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_qv">
+	                                                                <i class="icon-eye"></i>
+	                                                            </a>
+	                                                        </div>
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                    <div class="col-sm-6 col-xl-3">
+	                                        <div class="tt-product tt-product__view-overlay ttg-text-animation-parent">
+	                                            <div class="tt-product__image">
+	                                                <a href="product-simple-variant-1.html">
+	                                                    <img src="assets/templates/mogo/images/loader.svg" data-srcset="assets/templates/mogo/images/products/product-06.jpg"
+	                                                         data-retina="assets/templates/mogo/images/products/product-06.jpg"
+	                                                         alt="Elegant and fresh. A most attractive mobile power supply.">
+	                                                </a>
+	                                            </div>
+	                                            <div class="tt-product__hover tt-product__clr-clk-transp">
+	                                                <div class="tt-product__content">
+	                                                    <h3>
+	                                            <span class="ttg-text-animation--emersion">
+	                                                <a href="listing-with-custom-html-block.html">Category</a>
+	                                            </span>
+	                                                    </h3>
+	                                                    <p>
+	                                            <span class="ttg-text-animation--emersion">
+	                                                <a href="product-simple-variant-1.html">Elegant and fresh. A most attractive mobile power supply.</a>
+	                                            </span>
+	                                                    </p>
+	                                                    <p class="tt-product__description">Sed ut perspiciatis unde omnis iste natus
+	                                                        error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
+	                                                        eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+	                                                        dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+	                                                        aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.</p>
+	                                                    <div class="ttg-text-animation--emersion">
+	                                            <span class="tt-product__price">
+	                                                <span class="tt-price">
+	                                                    <span>$28</span>
+	                                                </span>
+	                                            </span>
+	                                                    </div>
+	                                                    <div class="ttg-text-animation--emersion">
+	                                                        <div class="tt-product__buttons">
+	                                                            <a href="#" class="tt-btn colorize-btn5 tt-product__buttons_cart">
+	                                                                <i class="icon-shop24"></i>
+	                                                                <span>Add to Cart</span>
+	                                                            </a>
+	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_like">
+	                                                                <i class="icon-heart-empty-2"></i>
+	                                                            </a>
+	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_compare">
+	                                                                <i class="icon-untitled-1"></i>
+	                                                            </a>
+	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_qv">
+	                                                                <i class="icon-eye"></i>
+	                                                            </a>
+	                                                        </div>
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                    <div class="col-sm-6 col-xl-3">
+	                                        <div class="tt-product tt-product__view-overlay ttg-text-animation-parent">
+	                                            <div class="tt-product__image">
+	                                                <a href="product-simple-variant-1.html">
+	                                                    <img src="assets/templates/mogo/images/loader.svg" data-srcset="assets/templates/mogo/images/products/product-07.jpg"
+	                                                         data-retina="assets/templates/mogo/images/products/product-07.jpg"
+	                                                         alt="Elegant and fresh. A most attractive mobile power supply.">
+	                                                </a>
+	                                            </div>
+	                                            <div class="tt-product__hover tt-product__clr-clk-transp">
+	                                                <div class="tt-product__content">
+	                                                    <h3>
+	                                            <span class="ttg-text-animation--emersion">
+	                                                <a href="listing-with-custom-html-block.html">Category</a>
+	                                            </span>
+	                                                    </h3>
+	                                                    <p>
+	                                            <span class="ttg-text-animation--emersion">
+	                                                <a href="product-simple-variant-1.html">Elegant and fresh. A most attractive mobile power supply.</a>
+	                                            </span>
+	                                                    </p>
+	                                                    <p class="tt-product__description">Sed ut perspiciatis unde omnis iste natus
+	                                                        error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
+	                                                        eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+	                                                        dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+	                                                        aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.</p>
+	                                                    <div class="ttg-text-animation--emersion">
+	                                            <span class="tt-product__price">
+	                                                <span class="tt-price">
+	                                                    <span>$58</span>
+	                                                </span>
+	                                            </span>
+	                                                    </div>
+	                                                    <div class="ttg-text-animation--emersion">
+	                                                        <div class="tt-product__buttons">
+	                                                            <a href="#" class="tt-btn colorize-btn5 tt-product__buttons_cart">
+	                                                                <i class="icon-shop24"></i>
+	                                                                <span>Add to Cart</span>
+	                                                            </a>
+	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_like">
+	                                                                <i class="icon-heart-empty-2"></i>
+	                                                            </a>
+	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_compare">
+	                                                                <i class="icon-untitled-1"></i>
+	                                                            </a>
+	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_qv">
+	                                                                <i class="icon-eye"></i>
+	                                                            </a>
+	                                                        </div>
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                    <div class="col-sm-6 col-xl-3">
+	                                        <div class="tt-product tt-product__view-overlay ttg-text-animation-parent">
+	                                            <div class="tt-product__image">
+	                                                <a href="product-simple-variant-1.html">
+	                                                    <img src="assets/templates/mogo/images/loader.svg" data-srcset="assets/templates/mogo/images/products/product-08.jpg"
+	                                                         data-retina="assets/templates/mogo/images/products/product-08.jpg"
+	                                                         alt="Elegant and fresh. A most attractive mobile power supply.">
+	                                                </a>
+	                                            </div>
+	                                            <div class="tt-product__hover tt-product__clr-clk-transp">
+	                                                <div class="tt-product__content">
+	                                                    <h3>
+	                                            <span class="ttg-text-animation--emersion">
+	                                                <a href="listing-with-custom-html-block.html">Category</a>
+	                                            </span>
+	                                                    </h3>
+	                                                    <p>
+	                                            <span class="ttg-text-animation--emersion">
+	                                                <a href="product-simple-variant-1.html">Elegant and fresh. A most attractive mobile power supply.</a>
+	                                            </span>
+	                                                    </p>
+	                                                    <p class="tt-product__description">Sed ut perspiciatis unde omnis iste natus
+	                                                        error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
+	                                                        eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+	                                                        dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+	                                                        aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.</p>
+	                                                    <div class="ttg-text-animation--emersion">
+	                                            <span class="tt-product__price">
+	                                                <span class="tt-price">
+	                                                    <span>$19</span>
+	                                                </span>
+	                                            </span>
+	                                                    </div>
+	                                                    <div class="ttg-text-animation--emersion">
+	                                                        <div class="tt-product__buttons">
+	                                                            <a href="#" class="tt-btn colorize-btn5 tt-product__buttons_cart">
+	                                                                <i class="icon-shop24"></i>
+	                                                                <span>Add to Cart</span>
+	                                                            </a>
+	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_like">
+	                                                                <i class="icon-heart-empty-2"></i>
+	                                                            </a>
+	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_compare">
+	                                                                <i class="icon-untitled-1"></i>
+	                                                            </a>
+	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_qv">
+	                                                                <i class="icon-eye"></i>
+	                                                            </a>
+	                                                        </div>
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	
+	                <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Product",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "3.5",
+    "reviewCount": "11"
+  },
+  "description": "0.7 cubic feet countertop microwave. Has six preset cooking categories and convenience features like Add-A-Minute and Child Lock.",
+  "name": "Kenmore White 17\" Microwave",
+  "image": "kenmore-microwave-17in.jpg",
+  "offers": {
+    "@type": "Offer",
+    "availability": "http://schema.org/InStock",
+    "price": "55.00",
+    "priceCurrency": "USD"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": "Ellie",
+      "datePublished": "2011-04-01",
+      "description": "The lamp burned out and now I have to replace it.",
+      "name": "Not a happy camper",
+      "reviewRating": {
+        "@type": "Rating",
+        "bestRating": "5",
+        "ratingValue": "1",
+        "worstRating": "1"
+      }
+    },
+    {
+      "@type": "Review",
+      "author": "Lucas",
+      "datePublished": "2011-03-25",
+      "description": "Great microwave for the price. It is small and fits in my apartment.",
+      "name": "Value purchase",
+      "reviewRating": {
+        "@type": "Rating",
+        "bestRating": "5",
+        "ratingValue": "4",
+        "worstRating": "1"
+      }
+    }
+  ]
+}
+
+                </script>
+	            </div>
+	        </div>
+	    </div>
+	
+	    <div class="tt-add-to-cart" data-active="true">
+	        <i class="icon-check"></i>
+	        <p>Added to Cart Successfully!</p>
+	        <a href="#" class="btn"><i class="icon-shop24"></i>View Cart</a>
+	    </div>
+	
+	    <div class="tt-newsletter-popup" data-active="true">
+	        <div class="tt-newsletter-popup__text-01">
+	            <span>15</span>
+	        <span>
+	            <span>%</span>
+	            <span>off</span>
+	        </span>
+	        </div>
+	        <div class="tt-newsletter-popup__text-02"><p>Your Next Purchase When You Sign Up.</p></div>
+	        <p>By signing up, you accept the terms & Privacy Policy.</p>
+	        <div class="ttg-mb--30">
+	            <form action="#" class="tt-newsletter tt-newsletter--style-02">
+	                <input type="email" name="email" class="form-control" placeholder="Enter please your e-mail">
+	                <button type="submit" class="btn">
+	                    <i class="tt-newsletter__text-wait"></i>
+	                    <span class="tt-newsletter__text-default">Subscribe!</span>
+	                    <span class="tt-newsletter__text-error"><i class="icon-exclamation"></i>Please provide a valid email address!</span>
+	                    <span class="tt-newsletter__text-complete"><i class="icon-ok"></i>Check your inbox!</span>
+	                </button>
+	            </form>
+	        </div>
+	        <div class="tt-newsletter-popup__social">
+	            <div class="tt-social-icons tt-social-icons--style-03">
+	                <a href="#" class="tt-btn">
+	                    <i class="icon-facebook"></i>
+	                </a>
+	                <a href="#" class="tt-btn">
+	                    <i class="icon-twitter"></i>
+	                </a>
+	                <a href="#" class="tt-btn">
+	                    <i class="icon-gplus"></i>
+	                </a>
+	                <a href="#" class="tt-btn">
+	                    <i class="icon-instagram-1"></i>
+	                </a>
+	                <a href="#" class="tt-btn">
+	                    <i class="icon-youtube-play"></i>
+	                </a>
+	            </div>
+	        </div>
+	        <label class="tt-newsletter-popup__show_popup tt-checkbox">
+	            <input type="checkbox" name="show-nawslatter">
+	            <span></span>
+	            Don't show this popup again
+	        </label>
+	    </div>
+	</main>
+
+</ng-container>

@@ -18,3 +18,11 @@
 .loader {
 	height: 100vh;
 }
+
+.tt-product-head__images {
+	visibility: visible;
+}
+
+tt-product-head__image-preview {
+	display: flex;
+}

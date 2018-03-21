@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { LocalStorage } from "ngx-webstorage";
 import { OrderLine } from "../models/order-line";
 import { CartProvider } from "../providers/cart.provider";
+import { Globals } from '../providers/globals';
 
 @Component({
     selector: 'app-product-listing',
@@ -12,13 +13,14 @@ import { CartProvider } from "../providers/cart.provider";
 })
 export class ProductListingComponent implements OnInit {
 
-    public defaultImage: string = 'assets/images/default.jpg';
+    public defaultImage = 'assets/images/default.jpg';
     
     public unparsedType: string;
     public groupId: any;
+    public typeObject: any;
     
-    public limit: number = 12;
-    public page: number = 1;
+    public limit = 12;
+    public page = 1;
     public pageNumbers: number[];
     
     public products: any[] = new Array();
@@ -29,7 +31,8 @@ export class ProductListingComponent implements OnInit {
         public route: ActivatedRoute,
         public quecomProvider: QuecomProvider,
         public router: Router,
-        public cartProvider: CartProvider
+        public cartProvider: CartProvider,
+        public globals: Globals
     ) { }
 
     ngOnInit() {
@@ -43,14 +46,24 @@ export class ProductListingComponent implements OnInit {
             if (this.router.url.split("/")[1] !== 'producten') {
             
                 this.unparsedType = this.router.url.split("/")[1];
-                let type = this.groupMap.get(this.unparsedType);
+                const type = this.groupMap.get(this.unparsedType);
                 this.groupId = params.get('id');
+                
+                this.quecomProvider.getCategories().subscribe(res => {
+              
+                  if (this.unparsedType === 'categorie') {
+                    this.typeObject =  res['categories'].find(c => c.id === this.groupId);
+                  } else {
+                        
+                  }
+                      
+                });
                 
                 this.route.queryParams.subscribe(qp => {
                     this.page = qp['page'] ? Number.parseInt(qp['page']) : 1;
                     this.loadProducts(type);
                 });
-            
+              
             } else {
                 this.route.queryParams.subscribe(qp => {
                     this.page = qp['page'] ? Number.parseInt(qp['page']) : 1;
@@ -63,16 +76,17 @@ export class ProductListingComponent implements OnInit {
     }
     
     public fillArrayWithNumbers(n) {
-        var arr = Array.apply(null, Array(n));
+        const arr = Array.apply(null, Array(n));
         return arr.map(function (x, i) { return i+1 });
     }
     
     public loadProducts(type?: string) {
         
         if (type) {
-        
+          
             this.quecomProvider.getProductsPerGroup(type, this.groupId, this.limit, this.page).subscribe(res => {
                 this.products = res.products;
+                console.log(res.products);
                 this.pagination = res.pagination;
                 this.pageNumbers = this.fillArrayWithNumbers(this.pagination.number_of_pages);
             });

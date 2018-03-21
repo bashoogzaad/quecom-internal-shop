@@ -21,13 +21,13 @@
       "styles": [
         "scss/variables.css",
         "styles.scss",
-        "assets/css/font-awesome.min.css",
-        "assets/css/animation.scss",
-        "../node_modules/bootstrap/dist/css/bootstrap.css",
-        "assets/css/style.scss",
-        "assets/css/media.scss",
         "assets/templates/mogo/css/style-markup.scss",
-        "assets/templates/mogo/css/style.scss"
+        "assets/templates/mogo/css/style.scss",
+        "assets/templates/nexgeek/css/animation.scss",
+        "assets/templates/nexgeek/css/style.scss",
+        "assets/templates/nexgeek/css/media.scss",
+        "../node_modules/bootstrap/dist/css/bootstrap.css",
+        "../node_modules/font-awesome/css/font-awesome.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",

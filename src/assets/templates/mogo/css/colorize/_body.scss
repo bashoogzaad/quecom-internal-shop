@@ -44,7 +44,7 @@ a:hover > [class^="icon-"] {
 #theme {
   //modifiers
   .ttg-text--highlight {
-    background-color: $theme;
+    background-color: var(--color-primary-var);
     color: $theme2;
   }
   .ttg-quote {
@@ -55,7 +55,7 @@ a:hover > [class^="icon-"] {
       @include _link-color($theme4);
     }
     i {
-      color: $theme;
+      color: var(--color-primary-var);
     }
   }
   .ttg-capitalize {
@@ -81,7 +81,7 @@ a:hover > [class^="icon-"] {
   ol.ttg-list {
     & > li {
       &::before {
-        background-color: $theme;
+        background-color: var(--color-primary-var);
       }
       li::before {
         background-color: $theme-head-c;
@@ -92,7 +92,7 @@ a:hover > [class^="icon-"] {
     ul {
       & > li {
         &::before {
-          background-color: $theme;
+          background-color: var(--color-primary-var);
         }
         li::before {
           background-color: $theme-head-c;
@@ -104,13 +104,13 @@ a:hover > [class^="icon-"] {
 
   //animations
   .ttg-animation-icon--wave i::after {
-    border-color: $theme;
+    border-color: var(--color-primary-var);
   }
   .ttg-loading,
   .tt-preloader {
     &::before {
-      border-top-color: $theme;
-      border-bottom-color: $theme;
+      border-top-color: var(--color-primary-var);
+      border-bottom-color: var(--color-primary-var);
       border-left-color: $theme8;
       border-right-color: $theme8;
     }
@@ -148,7 +148,7 @@ a:hover > [class^="icon-"] {
   .tt-counter__control {
     span:hover {
       @media only screen and (min-width: $screen-md) {
-        color: $theme;
+        color: var(--color-primary-var);
       }
     }
   }
@@ -231,7 +231,7 @@ a:hover > [class^="icon-"] {
     }
     &:hover i {
       @media only screen and (min-width: $screen-md) {
-        color: $theme;
+        color: var(--color-primary-var);
       }
     }
   }
@@ -472,7 +472,7 @@ a:hover > [class^="icon-"] {
     }
     a:hover > [class^="icon-"] {
       @media only screen and (min-width: $screen-md) {
-        color: $theme;
+        color: var(--color-primary-var);
       }
     }
   }
@@ -610,7 +610,7 @@ a:hover > [class^="icon-"] {
       }
       &::after {
         @media only screen and (min-width: $screen-md) {
-          border-color: $theme;
+          border-color: var(--color-primary-var);
         }
       }
     }
@@ -635,7 +635,7 @@ a:hover > [class^="icon-"] {
     @media only screen and (min-width: $screen-md) {
       background-color: transparent;
       &::before {
-        border-color: $theme;
+        border-color: var(--color-primary-var);
       }
     }
     &.disabled {
@@ -666,7 +666,7 @@ a:hover > [class^="icon-"] {
   }
   .tt-tabs__border {
     @media only screen and (min-width: $screen-md) {
-      border-color: $theme;
+      border-color: var(--color-primary-var);
     }
   }
   .tt-tabs__body,
@@ -688,13 +688,13 @@ a:hover > [class^="icon-"] {
     }
   }
   .tt-tabs-product__list li {
-    color: $theme;
+    color: var(--color-primary-var);
     span {
       color: $theme-c;
     }
   }
   .tt-tabs-product__tags a {
-    background-color: $theme;
+    background-color: var(--color-primary-var);
     @include _link-color($theme2);
     &:hover {
       @media only screen and (min-width: $screen-md) {
@@ -725,7 +725,7 @@ a:hover > [class^="icon-"] {
       @include _link-color($theme);
     }
     .address-delete {
-      color: $theme;
+      color: var(--color-primary-var);
       &:hover i {
         @media only screen and (min-width: $screen-md) {
           color: $theme4;
@@ -765,7 +765,7 @@ a:hover > [class^="icon-"] {
       }
     }
     input:checked ~ i {
-      color: $theme;
+      color: var(--color-primary-var);
     }
   }
   .tt-vw-opt__length,
@@ -781,7 +781,7 @@ a:hover > [class^="icon-"] {
       }
     }
     &.active i {
-      color: $theme;
+      color: var(--color-primary-var);
     }
   }
   .tt-vw-opt .form-control {
@@ -792,7 +792,7 @@ a:hover > [class^="icon-"] {
   //subcategory
   .tt-subcategory {
     p {
-      color: $theme;
+      color: var(--color-primary-var);
     }
     span {
       color: $theme7;
@@ -816,7 +816,7 @@ a:hover > [class^="icon-"] {
   }
   .tt-sidebar__btn-open {
     @media only screen and (max-width: $screen-md-down) {
-      background-color: $theme;
+      background-color: var(--color-primary-var);
     }
     i, span {
       @media only screen and (max-width: $screen-md-down) {
@@ -830,7 +830,7 @@ a:hover > [class^="icon-"] {
     }
     i {
       @media only screen and (max-width: $screen-md-down) {
-        color: $theme;
+        color: var(--color-primary-var);
       }
     }
     span {
@@ -858,7 +858,7 @@ a:hover > [class^="icon-"] {
         }
       }
       &.active {
-        color: $theme;
+        color: var(--color-primary-var);
       }
     }
     a:hover > i {
@@ -870,14 +870,14 @@ a:hover > [class^="icon-"] {
   .tt-layer-nav__tags > a {
     @include _link-color($theme-c);
     &:hover {
-      color: $theme;
+      color: var(--color-primary-var);
     }
   }
   .tt-layer-nav__product-image {
     border-color: $theme2;
     &:hover {
       @media only screen and (min-width: $screen-md) {
-        border-color: $theme;
+        border-color: var(--color-primary-var);
       }
     }
   }
@@ -889,7 +889,7 @@ a:hover > [class^="icon-"] {
     &:hover {
       p {
         @media only screen and (min-width: $screen-md) {
-          color: $theme;
+          color: var(--color-primary-var);
         }
       }
     }
@@ -900,7 +900,7 @@ a:hover > [class^="icon-"] {
     }
   }
   .tt-layer-nav__prod-list-info p span {
-    color: $theme;
+    color: var(--color-primary-var);
   }
   .tt-layer-nav__recent-title,
   .tt-layer-nav__recent-info span {
@@ -950,8 +950,8 @@ a:hover > [class^="icon-"] {
         }
       }
       &.active > a::before {
-        border-color: $theme;
-        background-color: $theme;
+        border-color: var(--color-primary-var);
+        background-color: var(--color-primary-var);
       }
     }
   }
@@ -990,13 +990,13 @@ a:hover > [class^="icon-"] {
     background-color: $theme2;
     border-color: $theme7;
     &.state_hover {
-      border-color: $theme;
-      background-color: $theme;
+      border-color: var(--color-primary-var);
+      background-color: var(--color-primary-var);
     }
     &:hover {
       @media only screen and (min-width: $screen-md) {
-        border-color: $theme;
-        background-color: $theme;
+        border-color: var(--color-primary-var);
+        background-color: var(--color-primary-var);
       }
     }
   }
@@ -1011,7 +1011,7 @@ a:hover > [class^="icon-"] {
     &__total p {
       color: $theme-head-c;
       span {
-        color: $theme;
+        color: var(--color-primary-var);
       }
     }
     &__list {
@@ -1019,7 +1019,7 @@ a:hover > [class^="icon-"] {
         &:hover {
           i {
             @media only screen and (min-width: $screen-md) {
-              color: $theme;
+              color: var(--color-primary-var);
             }
           }
         }
@@ -1031,7 +1031,7 @@ a:hover > [class^="icon-"] {
           border-color: $theme2;
           &:hover {
             @media only screen and (min-width: $screen-md) {
-              border-color: $theme;
+              border-color: var(--color-primary-var);
             }
           }
         }
@@ -1058,7 +1058,7 @@ a:hover > [class^="icon-"] {
       }
       &_param-control {
         span {
-          color: $theme;
+          color: var(--color-primary-var);
         }
       }
     }
@@ -1084,7 +1084,7 @@ a:hover > [class^="icon-"] {
 
   //popup newsletter
   .tt-newsletter-popup {
-    background-color: $theme;
+    background-color: var(--color-primary-var);
   }
   .tt-newsletter-popup p,
   .tt-newsletter-popup__text-01,
@@ -1124,7 +1124,7 @@ a:hover > [class^="icon-"] {
     }
     .swiper-btn-next,
     .swiper-btn-prev {
-      color: $theme;
+      color: var(--color-primary-var);
       &.swiper-button-disabled {
         color: $theme-icon-c;
       }
@@ -1133,7 +1133,7 @@ a:hover > [class^="icon-"] {
       color: $theme2;
     }
     .swiper-tags {
-      color: $theme;
+      color: var(--color-primary-var);
       a {
         @include _link-color($theme);
       }
@@ -1172,13 +1172,13 @@ a:hover > [class^="icon-"] {
   //list
   .tt-list {
     li::before {
-      background-color: $theme;
+      background-color: var(--color-primary-var);
     }
   }
   .tt-list__title {
     color: $theme4;
     ul li::before {
-      background-color: $theme;
+      background-color: var(--color-primary-var);
     }
   }
 
@@ -1195,7 +1195,7 @@ a:hover > [class^="icon-"] {
       & > a {
         @include _link-color($theme4);
         &:hover {
-          color: $theme;
+          color: var(--color-primary-var);
         }
         &::after {
           border-color: $theme-icon-c;
@@ -1212,7 +1212,7 @@ a:hover > [class^="icon-"] {
         color: $theme2;
       }
       &:hover::before {
-        color: $theme;
+        color: var(--color-primary-var);
       }
     }
 
@@ -1228,7 +1228,7 @@ a:hover > [class^="icon-"] {
       color: $theme4;
     }
     span {
-      color: $theme;
+      color: var(--color-primary-var);
     }
     p {
       color: $theme3;
@@ -1298,10 +1298,10 @@ a:hover > [class^="icon-"] {
     background-color: $theme2;
   }
   .tt-promobox__hover--up .tt-promobox__hover-bg{
-    background-color: $theme;
+    background-color: var(--color-primary-var);
   }
   .tt-promobox__mask {
-    background-color: $theme;
+    background-color: var(--color-primary-var);
   }
   .tt-promobox__quantity {
     background-color: $theme6;
@@ -1317,7 +1317,7 @@ a:hover > [class^="icon-"] {
       color: $theme4;
     }
     .tt-shp-info__number {
-      color: $theme;
+      color: var(--color-primary-var);
       border-color: $theme8;
     }
     p {
@@ -1325,7 +1325,7 @@ a:hover > [class^="icon-"] {
       strong > em,
       em > strong,
       span {
-        color: $theme;
+        color: var(--color-primary-var);
       }
     }
   }
@@ -1338,13 +1338,13 @@ a:hover > [class^="icon-"] {
   .tt-shp-info__design-02 {
     background-color: $theme6;
     [class^="icon-"] {
-      color: $theme;
+      color: var(--color-primary-var);
     }
   }
   .tt-shp-info__design-03 {
     background-color: $theme2;
     [class^="icon-"] {
-      color: $theme;
+      color: var(--color-primary-var);
     }
   }
 
@@ -1353,7 +1353,7 @@ a:hover > [class^="icon-"] {
   .tt-instagram__mask {
     &::before {
       @media only screen and (min-width: $screen-md) {
-        background-color: $theme;
+        background-color: var(--color-primary-var);
       }
     }
     i {
@@ -1374,14 +1374,14 @@ a:hover > [class^="icon-"] {
     background-color: $theme10;
   }
   .tt-testimonials__content > i {
-    color: $theme;
+    color: var(--color-primary-var);
   }
   .tt-testimonials__title,
   .tt-testimonials p {
     color: $theme2;
   }
   .tt-testimonials__quote {
-    color: $theme;
+    color: var(--color-primary-var);
   }
 
 
@@ -1398,7 +1398,7 @@ a:hover > [class^="icon-"] {
       border-color: $theme2;
       &:hover {
         @media only screen and (min-width: $screen-md) {
-          border-color: $theme;
+          border-color: var(--color-primary-var);
         }
       }
     }
@@ -1411,7 +1411,7 @@ a:hover > [class^="icon-"] {
       }
       &:hover p {
         @media only screen and (min-width: $screen-md) {
-          color: $theme;
+          color: var(--color-primary-var);
         }
       }
     }
@@ -1477,16 +1477,16 @@ a:hover > [class^="icon-"] {
     }
     &__step {
       &-01 {
-        background-color: $theme;
+        background-color: var(--color-primary-var);
         color: $theme2;
       }
       &-02 {
         background-color: $theme6;
-        color: $theme;
+        color: var(--color-primary-var);
       }
       &-03 {
         background-color: $theme11;
-        color: $theme;
+        color: var(--color-primary-var);
         i {
           color: $theme2;
         }
@@ -1523,7 +1523,7 @@ a:hover > [class^="icon-"] {
   }
   .tt-comming-soon__countdown {
     .countdown-row {
-      color: $theme;
+      color: var(--color-primary-var);
     }
     .countdown-period {
       color: $theme3;
@@ -1546,7 +1546,7 @@ a:hover > [class^="icon-"] {
   }
   .tt-post__content-quote {
     & > i {
-      color: $theme;
+      color: var(--color-primary-var);
     }
     .slick-dots {
       li {
@@ -1560,7 +1560,7 @@ a:hover > [class^="icon-"] {
     color: $theme-head-c;
   }
   .tt-post__content-quote_quote {
-    color: $theme;
+    color: var(--color-primary-var);
   }
   .tt-post__bg--curtain::before {
     background-color: $theme10;
@@ -1575,7 +1575,7 @@ a:hover > [class^="icon-"] {
     @include _link-color($theme2);
   }
   .tt-post__tags a {
-    color: $theme;
+    color: var(--color-primary-var);
   }
   .tt-post__slider--bg {
     background-color: $theme6;
@@ -1594,7 +1594,7 @@ a:hover > [class^="icon-"] {
       color: $theme2;
       &:hover {
         @media only screen and (min-width: $screen-md) {
-          color: $theme;
+          color: var(--color-primary-var);
         }
       }
     }
@@ -1633,7 +1633,7 @@ a:hover > [class^="icon-"] {
     .slick-dots {
       &:hover {
         @media only screen and (min-width: $screen-md) {
-          color: $theme;
+          color: var(--color-primary-var);
         }
       }
     }
@@ -1660,7 +1660,7 @@ a:hover > [class^="icon-"] {
       }
       &:hover {
         @media only screen and (min-width: $screen-md) {
-          color: $theme;
+          color: var(--color-primary-var);
         }
       }
     }
@@ -1669,7 +1669,7 @@ a:hover > [class^="icon-"] {
       color: $theme2;
       &:hover {
         @media only screen and (min-width: $screen-md) {
-          color: $theme;
+          color: var(--color-primary-var);
         }
       }
     }
@@ -1688,7 +1688,7 @@ a:hover > [class^="icon-"] {
     &:hover  {
       i, p {
         @media only screen and (min-width: $screen-md) {
-          color: $theme;
+          color: var(--color-primary-var);
         }
       }
     }
@@ -1754,7 +1754,7 @@ a:hover > [class^="icon-"] {
     }
   }
   .tt-product-head__sale {
-    background-color: $theme;
+    background-color: var(--color-primary-var);
   }
   .tt-product-head__sale-info {
     div, p {
@@ -1772,7 +1772,7 @@ a:hover > [class^="icon-"] {
   .tt-product-head__btn-video {
     background-color: $theme6;
     i {
-      color: $theme;
+      color: var(--color-primary-var);
     }
   }
   .tt-product-head__video {
@@ -1790,7 +1790,7 @@ a:hover > [class^="icon-"] {
   .tt-product-head__notes input {
     border-color: $theme8;
     &:focus {
-      border-color: $theme;
+      border-color: var(--color-primary-var);
     }
   }
 
@@ -1812,7 +1812,7 @@ a:hover > [class^="icon-"] {
     background-color: $theme2;
   }
   .tt-team__hover::before {
-    background-color: $theme;
+    background-color: var(--color-primary-var);
   }
   .tt-team__content {
     @media only screen and (min-width: $screen-md) {
@@ -1833,7 +1833,7 @@ a:hover > [class^="icon-"] {
     .tt-btn {
       i {
         @media only screen and (max-width: $screen-md-down) {
-          color: $theme;
+          color: var(--color-primary-var);
         }
         @media only screen and (min-width: $screen-md) {
           color: $theme2;
@@ -1841,14 +1841,14 @@ a:hover > [class^="icon-"] {
       }
       &:hover {
         @media only screen and (max-width: $screen-md-down) {
-          border-color: $theme;
+          border-color: var(--color-primary-var);
         }
         @media only screen and (min-width: $screen-md) {
           border-color: $theme2;
         }
         i::before {
           @media only screen and (max-width: $screen-md-down) {
-            color: $theme;
+            color: var(--color-primary-var);
           }
           @media only screen and (min-width: $screen-md) {
             color: $theme2;
@@ -1884,7 +1884,7 @@ a:hover > [class^="icon-"] {
   .tt-payment-opt i {
     color: $theme-icon-c;
     &:hover {
-      color: $theme;
+      color: var(--color-primary-var);
     }
   }
 
@@ -1926,7 +1926,7 @@ a:hover > [class^="icon-"] {
   .tt-header--style-06 {
     .tt-header__logo,
     .tt-logo__curtain::before {
-      background-color: $header-bg;
+      background-color: var(--header-bg);
     }
     .tt-header__nav,
     .tt-header__menu,
@@ -1943,7 +1943,7 @@ a:hover > [class^="icon-"] {
       }
       .tt-header__spacer--d::before {
         @media only screen and(min-width: $screen-md) {
-          background-color: $header-bg;
+          background-color: var(--header-bg);
         }
       }
       .tt-header__spacer--m {
@@ -1959,14 +1959,14 @@ a:hover > [class^="icon-"] {
   .tt-header--style-02 {
     .tt-header__logo,
     .tt-logo__curtain::before {
-      background-color: $header-bg;
+      background-color: var(--header-bg);
     }
     .tt-header__nav,
     .tt-header__sidebar,
     .tt-header__search,
     .tt-header__search-form input {
       @media only screen and (min-width: $screen-md) {
-        background-color: $header-bg;
+        background-color: var(--header-bg);
       }
       @media only screen and (max-width: $screen-md-down) {
         background-color: $header-bg2;
@@ -1996,12 +1996,12 @@ a:hover > [class^="icon-"] {
   .tt-header--style-03 {
     .tt-header__logo,
     .tt-logo__curtain::before {
-      background-color: $header-bg;
+      background-color: var(--header-bg);
     }
     &:not(.tt-header--transparent) {
       .tt-header__spacer--d {
         @media only screen and (min-width: $screen-md) {
-          background-color: $header-bg;
+          background-color: var(--header-bg);
         }
       }
       .tt-header__spacer--m {
@@ -2016,7 +2016,7 @@ a:hover > [class^="icon-"] {
     .tt-header__search,
     .tt-header__search-form input {
       @media only screen and (min-width: $screen-md) {
-        background-color: $header-bg;
+        background-color: var(--header-bg);
       }
       @media only screen and (max-width: $screen-md-down) {
         background-color: $header-bg2;
@@ -2068,12 +2068,12 @@ a:hover > [class^="icon-"] {
       background-color: $header-bg2;
     }
     .tt-header__menu {
-      background-color: $header-bg;
+      background-color: var(--header-bg);
     }
     &:not(.tt-header--transparent) {
       .tt-header__spacer--d {
         @media only screen and (min-width: $screen-md) {
-          background-color: $header-bg;
+          background-color: var(--header-bg);
         }
       }
       .tt-header__spacer--m {
@@ -2418,7 +2418,7 @@ a:hover > [class^="icon-"] {
     .tt-header__sidebar,
     .tt-header__search,
     .tt-header__search-form input {
-      background-color: $header-bg;
+      background-color: var(--header-bg);
     }
   }
   .tt-header--style-05 .tt-header__menu.tt-header__sticky {
@@ -2496,7 +2496,7 @@ a:hover > [class^="icon-"] {
       border-color: $theme2;
       &:hover {
         @media only screen and (min-width: $screen-md) {
-          border-color: $theme;
+          border-color: var(--color-primary-var);
         }
       }
     }
@@ -2807,7 +2807,7 @@ a:hover > [class^="icon-"] {
       border-color: $footer-btn-up-bd;
     }
     @media only screen and (max-width: $screen-md-down) {
-      background-color: $theme;
+      background-color: var(--color-primary-var);
       color: $theme2;
     }
     [class^="icon-"] {
@@ -2825,12 +2825,12 @@ a:hover > [class^="icon-"] {
       color: $theme-head-c;
     }
     span {
-      color: $theme;
+      color: var(--color-primary-var);
     }
     &__range {
       background-color: $theme7;
       div {
-        background-color: $theme;
+        background-color: var(--color-primary-var);
       }
     }
   }
@@ -2846,7 +2846,7 @@ a:hover > [class^="icon-"] {
     background-color: $theme6;
   }
   .prdbut__val.active:not(.default):hover::before {
-    color: $theme;
+    color: var(--color-primary-var);
   }
   .prdbut__val.disabled::after,
   .prdbut__val.disabled::before {
@@ -2855,7 +2855,7 @@ a:hover > [class^="icon-"] {
   .prdbut__option--design-text .prdbut__val {
     &.active,
     &:not(.disabled):hover {
-      color: $theme;
+      color: var(--color-primary-var);
     }
   }
   .prdbut__option--design-bg-n-bd .prdbut__val {
@@ -3025,7 +3025,7 @@ a:hover > [class^="icon-"] {
   .rte {
     ol {
       & > li::before {
-        color: $theme;
+        color: var(--color-primary-var);
       }
     }
     input[type='text'],
@@ -3035,7 +3035,7 @@ a:hover > [class^="icon-"] {
     select {
       border-color: $theme-transparent;
       &:focus {
-        border-color: $theme;
+        border-color: var(--color-primary-var);
       }
       &::-webkit-input-placeholder { color: $theme-c; }
       &::-moz-placeholder { color: $theme-c; }
@@ -3083,7 +3083,7 @@ a:hover > [class^="icon-"] {
     }
     .rte {
       blockquote {
-        border-right-color: $theme;
+        border-right-color: var(--color-primary-var);
       }
     }
     .ttg-grid-border {

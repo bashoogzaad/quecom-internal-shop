@@ -1,71 +1,338 @@
-<main class="main-content loader" *ngIf="products.length === 0">
-	<!-- LOADER -->
-</main>
-<main class="main-content" *ngIf="products.length > 0">
+<ng-container *ngIf="globals.theme == 'nexgeek'">
 
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-12 main-col">
-				<div class="toolbar">
-				</div>
-				<div class="products" *ngIf="products.length > 0">
-					<div class="products-grid">
-						<div class="grid_item col-xs-12 col-sm-6 col-md-4 col-lg-3 spacer" *ngFor="let product of products">
-							<div class="product_image border_bottom">
-								<a [routerLink]="['/product', product.id]" class="force-image"> 
-									<img class="specific-image" [lazyLoad]="getImageUrl(product)" [defaultImage]="defaultImage" alt=""> 
-								</a>
-								<div class="action-buttons">
-									<a class="btn-action add-to-cart" (click)="addToCart(product)" title="Select Options">
-										<span class="icon icon-cart" aria-hidden="true"></span>
+	<main class="main-content loader" *ngIf="products.length === 0">
+		<!-- LOADER -->
+	</main>
+	<main class="main-content" *ngIf="products.length > 0">
+	
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 main-col">
+					<div class="toolbar">
+					</div>
+					<div class="products" *ngIf="products.length > 0">
+						<div class="products-grid">
+							<div class="grid_item col-xs-12 col-sm-6 col-md-4 col-lg-3 spacer" *ngFor="let product of products">
+								<div class="product_image border_bottom">
+									<a [routerLink]="['/product', product.id]" class="force-image"> 
+										<img class="specific-image" [lazyLoad]="getImageUrl(product)" [defaultImage]="defaultImage" alt=""> 
 									</a>
-									<button type="button" class="btn-action btn-quickview" title="Quick View" [routerLink]="['/product', product.id]">
-										<i class="fa fa-eye" aria-hidden="true"></i>
-									</button>
+									<div class="action-buttons">
+										<a class="btn-action add-to-cart" (click)="addToCart(product)" title="Select Options">
+											<span class="icon icon-cart" aria-hidden="true"></span>
+										</a>
+										<button type="button" class="btn-action btn-quickview" title="Quick View" [routerLink]="['/product', product.id]">
+											<i class="fa fa-eye" aria-hidden="true"></i>
+										</button>
+									</div>
 								</div>
-							</div>
-							<div class="product_detail custom-bg">
-								<h3 class="product_name product-cont">
-									<b><a [routerLink]="['/product', product.id]">{{ product.title }}</a></b>
-								</h3>
-								<p>
-									Van {{ product.retail_price | currency:'EUR':'true' }}
-								</p>
-								<p>
-									<label *ngIf="product.qs_choice === '1'" class="new">Qs Choice</label>
-									<span class="product_price">
-										<span>Voor {{ product.price_total_netto*1.21 | currency:'EUR':'true' }}</span>
-									</span>
-								</p>
+								<div class="product_detail custom-bg">
+									<h3 class="product_name product-cont">
+										<b><a [routerLink]="['/product', product.id]">{{ product.title }}</a></b>
+									</h3>
+									<p>
+										Van {{ product.retail_price | currency:'EUR':'true' }}
+									</p>
+									<p>
+										<label *ngIf="product.qs_choice === '1'" class="new">Qs Choice</label>
+										<span class="product_price">
+											<span>Voor {{ product.price_total_netto*1.21 | currency:'EUR':'true' }}</span>
+										</span>
+									</p>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<hr>
-				<div class="pagination" *ngIf="pagination">
-					<div class="row">
-						<div class="col-sm-3 left">
-							<p class="pagination-num-showing">
-								Producten: 
-								{{ pagination.items_per_page*(page-1)+1 }}
-								-
-								{{ pagination.items_per_page*page > pagination.total_items ? pagination.total_items : pagination.items_per_page*page }} van {{ pagination.total_items }}
-							</p>
-						</div>
-						<div class="col-sm-9 right">
-							<ul>
-								<li [ngClass]="pageNumber === page ? 'active' : ''" *ngFor="let pageNumber of pageNumbers">
-									<a *ngIf="unparsedType && groupId" title="" [routerLink]="['', unparsedType, groupId]" [queryParams]="{ page: pageNumber }">{{ pageNumber }}</a>
-									<a *ngIf="!unparsedType || !groupId" title="" routerLink="/producten" [queryParams]="{ page: pageNumber }">{{ pageNumber }}</a>
-								</li>
-								<li *ngIf="pageNumbers.length > 5" class="next">
-									<a href="#" title=""><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
-								</li>
-							</ul>
+					<hr>
+					<div class="pagination" *ngIf="pagination">
+						<div class="row">
+							<div class="col-sm-3 left">
+								<p class="pagination-num-showing">
+									Producten: 
+									{{ pagination.items_per_page*(page-1)+1 }}
+									-
+									{{ pagination.items_per_page*page > pagination.total_items ? pagination.total_items : pagination.items_per_page*page }} van {{ pagination.total_items }}
+								</p>
+							</div>
+							<div class="col-sm-9 right">
+								<ul>
+									<li [ngClass]="pageNumber === page ? 'active' : ''" *ngFor="let pageNumber of pageNumbers">
+										<a *ngIf="unparsedType && groupId" title="" [routerLink]="['', unparsedType, groupId]" [queryParams]="{ page: pageNumber }">{{ pageNumber }}</a>
+										<a *ngIf="!unparsedType || !groupId" title="" routerLink="/producten" [queryParams]="{ page: pageNumber }">{{ pageNumber }}</a>
+									</li>
+									<li *ngIf="pageNumbers.length > 5" class="next">
+										<a href="#" title=""><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+									</li>
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</main>
+	</main>
+
+</ng-container>
+
+<ng-container *ngIf="globals.theme == 'mogo'">
+
+	<!-- MAIN -->
+	<main>
+	
+	    <div class="tt-layout tt-sticky-block__parent tt-layout__sidebar-left">
+	        <aside class="tt-layout__sidebar tt-sticky-block">
+	            <div class="tt-layout__sidebar-sticky tt-sticky-block__inner">
+	                <div class="tt-sidebar">
+	                    <div class="tt-sidebar__btn">
+	                        <div class="tt-sidebar__btn-open">
+	                            <i class="icon-filter-1"></i><span>FILTER</span>
+	                        </div>
+	                        <div class="tt-sidebar__btn-close">
+	                            <i class="icon-cancel-1"></i><span>CLOSE</span>
+	                        </div>
+	                    </div>
+	                    <div class="tt-sidebar__content">
+	                        <div class="tt-layer-nav">
+	                            <div class="tt-layer-nav__title">Categories</div>
+	                            <ul class="tt-layer-nav__categories tt-categories tt-categories__toggle">
+	                                <li class="tt-categories__open active">
+	                                    <a href="#">Audio <span>16</span></a>
+	                                    <i class="tt-categories__next icon-up-open"></i>
+	                                    <ul>
+	                                        <li><a href="#">Wireless <span>3</span></a></li>
+	                                        <li><a href="#">Built-In Microphone <span>3</span></a></li>
+	                                        <li><a href="#">Bluetooth Enabled <span>4</span></a></li>
+	                                        <li><a href="#">Rechargeable <span>4</span></a></li>
+	                                        <li><a href="#">USB Device Charging <span>3</span></a>
+	                                            <i class="tt-categories__next icon-up-open"></i>
+	                                            <ul>
+	                                                <li><a href="#">Category #1 <span>3</span></a></li>
+	                                                <li><a href="#">Category #2 <span>3</span></a></li>
+	                                                <li><a href="#">Category #3 <span>3</span></a></li>
+	                                                <li><a href="#">Category #4 <span>5</span></a></li>
+	                                                <li><a href="#">Category #5 <span>7</span></a></li>
+	                                            </ul>
+	                                        </li>
+	                                    </ul>
+	                                </li>
+	                                <li class="tt-categories__open">
+	                                    <a href="#">Watches <span>21</span></a>
+	                                    <i class="tt-categories__next icon-up-open"></i>
+	                                    <ul>
+	                                        <li><a href="#">Clock Display <span>3</span></a></li>
+	                                        <li><a href="#">Water Resistant <span>3</span></a></li>
+	                                        <li><a href="#">Wireless Syncing <span>3</span></a></li>
+	                                        <li><a href="#">Rechargeable <span>5</span></a></li>
+	                                        <li><a href="#">GPS Enabled <span>7</span></a></li>
+	                                    </ul>
+	                                </li>
+	                                <li class="tt-categories__open">
+	                                    <a href="#">Trackers <span>13</span></a>
+	                                    <i class="tt-categories__next icon-up-open"></i>
+	                                    <ul>
+	                                        <li><a href="#">Watch style <span>3</span></a></li>
+	                                        <li><a href="#">Wrist <span>3</span></a></li>
+	                                        <li><a href="#">Clothing <span>5</span></a></li>
+	                                        <li><a href="#">Ankle <span>1</span></a></li>
+	                                        <li><a href="#">Belt <span>1</span></a></li>
+	                                    </ul>
+	                                </li>
+	                                <li class="tt-categories__open">
+	                                    <a href="#">Power Banks <span>18</span></a>
+	                                    <i class="tt-categories__next icon-up-open"></i>
+	                                    <ul>
+	                                        <li><a href="#">USB Port(s) <span>4</span></a></li>
+	                                        <li><a href="#">USB Device Charging <span>3</span></a></li>
+	                                        <li><a href="#">Overload Protection <span>4</span></a></li>
+	                                        <li><a href="#">Rechargeable <span>6</span></a></li>
+	                                        <li><a href="#">Wireless <span>1</span></a></li>
+	                                    </ul>
+	                                </li>
+	                            </ul>
+	                            <div class="tt-layer-nav__title">Price</div>
+	                            <div class="tt-layer-nav__price-section">
+	                                <div class="tt-layer-nav__price-range"><input type="hidden" data-min="0" data-max="500">
+	                                </div>
+	                            </div>
+	                            <ul class="tt-layer-nav__price tt-categories tt-categories__toggle">
+	                                <li><a href="#">$10-$100 <span>25</span></a></li>
+	                                <li><a href="#">$100-$200 <span>7</span></a></li>
+	                                <li><a href="#">$200-$500 <span>14</span></a></li>
+	                            </ul>
+	                            <div class="tt-layer-nav__title">Size</div>
+	                            <ul class="tt-layer-nav__size tt-categories tt-categories__toggle">
+	                                <li><a href="#">XS <span>25</span></a></li>
+	                                <li><a href="#">S <span>7</span></a></li>
+	                                <li><a href="#">M <span>14</span></a></li>
+	                                <li><a href="#">L <span>14</span></a></li>
+	                                <li><a href="#">XL <span>14</span></a></li>
+	                                <li><a href="#">XXL <span>14</span></a></li>
+	                            </ul>
+	                            <div class="tt-layer-nav__title">Color</div>
+	                            <ul class="tt-layer-nav__color tt-categories tt-categories__toggle">
+	                                <li>
+	                                    <a href="#" class="color-blacks">
+	                                        <i><img src="assets/templates/mogo/images/colors/color-01.png" alt="Image name"></i>
+	                                        Brown
+	                                        <span>25</span>
+	                                    </a>
+	                                </li>
+	                                <li>
+	                                    <a href="#" class="color-blue">
+	                                        <i><img src="assets/templates/mogo/images/colors/color-02.png" alt="Image name"></i>
+	                                        Gray
+	                                        <span>7</span></a>
+	                                </li>
+	                                <li>
+	                                    <a href="#" class="color-brown">
+	                                        <i><img src="assets/templates/mogo/images/colors/color-03.png" alt="Image name"></i>
+	                                        White
+	                                        <span>1</span>
+	                                    </a>
+	                                </li>
+	                                <li>
+	                                    <a href="#" class="color-gray">
+	                                        <i><img src="assets/templates/mogo/images/colors/color-04.png" alt="Image name"></i>
+	                                        Black
+	                                        <span>4</span>
+	                                    </a>
+	                                </li>
+	                            </ul>
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="tt-sidebar__bg"></div>
+	            </div>
+	        </aside>
+	        <div class="tt-layout__content" *ngIf="products.length > 0">
+	            <div class="container">
+	                <div class="tt-listing-page">
+	                
+	                    <a href="index.html?page=listing-with-custom-html-block.html"
+	                       class="tt-listing-page__promobox ttg-image-scale">
+	                        <img src="assets/templates/mogo/images/listing/category-04.jpg" alt="Image name">
+	                        <div class="tt-listing-page__promobox-text tt-listing-page__promobox-design-white">
+	                            <div>{{ typeObject.name }}</div>
+	                            <p>{{ typeObject.description }}</p>
+	                        </div>
+	                    </a>
+	                    <div class="tt-listing-page__view-options tt-vw-opt">
+	                        <div class="row">
+	                            <div class="col-xl-6 col-lg-5 col-md-5 col-xs-12">
+	                                <div class="tt-vw-opt__sort">
+	                                    <span>Sort:</span>
+	                                    <label class="tt-select">
+	                                        <select class="form-control">
+	                                            <option>Default</option>
+	                                            <option>Default #2</option>
+	                                            <option>Default #3</option>
+	                                        </select>
+	                                    </label>
+	                                </div>
+	                                <div class="tt-vw-opt__direction">
+	                                    <a href="#" class="active"><i class="icon-down"></i></a>
+	                                    <a href="#"><i class="icon-up"></i></a>
+	                                </div>
+	                            </div>
+	                            <div class="col-xl-3 col-lg-3 col-md-5 col-xs-8">
+	                                <div class="tt-vw-opt__info">
+	                                    <span>Showing 1–9 of 23 results</span>
+	                                </div>
+	                            </div>
+	                            <div class="col-xl-3 col-lg-4 col-md-2 col-xs-4">
+	                                <div class="tt-vw-opt__length">
+	                                    <span>Show:</span>
+	                                    <label class="tt-select">
+	                                        <select class="form-control">
+	                                            <option>12</option>
+	                                            <option>9</option>
+	                                            <option>6</option>
+	                                        </select>
+	                                    </label>
+	                                </div>
+	                                <div class="tt-vw-opt__grid">
+	                                    <div class="tt-product-btn-vw" data-control=".tt-product-view">
+	                                        <label>
+	                                            <input type="radio" name="product-btn-vw" checked>
+	                                            <i class="icon-th-large"></i>
+	                                            <i class="icon-check-empty"></i>
+	                                        </label>
+	                                        <label>
+	                                            <input type="radio" name="product-btn-vw"
+	                                                   data-view-class="tt-product-view--list">
+	                                            <i class="icon-th"></i>
+	                                        </label>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="tt-listing-page__products tt-layout__mobile-full">
+	
+	                        <div class="tt-product-view row">
+	                        
+	                            <div class="col-sm-6 col-xxl-4" *ngFor="let product of products">
+	                                <div class="tt-product tt-product__view-overlay ttg-text-animation-parent">
+	                                    <div class="tt-product__image">
+	                                        <a href="product-simple-variant-1.html">
+	                                            <img [lazyLoad]="getImageUrl(product)" [defaultImage]="defaultImage"
+	                                                 alt="Elegant and fresh. A most attractive mobile power supply.">
+	                                        </a>
+	                                    </div>
+	                                    <div class="tt-product__hover tt-product__clr-clk-transp" href="javascript.void(0)" [routerLink]="['/product', product.id]">
+	                                        <div class="tt-product__content">
+	                                            <h3>
+	                                            <span class="ttg-text-animation--emersion">
+	                                                <a>{{ product.title }}</a>
+	                                            </span>
+	                                            </h3>
+	                                            <p>
+	                                            <span class="ttg-text-animation--emersion">
+	                                                <a>{{ product.description_short }}</a>
+	                                            </span>
+	                                            </p>
+	                                            <div class="ttg-text-animation--emersion">
+		                                            <span class="tt-product__price">
+		                                                <span class="tt-price">
+		                                                    <span>{{ product.price_total_netto*1.21 | currency:'EUR':'true' }}</span>
+		                                                </span>
+		                                            </span>
+	                                            </div>
+	
+	                                            <div class="ttg-text-animation--emersion">
+	                                                <div class="tt-product__buttons">
+	                                                    <a class="tt-btn colorize-btn5 tt-product__buttons_cart tt-btn__state--active">
+	                                                        <i class="icon-shop24"></i>
+	                                                        <span>Voeg toe aan winkelwagen</span>
+	                                                    </a>
+	                                                    <a href="javascript.void(0)" [routerLink]="['/product', product.id]" class="tt-btn colorize-btn4 tt-product__buttons_qv">
+	                                                        <i class="icon-eye"></i>
+	                                                    </a>
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="tt-page__pagination" *ngIf="products.length > 0">
+	                        <div class="tt-pagination">
+	                            <a [routerLink]="['', unparsedType, groupId]" [queryParams]="{ page: page-1 }" class="btn tt-pagination__prev" [ngClass]="page > 1 ? '' : 'ttg-hidden'">Vorige</a>
+	                            <div class="tt-pagination__numbs">
+	                                <span *ngFor="let pageNumber of pageNumbers | slice:(page-3 > 0 ? page-3 : 0):(page+3 < pageNumbers.length ? page+3 : pageNumbers.length); let i=index">
+	                                		<a [ngClass]="pageNumber == page ? 'route-active' : ''" *ngIf="unparsedType && groupId" title="" [routerLink]="['', unparsedType, groupId]" [queryParams]="{ page: pageNumber }">{{ pageNumber }}</a>
+	                                </span>
+	                            </div>
+	                            <a [routerLink]="['', unparsedType, groupId]" [queryParams]="{ page: page+1 }" class="btn tt-pagination__next" [ngClass]="pageNumbers.length > 5 ? '' : 'ttg-hidden'">Volgende</a>
+	                        </div>
+	                    </div>
+	                    
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	
+	</main>
+
+</ng-container>

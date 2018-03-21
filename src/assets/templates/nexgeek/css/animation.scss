@@ -1,3 +1,5 @@
+.nexgeek-theme {
+
 @charset "UTF-8";.animated{-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:both;animation-fill-mode:both;}
 .animated.infinite{-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite;}
 
@@ -135,3 +137,5 @@ to{-webkit-transform:translate3d(0, 0, 0);transform:translate3d(0, 0, 0);}
 to{-webkit-transform:translate3d(0, 0, 0);transform:translate3d(0, 0, 0);}
 }
 .slideInUp{-webkit-animation-name:slideInUp;animation-name:slideInUp;}
+
+}

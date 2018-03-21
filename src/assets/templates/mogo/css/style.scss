@@ -106,3 +106,16 @@
 //colors
 @import 'colorize/_variables.scss';
 @import 'colorize/_body.scss';
+
+//Imports from HTML
+@import url('https://fonts.googleapis.com/css?family=Muli');
+@import '../fonts/icons/myfont/css/myfont.css';
+@import '../fonts/icons/myfont/css/myfont-embedded.css';
+@import '../fonts/icons/myfont/css/animation.css';
+
+@media screen and (min-width:0) and (min-resolution: .001dpcm) { 
+ // IE9 CSS
+ .ie9{
+ 	@import '../fonts/icons/myfont/css/myfont-ie7.css';
+ }
+}

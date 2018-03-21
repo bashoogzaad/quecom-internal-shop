@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { LocalStorageService, LocalStorage } from "ngx-webstorage";
 import { Order } from "../../models/order";
 import { QuecomProvider } from "../../providers/quecom.provider";
@@ -13,6 +13,7 @@ import { Globals } from "../../providers/globals";
 })
 export class HeaderComponent implements OnInit {
 
+    public scrolledY: boolean = false;
     public forceHideMenu: boolean = false;
     
     @LocalStorage() public order: Order;
@@ -29,6 +30,11 @@ export class HeaderComponent implements OnInit {
         public authService: AuthService,
         public globals: Globals
     ) { }
+  
+    @HostListener('window:scroll', ['$event']) 
+    doSomething(event) {
+      this.scrolledY = window.pageYOffset > 0;
+    }
 
     ngOnInit() {
         

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../auth.service";
 import { Globals } from '../providers/globals';
 import { Router } from "@angular/router";
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-login',
@@ -11,6 +12,10 @@ import { Router } from "@angular/router";
 export class LoginComponent implements OnInit {
 
     public pass: string;
+  
+    public username: string;
+    public password: string;
+    public loginPromise: Subscription;
     
     constructor(
         public authService: AuthService,
@@ -24,6 +29,19 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         
+    }
+    
+    loginServer() {
+      this.loginPromise = this.authService.loginServer(this.username, this.password).subscribe(res => {
+        if (res.status === 200) {
+          this.authService.saveUser('jhdfjhdfhjvdfjhvbdhjfvbhjfd'); //res.guid
+          this.router.navigate(['/home']);
+        } else if (res.status === 400) {
+          
+        }       
+      }, (error: any) => {
+        console.log('ERROR');
+      });
     }
     
     login() {

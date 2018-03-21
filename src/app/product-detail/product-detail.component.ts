@@ -5,6 +5,7 @@ import { LocalStorage } from "ngx-webstorage";
 import { Order } from "../models/order";
 import { CartProvider } from "../providers/cart.provider";
 import { OrderLine } from "../models/order-line";
+import { Globals } from '../providers/globals';
 
 import swal from 'sweetalert2';
 import { RequestOptions } from "@angular/http";
@@ -29,7 +30,8 @@ export class ProductDetailComponent implements OnInit {
         public quecomProvider: QuecomProvider,
         public cartProvider: CartProvider,
         public router: Router,
-        public mailProvider: MailProvider
+        public mailProvider: MailProvider,
+        public globals: Globals
     ) { }
 
     ngOnInit() {

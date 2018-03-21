@@ -1,3 +1,5 @@
+.nexgeek-theme {
+
 .op-left {
     display: block;
     -ms-transform: translateX(300px);
@@ -31,4 +33,17 @@
 
 .main-menu-custom .main-nav > li.site-nav--active > a {
 	color: white !important;
+}
+
+}
+
+	.adjust-height {
+		height: 80px;
+	}
+	
+.mogo-is-sticky {
+	position: fixed;
+    width: 100% !important;
+    left: 0 !important;
+    min-height: 60px;
 }

@@ -75,7 +75,7 @@ export class QuecomProvider {
     }
     
     public getProductsPerGroup(type: string, id: string, limit: number, page: number) {
-        let options = this.initRequestOptions('GET');
+        const options = this.initRequestOptions('GET');
         return this.http.get(this.globals.baseUrl+'product?'+type+'='+id+'&per_page='+limit+'&page='+page+'&grouping=product', options)
                         .map(res => res.json());
     }

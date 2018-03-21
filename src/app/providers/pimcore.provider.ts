@@ -53,5 +53,10 @@ export class PimcoreProvider {
         options.headers.append('password', password);
         return this.http.get(this.globals.pimcoreUrl+'login', options).map(res => res.json());
     }
+  
+    public register(user: any) {
+        const options = this.initRequestOptions();
+        return this.http.post(this.globals.pimcoreUrl+'register', JSON.stringify(user), options).map(res => res.json());
+    }
     
 }

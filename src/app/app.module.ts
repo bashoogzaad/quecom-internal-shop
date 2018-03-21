@@ -27,6 +27,7 @@ import { ReturnsComponent } from './returns/returns.component';
 import { TermsComponent } from './terms/terms.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
+import { NgStickyModule } from 'ng-sticky';
 
 import { registerLocaleData } from '@angular/common';
 import localeNl from '@angular/common/locales/nl';
@@ -93,7 +94,8 @@ const appRoutes: Routes = [
         Ng2Webstorage,
         HttpModule,
         FormsModule,
-        LazyLoadImageModule
+        LazyLoadImageModule,
+        NgStickyModule,
     ],
     providers: [
         { provide: LOCALE_ID, useValue: "nl-NL" },
