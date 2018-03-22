@@ -172,7 +172,7 @@
 	                <div class="tt-header__sidebar">
 	                    <div class="tt-header__options">
 	                        <a href="#" class="tt-header__btn tt-header__btn-menu"><i class="icon-menu"></i></a>
-	                        <div role="search" class="tt-header__search">
+	                        <div role="search" class="tt-header__search" *ngIf="authService.isLoggedIn">
 	                            <form action="#" class="tt-header__search-form">
 	                                <input type="search" name="q" class="form-control" placeholder="Zoeken...">
 	                            </form>
@@ -180,108 +180,19 @@
 	                            <a href="#" class="tt-header__btn tt-header__btn-open-search"><i class="icon-search"></i></a>
 	                            <a href="#" class="tt-header__btn tt-header__btn-close-search"><i class="icon-cancel-1"></i></a>
 	                        </div>
-	                        <div>
-	                            <a href="#" class="tt-header__btn tt-header__btn-user"><i class="icon-user-outline"></i></a>
-	                            <div class="tt-header__user">
+	                        <div *ngIf="authService.isLoggedIn">
+	                            <a href="javascript:void(0);" class="tt-header__btn tt-header__btn-user" (click)="showUser = !showUser; forceHideMenu = false;"><i class="icon-user-outline"></i></a>
+	                            <div *ngIf="showUser && !forceHideMenu" class="tt-header__user tt-header__option-open ps ps--theme_default override-display" style="max-height: 881px;">
 	                                <ul class="tt-list-toggle">
-	                                    <li><a href="account.html">My account</a></li>
-	                                    <li><a href="checkout.html">Checkout</a></li>
-	                                    <li><a href="login.html">Login</a></li>
-	                                    <li><a href="register.html">Register</a></li>
-	
-	                                    <div class="tt-header__login">
-	                                        <h6>Login</h6>
-	                                        <form action="#">
-	                                            <input type="email" class="form-control" placeholder="Email" required="required">
-	                                            <input type="password" class="form-control" placeholder="Password" required="required">
-	                                            <button type="submit" class="btn">Login</button>
-	                                            <div>
-	                                                <a href="account.html">Forget your password?</a>
-	                                            </div>
-	                                        </form>
-	                                    </div>
+	                                    <li><a href="javascript:void(0);" (click)="goToDefaultPage('mijn-account')">Mijn Account</a></li>
+	                                    <li><a href="javascript:void(0);" (click)="logout()">Uitloggen</a></li>
 	                                </ul>
 	                            </div>
 	                        </div>
-	                        <a href="wishlist.html" class="tt-header__btn tt-header__btn-wishlist">
-	                            <i class="icon-heart-empty-2"></i>
-	                            <span>2</span>
-	                        </a>
-	                        <div>
-	                            <a href="cart.html" class="tt-header__btn tt-header__btn-cart">
-	                                <i class="icon-shop24"></i>
-	                                <span>1</span>
-	                            </a>
-	                            <div class="tt-header__cart">
-	                                <div class="tt-header__cart-content">
-	                                    <ul class="colorize-bd">
-	                                        <li>
-	                                            <div>
-	                                                <a href="product.html">
-	                                                    <img src="images/products/product-02.jpg" alt="image" class="colorize-theme2-bd colorize-theme-bd-h">
-	                                                </a>
-	                                            </div>
-	                                            <div>
-	                                                <p>
-	                                                    <a href="product.html">Elegant and fresh. A most attractive mobile power supply.</a>
-	                                                </p>
-	                                                <span class="tt-header__cart-price">
-	                                                    <span class="tt-header__cart-price-count">2</span>
-	                                                    <span>x</span>
-	                                                    <span class="tt-header__cart-price-val tt-price">$120</span>
-	                                                </span>
-	                                                <div class="tt-counter" data-min="0" data-max="99">
-	                                                    <form action="#">
-	                                                        <input type="text" class="form-control" value="1">
-	                                                    </form>
-	                                                    <div class="tt-counter__control">
-	                                                        <span class="icon-up-circle" data-direction="next"></span>
-	                                                        <span class="icon-down-circle" data-direction="prev"></span>
-	                                                    </div>
-	                                                </div>
-	                                            </div>
-	                                            <div>
-	                                                <a href="#" class="tt-header__cart-edit"><i class="icon-pencil-circled"></i></a>
-	                                                <a href="#" class="tt-header__cart-delete" title="remove"><i class="icon-trash"></i></a>
-	                                            </div>
-	                                        </li>
-	                                    </ul>
-	                                    <div class="tt-header__cart-footer">
-	                                        <span class="tt-header__cart-subtotal colorize-head-c">Subtotal:
-	                                            <span class="colorize-theme-c">$240</span>
-	                                        </span>
-	                                        <div class="row">
-	                                            <div class="col-lg-6">
-	                                                <a href="cart-01.html" class="tt-header__cart-viewcart btn"><i class="icon-shop24"></i> View Cart</a>
-	                                            </div>
-	                                            <div class="col-lg-6">
-	                                                <a href="checkout-01.html" class="tt-header__cart-checkout btn colorize-btn2"><i class="icon-check"></i> Checkout</a>
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                        </div>
-	                        <div>
-	                            <a href="#" class="tt-header__btn tt-header__btn-settings"><i class="icon-cog"></i></a>
-	                            <div class="tt-header__settings">
-	                                <ul class="tt-list-toggle">
-	                                    <li class="tt-list-toggle__open"><a href="#">language: USA</a>
-	                                        <ul>
-	                                            <li><a href="#">POL</a></li>
-	                                            <li class="active"><a href="#">USA</a></li>
-	                                            <li><a href="#">RUS</a></li>
-	                                        </ul>
-	                                    </li>
-	                                    <li class="tt-list-toggle__open"><a href="#">Currency: <span>USD</span></a>
-	                                        <ul id="currencies">
-	                                            <li class="active"><a href="#">USD</a></li>
-	                                            <li><a href="#">RUB</a></li>
-	                                        </ul>
-	                                    </li>
-	                                </ul>
-	                            </div>
-	                        </div>
+                            <a routerLink="/winkelwagen" class="tt-header__btn tt-header__btn-cart" *ngIf="authService.isLoggedIn">
+                                <i class="icon-shop24"></i>
+                                <span>{{ getCartCount() }}</span>
+                            </a>
 	                    </div>
 	                </div>
 	            </div>

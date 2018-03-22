@@ -23,7 +23,7 @@ export class CartProvider {
     getCurrentOrder(): any {
         return this.order;
     }
-    
+  
     addOrderLine(orderLine: OrderLine): void {
         this.order.orderLines.push(orderLine);
         this.order = this.order;

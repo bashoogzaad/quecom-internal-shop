@@ -23,6 +23,14 @@
 	visibility: visible;
 }
 
-tt-product-head__image-preview {
-	display: flex;
+@media (min-width: 0px) and (max-width: 1400px) {
+    .tt-big-container {
+        display: none !important;
+    }
+}
+
+@media (min-width: 1400px) and (max-width: 14000px) {
+    .tt-small-container {
+        display: none !important;
+    }
 }

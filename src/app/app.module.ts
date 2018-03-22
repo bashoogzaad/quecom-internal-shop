@@ -39,12 +39,15 @@ import { Globals } from "./providers/globals";
 import { MailProvider } from "./providers/mail.provider";
 import { PimcoreProvider } from "./providers/pimcore.provider";
 import { RegisterComponent } from './register/register.component';
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { MyAccountComponent } from './my-account/my-account.component';
 registerLocaleData(localeNl);
 
 const appRoutes: Routes = [
-    { path: '', redirectTo: '/login', pathMatch: 'full' },
-    { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent },
+    { path: '', redirectTo: '/inloggen', pathMatch: 'full' },
+    { path: 'inloggen', component: LoginComponent },
+    { path: 'registreren', component: RegisterComponent },
+    { path: 'mijn-account', component: MyAccountComponent },
     { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'producten', component: ProductListingComponent, canActivate: [AuthGuard] },
     { path: 'categorie/:id', component: ProductListingComponent, canActivate: [AuthGuard] },
@@ -84,7 +87,8 @@ const appRoutes: Routes = [
         PrivacyComponent,
         ProductListingComponent,
         LoginComponent,
-        RegisterComponent
+        RegisterComponent,
+        MyAccountComponent
     ],
     imports: [
         BrowserModule,
@@ -96,6 +100,7 @@ const appRoutes: Routes = [
         FormsModule,
         LazyLoadImageModule,
         NgStickyModule,
+        SwiperModule
     ],
     providers: [
         { provide: LOCALE_ID, useValue: "nl-NL" },

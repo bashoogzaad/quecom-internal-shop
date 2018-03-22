@@ -34,7 +34,8 @@ export class LoginComponent implements OnInit {
     loginServer() {
       this.loginPromise = this.authService.loginServer(this.username, this.password).subscribe(res => {
         if (res.status === 200) {
-          this.authService.saveUser('jhdfjhdfhjvdfjhvbdhjfvbhjfd'); //res.guid
+          console.log(res);
+          this.authService.saveUser(res.user);
           this.router.navigate(['/home']);
         } else if (res.status === 400) {
           

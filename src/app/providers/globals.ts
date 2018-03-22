@@ -29,8 +29,8 @@ export class Globals {
             this.baseUrl = url + '/' + this.version + '/';
             this.pimcoreUrl = (url.endsWith('/') ? url.replace(new RegExp('/' + '$'), '-cms/') : (url + '-cms/')) + this.version + '/';
             
-            this.apiKey = 'HeE5um89GIXFwm38d2f6RURcwcwf5uXyScR1wEdx';
-            this.debtorNumber = '102490';
+            this.apiKey = 'CeWgpOSVF9ok6SgsmN0XFDkbQeBoxZMXlJjNZgGD';
+            this.debtorNumber = '102094';
             
         } else {
             

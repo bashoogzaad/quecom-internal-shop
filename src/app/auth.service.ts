@@ -1,3 +1,4 @@
+import { CartProvider } from './providers/cart.provider';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
@@ -12,19 +13,20 @@ import { PimcoreProvider } from './providers/pimcore.provider';
 export class AuthService {
     
     @LocalStorage() public isLoggedIn;
-    @LocalStorage() public userGuid;
+    @LocalStorage() public userHash;
     redirectUrl: string;
 
     constructor(
         private localStorage: LocalStorageService,
         private globals: Globals,
-        private pimcoreProvider: PimcoreProvider
+        private pimcoreProvider: PimcoreProvider,
+        private cartProvider: CartProvider
     ) {
         
     }
   
     saveUser(guid: string) {
-      this.userGuid = guid;
+      this.userHash = guid;
       this.isLoggedIn = true;
     }
   
@@ -35,6 +37,7 @@ export class AuthService {
     loginServer(username: string, password: string) {
       return this.pimcoreProvider.login(username, password);
     }
+   
     
     login(checkPass: string): boolean {
         const pass = this.globals.password;
@@ -48,7 +51,9 @@ export class AuthService {
     }
 
     logout(): void {
+        this.cartProvider.resetCart();      
         this.isLoggedIn = false;
+        this.userHash = undefined;
         this.isLoggedIn = this.isLoggedIn;
     }
 }

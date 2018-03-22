@@ -3,6 +3,7 @@ import { CartProvider } from "../providers/cart.provider";
 import { LocalStorageService, LocalStorage } from "ngx-webstorage";
 import { Order } from "../models/order";
 import { OrderLine } from "../models/order-line";
+import { Globals } from '../providers/globals';
 import { Router } from "@angular/router";
 
 @Component({
@@ -17,7 +18,8 @@ export class CartComponent implements OnInit {
     
     constructor(
         public cartProvider: CartProvider,
-        public router: Router
+        public router: Router,
+        public globals: Globals
     ) { }
 
     ngOnInit() {

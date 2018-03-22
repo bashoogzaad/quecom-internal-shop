@@ -4,6 +4,7 @@ import { Order } from "../../models/order";
 import { QuecomProvider } from "../../providers/quecom.provider";
 import { Router } from "@angular/router";
 import { AuthService } from "../../auth.service";
+import { CartProvider } from '../../providers/cart.provider';
 import { Globals } from "../../providers/globals";
 
 @Component({
@@ -23,12 +24,15 @@ export class HeaderComponent implements OnInit {
     public useCategories: boolean = true;
     public categories: any[];
     
+    public showUser = false;
+    
     constructor(
         public localStorage: LocalStorageService,
         public quecomProvider: QuecomProvider,
         public router: Router,
         public authService: AuthService,
-        public globals: Globals
+        public globals: Globals,
+        public cartProvider: CartProvider
     ) { }
   
     @HostListener('window:scroll', ['$event']) 
@@ -51,9 +55,14 @@ export class HeaderComponent implements OnInit {
     }
     
     count(): number {
-        let count: number = 0;
+        let count = 0;
         this.order.orderLines.forEach(ol => count += ol.count);
         return count;
+    }
+  
+    goToDefaultPage(type: string) {
+      this.forceHideMenu = true;
+      this.router.navigate(['/'+type]);
     }
     
     goToPage(type: string, id: number, isMobile?: boolean) {
@@ -65,8 +74,13 @@ export class HeaderComponent implements OnInit {
     }
     
     logout() {
+        this.forceHideMenu = true;
         this.authService.logout();
-        this.router.navigate(['/login']);
+        this.router.navigate(['/inloggen']);
     }
+  
+  getCartCount() {
+    return this.cartProvider.getCurrentOrder().orderLines ? this.cartProvider.getCurrentOrder().orderLines.length : 0;
+  }
 
 }
