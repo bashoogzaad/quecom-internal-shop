@@ -25,7 +25,7 @@ export class Globals {
             
             this.version = 'v3';
             
-            let url = 'https://api.quecom.nl/customer';
+            const url = 'https://api.quecom.nl/customer';
             this.baseUrl = url + '/' + this.version + '/';
             this.pimcoreUrl = (url.endsWith('/') ? url.replace(new RegExp('/' + '$'), '-cms/') : (url + '-cms/')) + this.version + '/';
             
@@ -36,7 +36,7 @@ export class Globals {
             
             this.version = environment.version;
             
-            let url = environment.apiUrl.endsWith('/') ? environment.apiUrl.replace('/', '') : environment.apiUrl;
+            const url = environment.apiUrl.endsWith('/') ? environment.apiUrl.replace('/', '') : environment.apiUrl;
             this.baseUrl = url + '/' + this.version + '/';
             this.pimcoreUrl = (url.endsWith('/') ? url.replace(new RegExp('/' + '$'), '-cms/') : (url + '-cms/')) + this.version + '/';
             
