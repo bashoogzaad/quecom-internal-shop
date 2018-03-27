@@ -1,3 +1,4 @@
+import { environment } from '../environments/environment';
 import { CartProvider } from './providers/cart.provider';
 import { Injectable } from '@angular/core';
 
@@ -12,8 +13,8 @@ import { PimcoreProvider } from './providers/pimcore.provider';
 @Injectable()
 export class AuthService {
     
-    @LocalStorage() public isLoggedIn;
-    @LocalStorage() public userHash;
+    @LocalStorage(environment.debtorNumber+'-storage') public isLoggedIn;
+    @LocalStorage() public user;
     redirectUrl: string;
 
     constructor(
@@ -26,7 +27,7 @@ export class AuthService {
     }
   
     saveUser(guid: string) {
-      this.userHash = guid;
+      this.user = guid;
       this.isLoggedIn = true;
     }
   
@@ -53,7 +54,7 @@ export class AuthService {
     logout(): void {
         this.cartProvider.resetCart();      
         this.isLoggedIn = false;
-        this.userHash = undefined;
+        this.user = undefined;
         this.isLoggedIn = this.isLoggedIn;
     }
 }

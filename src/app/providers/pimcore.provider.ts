@@ -38,13 +38,20 @@ export class PimcoreProvider {
     }
     
     public getMetaInfo() {
-        let options = this.initRequestOptions();
+        const options = this.initRequestOptions();
         return this.http.get(this.globals.pimcoreUrl+'meta', options).map(res => res.json());
     }
   
     public getCustomers() {
         const options = this.initRequestOptions();
         return this.http.get(this.globals.pimcoreUrl+'customer', options).map(res => res.json());
+    }
+  
+    public getBudget(id: any, hash: any) {
+        const options = this.initRequestOptions();
+        options.headers.append('X-Pimcore-Hash', hash);
+        options.headers.append('X-Pimcore-User', id);
+        return this.http.get(this.globals.pimcoreUrl+'customer/budget', options).map(res => res.json());
     }
   
     public login(username: string, password: string) {

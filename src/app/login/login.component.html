@@ -1,3 +1,34 @@
+<ng-container *ngIf="globals.theme === 'nexgeek'">
+
+	<main class="main-content" style="background-color: var(--color-primary-var);">
+
+		<section class="block-banner" style="background-size: contain;">
+			
+			<div class="container">
+				<div class="row">
+					<div class="hidden-sm col-md-3"></div>
+					<div class="col-md-6" class="block-banner_caption">
+						<h2>{{ globals.name }}</h2>
+						<h1 class="pageTitle text-center">Toegang tot de loyalty shop</h1>
+						<div id="CustomerLoginForm" class="form-vertical">
+							<form accept-charset="UTF-8" (ngSubmit)="login()">
+								<label class="hidden-label">Wachtwoord</label>
+								<input type="password" class="input-full" placeholder="Wachtwoord" [(ngModel)]="pass" name="pass" >
+								<p>
+									<input type="button" class="btn btn--full" value="Inloggen" (click)="login()" />
+								</p>
+							</form>
+						</div>
+					</div>
+					<div class="hidden-sm col-md-3"></div>
+				</div>
+			</div>
+			
+		</section>
+	
+	</main>
+
+</ng-container>
 <ng-container *ngIf="globals.theme === 'mogo'">
 	
 	<!-- MAIN -->

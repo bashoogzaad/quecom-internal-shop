@@ -1048,7 +1048,7 @@ h2.sub-title { font-size:14px; font-weight:700; background:#fafafa; color:#444; 
 /* ====================================================================================================================
    16. Checkout PAGE
  * ====================================================================================================================*/
-h4.checkout-title { color:#04373c; font-size:15px; font-weight:600; text-transform:uppercase; padding:10px; background-color: var(--color-primary-var); }
+h4.checkout-title { color:var(--color-primary-var); font-size:15px; font-weight:600; text-transform:uppercase; padding:10px; }
 #checkoutform .cat-total { padding:10px; margin-bottom:12px; border-top:1px solid #ccc; border-bottom:1px solid #ccc; }
 
 input.form-control { border:1px solid #e5e5e5; box-shadow:none; border-radius:0; padding:8px 10px; }

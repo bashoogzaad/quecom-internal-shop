@@ -1,227 +1,565 @@
-<!-- SITE MAIN CONTENT -->
-<main class="main-content"> 
-	<div class="container">
-		<h1 class="pageTitle">Bestellen</h1>
-		<div class="check-outwraper">
-			<form id="checkoutform" #customerDataForm="ngForm">
-				<div class="row">
-					<div class="col-md-6 col-sm-6 col-xs-12">
-						<div class="shipping-details">
-							<h4 class="checkout-title">Verzendadres</h4>
-							<div class="row">
-								<div class="col-md-3 col-sm-12">
-									<div class="form-group">
-										<select class="form-control selectpicker" name="genderSh" [(ngModel)]="customerData.genderSh" (ngModelChange)="change($event, 'gender')" required>
-											<option>Mevr.</option>
-											<option>De heer</option>
-										</select>
+<ng-container *ngIf="globals.theme == 'nexgeek'">
+
+	<!-- SITE MAIN CONTENT -->
+	<main class="main-content"> 
+		<div class="container">
+			<h1 class="pageTitle">Bestellen</h1>
+			<div class="check-outwraper">
+				<form id="checkoutform" #customerDataForm="ngForm">
+					<div class="row">
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<div class="shipping-details">
+								<h4 class="checkout-title">Verzendadres</h4>
+								<div class="row">
+									<div class="col-md-3 col-sm-12">
+										<div class="form-group">
+											<select class="form-control selectpicker" name="genderSh" [(ngModel)]="customerData.genderSh" (ngModelChange)="change($event, 'gender')" required>
+												<option>Mevr.</option>
+												<option>De heer</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-3 col-sm-12">
+										<div class="form-group">
+											<input placeholder="Voornaam" type="text" class="form-control" name="firstNameSh" [(ngModel)]="customerData.firstNameSh" (ngModelChange)="change($event, 'firstName')"  required />
+										</div>
+									</div>
+									<div class="col-md-6 col-sm-12">
+										<div class="form-group">
+											<input placeholder="Achternaam" type="text" class="form-control" name="lastNameSh" [(ngModel)]="customerData.lastNameSh" (ngModelChange)="change($event, 'lastName')" required />
+										</div>
 									</div>
 								</div>
-								<div class="col-md-3 col-sm-12">
-									<div class="form-group">
-										<input placeholder="Voornaam" type="text" class="form-control" name="firstNameSh" [(ngModel)]="customerData.firstNameSh" (ngModelChange)="change($event, 'firstName')"  required />
+								<div class="form-group">
+									<div class="form-group"><input placeholder="Emailadres" type="email" class="form-control" name="emailaddressSh" [(ngModel)]="customerData.emailAddressSh" (ngModelChange)="change($event, 'emailAddress')" required /></div>
+								</div>
+								<div class="form-group">
+									<input placeholder="Bedrijfsnaam (optioneel)" type="text" class="form-control" name="companyNameSh" [(ngModel)]="customerData.companyNameSh" (ngModelChange)="change($event, 'companyName')" />
+								</div>
+								<div class="row">
+									<div class="col-md-6 col-sm-12">
+										<div class="form-group"><input placeholder="Adres" type="text" class="form-control" name="addressSh" [(ngModel)]="customerData.addressSh" (ngModelChange)="change($event, 'address')" required /></div>
+									</div>
+									<div class="col-md-3 col-sm-12">
+										<div class="form-group"><input placeholder="Huisnr." type="number" class="form-control" name="houseNumberSh" [(ngModel)]="customerData.houseNumberSh" (ngModelChange)="change($event, 'houseNumber')" required /></div>
+									</div>
+									<div class="col-md-3 col-sm-12">
+										<div class="form-group"><input placeholder="Toev." type="text" class="form-control" name="houseNumberExtensionSh" [(ngModel)]="customerData.houseNumberExtensionSh" (ngModelChange)="change($event, 'houseNumberExtension')" /></div>
 									</div>
 								</div>
-								<div class="col-md-6 col-sm-12">
-									<div class="form-group">
-										<input placeholder="Achternaam" type="text" class="form-control" name="lastNameSh" [(ngModel)]="customerData.lastNameSh" (ngModelChange)="change($event, 'lastName')" required />
+								<div class="row">
+									<div class="col-md-6 col-sm-12">
+										<div class="form-group"><input placeholder="Postcode" type="text" pattern="[1-9][0-9]{3}\s?[a-zA-Z]{2}" class="form-control" name="postalCodeSh" [(ngModel)]="customerData.postalCodeSh" (ngModelChange)="change($event, 'postalCode')" required /></div>
+									</div>
+									<div class="col-md-6 col-sm-12">
+										<div class="form-group"><input placeholder="Woonplaats" type="text" class="form-control" name="citySh" [(ngModel)]="customerData.citySh" (ngModelChange)="change($event, 'city')" required /></div>
 									</div>
 								</div>
-							</div>
-							<div class="form-group">
-								<div class="form-group"><input placeholder="Emailadres" type="email" class="form-control" name="emailaddressSh" [(ngModel)]="customerData.emailAddressSh" (ngModelChange)="change($event, 'emailAddress')" required /></div>
-							</div>
-							<div class="form-group">
-								<input placeholder="Bedrijfsnaam (optioneel)" type="text" class="form-control" name="companyNameSh" [(ngModel)]="customerData.companyNameSh" (ngModelChange)="change($event, 'companyName')" />
-							</div>
-							<div class="row">
-								<div class="col-md-6 col-sm-12">
-									<div class="form-group"><input placeholder="Adres" type="text" class="form-control" name="addressSh" [(ngModel)]="customerData.addressSh" (ngModelChange)="change($event, 'address')" required /></div>
-								</div>
-								<div class="col-md-3 col-sm-12">
-									<div class="form-group"><input placeholder="Huisnr." type="number" class="form-control" name="houseNumberSh" [(ngModel)]="customerData.houseNumberSh" (ngModelChange)="change($event, 'houseNumber')" required /></div>
-								</div>
-								<div class="col-md-3 col-sm-12">
-									<div class="form-group"><input placeholder="Toev." type="text" class="form-control" name="houseNumberExtensionSh" [(ngModel)]="customerData.houseNumberExtensionSh" (ngModelChange)="change($event, 'houseNumberExtension')" /></div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6 col-sm-12">
-									<div class="form-group"><input placeholder="Postcode" type="text" pattern="[1-9][0-9]{3}\s?[a-zA-Z]{2}" class="form-control" name="postalCodeSh" [(ngModel)]="customerData.postalCodeSh" (ngModelChange)="change($event, 'postalCode')" required /></div>
-								</div>
-								<div class="col-md-6 col-sm-12">
-									<div class="form-group"><input placeholder="Woonplaats" type="text" class="form-control" name="citySh" [(ngModel)]="customerData.citySh" (ngModelChange)="change($event, 'city')" required /></div>
-								</div>
-							</div>
-							<div class="form-group"><input placeholder="Telefoonnummer" type="tel" class="form-control" name="phoneNumberSh" [(ngModel)]="customerData.phoneNumberSh" (ngModelChange)="change($event, 'phoneNumber')" required /></div>
-							<div class="row">
-								<div class="col-md-12 col-sm-12">
-									<div class="form-group">
-										<select class="form-control selectpicker" disabled="true">
-											<option>Nederland</option>
-										</select>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12 col-sm-12">
-								<div class="checkbox">
-									<label><input type="checkbox" value="" (change)="toggleBillingToShipment()" checked>Factuuradres is hetzelfde als verzendadres.</label>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-xs-12">
-						<div class="billing-details">
-							<h4 class="checkout-title">Factuuradres</h4>
-							<div class="row">
-								<div class="col-md-3 col-sm-12">
-									<div class="form-group">
-										<select class="form-control selectpicker" name="gender" [(ngModel)]="customerData.gender" required [disabled]="billingToShipment">
-											<option>Mevr.</option>
-											<option>De heer</option>
-										</select>
-									</div>
-								</div>
-								<div class="col-md-3 col-sm-12">
-									<div class="form-group">
-										<input placeholder="Voornaam" type="text" class="form-control" name="firstName" [(ngModel)]="customerData.firstName" required [disabled]="billingToShipment" />
-									</div>
-								</div>
-								<div class="col-md-6 col-sm-12">
-									<div class="form-group">
-										<input placeholder="Achternaam" type="text" class="form-control" name="lastName" [(ngModel)]="customerData.lastName" required [disabled]="billingToShipment" />
+								<div class="form-group"><input placeholder="Telefoonnummer" type="tel" class="form-control" name="phoneNumberSh" [(ngModel)]="customerData.phoneNumberSh" (ngModelChange)="change($event, 'phoneNumber')" required /></div>
+								<div class="row">
+									<div class="col-md-12 col-sm-12">
+										<div class="form-group">
+											<select class="form-control selectpicker" disabled="true">
+												<option>Nederland</option>
+											</select>
+										</div>
 									</div>
 								</div>
 							</div>
-							<div class="form-group">
-								<div class="form-group"><input placeholder="Emailadres" type="text" class="form-control" name="emailaddress" [(ngModel)]="customerData.emailAddress" required [disabled]="billingToShipment" /></div>
-							</div>
-							<div class="form-group">
-								<input placeholder="Bedrijfsnaam (optioneel)" type="text" class="form-control" name="companyName" [(ngModel)]="customerData.companyName" [disabled]="billingToShipment" />
-							</div>
-							<div class="row">
-								<div class="col-md-6 col-sm-12">
-									<div class="form-group"><input placeholder="Adres" type="text" class="form-control" name="address" [(ngModel)]="customerData.address" required [disabled]="billingToShipment" /></div>
-								</div>
-								<div class="col-md-3 col-sm-12">
-									<div class="form-group"><input placeholder="Huisnr." type="text" class="form-control" name="houseNumber" [(ngModel)]="customerData.houseNumber" required [disabled]="billingToShipment" /></div>
-								</div>
-								<div class="col-md-3 col-sm-12">
-									<div class="form-group"><input placeholder="Toev." type="text" class="form-control" name="houseNumberExtension" [(ngModel)]="customerData.houseNumberExtension" [disabled]="billingToShipment" /></div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6 col-sm-12">
-									<div class="form-group"><input placeholder="Postcode" type="text" class="form-control" name="postalCode" [(ngModel)]="customerData.postalCode" required [disabled]="billingToShipment" /></div>
-								</div>
-								<div class="col-md-6 col-sm-12">
-									<div class="form-group"><input placeholder="Woonplaats" type="text" class="form-control" name="city" [(ngModel)]="customerData.city" required [disabled]="billingToShipment" /></div>
-								</div>
-							</div>
-							<div class="form-group"><input placeholder="Telefoonnummer" type="text" class="form-control" name="phoneNumber" [(ngModel)]="customerData.phoneNumber" [disabled]="billingToShipment" /></div>
 							<div class="row">
 								<div class="col-md-12 col-sm-12">
-									<div class="form-group">
-										<select class="form-control selectpicker" disabled="true">
-											<option>Nederland</option>
-										</select>
+									<div class="checkbox">
+										<label><input type="checkbox" value="" (change)="toggleBillingToShipment()" checked>Factuuradres is hetzelfde als verzendadres.</label>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12 col-sm-12 col-xs-12">
-						<h4 class="checkout-title">Kortingscode</h4>
-						<div class="form-group">
-							<strong>Heeft u een kortingscode? Voer deze dan hieronder in.</strong>
-							<div class="row">
-								<div class="col-md-10 col-sm-10 col-xs-10">
-									<input placeholder="Kortingscode" type="text" class="form-control" name="coupon_code" [(ngModel)]="couponCode" />
-								</div>
-								<div class="col-md-2 col-sm-2 col-xs-2">
-									<button class="btn" [disabled]="!couponCode" (click)="checkCouponCode()">Toepassen</button>
-								</div>
-							</div>
-							<div *ngIf="showError">{{ errorMessage }}</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6 col-sm-6 col-xs-12">
-						<div class="payment-method mt-60  pl-20">
-							<h4 class="checkout-title">Verzendmethode</h4>
-							<div class="form-group">
-								<strong>Er geldt de volgende leverindicatie:</strong>
-								<div class="checkbox"><label>{{ globals.deliveryIndication[0] }}, {{ globals.deliveryIndication[1] }}</label></div>
-							</div>
-							<h4 class="checkout-title">Betaalmethode</h4>
-							<div class="panel-group" id="accordion">
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion">Buckaroo</a></h4>
+						<div class="col-sm-6 col-xs-12">
+							<div class="billing-details">
+								<h4 class="checkout-title">Factuuradres</h4>
+								<div class="row">
+									<div class="col-md-3 col-sm-12">
+										<div class="form-group">
+											<select class="form-control selectpicker" name="gender" [(ngModel)]="customerData.gender" required [disabled]="billingToShipment">
+												<option>Mevr.</option>
+												<option>De heer</option>
+											</select>
+										</div>
 									</div>
-									<div id="directBank" class="panel-collapse collapse in">
-										<div class="panel-body">
-											<p>Voor de betaling word je doorgestuurd naar de beveiligde betaalomgeving van Buckaroo. Je kunt hier betalen met iDeal.</p>
+									<div class="col-md-3 col-sm-12">
+										<div class="form-group">
+											<input placeholder="Voornaam" type="text" class="form-control" name="firstName" [(ngModel)]="customerData.firstName" required [disabled]="billingToShipment" />
+										</div>
+									</div>
+									<div class="col-md-6 col-sm-12">
+										<div class="form-group">
+											<input placeholder="Achternaam" type="text" class="form-control" name="lastName" [(ngModel)]="customerData.lastName" required [disabled]="billingToShipment" />
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="form-group"><input placeholder="Emailadres" type="text" class="form-control" name="emailaddress" [(ngModel)]="customerData.emailAddress" required [disabled]="billingToShipment" /></div>
+								</div>
+								<div class="form-group">
+									<input placeholder="Bedrijfsnaam (optioneel)" type="text" class="form-control" name="companyName" [(ngModel)]="customerData.companyName" [disabled]="billingToShipment" />
+								</div>
+								<div class="row">
+									<div class="col-md-6 col-sm-12">
+										<div class="form-group"><input placeholder="Adres" type="text" class="form-control" name="address" [(ngModel)]="customerData.address" required [disabled]="billingToShipment" /></div>
+									</div>
+									<div class="col-md-3 col-sm-12">
+										<div class="form-group"><input placeholder="Huisnr." type="text" class="form-control" name="houseNumber" [(ngModel)]="customerData.houseNumber" required [disabled]="billingToShipment" /></div>
+									</div>
+									<div class="col-md-3 col-sm-12">
+										<div class="form-group"><input placeholder="Toev." type="text" class="form-control" name="houseNumberExtension" [(ngModel)]="customerData.houseNumberExtension" [disabled]="billingToShipment" /></div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6 col-sm-12">
+										<div class="form-group"><input placeholder="Postcode" type="text" class="form-control" name="postalCode" [(ngModel)]="customerData.postalCode" required [disabled]="billingToShipment" /></div>
+									</div>
+									<div class="col-md-6 col-sm-12">
+										<div class="form-group"><input placeholder="Woonplaats" type="text" class="form-control" name="city" [(ngModel)]="customerData.city" required [disabled]="billingToShipment" /></div>
+									</div>
+								</div>
+								<div class="form-group"><input placeholder="Telefoonnummer" type="text" class="form-control" name="phoneNumber" [(ngModel)]="customerData.phoneNumber" [disabled]="billingToShipment" /></div>
+								<div class="row">
+									<div class="col-md-12 col-sm-12">
+										<div class="form-group">
+											<select class="form-control selectpicker" disabled="true">
+												<option>Nederland</option>
+											</select>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="col-md-6 col-sm-6 col-xs-12">
-						<div class="our-order payment-details mt-60 pr-20">
-							<h4 class="checkout-title">Uw bestelling</h4>
-							<div class="cart table-wrap">
-								<table class="cart-table full table--responsive">
-									<thead class="cart__row cart__header-labels">
-										<tr>
-											<th class="text-left">Product</th>
-											<th class="text-center">Prijs</th>
-											<th class="text-center">Aantal</th>
-											<th class="text-right">Totaal</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr class="cart__row" *ngFor="let orderLine of order.orderLines">
-											<td>
-												<a [routerLink]="['/product', orderLine.product.id]">{{ orderLine.product.title }}</a>
-												<p class="cart-variant">{{ orderLine.product.category_name }}, {{ orderLine.product.brand_name }}</p>
-											</td>
-											<td data-label="Prijs" class="price">{{ orderLine.product.price_total_netto*1.21 | currency:'EUR':'true' }}</td>
-											<td data-label="Aantal" class="qty text-right">{{ orderLine.count }}</td>
-											<td data-label="Totaal" class="text-right">{{ getOrderLineSubtotal(orderLine) | currency:'EUR':'true' }}</td>
-										</tr>
-									</tbody>
-								</table>
-								<div class="cat-total text-right">
-									<span class="cart__subtotal-title" *ngIf="discounts.length === 0">Totaal</span>
-									<span class="cart__subtotal-title" *ngIf="discounts.length > 0">Subtotaal</span> 
-									<span class="h3 cart__subtotal"><span class=money>{{ getOrderTotal() | currency:'EUR':'true' }}</span></span>
+					<div class="row" *ngIf="globals.hasCoupons">
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<h4 class="checkout-title">Kortingscode</h4>
+							<div class="form-group">
+								<strong>Heeft u een kortingscode? Voer deze dan hieronder in.</strong>
+								<div class="row">
+									<div class="col-md-10 col-sm-10 col-xs-10">
+										<input placeholder="Kortingscode" type="text" class="form-control" name="coupon_code" [(ngModel)]="couponCode" />
+									</div>
+									<div class="col-md-2 col-sm-2 col-xs-2">
+										<button class="btn" [disabled]="!couponCode" (click)="checkCouponCode()">Toepassen</button>
+									</div>
 								</div>
-								<div class="cat-total text-right" *ngIf="discounts.length > 0">
-									<span class="cart__subtotal-title">Korting</span> 
-									<span class="h3 cart__subtotal"><span class=money>{{ getDiscountTotal() | currency:'EUR':'true' }}</span></span>
+								<div *ngIf="showError">{{ errorMessage }}</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<div class="payment-method mt-60  pl-20">
+								<h4 class="checkout-title">Verzendmethode</h4>
+								<div class="form-group">
+									<strong>Er geldt de volgende leverindicatie:</strong>
+									<div class="checkbox"><label>{{ globals.deliveryIndication[0] }}, {{ globals.deliveryIndication[1] }}</label></div>
 								</div>
-								<div class="cat-total text-right" *ngIf="discounts.length > 0">
-									<span class="cart__subtotal-title">Totaal</span> 
-									<span class="h3 cart__subtotal"><span class=money>{{ getTotal() | currency:'EUR':'true' }}</span></span>
+								<h4 class="checkout-title">Betaalmethode</h4>
+								<div class="panel-group" id="accordion">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion">Buckaroo</a></h4>
+										</div>
+										<div id="directBank" class="panel-collapse collapse in">
+											<div class="panel-body">
+												<p>Voor de betaling word je doorgestuurd naar de beveiligde betaalomgeving van Buckaroo. Je kunt hier betalen met iDeal.</p>
+											</div>
+										</div>
+									</div>
 								</div>
-								<div class="text-right">
-									<button class="btn btn--full cart__checkout" type="submit" [disabled]="!customerDataForm.form.valid" (click)="placeOrder()">
-										&nbsp; Betalen <i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp;
-									</button>
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<div class="our-order payment-details mt-60 pr-20">
+								<h4 class="checkout-title">Uw bestelling</h4>
+								<div class="cart table-wrap">
+									<table class="cart-table full table--responsive">
+										<thead class="cart__row cart__header-labels">
+											<tr>
+												<th class="text-left">Product</th>
+												<th class="text-center">Prijs</th>
+												<th class="text-center">Aantal</th>
+												<th class="text-right">Totaal</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr class="cart__row" *ngFor="let orderLine of order.orderLines">
+												<td>
+													<a [routerLink]="['/product', orderLine.product.id]">{{ orderLine.product.title }}</a>
+													<p class="cart-variant">{{ orderLine.product.category_name }}, {{ orderLine.product.brand_name }}</p>
+												</td>
+												<td data-label="Prijs" class="price">{{ orderLine.product.price_total_netto*1.21 | currency:'EUR':'true' }}</td>
+												<td data-label="Aantal" class="qty text-right">{{ orderLine.count }}</td>
+												<td data-label="Totaal" class="text-right">{{ getOrderLineSubtotal(orderLine) | currency:'EUR':'true' }}</td>
+											</tr>
+										</tbody>
+									</table>
+									<div class="cat-total text-right">
+										<span class="cart__subtotal-title" *ngIf="discounts.length === 0">Totaal</span>
+										<span class="cart__subtotal-title" *ngIf="discounts.length > 0">Subtotaal</span> 
+										<span class="h3 cart__subtotal"><span class=money>{{ getOrderTotal() | currency:'EUR':'true' }}</span></span>
+									</div>
+									<div class="cat-total text-right" *ngIf="discounts.length > 0">
+										<span class="cart__subtotal-title">Korting</span> 
+										<span class="h3 cart__subtotal"><span class=money>{{ getDiscountTotal() | currency:'EUR':'true' }}</span></span>
+									</div>
+									<div class="cat-total text-right" *ngIf="discounts.length > 0">
+										<span class="cart__subtotal-title">Totaal</span> 
+										<span class="h3 cart__subtotal"><span class=money>{{ getTotal() | currency:'EUR':'true' }}</span></span>
+									</div>
+									<div class="text-right">
+										<button class="btn btn--full cart__checkout" type="submit" [disabled]="!customerDataForm.form.valid" (click)="placeOrder()">
+											&nbsp; Betalen <i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp;
+										</button>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			</form>
+				</form>
+			</div>
+			<p>&nbsp;</p>
 		</div>
-		<p>&nbsp;</p>
-	</div>
-</main>
+	</main>
+
+</ng-container>
+<ng-container *ngIf="globals.theme == 'mogo'">
+
+	<!-- MAIN -->
+	<main>
+	
+	    <div class="tt-layout tt-sticky-block__parent ">
+	        <div class="tt-layout__content">
+	            <div class="container">
+	
+	                <div class="tt-page__name text-center">
+	                    <h1>Bestelling plaatsen</h1>
+	                </div>
+	
+	                <div class="tt-checkout">
+	                    <div class="row">
+	                        <div class="col-lg-8">
+	                            <div class="tt-checkout__steps">
+	                                <div class="tt-checkout__step-01">
+	                                    <span>01</span>
+	                                    <p>Verzending</p>
+	                                </div>
+	                                <div class="tt-checkout__step-02">
+	                                    <span>02</span>
+	                                    <p>Betaling</p>
+	                                </div>
+	                            </div>
+	                            <h4 class="ttg-mt--50 ttg-mb--20">Shipping Address</h4>
+	                            <div class="tt-checkout__form">
+	                                <div class="row">
+	                                    <div class="col-md-2"><p>Text:</p></div>
+	                                    <div class="col-md-10">
+	                                        <div class="tt-input">
+	                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="Text">
+	                                        </div>
+	                                    </div>
+	                                    <div class="col-md-2"><p>Text:</p></div>
+	                                    <div class="col-md-10">
+	                                        <div class="tt-input tt-input-valid--true">
+	                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="Text">
+	                                            <p class="tt-input__t-valid-true">Text <i class="icon-ok-2"></i></p>
+	                                            <p class="tt-input__t-valid-false">Text <i class="icon-minus-circled"></i>
+	                                            </p>
+	                                        </div>
+	                                    </div>
+	                                    <div class="col-md-2"><p>Text:</p></div>
+	                                    <div class="col-md-10">
+	                                        <div class="tt-input tt-input-valid--false">
+	                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="Text">
+	                                            <p class="tt-input__t-valid-true">Text <i class="icon-ok-2"></i></p>
+	                                            <p class="tt-input__t-valid-false">Text <i class="icon-minus-circled"></i>
+	                                            </p>
+	                                        </div>
+	                                    </div>
+	                                    <div class="col-md-2"><p>Text:</p></div>
+	                                    <div class="col-md-10">
+	                                        <div class="tt-input">
+	                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="Text">
+	                                        </div>
+	                                    </div>
+	                                    <div class="col-md-2"><p>Text:</p></div>
+	                                    <div class="col-md-10">
+	                                        <div class="tt-input">
+	                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="Text">
+	                                        </div>
+	                                    </div>
+	                                    <div class="col-md-2"><p>Text:</p></div>
+	                                    <div class="col-md-10">
+	                                        <div class="tt-select">
+	                                            <select class="form-control">
+	                                                <option>Text</option>
+	                                            </select>
+	                                        </div>
+	                                    </div>
+	                                    <div class="col-md-2"><p>Text:</p></div>
+	                                    <div class="col-md-10">
+	                                        <div class="tt-input">
+	                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="Text">
+	                                        </div>
+	                                        <div class="tt-input">
+	                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="Text">
+	                                        </div>
+	                                    </div>
+	                                    <div class="col-md-2"><p>Text:</p></div>
+	                                    <div class="col-md-10">
+	                                        <div class="tt-select">
+	                                            <select class="form-control colorize-theme6-bg">
+	                                                <option>Text</option>
+	                                            </select>
+	                                        </div>
+	                                    </div>
+	                                    <div class="col-md-2"><p>Text:</p></div>
+	                                    <div class="col-md-10">
+	                                        <div class="tt-select">
+	                                            <select class="form-control colorize-theme6-bg">
+	                                                <option>Text</option>
+	                                            </select>
+	                                        </div>
+	                                    </div>
+	                                    <div class="col-md-2"><p>Text:</p></div>
+	                                    <div class="col-md-10">
+	                                        <div class="tt-input">
+	                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="Text">
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <h4 class="tt-checkout--border ttg-mt--50 ttg-mb--20">Shipping Methods</h4>
+	                            <div class="tt-checkout__methods">
+	                                <ul>
+	                                    <li>
+	                                        <p>Select Method:</p>
+	                                        <label class="tt-checkbox-circle">
+	                                            <input type="checkbox">
+	                                            <span></span>
+	                                        </label>
+	                                    </li>
+	                                    <li>
+	                                        <p>Price:</p>
+	                                        <span>$5.00</span>
+	                                    </li>
+	                                    <li>
+	                                        <p>Method Title:</p>
+	                                        <span>Fixed</span>
+	                                    </li>
+	                                    <li>
+	                                        <p>Carrier Title:</p>
+	                                        <span>Flat Rate</span>
+	                                    </li>
+	                                </ul>
+	                            </div>
+	                            <a href="#" class="btn ttg-mt--20">Next</a>
+	                            <div class="tt-checkout__steps ttg-mt--100">
+	                                <div class="tt-checkout__step-03">
+	                                    <i class="icon-ok-2"></i>
+	                                    <p>Shipping</p>
+	                                </div>
+	                                <div class="tt-checkout__step-01">
+	                                    <span>02</span>
+	                                    <p>Review & Payments</p>
+	                                </div>
+	                            </div>
+	                            <h4 class="ttg-mt--60 ttg-mb--30">Payment</h4>
+	                            <div class="tt-checkout__payment">
+	                                <ul>
+	                                    <li>Check / Money order</li>
+	                                    <li>
+	                                        <label class="tt-checkbox-circle">
+	                                            <input type="checkbox">
+	                                            <span></span>
+	                                        </label>
+	                                        My billing and shipping address are the same
+	                                    </li>
+	                                    <li>Lorem ipsum dolor sit amet conse</li>
+	                                    <li>Ctetur adipisicing elit, sed do</li>
+	                                    <li>Wiusmod tempor incididunt ut labore</li>
+	                                    <li>Et dolore magna aliqua.</li>
+	                                </ul>
+	                            </div>
+	                            <h4 class="tt-checkout--border ttg-mb--20">Have a Coupon?</h4>
+	                            <div class="tt-checkout__coupon">`
+	                                <form action="#">
+	                                    <label>
+	                                        <p>Coupone code:</p>
+	                                        <input type="text" class="form-control" placeholder="Code">
+	                                    </label>
+	                                    <button type="submit" class="btn">Apply</button>
+	                                </form>
+	                            </div>
+	                            <div class="tt-checkout--border">
+	                                <a href="#" class="tt-checkout__btn-order btn btn-type--icon colorize-btn6"><i class="icon-check"></i><span>PlaceOrder</span></a>
+	                            </div>
+	                        </div>
+	                        <div class="col-lg-4">
+	                            <div class="tt-summary">
+	                                <div class="tt-summary--border">
+	                                    <h4>Order Summary</h4>
+	                                </div>
+	                                <div class="tt-summary__products tt-summary--border">
+	                                    <ul>
+	                                        <li>
+	                                            <div>
+	                                                <a href="#"><img src="images/summary/summary-01.jpg"
+	                                                                 alt="Image name"></a>
+	                                            </div>
+	                                            <div>
+	                                                <p><a href="#">Elegant and fresh. A most attractive mobile...</a></p>
+	                                <span class="tt-summary__products_price">
+	                                    <span class="tt-summary__products_price-count">1</span>
+	                                    <span>x</span>
+	                                    <span class="tt-summary__products_price-val">
+	                                        <span class="tt-price">
+	                                            <span>$25</span>
+	                                        </span>
+	                                    </span>
+	                                </span>
+	                                                <div class="tt-summary__products_param-control tt-summary__products_param-control--open">
+	                                                    <span>Details</span>
+	                                                    <i class="icon-down-open"></i>
+	                                                </div>
+	                                                <div class="tt-summary__products_param">
+	                                                    <span class="tt-summary__products_color">Color: <span>Orange</span></span>
+	                                                    <span class="tt-summary__products_size">Size: <span>XL</span></span>
+	                                                </div>
+	                                            </div>
+	                                        </li>
+	                                        <li>
+	                                            <div>
+	                                                <a href="#"><img src="images/summary/summary-01.jpg"
+	                                                                 alt="Image name"></a>
+	                                            </div>
+	                                            <div>
+	                                                <p><a href="#">Elegant and fresh. A most attractive mobile...</a></p>
+	                                <span class="tt-summary__products_price">
+	                                    <span class="tt-summary__products_price-count">1</span>
+	                                    <span>x</span>
+	                                    <span class="tt-summary__products_price-val">
+	                                        <span class="tt-price">
+	                                            <span>$25</span>
+	                                        </span>
+	                                    </span>
+	                                </span>
+	                                                <div class="tt-summary__products_param-control">
+	                                                    <span>Details</span>
+	                                                    <i class="icon-down-open"></i>
+	                                                </div>
+	                                                <div class="tt-summary__products_param">
+	                                                    <span class="tt-summary__products_color">Color: <span>Orange</span></span>
+	                                                    <span class="tt-summary__products_size">Size: <span>XL</span></span>
+	                                                </div>
+	                                            </div>
+	                                        </li>
+	                                    </ul>
+	                                </div>
+	                                <script>
+	                                    require(['app'], function () {
+	                                        require(['modules/toggleProductParam']);
+	                                    });
+	                                </script>
+	                                <div class="tt-summary--border">
+	                                    <div class="tt-summary__total">
+	                                        <p>Subtotal: <span>$78</span></p>
+	                                    </div>
+	                                    <div class="tt-summary__total">
+	                                        <p>Shipping(Flat Rate - Fixed): <span>$78</span></p>
+	                                    </div>
+	                                    <div class="tt-summary__total tt-summary__total--m-price-50">
+	                                        <p>Total: <span>$78</span></p>
+	                                    </div>
+	                                </div>
+	                                <div class="tt-summary__list tt-summary--border">
+	                                    <h5>Ship To:</h5>
+	                                    <a href="#"><i class="icon-pencil-circled"></i></a>
+	                                    <ul>
+	                                        <li>My billing and shipping address are the same</li>
+	                                        <li>Lorem ipsum dolor sit amet conse</li>
+	                                        <li>Ctetur adipisicing elit, sed do</li>
+	                                        <li>Wiusmod tempor incididunt ut labore</li>
+	                                        <li>Et dolore magna aliqua.</li>
+	                                    </ul>
+	                                </div>
+	                                <div class="tt-summary__list">
+	                                    <h5>Shipping Method:</h5>
+	                                    <a href="#"><i class="icon-pencil-circled"></i></a>
+	                                    <ul>
+	                                        <li>My billing and shipping address are the same</li>
+	                                        <li>Lorem ipsum dolor sit amet conse</li>
+	                                        <li>Ctetur adipisicing elit, sed do</li>
+	                                        <li>Wiusmod tempor incididunt ut labore</li>
+	                                        <li>Et dolore magna aliqua.</li>
+	                                    </ul>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	
+	    <div class="tt-add-to-cart" data-active="true">
+	        <i class="icon-check"></i>
+	        <p>Added to Cart Successfully!</p>
+	        <a href="#" class="btn"><i class="icon-shop24"></i>View Cart</a>
+	    </div>
+	
+	    <div class="tt-newsletter-popup" data-active="true">
+	        <div class="tt-newsletter-popup__text-01">
+	            <span>15</span>
+	        <span>
+	            <span>%</span>
+	            <span>off</span>
+	        </span>
+	        </div>
+	        <div class="tt-newsletter-popup__text-02"><p>Your Next Purchase When You Sign Up.</p></div>
+	        <p>By signing up, you accept the terms & Privacy Policy.</p>
+	        <div class="ttg-mb--30">
+	            <form action="#" class="tt-newsletter tt-newsletter--style-02">
+	                <input type="email" name="email" class="form-control" placeholder="Enter please your e-mail">
+	                <button type="submit" class="btn">
+	                    <i class="tt-newsletter__text-wait"></i>
+	                    <span class="tt-newsletter__text-default">Subscribe!</span>
+	                    <span class="tt-newsletter__text-error"><i class="icon-exclamation"></i>Please provide a valid email address!</span>
+	                    <span class="tt-newsletter__text-complete"><i class="icon-ok"></i>Check your inbox!</span>
+	                </button>
+	            </form>
+	        </div>
+	        <div class="tt-newsletter-popup__social">
+	            <div class="tt-social-icons tt-social-icons--style-03">
+	                <a href="#" class="tt-btn">
+	                    <i class="icon-facebook"></i>
+	                </a>
+	                <a href="#" class="tt-btn">
+	                    <i class="icon-twitter"></i>
+	                </a>
+	                <a href="#" class="tt-btn">
+	                    <i class="icon-gplus"></i>
+	                </a>
+	                <a href="#" class="tt-btn">
+	                    <i class="icon-instagram-1"></i>
+	                </a>
+	                <a href="#" class="tt-btn">
+	                    <i class="icon-youtube-play"></i>
+	                </a>
+	            </div>
+	        </div>
+	        <label class="tt-newsletter-popup__show_popup tt-checkbox">
+	            <input type="checkbox" name="show-nawslatter">
+	            <span></span>
+	            Don't show this popup again
+	        </label>
+	    </div>
+	</main>
+
+</ng-container>

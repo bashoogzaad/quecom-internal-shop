@@ -54,6 +54,15 @@ export class CartComponent implements OnInit {
         return this.roundToTwo(total);
     }
     
+    getDeliveryCost() {
+      
+      //Check if there are any products which are bigger than or equal to 55 inch
+      
+      
+      return 6.95;
+      
+    }
+    
     goToPlaceOrder() {
         this.order.remarks = this.remarks;
         this.router.navigateByUrl('/winkelwagen/bestellen');

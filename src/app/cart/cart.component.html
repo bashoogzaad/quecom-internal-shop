@@ -40,11 +40,11 @@
 							<td data-label="Aantal" class="qty" style="text-align: center; vertical-align: middle;">
 								<div class="input-group spinner number" style="float: none !important;">
 									<button class="spinbtn btnminus" type="button" [disabled]="order_line.count === getOrderQuantity(order_line)" (click)="adjustOrderLine(order_line, -getOrderQuantity(order_line))">
-										<span aria-hidden="true" class="icon icon-minus"></span>
+										<span aria-hidden="true" class="fa fa-minus"></span>
 									</button>
 									<input type="text" class="txt-qty" [value]="order_line.count">
 									<button class="spinbtn btnplus" type="button" (click)="adjustOrderLine(order_line, getOrderQuantity(order_line))">
-										<span aria-hidden="true" class="icon icon-plus"></span>
+										<span aria-hidden="true" class="fa fa-plus"></span>
 									</button>
 								</div>
 							</td>
@@ -137,41 +137,21 @@
 	                                    <h4>Totalen</h4>
 	                                </div>
 	                                <div class="tt-summary__form tt-summary--border">
-	                                    <h5 class="ttg-mb--20">Estimate Shipping and TAX</h5>
-	                                    <p>Omnis iste natus error sit voluptatem accusantium doloremque</p>
-	                                    <form action="#" class="ttg-mt--20 ttg-mb--20">
-	                                        <div class="tt-select">
-	                                            <select class="form-control">
-	                                                <option>Country</option>
-	                                                <option>Country #2</option>
-	                                                <option>Country #3</option>
-	                                            </select>
-	                                        </div>
-	                                        <div class="tt-select">
-	                                            <select class="form-control">
-	                                                <option>Region</option>
-	                                                <option>Region #2</option>
-	                                                <option>Region #3</option>
-	                                            </select>
-	                                        </div>
-	                                        <input type="text" class="form-control" placeholder="Postcode/ZIP">
-	                                        <button type="submit" class="btn">Calulate Shipping</button>
-	                                    </form>
-	                                    <p>There is one shipping rate available for 22222, Ukraine.</p>
-	                                    <p class="ttg-fw--bold">Standard Shipping at $10.00</p>
+	                                    <h5 class="ttg-mb--20">Verzendkosten</h5>
+	                                    <p>{{ getDeliveryCost()*1.21 | currency:'EUR':'true' }}</p>
 	                                </div>
 	                                <div class="tt-summary--border">
-	                                    <h5 class="ttg-mb--20">Note</h5>
-	                                    <p>Add special instructions for your order...</p>
-	                                    <textarea class="form-control">Country</textarea>
+	                                    <h5 class="ttg-mb--20">Opmerking</h5>
+	                                    <p>Voeg een opmerking toe aan deze bestelling.</p>
+	                                    <textarea class="form-control"></textarea>
 	                                </div>
 	                                <div class="tt-summary__total">
-	                                    <p>Subtotal: <span>$78</span></p>
+	                                    <p>Subtotaal: <span>{{ getOrderTotal() | currency:'EUR':'true' }}</span></p>
 	                                </div>
 	                                <div class="tt-summary__total tt-summary__total--lg">
-	                                    <p>Cart Total: <span>$78</span></p>
+	                                    <p>Totaal: <span>{{ getOrderTotal()+getDeliveryCost()*1.21 | currency:'EUR':'true' }}</span></p>
 	                                </div>
-	                                <a href="$" class="tt-summary__btn-checkout btn btn-type--icon colorize-btn6"><i class="icon-check"></i><span>Proeed to Checkout</span></a>
+	                                <a href="javascript:void(0);" routerLink="/winkelwagen/bestellen" class="tt-summary__btn-checkout btn btn-type--icon colorize-btn6"><i class="icon-check"></i><span>Verder</span></a>
 	                            </div>
 	                        </div>
 	                    </div>
@@ -180,58 +160,6 @@
 	        </div>
 	    </div>
 	
-	    <div class="tt-add-to-cart" data-active="true">
-	        <i class="icon-check"></i>
-	        <p>Added to Cart Successfully!</p>
-	        <a href="#" class="btn"><i class="icon-shop24"></i>View Cart</a>
-	    </div>
-	
-	    <div class="tt-newsletter-popup" data-active="true">
-	        <div class="tt-newsletter-popup__text-01">
-	            <span>15</span>
-	        <span>
-	            <span>%</span>
-	            <span>off</span>
-	        </span>
-	        </div>
-	        <div class="tt-newsletter-popup__text-02"><p>Your Next Purchase When You Sign Up.</p></div>
-	        <p>By signing up, you accept the terms & Privacy Policy.</p>
-	        <div class="ttg-mb--30">
-	            <form action="#" class="tt-newsletter tt-newsletter--style-02">
-	                <input type="email" name="email" class="form-control" placeholder="Enter please your e-mail">
-	                <button type="submit" class="btn">
-	                    <i class="tt-newsletter__text-wait"></i>
-	                    <span class="tt-newsletter__text-default">Subscribe!</span>
-	                    <span class="tt-newsletter__text-error"><i class="icon-exclamation"></i>Please provide a valid email address!</span>
-	                    <span class="tt-newsletter__text-complete"><i class="icon-ok"></i>Check your inbox!</span>
-	                </button>
-	            </form>
-	        </div>
-	        <div class="tt-newsletter-popup__social">
-	            <div class="tt-social-icons tt-social-icons--style-03">
-	                <a href="#" class="tt-btn">
-	                    <i class="icon-facebook"></i>
-	                </a>
-	                <a href="#" class="tt-btn">
-	                    <i class="icon-twitter"></i>
-	                </a>
-	                <a href="#" class="tt-btn">
-	                    <i class="icon-gplus"></i>
-	                </a>
-	                <a href="#" class="tt-btn">
-	                    <i class="icon-instagram-1"></i>
-	                </a>
-	                <a href="#" class="tt-btn">
-	                    <i class="icon-youtube-play"></i>
-	                </a>
-	            </div>
-	        </div>
-	        <label class="tt-newsletter-popup__show_popup tt-checkbox">
-	            <input type="checkbox" name="show-nawslatter">
-	            <span></span>
-	            Don't show this popup again
-	        </label>
-	    </div>
 	</main>
 
 </ng-container>

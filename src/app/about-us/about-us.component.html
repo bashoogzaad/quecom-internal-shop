@@ -1,64 +1,31 @@
-<!-- SITE MAIN CONTENT -->
-<main class="main-content">
+<ng-container *ngIf="globals.theme == 'nexgeek'">
 
-	<section class="block-banner-1 mb60">
-		<div class="container">
-			<div class="block-banner_caption">
-				<h2>Hoe werkt het?</h2>
+	<main class="main-content">
+	
+		<section class="block-banner-1 mb60">
+			<div class="container">
+				<div class="block-banner_caption">
+					<h2>Hoe werkt het?</h2>
+				</div>
 			</div>
+		</section>
+	
+		<div>
+		
+			<div class="container">
+				<h1 class="pageTitle">Loyalty shop</h1>
+				<p>Profiteer hier van de allerbeste deals! Alle producten die je wilt bestellen kun je eenvoudig in je winkelwagentje leggen en vervolgens direct afrekenen met iDeal. Happy shopping!</p>
+			</div>
+			
+			<div class="container" *ngIf="globals.hasCoupons">
+				<h1 class="pageTitle">Heb jij een kortingscode/cadeaubon?</h1>
+				<p>
+					Heb jij een kortingscode/cadeaubon ontvangen? Ga dan met dit shop-tegoed volledig uit je plaat en bestel de mooiste producten! De kortingscode/cadeaubon is slecht één keer te verzilveren. Zorg dus dat je alle gewenste producten in één bestelling plaatst. De restwaarde komt automatische te vervallen.
+				</p>
+			</div>
+		
 		</div>
-	</section>
+		
+	</main>
 
-	<div *ngIf="checkDebtor() === '103016'">
-
-		<div class="container">
-			<h1 class="pageTitle">Personeelsshop</h1>
-			<p>Profiteer hier van de allerbeste December Deals! Alle producten die je wilt bestellen kun je eenvoudig in je winkelwagentje leggen en vervolgens direct afrekenen met iDeal. Houd er rekening mee dat je één keer per week je bestelling kunt ophalen in het magazijn in ’s-Hertogenbosch. Dit is op woensdag. Bestellingen geplaatst voor woensdag 12:00 zijn op dezelfde woensdag nog af te halen. Alle bestellingen geplaatst na woensdag 12:00, zijn de week erna op woensdag op te halen. Happy shopping!</p>
-		</div>
-		
-		<div class="container">
-			<h1 class="pageTitle">December drukte</h1>
-			<p>De deals vermeld op deze website zijn geldig t/m 31-12-2017. Door de drukte rondom Kerst kan het zijn dat sommige producten niet op voorraad zijn maar de Amazing prijzen maken het wachten meer dan goed!</p>
-		</div>
-		
-		<div class="container">
-			<h1 class="pageTitle">Je bestelling afhalen</h1>
-			<p>
-				Bestellingen kunnen uitsluitend op woensdagen opgehaald worden. Alle geplaatste bestellingen liggen op woensdag vanaf 16:00 uur klaar om afgehaald te worden bij de receptie.<br/><i>LET OP! Bestellingen geplaatst tot woensdag 12:00 uur worden verwerkt. Bestellingen geplaatst na 12:00 uur liggen de eerst volgende woensdag voor je klaar!</i>
-			</p>
-		</div>
-		
-		<div class="container">
-			<h1 class="pageTitle">Heb jij een kortingscode/cadeaubon?</h1>
-			<p>
-				Heb jij een kortingscode/cadeaubon ontvangen? Check deze dan op de homepage van de shop. Ga met dit shop-tegoed volledig uit je plaat en bestel de mooiste producten! De kortingscode/cadeaubon is slecht één keer te verzilveren. Zorg dus dat je alle gewenste producten in één bestelling plaatst. De restwaarde komt automatische te vervallen.<br/><i>LET OP! De kortingscodes/cadeaubon is geldig t/m 31 december 2017!</i>
-			</p>
-		</div>
-		
-		<div class="container">
-			<h1 class="pageTitle">Bol.com cadeaukaart</h1>
-			<p>
-				Heb jij een kortingscode/cadeaubon, ben je langer dan 1 jaar in dienst bij Amacom en heb je niets leuks in de shop kunnen vinden? Dan kun je jouw kortingscode/cadeaubon verzilveren voor een cadeaukaart van Bol.com. Dit doe je eenvoudig in de shop.
-				<br/><i>LET OP! De cadeaukaart van Bol.com vertegenwoordigd 2/3e van de waarde van je kortingscode/cadeaubon, de restwaarde komt te vervallen!</i>
-			</p>
-		</div>
-	
-	</div>
-	
-	<div *ngIf="checkDebtor() === '103017'">
-	
-		<div class="container">
-			<h1 class="pageTitle">Loyalty shop</h1>
-			<p>Profiteer hier van de allerbeste deals! Alle producten die je wilt bestellen kun je eenvoudig in je winkelwagentje leggen en vervolgens direct afrekenen met iDeal. Happy shopping!</p>
-		</div>
-		
-		<div class="container">
-			<h1 class="pageTitle">Heb jij een kortingscode/cadeaubon?</h1>
-			<p>
-				Heb jij een kortingscode/cadeaubon ontvangen? Ga dan met dit shop-tegoed volledig uit je plaat en bestel de mooiste producten! De kortingscode/cadeaubon is slecht één keer te verzilveren. Zorg dus dat je alle gewenste producten in één bestelling plaatst. De restwaarde komt automatische te vervallen.
-			</p>
-		</div>
-	
-	</div>
-	
-</main>
+</ng-container>

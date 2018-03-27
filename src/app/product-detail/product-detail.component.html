@@ -39,7 +39,7 @@
 				
 				<div class="usp-background">
 					<ul class="product-short-des" style="white-space: pre-line;">
-						<li *ngFor="let usp of extractUniqueSellingPoints(product?.unique_selling_points)">{{ usp }}</li>
+						<li style="list-style-type: disc !important;" *ngFor="let usp of extractUniqueSellingPoints(product?.unique_selling_points)">{{ usp }}</li>
 					</ul>
 				</div>
 				
@@ -96,16 +96,16 @@
 								<label class="quantity-selector">Aantal</label>
 								<div class="input-group spinner number">
 									<button class="spinbtn btnminus" type="button" [disabled]="amount === minimumOrderQuantity" (click)="amount = amount - minimumOrderQuantity">
-										<span aria-hidden="true" class="icon icon-minus"></span>
+										<span aria-hidden="true" class="fa fa-minus"></span>
 									</button>
 									<input type="text" class="txt-qty" [value]="amount">
 									<button class="spinbtn btnplus" type="button" (click)="amount = amount + minimumOrderQuantity">
-										<span aria-hidden="true" class="icon icon-plus"></span>
+										<span aria-hidden="true" class="fa fa-plus"></span>
 									</button>
 								</div>
 							</div>
 							<button type="submit" class="btn" (click)="addToCart()"> 
-								<span class="icon icon-cart" aria-hidden="true"></span>
+								<span class="fa fa-shopping-cart" aria-hidden="true"></span>
 								Voeg toe
 							</button>
 						</div>

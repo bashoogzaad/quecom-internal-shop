@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
     
     constructor(
         private router: Router,
-        private globals: Globals,
+        public globals: Globals,
         private pimcoreProvider: PimcoreProvider
     ) { }
     
@@ -33,17 +33,21 @@ export class AppComponent implements OnInit {
         });
         
         this.pimcoreProvider.getMetaInfo().subscribe(res => {
-            const primaryColor = res['primary_color']['data'];
-            const secondaryColor = res['secondary_color']['data'];
-            document.documentElement.style.setProperty('--color-primary-var', primaryColor);
-            document.documentElement.style.setProperty('--color-secondary-var', secondaryColor);
+          const primaryColor = res['primary_color']['data'];
+          const secondaryColor = res['secondary_color']['data'];
+          document.documentElement.style.setProperty('--color-primary-var', primaryColor);
+          document.documentElement.style.setProperty('--color-secondary-var', secondaryColor);
           
           const theme = res['theme']['data'];
           this.globals.theme = theme;
+          this.globals.name = res['shop_name']['data'];
           
-          setTimeout(() => {
-            this.loading = false;
-          }, 1000);
+          console.log(res['has_coupons']['data']);
+          this.globals.hasCoupons = res['has_coupons']['data'] === true;
+          
+          if (res['password'] && res['login_type']  && res['login_type']['data'] === 'simple') {
+            this.globals.password = res['password']['data'];
+          }
           
         });
       

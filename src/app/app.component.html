@@ -1,7 +1,9 @@
 <!-- MAIN PAGE AREA -->
-<div id="{{ getId() }}" [ngClass]="this.globals.theme + '-theme'"> 
+<div id="{{ getId() }}" [ngClass]="globals.theme + '-theme'"> 
 	
-    <div class="tt-preloader" *ngIf="loading"></div>
+	<ng-container *ngIf="globals.theme == 'mogo'">
+    	<div class="tt-preloader" *ngIf="loading"></div>
+    </ng-container>
 	
 	<app-header></app-header>
 	<router-outlet></router-outlet>
