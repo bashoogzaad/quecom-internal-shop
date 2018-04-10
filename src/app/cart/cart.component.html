@@ -86,16 +86,16 @@
 	                        <div class="col-lg-8">
 	                            <div class="tt-cart__caption">
 	                                <div class="row">
-	                                    <div class="col-md-6"><span>Product</span></div>
+	                                    <div class="col-md-7"><span>Product</span></div>
 	                                    <div class="col-md-2 text-center"><span>Prijs</span></div>
-	                                    <div class="col-md-2 text-center"><span>Aantal</span></div>
+	                                    <div class="col-md-1 text-center"><span>Aantal</span></div>
 	                                    <div class="col-md-2 text-center"><span>Totaal</span></div>
 	                                </div>
 	                            </div>
 	                            <div class="tt-cart__list">
 	                                <div class="tt-cart__product" *ngFor="let order_line of order.orderLines">
 	                                    <div class="row">
-	                                        <div class="col-md-6">
+	                                        <div class="col-md-7">
 	                                            <a (click)="removeFromCart(order_line)" href="javascript:void(0);" class="tt-cart__product_del"><i class="icon-trash"></i></a>
 	                                            <a href="#" class="tt-cart__product_image"><img [src]="order_line.product.image_urls[0]" alt="image"></a>
 	                                            <div class="tt-cart__product_info">
@@ -111,7 +111,7 @@
 	                                                </div>
 	                                            </div>
 	                                        </div>
-	                                        <div class="col-md-2 col-xs-4 text-center">
+	                                        <div class="col-md-1 col-xs-4 text-center">
 	                                            <div class="tt-counter tt-counter__inner" data-min="1" data-max="10">
 	                                                <input type="text" class="form-control" value="{{ order_line.count }}">
 	                                                <div class="tt-counter__control">
@@ -138,12 +138,8 @@
 	                                </div>
 	                                <div class="tt-summary__form tt-summary--border">
 	                                    <h5 class="ttg-mb--20">Verzendkosten</h5>
-	                                    <p>{{ getDeliveryCost()*1.21 | currency:'EUR':'true' }}</p>
-	                                </div>
-	                                <div class="tt-summary--border">
-	                                    <h5 class="ttg-mb--20">Opmerking</h5>
-	                                    <p>Voeg een opmerking toe aan deze bestelling.</p>
-	                                    <textarea class="form-control"></textarea>
+	                                    <p>Vanaf {{ getDeliveryCost()*1.21 | currency:'EUR':'true' }}</p>
+	                                    <p style="font-size: 0.7em;">Voor sommige bezorgopties kunnen extra kosten in rekening worden gebracht, zoals avond- of zondagbezorging.</p>
 	                                </div>
 	                                <div class="tt-summary__total">
 	                                    <p>Subtotaal: <span>{{ getOrderTotal() | currency:'EUR':'true' }}</span></p>

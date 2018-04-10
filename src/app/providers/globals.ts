@@ -18,6 +18,7 @@ export class Globals {
     public password: string = 'GezamenlijkLoyaltyVoordeel';
     public hasCoupons: boolean = true;
     public deliveryIndication: string[] = ['Vóór 19:00 uur besteld', 'Volgende dag geleverd*'];
+    public hasDeliveryCost: boolean = false;
     
     public init() {
         
@@ -29,8 +30,8 @@ export class Globals {
             this.baseUrl = url + '/' + this.version + '/';
             this.pimcoreUrl = (url.endsWith('/') ? url.replace(new RegExp('/' + '$'), '-cms/') : (url + '-cms/')) + this.version + '/';
             
-            this.apiKey = 'RwzOkfCU2GnB9Rg2OPvN7KweRokQplRn3ISmvxUL';
-            this.debtorNumber = '103116';
+            this.apiKey = 'CeWgpOSVF9ok6SgsmN0XFDkbQeBoxZMXlJjNZgGD';
+            this.debtorNumber = '102094';
             
         } else {
             

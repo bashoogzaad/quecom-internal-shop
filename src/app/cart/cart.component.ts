@@ -35,7 +35,11 @@ export class CartComponent implements OnInit {
     }
     
     adjustOrderLine(orderLine: OrderLine, amount: number): void {
-        this.cartProvider.adjustOrderLine(orderLine, amount);
+        if (orderLine.count+amount !== 0) {
+          this.cartProvider.adjustOrderLine(orderLine, amount);
+        } else {
+          this.removeFromCart(orderLine);
+        }
     }
     
     getOrderQuantity(orderLine: OrderLine) {

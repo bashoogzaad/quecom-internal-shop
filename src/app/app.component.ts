@@ -33,21 +33,37 @@ export class AppComponent implements OnInit {
         });
         
         this.pimcoreProvider.getMetaInfo().subscribe(res => {
+          
+          console.log("Got response from Pimcore: ");
+          console.log(res);
+          
           const primaryColor = res['primary_color']['data'];
           const secondaryColor = res['secondary_color']['data'];
           document.documentElement.style.setProperty('--color-primary-var', primaryColor);
           document.documentElement.style.setProperty('--color-secondary-var', secondaryColor);
           
-          const theme = res['theme']['data'];
-          this.globals.theme = theme;
-          this.globals.name = res['shop_name']['data'];
+          if (res['theme']) {
+            const theme = res['theme']['data'];
+            this.globals.theme = theme;
+          }
           
-          console.log(res['has_coupons']['data']);
-          this.globals.hasCoupons = res['has_coupons']['data'] === true;
+          if (res['shop_name']) {
+            this.globals.name = res['shop_name']['data'];
+          }
+          
+          if (res['has_coupons']) {
+            this.globals.hasCoupons = res['has_coupons']['data'] === true;
+          }
           
           if (res['password'] && res['login_type']  && res['login_type']['data'] === 'simple') {
             this.globals.password = res['password']['data'];
           }
+          
+          if (res['has_delivery_cost']) {
+            this.globals.hasDeliveryCost = res['has_delivery_cost']['data'] === true;
+          }
+          
+          this.loading = false;
           
         });
       

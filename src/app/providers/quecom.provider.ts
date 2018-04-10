@@ -85,5 +85,20 @@ export class QuecomProvider {
         let body = JSON.stringify(b);
         return this.http.post(this.globals.baseUrl+'order', b, options).map(res => res.json());
     }
+  
+    public getShippingTimeframes(postalCode: string, houseNumber: any, countryCode: string, houseNumberExt?: any) {
+      const options = this.initRequestOptions('GET');
+      let query = '?house_number='+houseNumber+'&postal_code='+postalCode+'&country_code='+countryCode;
+      if (houseNumberExt) {
+        query = query + '&house_number_extension='+houseNumberExt;
+      }
+      return this.http.get(this.globals.baseUrl+'shipment/timeframe'+query, options).map(res => res.json());
+    }
+  
+    public getShippingLocations(postalCode: string, countryCode: string) {
+      const options = this.initRequestOptions('GET');
+      const query = '?postal_code='+postalCode+'&country_code='+countryCode;
+      return this.http.get(this.globals.baseUrl+'shipment/location'+query, options).map(res => res.json());
+    }
     
 }
