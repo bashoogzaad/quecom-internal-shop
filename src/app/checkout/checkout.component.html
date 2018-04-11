@@ -284,65 +284,71 @@
 		                                    <div class="col-md-2"><p>Voornaam:</p></div>
 		                                    <div class="col-md-10">
 		                                        <div class="tt-input">
-		                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="firstNameSh" [(ngModel)]="customerData.firstName" [disabled]="billingToShipment" required>
+		                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="firstNameSh" [(ngModel)]="customerData.firstName" (ngModelChange)="checkAddress()" [disabled]="billingToShipment" required>
 		                                        </div>
 		                                    </div>
 		                                    <div class="col-md-2"><p>Achternaam:</p></div>
 		                                    <div class="col-md-10">
 		                                        <div class="tt-input">
-		                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="lastNameSh" [(ngModel)]="customerData.lastName" [disabled]="billingToShipment" required>
+		                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="lastNameSh" [(ngModel)]="customerData.lastName" (ngModelChange)="checkAddress()" [disabled]="billingToShipment" required>
 		                                        </div>
 		                                    </div>
 		                                    <div class="col-md-2"><p>Straat:</p></div>
 		                                    <div class="col-md-10">
 		                                        <div class="tt-input tt-input-valid--true">
-		                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="addressSh" [(ngModel)]="customerData.address" [disabled]="billingToShipment" (change)="checkAddress()" required>
+		                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="addressSh" [(ngModel)]="customerData.address" [disabled]="billingToShipment" (ngModelChange)="checkAddress()" required>
 		                                        </div>
 		                                    </div>
 		                                    <div class="col-md-2"><p>Huisnummer:</p></div>
 		                                    <div class="col-md-10">
 		                                        <div class="tt-input tt-input-valid--false">
-		                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="houseNumberSh" [(ngModel)]="customerData.houseNumber" (change)="checkAddress()" [disabled]="billingToShipment" required>
+		                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="houseNumberSh" [(ngModel)]="customerData.houseNumber" (ngModelChange)="checkAddress()" [disabled]="billingToShipment" required>
 		                                        </div>
 		                                    </div>
 		                                    <div class="col-md-2"><p>Toevoeging:</p></div>
 		                                    <div class="col-md-10">
 		                                        <div class="tt-input">
-		                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="houseNumberExtensionSh" [(ngModel)]="customerData.houseNumberExtension" (change)="checkAddress()" [disabled]="billingToShipment">
+		                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="houseNumberExtensionSh" [(ngModel)]="customerData.houseNumberExtension" (ngModelChange)="checkAddress()" [disabled]="billingToShipment">
 		                                        </div>
 		                                    </div>
 		                                    <div class="col-md-2"><p>Postcode:</p></div>
 		                                    <div class="col-md-10">
 		                                        <div class="tt-input">
-		                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="postalCodeSh" [(ngModel)]="customerData.postalCode" (change)="checkAddress()" [disabled]="billingToShipment" required>
+		                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="postalCodeSh" [(ngModel)]="customerData.postalCode" (ngModelChange)="checkAddress()" [disabled]="billingToShipment" required>
 		                                        </div>
 		                                    </div>
 		                                    <div class="col-md-2"><p>Plaatsnaam:</p></div>
 		                                    <div class="col-md-10">
 		                                        <div class="tt-input">
-		                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="citySh" [(ngModel)]="customerData.city" (change)="checkAddress()" [disabled]="billingToShipment" required>
+		                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="citySh" [(ngModel)]="customerData.city" (ngModelChange)="checkAddress()" [disabled]="billingToShipment" required>
 		                                        </div>
 		                                    </div>
 		                                    <div class="col-md-2"><p>Land:</p></div>
 		                                    <div class="col-md-10">
 		                                        <div class="tt-select">
-		                                            <select class="form-control">
-		                                                <option>Nederland</option>
-		                                                <option>België</option>
+		                                            <select class="form-control" [(ngModel)]="customerData.country" (ngModelChange)="checkAddress()">
+		                                                <option value="NL">Nederland</option>
+		                                                <option value="BE">België</option>
 		                                            </select>
 		                                        </div>
 		                                    </div>
 		                                    <div class="col-md-2"><p>Telefoonnummer:</p></div>
 		                                    <div class="col-md-10">
 		                                        <div class="tt-input">
-		                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="phoneNumberSh" [(ngModel)]="customerData.phoneNumber" [disabled]="billingToShipment" required>
+		                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="phoneNumberSh" [(ngModel)]="customerData.phoneNumber" (ngModelChange)="checkAddress()" [disabled]="billingToShipment" required>
 		                                        </div>
 		                                    </div>
 		                                </div>
 		                            </div>
 		                            
-		                            <p *ngIf="errorMsg" class="ttg-mt--10 ttg-mb--10" style="color: indianred; border: 2px solid indianred; padding: 10px;">{{ errorMsg }}</p>
-		                            <p *ngIf="successMsg" class="ttg-mt--10 ttg-mb--10" style="color: green; border: 2px solid green; padding: 10px;">{{ successMsg }}</p>
+		                            <p *ngIf="errorMsg" class="ttg-mt--10 ttg-mb--10" style="color: white; background-color: indianred; padding: 10px;">
+		                            	<i class="icon-cancel" style="color: white; padding-right: 10px;"></i>
+		                            	{{ errorMsg }}
+		                            </p>
+		                            <p *ngIf="successMsg" class="ttg-mt--10 ttg-mb--10" style="color: white; background-color: #1cc373; padding: 10px;">
+		                            	<i class="icon-ok-2" style="color: white; padding-right: 10px;"></i>
+		                            	{{ successMsg }}
+		                            </p>
 		                            
 		                            <h4 class="tt-checkout--border ttg-mt--50 ttg-mb--20">Bezorgopties</h4>
 		                            
@@ -471,25 +477,79 @@
 	                            
 	                            <ng-container *ngIf="step === 3">
 	                            
+	                            	<h4>Bestelling</h4>
+	                            	<div class="tt-tabs-my-account__table ttg-mb--30">
+                                        <table class="table tt-tabs-my-account--table-sm">
+                                            <tbody>
+                                            	<tr>
+	                                                <td class="ttg-color--gray-dark">Bezorging:</td>
+	                                                <td>{{ shipper }}</td>
+	                                            </tr>
+	                                            <tr>
+	                                                <td class="ttg-color--gray-dark">Bezorgmoment:</td>
+	                                                <td *ngIf="selectedShipment.timeframe_start">
+	                                                	Bezorging op {{ selectedShipment.timeframe_start | date:'dd-MM' }} tussen {{ selectedShipment.timeframe_start | date:'HH:mm' }} en {{ selectedShipment.timeframe_end | date:'HH:mm' }}
+	                                                </td>
+	                                                <td *ngIf="selectedShipment.Name">
+	                                                	Bezorging bij PostNL Afhaalpunt: {{ selectedShipment.Name }} ({{ selectedShipment.Address.Street }} {{ selectedShipment.Address.HouseNr }}, {{ selectedShipment.Address.City }})
+	                                                </td>
+	                                            </tr>
+	                                            <tr>
+	                                                <td class="ttg-color--gray-dark">Betaalmethode:</td>
+	                                                <td>{{ selected.paymentMethod == 1 ? 'iDeal' : 'Bancontant' }}</td>
+	                                            </tr>
+                                        	</tbody>
+                                        </table>
+                                    </div>
+	                            
+	                            	<h4>Verzendadres</h4>
+	                            	<div class="tt-tabs-my-account__table ttg-mb--30">
+                                        <table class="table tt-tabs-my-account--table-sm">
+                                            <tbody>
+                                            	<tr>
+	                                                <td class="ttg-color--gray-dark">Naam:</td>
+	                                                <td>{{ customerData.firstName }} {{ customerData.lastName }}</td>
+	                                            </tr>
+	                                            <tr>
+	                                                <td class="ttg-color--gray-dark">Adres:</td>
+	                                                <td>{{ customerData.address }} {{ customerData.houseNumber }} {{ customerData.houseNumberExtension }}</td>
+	                                            </tr>
+	                                            <tr>
+	                                                <td class="ttg-color--gray-dark">Postcode & Plaats:</td>
+	                                                <td>{{ customerData.postalCode }} {{ customerData.city }}</td>
+	                                            </tr>
+	                                            <tr>
+	                                                <td class="ttg-color--gray-dark">Land:</td>
+	                                                <td>{{ customerData.country }}</td>
+	                                            </tr>
+	                                            <tr>
+	                                                <td class="ttg-color--gray-dark">Telefoonnummer:</td>
+	                                                <td>{{ customerData.phoneNumber }}</td>
+	                                            </tr>
+                                        	</tbody>
+                                        </table>
+                                    </div>
+	                            
 	                            	<div class="tt-checkout__methods">
-		                             	<div class="tt-summary--border">
-		                                    <h5 class="ttg-mb--20">Opmerking</h5>
+		                             	<div class="">
+		                                    <h4 class="ttg-mb--20">Opmerking</h4>
 		                                    <p>Voeg een opmerking toe aan deze bestelling.</p>
-		                                    <textarea class="form-control"></textarea>
+		                                    <textarea class="form-control" style="border: solid 1px gray;" [(ngModel)]="order.remarks"></textarea>
 		                                </div>
 		                            </div>
-	                            
-	                            	<div class="tt-checkout--border">
-		                                <a href="javascript:void(0);" class="tt-checkout__btn-order btn btn-type--icon colorize-btn6"><i class="icon-check"></i><span>Bestelling plaatsen</span></a>
-		                            </div>
+		                            
+		                            <p *ngIf="getOrderSubtotal() > budget" class="ttg-mt--30 ttg-mb--10" style="color: white; background-color: indianred; padding: 10px;">
+	                                	<i class="icon-cancel" style="color: white; padding-right: 10px;"></i>
+	                                	Je huidige budget is niet toereikend om deze bestelling te plaatsen. In 'Mijn Account' kun je je budget controleren.
+	                                </p>
 	                            
 	                            </ng-container>
 	                            
-	                            <br />
-	                            <br />
-	                            
-	                            <a href="javascript:void(0);" class="btn ttg-mt--20" (click)="stepper(-1)" *ngIf="step > 1">Vorige stap</a>
-	                            <a href="javascript:void(0);" class="btn ttg-mt--20" (click)="stepper(1)" *ngIf="step < 3">Volgende stap</a>
+	                            <div style="padding-top: 15px;">
+		                            <a href="javascript:void(0);" class="btn ttg-mt--20" (click)="stepper(-1)" *ngIf="step > 1">Vorige stap</a>
+		                            <a href="javascript:void(0);" class="btn ttg-mt--20" (click)="stepper(1)" *ngIf="step < 3" [class.disabled]="(step == 1 && (!successMsg || !selectedShipment)) || (step == 2 && !selected.paymentMethod)">Volgende stap</a>
+		                            <a href="javascript:void(0);" (click)="placeOrder()" class="tt-checkout__btn-order btn ttg-mt--20 btn-type--icon colorize-btn6" *ngIf="step == 3 && getOrderSubtotal() <= budget"><i class="icon-check"></i><span>Bestelling plaatsen</span></a>
+	                            </div>
 	                            
 	                        </div>
 	                        <div class="col-lg-4">
@@ -523,10 +583,15 @@
 	                                        <p>Subtotaal: <br /><span>{{ getOrderSubtotal() | currency:'EUR':'true' }}</span></p>
 	                                    </div>
 	                                    <div class="tt-summary__total tt-summary__total--m-price-50">
-	                                        <p>Verzendkosten: <br /><span>{{ getDeliveryCost()*1.21 | currency:'EUR':'true' }}</span></p>
+	                                        <p>Verzendkosten: <br /><span>{{ getDeliveryCost() | currency:'EUR':'true' }}</span></p>
 	                                    </div>
 	                                    <div class="tt-summary__total tt-summary__total--m-price-50">
 	                                        <p>Totaal: <br /><span>{{ getTotal() | currency:'EUR':'true' }}</span></p>
+	                                    </div>
+	                                </div>
+	                                <div>
+	                                	<div class="tt-summary__total tt-summary__total--m-price-50">
+	                                        <p>Budget na bestelling: <br /><span>{{ getRestBudget() | currency:'EUR':'true' }}</span></p>
 	                                    </div>
 	                                </div>
 	                            </div>

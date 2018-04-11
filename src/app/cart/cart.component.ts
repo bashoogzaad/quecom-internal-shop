@@ -1,9 +1,11 @@
+import { AuthService } from '../auth.service';
 import { Component, OnInit } from '@angular/core';
 import { CartProvider } from "../providers/cart.provider";
 import { LocalStorageService, LocalStorage } from "ngx-webstorage";
 import { Order } from "../models/order";
 import { OrderLine } from "../models/order-line";
 import { Globals } from '../providers/globals';
+import { PimcoreProvider } from '../providers/pimcore.provider';
 import { Router } from "@angular/router";
 
 @Component({
@@ -16,14 +18,25 @@ export class CartComponent implements OnInit {
     public order: Order;
     public remarks: string;
     
+    public user: any;
+    public budget: number;
+    
     constructor(
         public cartProvider: CartProvider,
         public router: Router,
-        public globals: Globals
-    ) { }
+        public globals: Globals,
+        public pimcoreProvider: PimcoreProvider,
+        public authService: AuthService
+    ) {}
 
     ngOnInit() {
-        this.order = this.cartProvider.getCurrentOrder();
+      this.order = this.cartProvider.getCurrentOrder();
+      
+      this.user = this.authService.user;
+      this.pimcoreProvider.getBudget(this.user.id, this.user.hash).subscribe(res => {
+        this.budget = res.value;
+      });
+      
     }
     
     roundToTwo(num) {    
@@ -63,7 +76,7 @@ export class CartComponent implements OnInit {
       //Check if there are any products which are bigger than or equal to 55 inch
       
       
-      return 6.95;
+      return 6.95*1.21;
       
     }
     

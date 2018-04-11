@@ -5,3 +5,8 @@
 .ng-invalid:not(form)  {
   border-left: 2px solid #a94442; /* red */
 }
+
+a.disabled {
+    color: gray;
+    cursor: not-allowed;
+}

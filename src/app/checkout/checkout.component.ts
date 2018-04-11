@@ -10,6 +10,7 @@ import { QuecomProvider } from "../providers/quecom.provider";
 
 import swal from 'sweetalert2';
 import { Globals } from "../providers/globals";
+import { PimcoreProvider } from '../providers/pimcore.provider';
 
 @Component({
   selector: 'app-checkout',
@@ -44,9 +45,13 @@ export class CheckoutComponent implements OnInit {
     public shippingTimeframes: any[] = new Array();
     public shippingLocations: any[] = new Array();
   
+    public shipper = "PostNL";
     public selectedShipment: any;
     public successMsg;
     public errorMsg;
+  
+    public extraShippingCost: number = 0;
+    public budget: number;
   
     constructor(
         public cartProvider: CartProvider,
@@ -55,7 +60,8 @@ export class CheckoutComponent implements OnInit {
         @Inject(DOCUMENT) private document: any,
         public router: Router,
         public globals: Globals,
-        public authService: AuthService
+        public authService: AuthService,
+        public pimcoreProvider: PimcoreProvider
     ) {
       
         this.paymentMethods =   [
@@ -90,8 +96,11 @@ export class CheckoutComponent implements OnInit {
           
         }
       
+      this.pimcoreProvider.getBudget(this.user.id, this.user.hash).subscribe(res => {
+        this.budget = res.value;
+      });
+      
       this.quecomProvider.getShippingTimeframes(this.user.postal_code, this.customerData.houseNumberSh, this.user.country, this.user.house_number_extension).subscribe(tf => {
-        console.log(tf);
         for (const t of tf['Timeframes']['Timeframe']) {
           for (const timeframe of t['Timeframes']['TimeframeTimeFrame']) {
             
@@ -122,7 +131,6 @@ export class CheckoutComponent implements OnInit {
       });
       
       this.quecomProvider.getShippingLocations(this.user.postal_code, this.user.country).subscribe(tf => {
-        console.log(tf);
         this.shippingLocations = tf['GetLocationsResult']['ResponseLocation'];
       });
       
@@ -146,7 +154,10 @@ export class CheckoutComponent implements OnInit {
         return 0.0;
       }
       
-      return 6.95;
+      const baseCost = 6.95;
+      const extraCost = (this.selectedShipment && this.selectedShipment.cost) ? this.selectedShipment.cost : 0;
+      
+      return (baseCost + extraCost) * 1.21;
     }
     
     getOrderSubtotal() {
@@ -158,13 +169,8 @@ export class CheckoutComponent implements OnInit {
     }
     
     getOrderTotal() {
-        let total = 0.0;
-        for(let orderLine of this.order.orderLines) {
-            total += this.getOrderLineSubtotal(orderLine);
-        }
-      
+        let total = this.getOrderSubtotal();
         total = total + this.getDeliveryCost();
-      
         return this.roundToTwo(total);
     }
     
@@ -178,6 +184,10 @@ export class CheckoutComponent implements OnInit {
     
     getTotal() {
         return this.getOrderTotal()-this.getDiscountTotal();
+    }
+    
+    getRestBudget() {
+      return this.budget - (this.getOrderSubtotal() - this.getDiscountTotal());
     }
     
     toggleBillingToShipment() {
@@ -281,7 +291,17 @@ export class CheckoutComponent implements OnInit {
     }
     
     placeOrder() {
-        this.orderPromise = this.cartProvider.placeOrder(this.customerData, this.discounts).toPromise().then(res => {
+      
+      this.cartProvider.placeOrder(this.customerData, this.discounts, this.selectedShipment, this.selected.paymentMethod).subscribe(r => {
+        console.log(r);
+      }, error => {
+        console.log(error);
+      });
+      
+      return;
+      
+        this.orderPromise = this.cartProvider.placeOrder(this.customerData, this.discounts, this.selectedShipment, this.selected.paymentMethod).toPromise().then(res => {
+          console.log(res);
             if (res[0]['url']) {
                 this.cartProvider.resetCart();
                 this.document.location.href = res[0]['url'];
@@ -313,29 +333,40 @@ export class CheckoutComponent implements OnInit {
   public loadMore(): void {
     this.limit1 += 5;
     this.limit2 += 2;
-    console.log(this.selectedShipment)
   }
   
   public checkAddress() {
     
-    if (this.customerData.address && this.customerData.address.toLowerCase() === 'taurusavenue' && 
+    if (
+        this.customerData.address && this.customerData.address.toLowerCase() === 'taurusavenue' && 
         this.customerData.houseNumber && this.customerData.houseNumber === '16' && 
-        this.customerData.city && this.customerData.city.toLowerCase() === 'hoofddorp') {
-      this.errorMsg = 'Je bestelling op het ingevulde adres ontvangen is niet mogelijk. Pas het adres aan.';
+        this.customerData.city && this.customerData.city.toLowerCase() === 'hoofddorp' &&
+        this.customerData.country === 'NL'
+    ) {
+        this.errorMsg = 'Je bestelling op het ingevulde adres ontvangen is niet mogelijk. Pas het adres aan.';
+    } else if (
+        this.customerData.address && this.customerData.address.toLowerCase() === 'da vincilaan' && 
+        this.customerData.city && this.customerData.city.toLowerCase() === 'zaventem' &&
+        this.customerData.country === 'BE'
+    ) {
+        this.errorMsg = 'Je bestelling op het ingevulde adres ontvangen is niet mogelijk. Pas het adres aan.';
     } else {
       this.errorMsg = undefined;
-    }
-    
-    if (this.customerData.firstName &&
+      
+      if (this.customerData.firstName &&
         this.customerData.lastName &&
         this.customerData.address &&
         this.customerData.houseNumber &&
-        this.customerData.houseNumberExtension &&
         this.customerData.postalCode &&
         this.customerData.city &&
         this.customerData.phoneNumber &&
         this.customerData.country) {
-      this.successMsg = "De ingevoerde gegevens zijn "
+        this.successMsg = "De adresgegevens zijn gevalideerd.";
+      } else {
+        this.successMsg = undefined;
+      }
+      
+      
     }
     
   }

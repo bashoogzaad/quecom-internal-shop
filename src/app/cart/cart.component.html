@@ -138,16 +138,22 @@
 	                                </div>
 	                                <div class="tt-summary__form tt-summary--border">
 	                                    <h5 class="ttg-mb--20">Verzendkosten</h5>
-	                                    <p>Vanaf {{ getDeliveryCost()*1.21 | currency:'EUR':'true' }}</p>
+	                                    <p>Vanaf {{ getDeliveryCost() | currency:'EUR':'true' }}</p>
 	                                    <p style="font-size: 0.7em;">Voor sommige bezorgopties kunnen extra kosten in rekening worden gebracht, zoals avond- of zondagbezorging.</p>
 	                                </div>
 	                                <div class="tt-summary__total">
 	                                    <p>Subtotaal: <span>{{ getOrderTotal() | currency:'EUR':'true' }}</span></p>
 	                                </div>
 	                                <div class="tt-summary__total tt-summary__total--lg">
-	                                    <p>Totaal: <span>{{ getOrderTotal()+getDeliveryCost()*1.21 | currency:'EUR':'true' }}</span></p>
+	                                    <p>Totaal: <span>{{ getOrderTotal()+getDeliveryCost() | currency:'EUR':'true' }}</span></p>
 	                                </div>
-	                                <a href="javascript:void(0);" routerLink="/winkelwagen/bestellen" class="tt-summary__btn-checkout btn btn-type--icon colorize-btn6"><i class="icon-check"></i><span>Verder</span></a>
+	                                <a href="javascript:void(0);" routerLink="/winkelwagen/bestellen" class="tt-summary__btn-checkout btn btn-type--icon colorize-btn6" *ngIf="getOrderTotal() <= budget">
+	                                	<i class="icon-check"></i><span>Verder</span>
+	                                </a>
+	                                <p *ngIf="getOrderTotal() > budget" class="ttg-mt--30 ttg-mb--10" style="color: white; background-color: indianred; padding: 10px;">
+	                                	<i class="icon-cancel" style="color: white; padding-right: 10px;"></i>
+	                                	Je huidige budget is niet toereikend om deze bestelling te plaatsen. In 'Mijn Account' kun je je budget controleren.
+	                                </p>
 	                            </div>
 	                        </div>
 	                    </div>

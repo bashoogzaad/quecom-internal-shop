@@ -47,72 +47,82 @@ export class CartProvider {
         this.order = new Order();
     }
     
-    placeOrder(customerData: CustomerData, discounts?: any[]): Observable<any> {
+    placeOrder(customerData: CustomerData, discounts?: any[], selectedShipment?: any, paymentMethod?: any): Observable<any> {
         
         let submitOrder;
         
-        let products = [];
-        for (let orderLine of this.order.orderLines) {
-            let productEntry = {
+        const products = [];
+        for (const orderLine of this.order.orderLines) {
+            const productEntry = {
                 product_id: orderLine.product.product_id,
                 amount: orderLine.count
             }
             products.push(productEntry);
         }
         
-        let shipment: Object = new Object();
-        shipment['gender'] = customerData.genderSh;
-        shipment['first_name'] = customerData.firstNameSh;
-        shipment['last_name'] = customerData.lastNameSh;
-        shipment['street'] = customerData.addressSh;
-        shipment['house_number'] = customerData.houseNumberSh;
-        shipment['house_number_extension'] = customerData.houseNumberExtensionSh;
-        shipment['city'] = customerData.citySh;
+        const billing: Object = new Object();
+        billing['gender'] = customerData.genderSh;
+        billing['first_name'] = customerData.firstNameSh;
+        billing['last_name'] = customerData.lastNameSh;
+        billing['street'] = customerData.addressSh;
+        billing['house_number'] = customerData.houseNumberSh;
+        billing['house_number_extension'] = customerData.houseNumberExtensionSh;
+        billing['city'] = customerData.citySh;
         
         if (customerData.postalCodeSh.length === 6) {
             customerData.postalCodeSh = customerData.postalCodeSh.substr(0, 4)+' '+customerData.postalCodeSh.substr(4, 2);
         }
         
-        shipment['postal_code'] = customerData.postalCodeSh;
-        shipment['country'] = 'NL';
-        shipment['phone_number'] = customerData.phoneNumberSh;
-        shipment['email'] = customerData.emailAddressSh;
+        billing['postal_code'] = customerData.postalCodeSh;
+        billing['country'] = 'NL';
+        billing['phone_number'] = customerData.phoneNumberSh;
+        billing['email'] = customerData.emailAddressSh;
         
-        let billing: Object = new Object();
-        billing['gender'] = customerData.gender;
-        billing['first_name'] = customerData.firstName;
-        billing['last_name'] = customerData.lastName;
-        billing['street'] = customerData.address;
-        billing['house_number'] = customerData.houseNumber;
-        billing['house_number_extension'] = customerData.houseNumberExtension;
-        billing['city'] = customerData.city;
+        if (customerData.companyName) {
+            billing['company_name'] = customerData.companyName;
+        }
+        
+        const shipment: Object = new Object();
+        shipment['gender'] = customerData.gender;
+        shipment['first_name'] = customerData.firstName;
+        shipment['last_name'] = customerData.lastName;
+        shipment['street'] = customerData.address;
+        shipment['house_number'] = customerData.houseNumber;
+        shipment['house_number_extension'] = customerData.houseNumberExtension;
+        shipment['city'] = customerData.city;
         
         if (customerData.postalCode.length === 6) {
             customerData.postalCode = customerData.postalCode.substr(0, 4)+' '+customerData.postalCode.substr(4, 2);
         }
         
-        billing['postal_code'] = customerData.postalCode;
-        billing['country'] = 'NL';
-        billing['phone_number'] = customerData.phoneNumber;
-        billing['email'] = customerData.emailAddress;
-        
-        if (customerData.companyName) {
-            billing['company_name'] = customerData.companyName;
-        }
+        shipment['postal_code'] = customerData.postalCode;
+        shipment['country'] = 'NL';
+        shipment['phone_number'] = customerData.phoneNumber;
+        shipment['email'] = customerData.emailAddress;
         
         submitOrder = {
                 products: products,
                 shipment: shipment,
                 billing: billing,
                 remarks: this.order.remarks,
-                reference: 'AMADEC',
+                reference: 'SONYSTAFF',
                 type: 'dropshipment',
-                request_payment: '1'
+                request_payment: '0'
         }
         
         if (discounts.length > 0) {
             submitOrder['discounts'] = discounts;
         }
+      
+      if (selectedShipment) {
+        submitOrder['selected_shipment'] = selectedShipment;
+      }
+      
+      if (paymentMethod) {
+        submitOrder['payment_method'] = paymentMethod;
+      }
+        
+        console.log(JSON.stringify(submitOrder));
         
         return this.quecomProvider.postOrder(submitOrder);
         
