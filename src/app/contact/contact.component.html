@@ -85,22 +85,20 @@
 	                            </div>
 	                        </div>
 	                    </div>
+	                    
 	                    <div class="container">
 	                        <div class="tt-page__cont-small">
 	                            <div class="tt-contacts__form tt-form">
-	                                <div class="tt-contacts__form_title tt-form__title tt-form__title--lg text-center">Get
-	                                    in Touch
-	                                </div>
-	                                <p class="ttg__required text-center">Your email address will not be published. Required
-	                                    fields are marked</p>
+	                                <div class="tt-contacts__form_title tt-form__title tt-form__title--lg text-center">Wij helpen je graag</div>
+	                                <p class="ttg__required text-center">De velden met een ster zijn verplicht.</p>
 	                                <div class="tt-contacts__form_inputs tt-form__form">
 	                                    <label>
 	                                        <div class="row">
 	                                            <div class="col-md-2">
-	                                                <span class="ttg__required">Name:</span>
+	                                                <span class="ttg__required">Naam:</span>
 	                                            </div>
 	                                            <div class="col-md-10">
-	                                                <input type="text" class="form-control colorize-theme6-bg" placeholder="Enter your name" required="required">
+	                                                <input type="text" class="form-control colorize-theme6-bg" name="contact[name]" [(ngModel)]="data.name" placeholder="" required="required">
 	                                            </div>
 	                                        </div>
 	                                    </label>
@@ -110,24 +108,29 @@
 	                                                <span class="ttg__required">E-mail:</span>
 	                                            </div>
 	                                            <div class="col-md-10">
-	                                                <input type="text" class="form-control colorize-theme6-bg" placeholder="John.smith@example.com" required="required">
+	                                                <input type="text" class="form-control colorize-theme6-bg" name="contact[email]" [(ngModel)]="data.emailaddress" required="required">
 	                                            </div>
 	                                        </div>
 	                                    </label>
 	                                    <label>
 	                                        <div class="row">
 	                                            <div class="col-md-2">
-	                                                <span class="ttg__required">Message:</span>
+	                                                <span class="ttg__required">Bericht:</span>
 	                                            </div>
 	                                            <div class="col-md-10">
-	                                                <textarea class="form-control colorize-theme6-bg">Wtite your message here</textarea>
+	                                                <textarea class="form-control colorize-theme6-bg" name="contact[body]" [(ngModel)]="data.message"></textarea>
 	                                            </div>
 	                                        </div>
 	                                    </label>
 	                                    <div class="row">
 	                                        <div class="offset-md-2 col-md-10 text-center">
-	                                            <button class="btn btn--xs-flw">Submit</button>
+	                                            <button (click)="onSubmit()" [disabled]="!data.name || !data.emailaddress || !data.message" class="btn btn--xs-flw">Versturen</button>
 	                                        </div>
+	                                    </div>
+	                                    <div class="row">
+	                                    	<div class="offset-md-2 col-md-10 text-center">
+	                                    		<label *ngIf="messageSent">Bedankt voor je bericht! We nemen zo snel mogelijk contact met je op.</label>
+	                                    	</div>
 	                                    </div>
 	                                </div>
 	                            </div>
