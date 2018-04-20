@@ -148,30 +148,31 @@
 	                <div class="tt-product-page">
 	
 	                    <div class="tt-product-head tt-sticky-block__parent">
-	                        <div class="tt-product-head__sticky tt-sticky-block tt-layout__mobile-full">
+	                        <div class="tt-product-head__sticky-left tt-sticky-block tt-layout__mobile-full">
 	                        
 	                            <div class="tt-product-head__images tt-sticky-block__inner tt-product-head__single-mobile">
 	                            
-	                            		<div class="tt-product-head__image-main tt-big-container">
-	                            			<img [src]="product.image_urls[selectedImageIndex]" />
+	                            	<div class="tt-product-head__image-main tt-big-container">
+	                            		<img [src]="product.image_urls[selectedImageIndex]" />
 									</div>
+									
 	                                <div class="tt-product-head__image-preview tt-big-container">
-                                			<img *ngFor="let image of product.image_urls; let i = index;" [src]="image" (click)="selectedImageIndex = i" (mouseenter)="selectedImageIndex = i" alt="product">
-                            	   		</div>
-                            	   		
-                            	   		<div class="tt-small-container">
-                           	   			<swiper [config]="mainSliderConfig" [(index)]="selectedImageIndex" class="tt-product-head__image-main">
+                               			<img *ngFor="let image of product.image_urls; let i = index;" [src]="image" (click)="selectedImageIndex = i" (mouseenter)="selectedImageIndex = i" alt="product">
+                           	   		</div>
+                           	   		
+                           	   		<div class="tt-small-container">
+                          	   			<swiper [config]="mainSliderConfig" [(index)]="selectedImageIndex" class="tt-product-head__image-main">
 											<div *ngFor="let image of product.image_urls">
 												<img [src]="image" alt="" />
 											</div>
 										</swiper>
-                            	   		</div>
+                           	   		</div>
                             	   		
 	                            </div>
 	                            
 	                        </div>
 	                        
-	                        <div class="tt-product-head__sticky tt-sticky-block">
+	                        <div class="tt-product-head__sticky-right tt-sticky-block">
 	                            <div class="tt-product-head__info tt-sticky-block__inner">
 	                                <form action="#">
 	                                    <div class="tt-product-head__category"><a>{{ product.category_name }}</a>
@@ -182,7 +183,11 @@
 	                                            <span>{{ product.price_total_netto*1.21 | currency:'EUR':'true' }}</span>
 	                                        </div>
 	                                    </div>
-	                                    <div class="tt-product-head__more-detailed"><p>{{ product.description_short }}</p></div>
+	                                    <div class="tt-product-head__more-detailed">
+	                                   		<ul class="ttg-list">
+	                                   			<li *ngFor="let usp of extractUniqueSellingPoints(product.unique_selling_points)">{{ usp }}</li>
+	                                   		</ul>
+	                                   	</div>
 	                                    <div class="tt-product-head__control">
 	                                        <div class="tt-product-head__counter tt-counter tt-counter__inner" data-min="1" data-max="10">
 	                                            <input type="text" class="form-control" value="{{ amount }}">
@@ -196,11 +201,6 @@
 	                                            <span>Voeg toe aan winkelwagen</span>
 	                                        </a>
 	                                    </div>
-	                                    <div class="tt-product-head__tags"><span>Tags:</span>
-	                                        <a href="#">Wireless</a>,
-	                                        <a href="#">Built-In Microphone</a>,
-	                                        <a href="#">Bluetooth Enabled</a>
-	                                    </div>
 	                                    <div class="addthis_inline_share_toolbox"></div>
 	                                </form>
 	                            </div>
@@ -209,26 +209,21 @@
 	                    <div class="tt-product-page__tabs tt-tabs tt-layout__mobile-full" data-tt-type="horizontal">
 	                        <div class="tt-tabs__head">
 	                            <div class="tt-tabs__slider">
-	                                <div class="tt-tabs__btn" data-active="true"><span>Omschrijving</span></div>
-	                                <div class="tt-tabs__btn"><span>Aanvullende informatie</span></div>
+	                                <div class="tt-tabs__btn" [ngClass]="show === 'description' ? 'active' : ''" (click)="show = 'description'"><span>Omschrijving</span></div>
+	                                <div class="tt-tabs__btn" [ngClass]="show === 'additional' ? 'active' : ''" (click)="show = 'additional'"><span>Aanvullende informatie</span></div>
 	                            </div>
-	                            <div class="tt-tabs__btn-prev"></div>
-	                            <div class="tt-tabs__btn-next"></div>
-	                            <div class="tt-tabs__border"></div>
 	                        </div>
 	                        <div class="tt-tabs__body tt-tabs-product">
-	                            <div>
-	                                <span>Omschrijving <i class="icon-down-open"></i></span>
-	                                <div class="tt-tabs__content">
+	                            <div *ngIf="show === 'description'">
+	                                <div class="tt-tabs__content" style="display: block !important;">
 	                                    <div class="tt-tabs__content-head">Omschrijving</div>
-	                                    <p>
-	                                    		
-	                                    </p>
+	                                     <div style="white-space: pre-line;">
+	                                     	<div [innerHTML]="getDescription(product)"></div>
+	                                     </div>
 	                                </div>
 	                            </div>
-	                            <div>
-	                                <span>Aanvullende informatie <i class="icon-down-open"></i></span>
-	                                <div class="tt-tabs__content">
+	                            <div *ngIf="show === 'additional'">
+	                                <div class="tt-tabs__content" style="display: block !important;">
 	                                    <div class="tt-tabs__content-head">Aanvullende informatie</div>
 	                                    <table class="table">
 	                                        <tr>
@@ -256,478 +251,6 @@
 	                                            <td>Yes</td>
 	                                        </tr>
 	                                    </table>
-	                                </div>
-	                            </div>
-	                        </div>
-	                    </div>
-	                    <div class="tt-product-page__upsell">
-	                        <div class="tt-product-page__upsell-title">You may also be interested in the follwing
-	                            product(s)
-	                        </div>
-	                        <div class="tt-carousel-box">
-	                            <div class="tt-product-view">
-	                                <div class="tt-carousel-box__slider">
-	                                    <div class="col-sm-6 col-xl-3">
-	                                        <div class="tt-product tt-product__view-overlay ttg-text-animation-parent">
-	                                            <div class="tt-product__image">
-	                                                <a href="product-simple-variant-1.html">
-	                                                    <img src="assets/templates/mogo/images/loader.svg" data-srcset="assets/templates/mogo/images/products/product-01.jpg"
-	                                                         data-retina="assets/templates/mogo/images/products/product-01.jpg"
-	                                                         alt="Elegant and fresh. A most attractive mobile power supply.">
-	                                                </a>
-	                                                <div class="tt-product__labels">
-	                                                    <span class="tt-label__new">New</span>
-	                                                    <span class="tt-label__hot">Hot</span>
-	
-	                                                    <span class="tt-label__sale">Sale</span>
-	                                                    <span class="tt-label__discount">$22</span>
-	
-	                                                    <div><span class="tt-label__out-stock">Out Stock</span></div>
-	                                                    <div><span class="tt-label__in-stock">In Stock</span></div>
-	                                                </div>
-	                                            </div>
-	                                            <div class="tt-product__hover tt-product__clr-clk-transp">
-	                                                <div class="tt-product__content">
-	                                                    <h3>
-	                                            <span class="ttg-text-animation--emersion">
-	                                                <a href="listing-with-custom-html-block.html">Headphones</a>
-	                                            </span>
-	                                                    </h3>
-	                                                    <p>
-	                                            <span class="ttg-text-animation--emersion">
-	                                                <a href="product-simple-variant-1.html">Elegant and fresh. A most attractive mobile power supply.</a>
-	                                            </span>
-	                                                    </p>
-	                                                    <p class="tt-product__description">Sed ut perspiciatis unde omnis iste natus
-	                                                        error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
-	                                                        eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-	                                                        dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-	                                                        aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.</p>
-	                                                    <div class="ttg-text-animation--emersion">
-	                                            <span class="tt-product__price">
-	                                                <span class="tt-price tt-price--sale">
-	                                                    <span>$22</span>
-	                                                    <span>$28</span>
-	                                                </span>
-	                                            </span>
-	                                                    </div>
-	
-	                                                    <div class="ttg-text-animation--emersion">
-	                                                        <div class="tt-product__stars tt-stars">
-	                                                            <span class="ttg-icon"></span>
-	                                                            <span class="ttg-icon" style="width:86%;"></span>
-	                                                        </div>
-	                                                    </div>
-	                                                    <div class="ttg-text-animation--emersion">
-	                                                        <div class="tt-product__buttons">
-	                                                            <a href="#" class="tt-btn colorize-btn5 tt-product__buttons_cart tt-btn__state--active">
-	                                                                <i class="icon-shop24"></i>
-	                                                                <span>Add to Cart</span>
-	                                                            </a>
-	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_like tt-btn__state--active">
-	                                                                <i class="icon-heart-empty-2"></i>
-	                                                            </a>
-	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_compare tt-btn__state--active">
-	                                                                <i class="icon-untitled-1"></i>
-	                                                            </a>
-	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_qv">
-	                                                                <i class="icon-eye"></i>
-	                                                            </a>
-	                                                        </div>
-	                                                    </div>
-	                                                </div>
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                    <div class="col-sm-6 col-xl-3">
-	                                        <div class="tt-product tt-product__view-overlay ttg-text-animation-parent">
-	                                            <div class="tt-product__image">
-	                                                <a href="product-simple-variant-1.html">
-	                                                    <img src="assets/templates/mogo/images/loader.svg" data-srcset="assets/templates/mogo/images/products/product-02.jpg"
-	                                                         data-retina="assets/templates/mogo/images/products/product-02.jpg"
-	                                                         alt="Elegant and fresh. A most attractive mobile power supply.">
-	                                                </a>
-	                                            </div>
-	                                            <div class="tt-product__hover tt-product__clr-clk-transp">
-	                                                <div class="tt-product__content">
-	                                                    <h3>
-	                                            <span class="ttg-text-animation--emersion">
-	                                                <a href="listing-with-custom-html-block.html">Phone</a>
-	                                            </span>
-	                                                    </h3>
-	                                                    <p>
-	                                            <span class="ttg-text-animation--emersion">
-	                                                <a href="product-simple-variant-1.html">Elegant and fresh. A most attractive mobile power supply.</a>
-	                                            </span>
-	                                                    </p>
-	                                                    <p class="tt-product__description">Sed ut perspiciatis unde omnis iste natus
-	                                                        error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
-	                                                        eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-	                                                        dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-	                                                        aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.</p>
-	                                                    <div class="ttg-text-animation--emersion">
-	                                            <span class="tt-product__price">
-	                                                <span class="tt-price">
-	                                                    <span>$46</span>
-	                                                </span>
-	                                            </span>
-	                                                    </div>
-	                                                    <div class="ttg-text-animation--emersion">
-	                                                        <div class="tt-product__stars tt-stars">
-	                                                            <span class="ttg-icon"></span>
-	                                                            <span class="ttg-icon" style="width:35%;"></span>
-	                                                        </div>
-	                                                    </div>
-	                                                    <div class="ttg-text-animation--emersion">
-	                                                        <div class="tt-product__buttons">
-	                                                            <a href="#" class="tt-btn colorize-btn5 tt-product__buttons_cart">
-	                                                                <i class="icon-shop24"></i>
-	                                                                <span>Add to Cart</span>
-	                                                            </a>
-	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_like">
-	                                                                <i class="icon-heart-empty-2"></i>
-	                                                            </a>
-	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_compare">
-	                                                                <i class="icon-untitled-1"></i>
-	                                                            </a>
-	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_qv">
-	                                                                <i class="icon-eye"></i>
-	                                                            </a>
-	                                                        </div>
-	                                                    </div>
-	                                                </div>
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                    <div class="col-sm-6 col-xl-3">
-	                                        <div class="tt-product tt-product__view-overlay ttg-text-animation-parent">
-	                                            <div class="tt-product__image">
-	                                                <a href="product-simple-variant-1.html">
-	                                                    <img src="assets/templates/mogo/images/loader.svg" data-srcset="assets/templates/mogo/images/products/product-03.jpg"
-	                                                         data-retina="assets/templates/mogo/images/products/product-03.jpg"
-	                                                         alt="Elegant and fresh. A most attractive mobile power supply.">
-	                                                </a>
-	                                                <div class="tt-product__labels">
-	                                                    <span class="tt-label__sale">Sale</span>
-	                                                    <span class="tt-label__discount">$32</span>
-	                                                </div>
-	                                            </div>
-	                                            <div class="tt-product__hover tt-product__clr-clk-transp">
-	                                                <div class="tt-product__content">
-	                                                    <h3>
-	                                            <span class="ttg-text-animation--emersion">
-	                                                <a href="listing-with-custom-html-block.html">USB</a>
-	                                            </span>
-	                                                    </h3>
-	                                                    <p>
-	                                            <span class="ttg-text-animation--emersion">
-	                                                <a href="product-simple-variant-1.html">Elegant and fresh. A most attractive mobile power supply.</a>
-	                                            </span>
-	                                                    </p>
-	                                                    <p class="tt-product__description">Sed ut perspiciatis unde omnis iste natus
-	                                                        error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
-	                                                        eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-	                                                        dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-	                                                        aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.</p>
-	                                                    <div class="ttg-text-animation--emersion">
-	                                            <span class="tt-product__price">
-	                                                <span class="tt-price tt-price--sale">
-	                                                    <span>$32</span>
-	                                                    <span>$38</span>
-	                                                </span>
-	                                            </span>
-	                                                    </div>
-	                                                    <div class="ttg-text-animation--emersion">
-	                                                        <div class="tt-product__buttons">
-	                                                            <a href="#" class="tt-btn colorize-btn5 tt-product__buttons_cart">
-	                                                                <i class="icon-shop24"></i>
-	                                                                <span>Add to Cart</span>
-	                                                            </a>
-	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_like">
-	                                                                <i class="icon-heart-empty-2"></i>
-	                                                            </a>
-	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_compare">
-	                                                                <i class="icon-untitled-1"></i>
-	                                                            </a>
-	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_qv">
-	                                                                <i class="icon-eye"></i>
-	                                                            </a>
-	                                                        </div>
-	                                                    </div>
-	                                                </div>
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                    <div class="col-sm-6 col-xl-3">
-	                                        <div class="tt-product tt-product__view-overlay ttg-text-animation-parent">
-	                                            <div class="tt-product__image">
-	                                                <a href="product-simple-variant-1.html">
-	                                                    <img src="assets/templates/mogo/images/loader.svg" data-srcset="assets/templates/mogo/images/products/product-04.jpg"
-	                                                         data-retina="assets/templates/mogo/images/products/product-04.jpg"
-	                                                         alt="Elegant and fresh. A most attractive mobile power supply.">
-	                                                </a>
-	                                            </div>
-	                                            <div class="tt-product__hover tt-product__clr-clk-transp">
-	                                                <div class="tt-product__content">
-	                                                    <h3>
-	                                            <span class="ttg-text-animation--emersion">
-	                                                <a href="listing-with-custom-html-block.html">Category</a>
-	                                            </span>
-	                                                    </h3>
-	                                                    <p>
-	                                            <span class="ttg-text-animation--emersion">
-	                                                <a href="product-simple-variant-1.html">Elegant and fresh. A most attractive mobile power supply.</a>
-	                                            </span>
-	                                                    </p>
-	                                                    <p class="tt-product__description">Sed ut perspiciatis unde omnis iste natus
-	                                                        error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
-	                                                        eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-	                                                        dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-	                                                        aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.</p>
-	                                                    <div class="ttg-text-animation--emersion">
-	                                            <span class="tt-product__price">
-	                                                <span class="tt-price">
-	                                                    <span>$14</span>
-	                                                </span>
-	                                            </span>
-	                                                    </div>
-	                                                    <div class="ttg-text-animation--emersion">
-	                                                        <div class="tt-product__buttons">
-	                                                            <a href="#" class="tt-btn colorize-btn5 tt-product__buttons_cart">
-	                                                                <i class="icon-shop24"></i>
-	                                                                <span>Add to Cart</span>
-	                                                            </a>
-	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_like">
-	                                                                <i class="icon-heart-empty-2"></i>
-	                                                            </a>
-	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_compare">
-	                                                                <i class="icon-untitled-1"></i>
-	                                                            </a>
-	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_qv">
-	                                                                <i class="icon-eye"></i>
-	                                                            </a>
-	                                                        </div>
-	                                                    </div>
-	                                                </div>
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                    <div class="col-sm-6 col-xl-3">
-	                                        <div class="tt-product tt-product__view-overlay ttg-text-animation-parent">
-	                                            <div class="tt-product__image">
-	                                                <a href="product-simple-variant-1.html">
-	                                                    <img src="assets/templates/mogo/images/loader.svg" data-srcset="assets/templates/mogo/images/products/product-05.jpg"
-	                                                         data-retina="assets/templates/mogo/images/products/product-05.jpg"
-	                                                         alt="Elegant and fresh. A most attractive mobile power supply.">
-	                                                </a>
-	                                            </div>
-	                                            <div class="tt-product__hover tt-product__clr-clk-transp">
-	                                                <div class="tt-product__content">
-	                                                    <h3>
-	                                            <span class="ttg-text-animation--emersion">
-	                                                <a href="listing-with-custom-html-block.html">Category</a>
-	                                            </span>
-	                                                    </h3>
-	                                                    <p>
-	                                            <span class="ttg-text-animation--emersion">
-	                                                <a href="product-simple-variant-1.html">Elegant and fresh. A most attractive mobile power supply.</a>
-	                                            </span>
-	                                                    </p>
-	                                                    <p class="tt-product__description">Sed ut perspiciatis unde omnis iste natus
-	                                                        error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
-	                                                        eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-	                                                        dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-	                                                        aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.</p>
-	                                                    <div class="ttg-text-animation--emersion">
-	                                            <span class="tt-product__price">
-	                                                <span class="tt-price">
-	                                                    <span>$24</span>
-	                                                </span>
-	                                            </span>
-	                                                    </div>
-	                                                    <div class="ttg-text-animation--emersion">
-	                                                        <div class="tt-product__buttons">
-	                                                            <a href="#" class="tt-btn colorize-btn5 tt-product__buttons_cart">
-	                                                                <i class="icon-shop24"></i>
-	                                                                <span>Add to Cart</span>
-	                                                            </a>
-	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_like">
-	                                                                <i class="icon-heart-empty-2"></i>
-	                                                            </a>
-	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_compare">
-	                                                                <i class="icon-untitled-1"></i>
-	                                                            </a>
-	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_qv">
-	                                                                <i class="icon-eye"></i>
-	                                                            </a>
-	                                                        </div>
-	                                                    </div>
-	                                                </div>
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                    <div class="col-sm-6 col-xl-3">
-	                                        <div class="tt-product tt-product__view-overlay ttg-text-animation-parent">
-	                                            <div class="tt-product__image">
-	                                                <a href="product-simple-variant-1.html">
-	                                                    <img src="assets/templates/mogo/images/loader.svg" data-srcset="assets/templates/mogo/images/products/product-06.jpg"
-	                                                         data-retina="assets/templates/mogo/images/products/product-06.jpg"
-	                                                         alt="Elegant and fresh. A most attractive mobile power supply.">
-	                                                </a>
-	                                            </div>
-	                                            <div class="tt-product__hover tt-product__clr-clk-transp">
-	                                                <div class="tt-product__content">
-	                                                    <h3>
-	                                            <span class="ttg-text-animation--emersion">
-	                                                <a href="listing-with-custom-html-block.html">Category</a>
-	                                            </span>
-	                                                    </h3>
-	                                                    <p>
-	                                            <span class="ttg-text-animation--emersion">
-	                                                <a href="product-simple-variant-1.html">Elegant and fresh. A most attractive mobile power supply.</a>
-	                                            </span>
-	                                                    </p>
-	                                                    <p class="tt-product__description">Sed ut perspiciatis unde omnis iste natus
-	                                                        error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
-	                                                        eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-	                                                        dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-	                                                        aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.</p>
-	                                                    <div class="ttg-text-animation--emersion">
-	                                            <span class="tt-product__price">
-	                                                <span class="tt-price">
-	                                                    <span>$28</span>
-	                                                </span>
-	                                            </span>
-	                                                    </div>
-	                                                    <div class="ttg-text-animation--emersion">
-	                                                        <div class="tt-product__buttons">
-	                                                            <a href="#" class="tt-btn colorize-btn5 tt-product__buttons_cart">
-	                                                                <i class="icon-shop24"></i>
-	                                                                <span>Add to Cart</span>
-	                                                            </a>
-	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_like">
-	                                                                <i class="icon-heart-empty-2"></i>
-	                                                            </a>
-	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_compare">
-	                                                                <i class="icon-untitled-1"></i>
-	                                                            </a>
-	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_qv">
-	                                                                <i class="icon-eye"></i>
-	                                                            </a>
-	                                                        </div>
-	                                                    </div>
-	                                                </div>
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                    <div class="col-sm-6 col-xl-3">
-	                                        <div class="tt-product tt-product__view-overlay ttg-text-animation-parent">
-	                                            <div class="tt-product__image">
-	                                                <a href="product-simple-variant-1.html">
-	                                                    <img src="assets/templates/mogo/images/loader.svg" data-srcset="assets/templates/mogo/images/products/product-07.jpg"
-	                                                         data-retina="assets/templates/mogo/images/products/product-07.jpg"
-	                                                         alt="Elegant and fresh. A most attractive mobile power supply.">
-	                                                </a>
-	                                            </div>
-	                                            <div class="tt-product__hover tt-product__clr-clk-transp">
-	                                                <div class="tt-product__content">
-	                                                    <h3>
-	                                            <span class="ttg-text-animation--emersion">
-	                                                <a href="listing-with-custom-html-block.html">Category</a>
-	                                            </span>
-	                                                    </h3>
-	                                                    <p>
-	                                            <span class="ttg-text-animation--emersion">
-	                                                <a href="product-simple-variant-1.html">Elegant and fresh. A most attractive mobile power supply.</a>
-	                                            </span>
-	                                                    </p>
-	                                                    <p class="tt-product__description">Sed ut perspiciatis unde omnis iste natus
-	                                                        error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
-	                                                        eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-	                                                        dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-	                                                        aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.</p>
-	                                                    <div class="ttg-text-animation--emersion">
-	                                            <span class="tt-product__price">
-	                                                <span class="tt-price">
-	                                                    <span>$58</span>
-	                                                </span>
-	                                            </span>
-	                                                    </div>
-	                                                    <div class="ttg-text-animation--emersion">
-	                                                        <div class="tt-product__buttons">
-	                                                            <a href="#" class="tt-btn colorize-btn5 tt-product__buttons_cart">
-	                                                                <i class="icon-shop24"></i>
-	                                                                <span>Add to Cart</span>
-	                                                            </a>
-	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_like">
-	                                                                <i class="icon-heart-empty-2"></i>
-	                                                            </a>
-	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_compare">
-	                                                                <i class="icon-untitled-1"></i>
-	                                                            </a>
-	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_qv">
-	                                                                <i class="icon-eye"></i>
-	                                                            </a>
-	                                                        </div>
-	                                                    </div>
-	                                                </div>
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                    <div class="col-sm-6 col-xl-3">
-	                                        <div class="tt-product tt-product__view-overlay ttg-text-animation-parent">
-	                                            <div class="tt-product__image">
-	                                                <a href="product-simple-variant-1.html">
-	                                                    <img src="assets/templates/mogo/images/loader.svg" data-srcset="assets/templates/mogo/images/products/product-08.jpg"
-	                                                         data-retina="assets/templates/mogo/images/products/product-08.jpg"
-	                                                         alt="Elegant and fresh. A most attractive mobile power supply.">
-	                                                </a>
-	                                            </div>
-	                                            <div class="tt-product__hover tt-product__clr-clk-transp">
-	                                                <div class="tt-product__content">
-	                                                    <h3>
-	                                            <span class="ttg-text-animation--emersion">
-	                                                <a href="listing-with-custom-html-block.html">Category</a>
-	                                            </span>
-	                                                    </h3>
-	                                                    <p>
-	                                            <span class="ttg-text-animation--emersion">
-	                                                <a href="product-simple-variant-1.html">Elegant and fresh. A most attractive mobile power supply.</a>
-	                                            </span>
-	                                                    </p>
-	                                                    <p class="tt-product__description">Sed ut perspiciatis unde omnis iste natus
-	                                                        error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
-	                                                        eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-	                                                        dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-	                                                        aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.</p>
-	                                                    <div class="ttg-text-animation--emersion">
-	                                            <span class="tt-product__price">
-	                                                <span class="tt-price">
-	                                                    <span>$19</span>
-	                                                </span>
-	                                            </span>
-	                                                    </div>
-	                                                    <div class="ttg-text-animation--emersion">
-	                                                        <div class="tt-product__buttons">
-	                                                            <a href="#" class="tt-btn colorize-btn5 tt-product__buttons_cart">
-	                                                                <i class="icon-shop24"></i>
-	                                                                <span>Add to Cart</span>
-	                                                            </a>
-	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_like">
-	                                                                <i class="icon-heart-empty-2"></i>
-	                                                            </a>
-	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_compare">
-	                                                                <i class="icon-untitled-1"></i>
-	                                                            </a>
-	                                                            <a href="#" class="tt-btn colorize-btn4 tt-product__buttons_qv">
-	                                                                <i class="icon-eye"></i>
-	                                                            </a>
-	                                                        </div>
-	                                                    </div>
-	                                                </div>
-	                                            </div>
-	                                        </div>
-	                                    </div>
 	                                </div>
 	                            </div>
 	                        </div>

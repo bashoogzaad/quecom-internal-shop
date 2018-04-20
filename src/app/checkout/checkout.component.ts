@@ -39,7 +39,8 @@ export class CheckoutComponent implements OnInit {
     public paymentMethods = new Array();
   
     public selected = {
-      paymentMethod: undefined
+      paymentMethod: undefined,
+      shippingMethod: 'same-as-invoice'
     };
   
     public shippingTimeframes: any[] = new Array();
@@ -47,11 +48,13 @@ export class CheckoutComponent implements OnInit {
   
     public shipper = "PostNL";
     public selectedShipment: any;
+    public showDelivery = true;
     public successMsg;
     public errorMsg;
   
     public extraShippingCost: number = 0;
     public budget: number;
+    public payShipping = true;
   
     constructor(
         public cartProvider: CartProvider,
@@ -100,7 +103,9 @@ export class CheckoutComponent implements OnInit {
         this.budget = res.value;
       });
       
-      this.quecomProvider.getShippingTimeframes(this.user.postal_code, this.customerData.houseNumberSh, this.user.country, this.user.house_number_extension).subscribe(tf => {
+      this.quecomProvider.getShippingTimeframes(this.user.postal_code, this.user.house_number, this.user.country, this.user.house_number_extension).subscribe(tf => {
+        console.log(tf);
+        
         for (const t of tf['Timeframes']['Timeframe']) {
           for (const timeframe of t['Timeframes']['TimeframeTimeFrame']) {
             
@@ -120,6 +125,7 @@ export class CheckoutComponent implements OnInit {
             shm['timeframe_end'] = endDate;
             
             shm['cost'] = timeframe['Options']['string'] == 'Evening' ? 2 : 0;
+            shm['option'] = timeframe['Options']['string'];
             
             this.shippingTimeframes.push(shm);
             
@@ -131,7 +137,10 @@ export class CheckoutComponent implements OnInit {
       });
       
       this.quecomProvider.getShippingLocations(this.user.postal_code, this.user.country).subscribe(tf => {
-        this.shippingLocations = tf['GetLocationsResult']['ResponseLocation'];
+          console.log(tf);
+          if (tf['GetLocationsResult']) {
+              this.shippingLocations = tf['GetLocationsResult']['ResponseLocation'];
+          }
       });
       
     }
@@ -150,12 +159,18 @@ export class CheckoutComponent implements OnInit {
     
     getDeliveryCost() {
       
-      if (!this.globals.hasDeliveryCost) {
+      if (!this.globals.hasDeliveryCost || !this.payShipping) {
         return 0.0;
       }
       
-      const baseCost = 6.95;
+      let baseCost = 6.95;
       const extraCost = (this.selectedShipment && this.selectedShipment.cost) ? this.selectedShipment.cost : 0;
+      
+      for (const orderLine of this.order.orderLines) {
+        if (orderLine.product.inch_size && orderLine.product.inch_size >= 55) {
+          baseCost = 39.95;
+        }
+      }
       
       return (baseCost + extraCost) * 1.21;
     }
@@ -192,22 +207,59 @@ export class CheckoutComponent implements OnInit {
     
     toggleBillingToShipment() {
         
-        this.billingToShipment = !this.billingToShipment;
-        
-        if (this.billingToShipment) {
-            this.customerData.gender = this.customerData.genderSh;
-            this.customerData.firstName = this.customerData.firstNameSh;
-            this.customerData.lastName = this.customerData.lastNameSh;
-            this.customerData.emailAddress = this.customerData.emailAddressSh;
-            this.customerData.companyName = this.customerData.companyNameSh;
-            this.customerData.address = this.customerData.addressSh;
-            this.customerData.houseNumber = this.customerData.houseNumberSh;
-            this.customerData.houseNumberExtension = this.customerData.houseNumberExtensionSh;
-            this.customerData.postalCode = this.customerData.postalCodeSh;
-            this.customerData.city = this.customerData.citySh;
+        if (this.selected.shippingMethod == 'same-as-invoice') {
+            
+            this.billingToShipment = true;
+            
+            if (this.billingToShipment) {
+                this.customerData.gender = this.customerData.genderSh;
+                this.customerData.firstName = this.customerData.firstNameSh;
+                this.customerData.lastName = this.customerData.lastNameSh;
+                this.customerData.emailAddress = this.customerData.emailAddressSh;
+                this.customerData.companyName = this.customerData.companyNameSh;
+                this.customerData.address = this.customerData.addressSh;
+                this.customerData.houseNumber = this.customerData.houseNumberSh;
+                this.customerData.houseNumberExtension = this.customerData.houseNumberExtensionSh;
+                this.customerData.postalCode = this.customerData.postalCodeSh;
+                this.customerData.city = this.customerData.citySh;
+                this.customerData.phoneNumber = this.customerData.phoneNumberSh;
+                this.customerData.country = this.customerData.countrySh;
+            } else {
+                this.customerData.gender = undefined;
+                this.customerData.firstName = undefined;
+                this.customerData.lastName = undefined;
+                this.customerData.emailAddress = undefined;
+                this.customerData.companyName = undefined;
+                this.customerData.address = undefined;
+                this.customerData.houseNumber = undefined;
+                this.customerData.houseNumberExtension = undefined;
+                this.customerData.postalCode = undefined;
+                this.customerData.city = undefined;
+                this.customerData.phoneNumber = undefined;
+                this.customerData.country = undefined;
+            }
+            
+            this.payShipping = true;
+          
+          this.checkAddress();
+      
+        } else if (this.selected.shippingMethod == 'central-office') {
+            
+            this.customerData.address = 'Da vincilaan';
+            this.customerData.houseNumber = '7 D1';
+            this.customerData.houseNumberExtension = '';
+            this.customerData.postalCode = '1935';
+            this.customerData.city = 'Zaventem';
             this.customerData.phoneNumber = this.customerData.phoneNumberSh;
-            this.customerData.country = this.customerData.countrySh;
-        } else {
+            this.customerData.country = 'BE';
+            
+            this.selectedShipment = undefined;
+            this.payShipping = false;
+            
+        } else if (this.selected.shippingMethod == 'custom-address') {
+            
+            this.billingToShipment = false;
+            
             this.customerData.gender = undefined;
             this.customerData.firstName = undefined;
             this.customerData.lastName = undefined;
@@ -220,9 +272,29 @@ export class CheckoutComponent implements OnInit {
             this.customerData.city = undefined;
             this.customerData.phoneNumber = undefined;
             this.customerData.country = undefined;
+            
+            this.selectedShipment = undefined;
+            this.payShipping = true;
+            
+        } else if (this.selected.shippingMethod == 'pickup') {
+            
+            this.customerData.gender = this.customerData.genderSh;
+            this.customerData.firstName = this.customerData.firstNameSh;
+            this.customerData.lastName = this.customerData.lastNameSh;
+            this.customerData.emailAddress = this.customerData.emailAddressSh;
+            this.customerData.companyName = this.customerData.companyNameSh;
+            this.customerData.address = this.customerData.addressSh;
+            this.customerData.houseNumber = this.customerData.houseNumberSh;
+            this.customerData.houseNumberExtension = this.customerData.houseNumberExtensionSh;
+            this.customerData.postalCode = this.customerData.postalCodeSh;
+            this.customerData.city = this.customerData.citySh;
+            this.customerData.phoneNumber = this.customerData.phoneNumberSh;
+            this.customerData.country = this.customerData.countrySh;
+            
+            this.selectedShipment = undefined;
+            this.payShipping = false;
+            
         }
-      
-      this.checkAddress();
       
     }
     
@@ -292,15 +364,7 @@ export class CheckoutComponent implements OnInit {
     
     placeOrder() {
       
-      this.cartProvider.placeOrder(this.customerData, this.discounts, this.selectedShipment, this.selected.paymentMethod).subscribe(r => {
-        console.log(r);
-      }, error => {
-        console.log(error);
-      });
-      
-      return;
-      
-        this.orderPromise = this.cartProvider.placeOrder(this.customerData, this.discounts, this.selectedShipment, this.selected.paymentMethod).toPromise().then(res => {
+        this.orderPromise = this.cartProvider.placeOrder(this.customerData, this.discounts, this.selectedShipment, this.selected.paymentMethod, this.user.id, this.selected.shippingMethod).toPromise().then(res => {
           console.log(res);
             if (res[0]['url']) {
                 this.cartProvider.resetCart();
@@ -366,9 +430,25 @@ export class CheckoutComponent implements OnInit {
         this.successMsg = undefined;
       }
       
-      
     }
     
+  }
+  
+  public showDeliveryOptions() {
+      
+      if (this.selected.shippingMethod == 'central-office' || this.selected.shippingMethod == 'pickup') {
+          this.showDelivery = false;
+          return false;
+      }
+      
+    for (const orderLine of this.order.orderLines) {
+        if (orderLine.product.inch_size && orderLine.product.inch_size >= 55) {
+            this.selectedShipment = undefined;
+            this.showDelivery = false;
+          return false;
+        }
+      }
+    return true;
   }
   
 }

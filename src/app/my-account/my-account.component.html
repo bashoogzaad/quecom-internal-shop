@@ -23,7 +23,6 @@
 	                                <div class="tt-tabs__btn" (click)="current = 'personal-information'"><span>NAW-Gegevens</span></div>
 	                                <div class="tt-tabs__btn" (click)="current = 'orders'"><span>Bestellingen</span></div>
 	                                <div class="tt-tabs__btn" (click)="current = 'invoices'"><span>Facturen</span></div>
-	                                <div class="tt-tabs__btn" (click)="current = 'logout'"><span>Uitloggen</span></div>
 	                            </div>
 	                            <div class="tt-tabs__btn-prev"></div>
 	                            <div class="tt-tabs__btn-next"></div>
@@ -33,6 +32,7 @@
 	                            <div [ngClass]="current === 'dashboard' ? 'show-account-section' : ''">
 	                                <span>Dashboard <i class="icon-down-open"></i></span>
 	                                <div class="tt-tabs__content">
+	                                	<h4>Dashboard</h4>
 	                                    <p class="ttg-mb--20">Welkom, {{ user.first_name }} {{ user.last_name }}.</p>
 	                                    <p>Je huidige budget is nu: 
 	                                    		<a *ngIf="showBudget" (click)="showBudget = false" href="javascript:void(0);" style="padding-left: 5px;"><b>{{ budget.value | currency:'EUR':'true' }}</b></a>
@@ -41,146 +41,125 @@
 	                                    <p>Vanuit dit dashboard kun je jouw bestellingen inzien, facturen downloaden, je gegevens aanpassen en verzendingen volgen.</p>
 	                                </div>
 	                            </div>
-	                            <div [ngClass]="current === 'personal-information' ? 'show-account-section' : ''">
-	                                <span>Dashboard <i class="icon-down-open"></i></span>
-	                                <div class="tt-tabs__content">
-	                                    <p class="ttg-mb--20">Hello NAME (not name? <a href="#">Sign out</a>)</p>
-	                                    <p>From your account dashboard you can view your <a href="#">recent orders,</a>
-	                                        manage your <a href="#">shipping and billing addresses</a> and <a href="#">edit
-	                                            your password and account details.</a></p>
-	                                </div>
-	                            </div>
 	                            <div [ngClass]="current === 'orders' ? 'show-account-section' : ''">
-	                                <span>Orders <i class="icon-down-open"></i></span>
+	                                <span>Bestellingen <i class="icon-down-open"></i></span>
 	                                <div class="tt-tabs__content">
-	                                    <h4>Orders</h4>
+	                                    <h4>Bestellingen</h4>
 	                                    <div class="tt-tabs-my-account__table ttg-mb--30">
 	                                        <table class="table">
 	                                            <tr>
-	                                                <th>Products</th>
-	                                                <th>Date</th>
+	                                                <th>Ordernummer</th>
+	                                                <th>Datum</th>
 	                                                <th>Status</th>
-	                                                <th>Total</th>
+	                                                <th>Totaal</th>
 	                                            </tr>
-	                                            <tr>
-	                                                <td><a href="#">#001</a></td>
-	                                                <td>November 20. 2016</td>
-	                                                <td>Processing</td>
-	                                                <td>$40 fot 1 item</td>
-	                                                <td class="text-right"><a href="#">View</a></td>
-	                                            </tr>
-	                                            <tr>
-	                                                <td><a href="#">#002</a></td>
-	                                                <td>November 20. 2016</td>
-	                                                <td>Processing</td>
-	                                                <td>$40 fot 1 item</td>
-	                                                <td class="text-right"><a href="#">View</a></td>
-	                                            </tr>
-	                                            <tr>
-	                                                <td><a href="#">#003</a></td>
-	                                                <td>November 20. 2016</td>
-	                                                <td>Processing</td>
-	                                                <td>$40 fot 1 item</td>
-	                                                <td class="text-right"><a href="#">View</a></td>
+	                                            <tr *ngFor="let order of orders">
+	                                                <td><a href="#">{{ order.Vbeln }}</a></td>
+	                                                <td>{{ order.Erdat | date:'d-MM-yyyy' }}</td>
+	                                                <td>Ontvangen bij GezamenlijkVoordeel</td>
+	                                                <td>{{ order.Netwr | currency:'EUR':'true' }}</td>
+	                                                <td class="text-right"><a (click)="selectOrder(order)">Bekijk</a></td>
 	                                            </tr>
 	                                        </table>
 	                                    </div>
-	                                    <a href="#" class="btn">Previous</a>
-	                                    <a href="#" class="btn">Next</a>
-	                                    <p class="ttg-mt--30 ttg-mb--30">Order <a href="#">#391</a> was places on November
-	                                        20, 2016 and is currently Processing</p>
-	                                    <h4>Order Details</h4>
-	                                    <div class="tt-tabs-my-account__table ttg-mb--30">
-	                                        <table class="table tt-tabs-my-account--table-sm">
-	                                            <tr>
-	                                                <th>Product</th>
-	                                                <th>Total</th>
-	                                            </tr>
-	                                            <tr>
-	                                                <td><a href="#">Nike Zoom Trail</a> x 1</td>
-	                                                <td>$40</td>
-	                                            </tr>
-	                                            <tr>
-	                                                <td class="ttg-color--gray-dark">Subtotal:</td>
-	                                                <td>$40</td>
-	                                            </tr>
-	                                            <tr>
-	                                                <td class="ttg-color--gray-dark">Shipping:</td>
-	                                                <td>Free Shipping</td>
-	                                            </tr>
-	                                            <tr>
-	                                                <td class="ttg-color--gray-dark">Payment Method:</td>
-	                                                <td>Cashon Delivery</td>
-	                                            </tr>
-	                                            <tr>
-	                                                <td class="ttg-color--gray-dark">Total:</td>
-	                                                <td>$40</td>
-	                                            </tr>
-	                                        </table>
-	                                    </div>
-	                                    <h4>Customer Details</h4>
-	                                    <div class="tt-tabs-my-account__table ttg-mb--30">
-	                                        <table class="table tt-tabs-my-account--table-sm">
-	                                            <tr>
-	                                                <td class="ttg-color--gray-dark">E-mail:</td>
-	                                                <td>Admin@localhost.dev</td>
-	                                            </tr>
-	                                            <tr>
-	                                                <td class="ttg-color--gray-dark">Telephone:</td>
-	                                                <td>888-8888888</td>
-	                                            </tr>
-	                                        </table>
-	                                    </div>
-	                                    <h4>Billing Address</h4>
-	                                    <div class="tt-tabs-my-account__table ttg-mb--30">
-	                                        <table class="table tt-tabs-my-account--table-sm">
-	                                            <tr>
-	                                                <td class="ttg-color--gray-dark">Country:</td>
-	                                                <td>Lorem ipsum dolor sit amet conse ctetur</td>
-	                                            </tr>
-	                                            <tr>
-	                                                <td class="ttg-color--gray-dark">Address:</td>
-	                                                <td>Ut enim ad minim veniam, quis nostrud</td>
-	                                            </tr>
-	                                            <tr>
-	                                                <td class="ttg-color--gray-dark">Town/City:</td>
-	                                                <td>Eexercitation ullamco laboris nisi ut aliquip ex ea</td>
-	                                            </tr>
-	                                            <tr>
-	                                                <td class="ttg-color--gray-dark">State/Country:</td>
-	                                                <td>Commodo consequat. Duis aute irure dol</td>
-	                                            </tr>
-	                                            <tr>
-	                                                <td class="ttg-color--gray-dark">Postode/ZIP:</td>
-	                                                <td>88888</td>
-	                                            </tr>
-	                                        </table>
-	                                    </div>
-	                                    <h4>Shipping Address</h4>
-	                                    <div class="tt-tabs-my-account__table ttg-mb--30">
-	                                        <table class="table tt-tabs-my-account--table-sm">
-	                                            <tr>
-	                                                <td class="ttg-color--gray-dark">Country:</td>
-	                                                <td>Lorem ipsum dolor sit amet conse ctetur</td>
-	                                            </tr>
-	                                            <tr>
-	                                                <td class="ttg-color--gray-dark">Address:</td>
-	                                                <td>Ut enim ad minim veniam, quis nostrud</td>
-	                                            </tr>
-	                                            <tr>
-	                                                <td class="ttg-color--gray-dark">Town/City:</td>
-	                                                <td>Eexercitation ullamco laboris nisi ut aliquip ex ea</td>
-	                                            </tr>
-	                                            <tr>
-	                                                <td class="ttg-color--gray-dark">State/Country:</td>
-	                                                <td>Commodo consequat. Duis aute irure dol</td>
-	                                            </tr>
-	                                            <tr>
-	                                                <td class="ttg-color--gray-dark">Postode/ZIP:</td>
-	                                                <td>88888</td>
-	                                            </tr>
-	                                        </table>
-	                                    </div>
+	                                    
+	                                    <ng-container *ngIf="currentOrder">
+	                                    
+		                                    <h4>Bestelling #{{ currentOrder.Vbeln }}</h4>
+		                                    <div class="tt-tabs-my-account__table ttg-mb--30">
+		                                        <table class="table tt-tabs-my-account--table-sm">
+		                                            <tr>
+		                                                <th>Product</th>
+		                                                <th>Total</th>
+		                                            </tr>
+		                                            <tr>
+		                                                <td><a href="#">Nike Zoom Trail</a> x 1</td>
+		                                                <td>$40</td>
+		                                            </tr>
+		                                            <tr>
+		                                                <td class="ttg-color--gray-dark">Subtotal:</td>
+		                                                <td>$40</td>
+		                                            </tr>
+		                                            <tr>
+		                                                <td class="ttg-color--gray-dark">Shipping:</td>
+		                                                <td>Free Shipping</td>
+		                                            </tr>
+		                                            <tr>
+		                                                <td class="ttg-color--gray-dark">Payment Method:</td>
+		                                                <td>Cashon Delivery</td>
+		                                            </tr>
+		                                            <tr>
+		                                                <td class="ttg-color--gray-dark">Total:</td>
+		                                                <td>$40</td>
+		                                            </tr>
+		                                        </table>
+		                                    </div>
+		                                    <h4>Customer Details</h4>
+		                                    <div class="tt-tabs-my-account__table ttg-mb--30">
+		                                        <table class="table tt-tabs-my-account--table-sm">
+		                                            <tr>
+		                                                <td class="ttg-color--gray-dark">E-mail:</td>
+		                                                <td>Admin@localhost.dev</td>
+		                                            </tr>
+		                                            <tr>
+		                                                <td class="ttg-color--gray-dark">Telephone:</td>
+		                                                <td>888-8888888</td>
+		                                            </tr>
+		                                        </table>
+		                                    </div>
+		                                    <h4>Billing Address</h4>
+		                                    <div class="tt-tabs-my-account__table ttg-mb--30">
+		                                        <table class="table tt-tabs-my-account--table-sm">
+		                                            <tr>
+		                                                <td class="ttg-color--gray-dark">Country:</td>
+		                                                <td>Lorem ipsum dolor sit amet conse ctetur</td>
+		                                            </tr>
+		                                            <tr>
+		                                                <td class="ttg-color--gray-dark">Address:</td>
+		                                                <td>Ut enim ad minim veniam, quis nostrud</td>
+		                                            </tr>
+		                                            <tr>
+		                                                <td class="ttg-color--gray-dark">Town/City:</td>
+		                                                <td>Eexercitation ullamco laboris nisi ut aliquip ex ea</td>
+		                                            </tr>
+		                                            <tr>
+		                                                <td class="ttg-color--gray-dark">State/Country:</td>
+		                                                <td>Commodo consequat. Duis aute irure dol</td>
+		                                            </tr>
+		                                            <tr>
+		                                                <td class="ttg-color--gray-dark">Postode/ZIP:</td>
+		                                                <td>88888</td>
+		                                            </tr>
+		                                        </table>
+		                                    </div>
+		                                    <h4>Shipping Address</h4>
+		                                    <div class="tt-tabs-my-account__table ttg-mb--30">
+		                                        <table class="table tt-tabs-my-account--table-sm">
+		                                            <tr>
+		                                                <td class="ttg-color--gray-dark">Country:</td>
+		                                                <td>Lorem ipsum dolor sit amet conse ctetur</td>
+		                                            </tr>
+		                                            <tr>
+		                                                <td class="ttg-color--gray-dark">Address:</td>
+		                                                <td>Ut enim ad minim veniam, quis nostrud</td>
+		                                            </tr>
+		                                            <tr>
+		                                                <td class="ttg-color--gray-dark">Town/City:</td>
+		                                                <td>Eexercitation ullamco laboris nisi ut aliquip ex ea</td>
+		                                            </tr>
+		                                            <tr>
+		                                                <td class="ttg-color--gray-dark">State/Country:</td>
+		                                                <td>Commodo consequat. Duis aute irure dol</td>
+		                                            </tr>
+		                                            <tr>
+		                                                <td class="ttg-color--gray-dark">Postode/ZIP:</td>
+		                                                <td>88888</td>
+		                                            </tr>
+		                                        </table>
+		                                    </div>
+	                                    
+	                                    </ng-container>
+	                                    
 	                                </div>
 	                            </div>
 	                            <div [ngClass]="current === 'invoices' ? 'show-account-section' : ''">
@@ -190,140 +169,120 @@
 	                                    <div class="tt-tabs-my-account__table ttg-mb--30">
 	                                        <table class="table ttg-mb--30">
 	                                            <tr>
-	                                                <th>File</th>
-	                                                <th>Remaining</th>
-	                                                <th>Expires</th>
+	                                                <th>Bestand</th>
 	                                            </tr>
 	                                            <tr>
-	                                                <td><a href="#">Downloadeble Product - File</a></td>
-	                                                <td>15</td>
-	                                                <td>Never</td>
-	                                                <td class="text-right"><a href="#">Download</a></td>
-	                                            </tr>
-	                                            <tr>
-	                                                <td><a href="#">Downloadeble Product - File</a></td>
-	                                                <td>15</td>
-	                                                <td>November 25, 2016</td>
+	                                                <td><a>Factuur 123</a></td>
 	                                                <td class="text-right"><a href="#">Download</a></td>
 	                                            </tr>
 	                                        </table>
 	                                    </div>
 	                                </div>
 	                            </div>
-	                            <div>
-	                                <span>Addresses <i class="icon-down-open"></i></span>
+	                            <div [ngClass]="current === 'personal-information' ? 'show-account-section' : ''">
+	                                <span>NAW-Gegevens <i class="icon-down-open"></i></span>
 	                                <div class="tt-tabs__content">
-	                                    <p class="ttg-mb--30">The following addresses will be used on the checkout page by
-	                                        default.</p>
-	                                    <div class="tt-tabs-my-account__head-edit">
-	                                        <h4>Billing Address</h4>
-	                                        <a href="#"><i class="icon-pencil-circled"></i>Edit</a>
-	                                    </div>
-	                                    <div class="tt-tabs-my-account__table ttg-mb--10">
-	                                        <table class="table tt-tabs-my-account--table-sm">
-	                                            <tr>
-	                                                <td class="ttg-color--gray-dark">Country:</td>
-	                                                <td>Lorem ipsum dolor sit amet conse ctetur</td>
-	                                            </tr>
-	                                            <tr>
-	                                                <td class="ttg-color--gray-dark">Address:</td>
-	                                                <td>Ut enim ad minim veniam, quis nostrud</td>
-	                                            </tr>
-	                                            <tr>
-	                                                <td class="ttg-color--gray-dark">Town/City:</td>
-	                                                <td>Eexercitation ullamco laboris nisi ut aliquip ex ea</td>
-	                                            </tr>
-	                                            <tr>
-	                                                <td class="ttg-color--gray-dark">State/Country:</td>
-	                                                <td>Commodo consequat. Duis aute irure dol</td>
-	                                            </tr>
-	                                            <tr>
-	                                                <td class="ttg-color--gray-dark">Postode/ZIP:</td>
-	                                                <td>88888</td>
-	                                            </tr>
-	                                        </table>
-	                                    </div>
-	                                    <div class="tt-tabs-my-account__head-edit">
-	                                        <h4>Shipping Address</h4>
-	                                        <a href="#"><i class="icon-pencil-circled"></i>Edit</a>
-	                                    </div>
-	                                    <div class="tt-tabs-my-account__table ttg-mb--10">
-	                                        <table class="table tt-tabs-my-account--table-sm">
-	                                            <tr>
-	                                                <td class="ttg-color--gray-dark">Country:</td>
-	                                                <td>Lorem ipsum dolor sit amet conse ctetur</td>
-	                                            </tr>
-	                                            <tr>
-	                                                <td class="ttg-color--gray-dark">Address:</td>
-	                                                <td>Ut enim ad minim veniam, quis nostrud</td>
-	                                            </tr>
-	                                            <tr>
-	                                                <td class="ttg-color--gray-dark">Town/City:</td>
-	                                                <td>Eexercitation ullamco laboris nisi ut aliquip ex ea</td>
-	                                            </tr>
-	                                            <tr>
-	                                                <td class="ttg-color--gray-dark">State/Country:</td>
-	                                                <td>Commodo consequat. Duis aute irure dol</td>
-	                                            </tr>
-	                                            <tr>
-	                                                <td class="ttg-color--gray-dark">Postode/ZIP:</td>
-	                                                <td>88888</td>
-	                                            </tr>
-	                                        </table>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                            <div>
-	                                <span>Account Details <i class="icon-down-open"></i></span>
-	                                <div class="tt-tabs__content">
+	                                	<h4>NAW-Gegevens</h4>
 	                                    <form action="#">
 	                                        <div class="tt-form">
 	                                            <div class="tt-form__form">
-	                                                <label>
+	                                            	<label>
 	                                                    <div class="row">
-	                                                        <div class="col-md-3"><span
-	                                                                class="ttg__required">First Name:</span></div>
+	                                                        <div class="col-md-3"><span class="ttg__required">Global ID:</span></div>
 	                                                        <div class="col-md-9">
-	                                                            <input type="text" class="form-control colorize-theme6-bg"
-	                                                                   placeholder="Enter please your first name">
+	                                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" [(ngModel)]="user.global_id" name="globalId" disabled>
+	                                                        </div>
+	                                                    </div>
+	                                                </label>
+	                                            	<label>
+	                                                    <div class="row">
+	                                                        <div class="col-md-3"><span class="ttg__required">E-mailadres:</span></div>
+	                                                        <div class="col-md-9">
+	                                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" [(ngModel)]="user.username" name="username" disabled>
 	                                                        </div>
 	                                                    </div>
 	                                                </label>
 	                                                <label>
 	                                                    <div class="row">
-	                                                        <div class="col-md-3"><span
-	                                                                class="ttg__required">Last Name:</span></div>
+	                                                        <div class="col-md-3"><span class="ttg__required">Voornaam:</span></div>
 	                                                        <div class="col-md-9">
-	                                                            <input type="text" class="form-control colorize-theme6-bg"
-	                                                                   placeholder="Enter please your last name">
+	                                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" [(ngModel)]="user.first_name" name="first_name">
 	                                                        </div>
 	                                                    </div>
 	                                                </label>
 	                                                <label>
 	                                                    <div class="row">
-	                                                        <div class="col-md-3"><span class="ttg__required">Email:</span>
-	                                                        </div>
+	                                                        <div class="col-md-3"><span class="ttg__required">Achternaam:</span></div>
 	                                                        <div class="col-md-9">
-	                                                            <input type="text" class="form-control colorize-theme6-bg"
-	                                                                   placeholder="Enter please your name">
+	                                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" [(ngModel)]="user.last_name" name="last_name">
+	                                                        </div>
+	                                                    </div>
+	                                                </label>
+	                                                <label>
+	                                                    <div class="row">
+	                                                        <div class="col-md-3"><span class="ttg__required">Postcode:</span></div>
+	                                                        <div class="col-md-9">
+	                                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" [(ngModel)]="user.postal_code" name="postal_code">
+	                                                        </div>
+	                                                    </div>
+	                                                </label>
+	                                                <label>
+	                                                    <div class="row">
+	                                                        <div class="col-md-3"><span class="ttg__required">Huisnummer:</span></div>
+	                                                        <div class="col-md-9">
+	                                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" [(ngModel)]="user.house_number" name="house_number">
+	                                                        </div>
+	                                                    </div>
+	                                                </label>
+	                                                <label>
+	                                                    <div class="row">
+	                                                        <div class="col-md-3"><span class="">Huisnummertoevoeging:</span></div>
+	                                                        <div class="col-md-9">
+	                                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" [(ngModel)]="user.house_number_extension" name="house_number_extension">
+	                                                        </div>
+	                                                    </div>
+	                                                </label>
+	                                                <label>
+	                                                    <div class="row">
+	                                                        <div class="col-md-3"><span class="ttg__required">Straat:</span></div>
+	                                                        <div class="col-md-9">
+	                                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" [(ngModel)]="user.street" name="street">
+	                                                        </div>
+	                                                    </div>
+	                                                </label>
+	                                                <label>
+	                                                    <div class="row">
+	                                                        <div class="col-md-3"><span class="ttg__required">Woonplaats:</span></div>
+	                                                        <div class="col-md-9">
+	                                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" [(ngModel)]="user.city" name="city">
+	                                                        </div>
+	                                                    </div>
+	                                                </label>
+	                                                <label>
+	                                                    <div class="row">
+	                                                        <div class="col-md-3"><span class="ttg__required">Land:</span></div>
+	                                                        <div class="col-md-9">
+	                                                            <div class="tt-select">
+						                                            <select class="form-control" [(ngModel)]="user.country" name="country">
+						                                                <option value="NL">Nederland</option>
+						                                                <option value="BE">België</option>
+						                                            </select>
+						                                        </div>
 	                                                        </div>
 	                                                    </div>
 	                                                </label>
 	                                            </div>
 	                                        </div>
 	                                        <div class="tt-tabs-my-account__form ttg-mt--40">
-	                                            <div class="tt-tabs-my-account__form_title">Password Change</div>
-	                                            <p>Current password (leave blank to leave unchanged)</p>
-	                                            <input type="text" class="form-control"
-	                                                   placeholder="Enter please your name">
-	                                            <p>Current password (leave blank to leave unchanged)</p>
-	                                            <input type="text" class="form-control"
-	                                                   placeholder="Enter please your name">
-	                                            <p>Current password (leave blank to leave unchanged)</p>
-	                                            <input type="text" class="form-control"
-	                                                   placeholder="Enter please your name">
+	                                            <div class="tt-tabs-my-account__form_title">Wachtwoord veranderen</div>
+	                                            <p>Huidige wachtwoord (laat leeg om onveranderd te laten)</p>
+	                                            <input type="password" class="form-control" placeholder="">
+	                                            <p>Nieuw wachtwoord (laat leeg om onveranderd te laten)</p>
+	                                            <input type="password" class="form-control" placeholder="">
+	                                            <p>Nieuw wachtwoord nogmaals (laat leeg om onveranderd te laten)</p>
+	                                            <input type="password" class="form-control" placeholder="">
 	                                        </div>
-	                                        <button class="btn ttg-mt--40">Save Changes</button>
+	                                        <button class="btn ttg-mt--40">Opslaan</button>
 	                                    </form>
 	                                </div>
 	                            </div>

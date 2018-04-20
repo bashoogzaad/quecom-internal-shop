@@ -82,16 +82,16 @@
 	                    <div class="tt-shp-info tt-shp-info__design-02 tt-shp-info__align--left">
 	                        <div class="row ttg-grid-padding--none ttg-grid-border ttg-grid-border-c--white">
 	                            <div class="col-lg-4">
-	                                <a href="#" class="tt-shp-info__section tt-shp-info__align--left ">
+	                                <a class="tt-shp-info__section tt-shp-info__align--left ">
 	                                    <i class="icon-box"></i>
 	                                    <div>
-	                                        <div class="tt-shp-info__strong">Free Shipping & Return</div>
-	                                        <p>Free shipping on all orders over $99.</p>
+	                                        <div class="tt-shp-info__strong">Snelle levering</div>
+	                                        <p>Voor 22:00 uur besteld, morgen in huis.</p>
 	                                    </div>
 	                                </a>
 	                            </div>
 	                            <div class="col-lg-4">
-	                                <a href="#" class="tt-shp-info__section tt-shp-info__align--left ">
+	                                <a class="tt-shp-info__section tt-shp-info__align--left ">
 	                                    <i class="icon-thumbs-up-1"></i>
 	                                    <div>
 	                                        <div class="tt-shp-info__strong">Money Back Guarantee</div>
@@ -100,7 +100,7 @@
 	                                </a>
 	                            </div>
 	                            <div class="col-lg-4">
-	                                <a href="#" class="tt-shp-info__section tt-shp-info__align--left ">
+	                                <a class="tt-shp-info__section tt-shp-info__align--left ">
 	                                    <i class="icon-phone"></i>
 	                                    <div>
 	                                        <div class="tt-shp-info__strong">Online Support</div>
@@ -119,7 +119,7 @@
 	                        <div class="col-md-4 col-lg-4" *ngFor="let category of categories">
 	                            <a class="tt-promobox tt-promobox__size-square ttg-text-animation-parent ttg-image-translate--right ttg-animation-disable--md tt-promobox__hover-disable--md">
 	                                <div class="tt-promobox__content">
-	                                    <img src="assets/templates/mogo/images/promoboxes/promobox-05.jpg" alt="Image name">
+	                                    <img src="assets/templates/mogo/images/promoboxes/{{ category.name }}.jpg" alt="">
 	                                    <div class="tt-promobox__text"
 	                                         data-resp-md="md"
 	                                         data-resp-sm="md"

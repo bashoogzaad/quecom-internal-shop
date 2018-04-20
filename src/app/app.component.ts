@@ -12,7 +12,7 @@ import { PimcoreProvider } from "./providers/pimcore.provider";
 export class AppComponent implements OnInit {
     
     public loading = true;
-    title = 'Gezamenlijk Voordeel';
+    public title = 'Gezamenlijk Voordeel';
     
     constructor(
         private router: Router,

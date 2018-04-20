@@ -271,195 +271,238 @@
 	                            			<li>Het factuuradres is hetzelfde adres als je hebt opgegeven bij de registratie. Je kunt deze aanpassen in je profiel.</li>
 	                            			<li>
 				                                <label class="tt-checkbox-circle">
-				                                    <input type="checkbox" (change)="toggleBillingToShipment()" checked>
+				                                	<input type="radio" name="shippingMethodGroup" value="same-as-invoice" [(ngModel)]="selected.shippingMethod" (ngModelChange)="toggleBillingToShipment()">
 				                                    <span></span>
 				                                </label>
 				                                Verzendadres is hetzelfde als factuuradres
 			                                </li>
+			                                <li *ngIf="user.country == 'BE'">
+			                                	<label class="tt-checkbox-circle">
+		                                            <input type="radio" name="shippingMethodGroup" value="central-office" [(ngModel)]="selected.shippingMethod" (ngModelChange)="toggleBillingToShipment()">
+		                                            <span></span>
+		                                        </label>
+		                                        Verzenden naar kantoor (een keer per week)
+			                                </li>
+			                                <li>
+			                                	<label class="tt-checkbox-circle">
+		                                            <input type="radio" name="shippingMethodGroup" value="custom-address" [(ngModel)]="selected.shippingMethod" (ngModelChange)="toggleBillingToShipment()">
+		                                            <span></span>
+		                                        </label>
+		                                        Verzenden naar een ander adres
+			                                </li>
+			                                <li>
+			                                	<label class="tt-checkbox-circle">
+		                                            <input type="radio" name="shippingMethodGroup" value="pickup" [(ngModel)]="selected.shippingMethod" (ngModelChange)="toggleBillingToShipment()">
+		                                            <span></span>
+		                                        </label>
+		                                        Afhalen bij Amacom, The Amazing Company (De Tweeling 24A, 5215MC, 's-Hertogenbosch)
+			                                </li>
 		                                </ul>
 	                                </div>
-		                            <h4 class="ttg-mt--30 ttg-mb--20">Verzendadres</h4>
-		                            <div class="tt-checkout__form">
-		                                <div class="row">
-		                                    <div class="col-md-2"><p>Voornaam:</p></div>
-		                                    <div class="col-md-10">
-		                                        <div class="tt-input">
-		                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="firstNameSh" [(ngModel)]="customerData.firstName" (ngModelChange)="checkAddress()" [disabled]="billingToShipment" required>
-		                                        </div>
-		                                    </div>
-		                                    <div class="col-md-2"><p>Achternaam:</p></div>
-		                                    <div class="col-md-10">
-		                                        <div class="tt-input">
-		                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="lastNameSh" [(ngModel)]="customerData.lastName" (ngModelChange)="checkAddress()" [disabled]="billingToShipment" required>
-		                                        </div>
-		                                    </div>
-		                                    <div class="col-md-2"><p>Straat:</p></div>
-		                                    <div class="col-md-10">
-		                                        <div class="tt-input tt-input-valid--true">
-		                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="addressSh" [(ngModel)]="customerData.address" [disabled]="billingToShipment" (ngModelChange)="checkAddress()" required>
-		                                        </div>
-		                                    </div>
-		                                    <div class="col-md-2"><p>Huisnummer:</p></div>
-		                                    <div class="col-md-10">
-		                                        <div class="tt-input tt-input-valid--false">
-		                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="houseNumberSh" [(ngModel)]="customerData.houseNumber" (ngModelChange)="checkAddress()" [disabled]="billingToShipment" required>
-		                                        </div>
-		                                    </div>
-		                                    <div class="col-md-2"><p>Toevoeging:</p></div>
-		                                    <div class="col-md-10">
-		                                        <div class="tt-input">
-		                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="houseNumberExtensionSh" [(ngModel)]="customerData.houseNumberExtension" (ngModelChange)="checkAddress()" [disabled]="billingToShipment">
-		                                        </div>
-		                                    </div>
-		                                    <div class="col-md-2"><p>Postcode:</p></div>
-		                                    <div class="col-md-10">
-		                                        <div class="tt-input">
-		                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="postalCodeSh" [(ngModel)]="customerData.postalCode" (ngModelChange)="checkAddress()" [disabled]="billingToShipment" required>
-		                                        </div>
-		                                    </div>
-		                                    <div class="col-md-2"><p>Plaatsnaam:</p></div>
-		                                    <div class="col-md-10">
-		                                        <div class="tt-input">
-		                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="citySh" [(ngModel)]="customerData.city" (ngModelChange)="checkAddress()" [disabled]="billingToShipment" required>
-		                                        </div>
-		                                    </div>
-		                                    <div class="col-md-2"><p>Land:</p></div>
-		                                    <div class="col-md-10">
-		                                        <div class="tt-select">
-		                                            <select class="form-control" [(ngModel)]="customerData.country" (ngModelChange)="checkAddress()">
-		                                                <option value="NL">Nederland</option>
-		                                                <option value="BE">België</option>
-		                                            </select>
-		                                        </div>
-		                                    </div>
-		                                    <div class="col-md-2"><p>Telefoonnummer:</p></div>
-		                                    <div class="col-md-10">
-		                                        <div class="tt-input">
-		                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="phoneNumberSh" [(ngModel)]="customerData.phoneNumber" (ngModelChange)="checkAddress()" [disabled]="billingToShipment" required>
-		                                        </div>
-		                                    </div>
-		                                </div>
-		                            </div>
-		                            
-		                            <p *ngIf="errorMsg" class="ttg-mt--10 ttg-mb--10" style="color: white; background-color: indianred; padding: 10px;">
-		                            	<i class="icon-cancel" style="color: white; padding-right: 10px;"></i>
-		                            	{{ errorMsg }}
-		                            </p>
-		                            <p *ngIf="successMsg" class="ttg-mt--10 ttg-mb--10" style="color: white; background-color: #1cc373; padding: 10px;">
-		                            	<i class="icon-ok-2" style="color: white; padding-right: 10px;"></i>
-		                            	{{ successMsg }}
-		                            </p>
-		                            
-		                            <h4 class="tt-checkout--border ttg-mt--50 ttg-mb--20">Bezorgopties</h4>
-		                            
-		                            <div class="tt-checkout__payment">
-	                            		<ul>
-	                            			<li>Kies hieronder een van de bezorgopties van PostNL. Je kunt zowel kiezen voor thuis bezorging als voor ophalen bij een van de PostNL afhaalpunten.</li>
-		                                </ul>
-	                                </div>
-		                            
-		                            <div class="col-lg-12 col-md-12 col-sm-12 ttg-mt--20" style="background-color: #f5f5f5; padding-bottom: 25px;">
-		                            
-			                            <div class="col-lg-6 col-md-6 col-sm-6 tt-summary" style="padding-left: 25px !important; padding-right: 25px !important; margin-bottom: 0px !important;">
-											
-											<p class="shipment-title">BEZORGEN</p>
-											
-											<table class="col-lg-12 col-md-12 col-sm-12 table type1">
-												<thead>
-													<tr>
-														<th colspan="5">
-															{{ user.street }} {{ user.house_number }} {{ user.house_number_extension }} in {{ user.city }}
-														</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr *ngFor="let timeFrame of shippingTimeframes; let i=index">
-														<ng-template [ngIf]="i<limit1">
-															<td>
-																<div><b>{{ timeFrame.timeframe_start | date:'EEE' }}</b></div>
-																<div>{{ timeFrame.timeframe_start | date:'dd-MM' }}</div>
-															</td>
-															<td>
-																{{ timeFrame.timeframe_start | date:'HH:mm' }} - {{ timeFrame.timeframe_end | date:'HH:mm' }}
-															</td>
-															<td>
-																+ {{ timeFrame.cost | currency:'EUR':'true' }}
-															</td>
-															<td>
-																<label class="tt-checkbox-circle">
-								                                    <input type="radio" [attr.id]="timeFrame.timeframe_start" [value]="timeFrame" name="selectedShipment" [(ngModel)]="selectedShipment">
-								                                    <span style="background-color: white;"></span>
-								                                </label>
-															</td>
-														</ng-template>
-													</tr>
-												</tbody>
-											</table>
-											
-										</div>
+	                                
+	                                <ng-container *ngIf="selected.shippingMethod != 'pickup'">
+			                            <h4 class="ttg-mt--30 ttg-mb--20">Verzendadres</h4>
+			                            <div class="tt-checkout__form">
+			                                <div class="row">
+			                                    <div class="col-md-2"><p>Voornaam:</p></div>
+			                                    <div class="col-md-10">
+			                                        <div class="tt-input">
+			                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="firstNameSh" [(ngModel)]="customerData.firstName" (ngModelChange)="checkAddress()" [disabled]="billingToShipment" required>
+			                                        </div>
+			                                    </div>
+			                                    <div class="col-md-2"><p>Achternaam:</p></div>
+			                                    <div class="col-md-10">
+			                                        <div class="tt-input">
+			                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="lastNameSh" [(ngModel)]="customerData.lastName" (ngModelChange)="checkAddress()" [disabled]="billingToShipment" required>
+			                                        </div>
+			                                    </div>
+			                                    <div class="col-md-2"><p>Straat:</p></div>
+			                                    <div class="col-md-10">
+			                                        <div class="tt-input tt-input-valid--true">
+			                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="addressSh" [(ngModel)]="customerData.address" [disabled]="billingToShipment" (ngModelChange)="checkAddress()" required>
+			                                        </div>
+			                                    </div>
+			                                    <div class="col-md-2"><p>Huisnummer:</p></div>
+			                                    <div class="col-md-10">
+			                                        <div class="tt-input tt-input-valid--false">
+			                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="houseNumberSh" [(ngModel)]="customerData.houseNumber" (ngModelChange)="checkAddress()" [disabled]="billingToShipment" required>
+			                                        </div>
+			                                    </div>
+			                                    <div class="col-md-2"><p>Toevoeging:</p></div>
+			                                    <div class="col-md-10">
+			                                        <div class="tt-input">
+			                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="houseNumberExtensionSh" [(ngModel)]="customerData.houseNumberExtension" (ngModelChange)="checkAddress()" [disabled]="billingToShipment">
+			                                        </div>
+			                                    </div>
+			                                    <div class="col-md-2"><p>Postcode:</p></div>
+			                                    <div class="col-md-10">
+			                                        <div class="tt-input">
+			                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="postalCodeSh" [(ngModel)]="customerData.postalCode" (ngModelChange)="checkAddress()" [disabled]="billingToShipment" required>
+			                                        </div>
+			                                    </div>
+			                                    <div class="col-md-2"><p>Plaatsnaam:</p></div>
+			                                    <div class="col-md-10">
+			                                        <div class="tt-input">
+			                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="citySh" [(ngModel)]="customerData.city" (ngModelChange)="checkAddress()" [disabled]="billingToShipment" required>
+			                                        </div>
+			                                    </div>
+			                                    <div class="col-md-2"><p>Land:</p></div>
+			                                    <div class="col-md-10">
+			                                        <div class="tt-select">
+			                                            <select class="form-control" [(ngModel)]="customerData.country" (ngModelChange)="checkAddress()">
+			                                                <option value="NL">Nederland</option>
+			                                                <option value="BE">België</option>
+			                                            </select>
+			                                        </div>
+			                                    </div>
+			                                    <div class="col-md-2"><p>Telefoonnummer:</p></div>
+			                                    <div class="col-md-10">
+			                                        <div class="tt-input">
+			                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="phoneNumberSh" [(ngModel)]="customerData.phoneNumber" (ngModelChange)="checkAddress()" [disabled]="billingToShipment" required>
+			                                        </div>
+			                                    </div>
+			                                </div>
+			                            </div>
 			                            
-		                            	<div class="col-lg-6 col-md-6 col-sm-6 tt-summary" style="padding-left: 25px !important; padding-right: 25px !important; margin-bottom: 0px !important;">
-									
-											<p class="shipment-title">OF OPHALEN</p>
-											
-											<div *ngFor="let location of shippingLocations; let i=index">
-												
-												<ng-template [ngIf]="i<limit2">
+			                            <p *ngIf="errorMsg" class="ttg-mt--10 ttg-mb--10" style="color: white; background-color: indianred; padding: 10px;">
+			                            	<i class="icon-cancel" style="color: white; padding-right: 10px;"></i>
+			                            	{{ errorMsg }}
+			                            </p>
+			                            <p *ngIf="successMsg" class="ttg-mt--10 ttg-mb--10" style="color: white; background-color: #1cc373; padding: 10px;">
+			                            	<i class="icon-ok-2" style="color: white; padding-right: 10px;"></i>
+			                            	{{ successMsg }}
+			                            </p>
+		                            
+		                            </ng-container>
+		                            
+		                            <ng-container *ngIf="showDeliveryOptions()">
+		                            
+			                            <h4 class="tt-checkout--border ttg-mt--50 ttg-mb--20">Bezorgopties</h4>
+			                            
+			                            <div class="tt-checkout__payment">
+		                            		<ul>
+		                            			<li>Kies hieronder een van de bezorgopties van PostNL. Je kunt zowel kiezen voor thuis bezorging als voor ophalen bij een van de PostNL afhaalpunten.</li>
+			                                </ul>
+		                                </div>
+			                            
+			                            <div class="col-lg-12 col-md-12 col-sm-12 ttg-mt--20" style="background-color: #f5f5f5; padding-bottom: 25px;">
+			                            
+			                            	<div style="display: flex;">
+			                            
+					                            <div class="col-lg-6 col-md-6 col-sm-6 tt-summary" style="padding-left: 25px !important; padding-right: 25px !important; margin-bottom: 0px !important;">
+													
+													<p class="shipment-title">BEZORGEN</p>
+													
 													<table class="col-lg-12 col-md-12 col-sm-12 table type1">
 														<thead>
 															<tr>
 																<th colspan="5">
-																	{{ location.Name }} ({{ location.Distance/1000 | number:'1.2-2' }} km)
+																	{{ user.street }} {{ user.house_number }} {{ user.house_number_extension }} in {{ user.city }}
 																</th>
 															</tr>
 														</thead>
 														<tbody>
-														<tr>
-															<td colspan="4">
-																{{ location.Address.Street }} {{ location.Address.HouseNr }}<br />
-																{{ location.Address.Zipcode }} {{ location.Address.City }}<br />
-																Vanaf 16:00
-															</td>
-															<td>
-																<label class="tt-checkbox-circle">
-								                                    <input type="radio" [attr.id]="location" [value]="location" name="selectedShipment" [(ngModel)]="selectedShipment">
-								                                    <span style="background-color: white;"></span>
-								                                </label>
-															</td>
-														</tr>
+															<tr *ngFor="let timeFrame of shippingTimeframes; let i=index">
+																<ng-template [ngIf]="i<limit1">
+																	<td style="padding: 0.3em;">
+																		<div><b>{{ timeFrame.timeframe_start | date:'EEE' }}</b></div>
+																		<div>{{ timeFrame.timeframe_start | date:'dd-MM' }}</div>
+																	</td>
+																	<td style="padding: 0.3em; vertical-align: middle;">
+																		{{ timeFrame.timeframe_start | date:'HH:mm' }} - {{ timeFrame.timeframe_end | date:'HH:mm' }}
+																	</td>
+																	<td style="padding: 0.3em; vertical-align: middle;">
+																		+ {{ timeFrame.cost | currency:'EUR':'true' }}
+																	</td>
+																	<td>
+																		<label class="tt-checkbox-circle">
+										                                    <input type="radio" [attr.id]="timeFrame.timeframe_start" [value]="timeFrame" name="selectedShipment" [(ngModel)]="selectedShipment">
+										                                    <span style="background-color: white;"></span>
+										                                </label>
+																	</td>
+																</ng-template>
+															</tr>
 														</tbody>
 													</table>
-												</ng-template>
 													
+												</div>
+					                            
+				                            	<div class="col-lg-6 col-md-6 col-sm-6 tt-summary" style="padding-left: 25px !important; padding-right: 25px !important; margin-bottom: 0px !important;">
+											
+													<p class="shipment-title">OF OPHALEN</p>
+													
+													<div *ngFor="let location of shippingLocations; let i=index">
+														
+														<ng-template [ngIf]="i<limit2">
+															<table class="col-lg-12 col-md-12 col-sm-12 table type1">
+																<thead>
+																	<tr>
+																		<th colspan="5">
+																			{{ location.Name }} ({{ location.Distance/1000 | number:'1.2-2' }} km)
+																		</th>
+																	</tr>
+																</thead>
+																<tbody>
+																<tr>
+																	<td colspan="4">
+																		{{ location.Address.Street }} {{ location.Address.HouseNr }}<br />
+																		{{ location.Address.Zipcode }} {{ location.Address.City }}<br />
+																		Vanaf 16:00
+																	</td>
+																	<td>
+																		<label class="tt-checkbox-circle">
+										                                    <input type="radio" [attr.id]="location" [value]="location" name="selectedShipment" [(ngModel)]="selectedShipment">
+										                                    <span style="background-color: white;"></span>
+										                                </label>
+																	</td>
+																</tr>
+																</tbody>
+															</table>
+														</ng-template>
+															
+													</div>
+													
+												</div>
+											
 											</div>
 											
+											<div class="col-lg-12 col-md-12 col-sm-12" style="display: flex; justify-content: flex-end;">
+												<a class="btn btn-sm" (click)="loadMore()">Laad meer...</a>
+											</div>
+										
 										</div>
 										
-										<div class="col-lg-12 col-md-12 col-sm-12" style="display: flex; justify-content: flex-end;">
-											<a class="btn btn-sm" (click)="loadMore()">Laad meer...</a>
-										</div>
+									</ng-container>
 									
-									</div>
+									<ng-container *ngIf="!showDeliveryOptions()">
+										<h4 class="tt-checkout--border ttg-mt--50 ttg-mb--20">Bezorgopties</h4>
+			                            
+			                            <div class="tt-checkout__payment">
+		                            		<ul>
+		                            			<li>Deze levering wordt bezorgd met eigen vervoer van Amacom.</li>
+			                                </ul>
+		                                </div>
+									</ng-container>
 	                            
 	                            </ng-container>
 	                            <ng-container *ngIf="step === 2">
 	                            
 		                            <h4 class="ttg-mt--60 ttg-mb--30">Betaalmethoden</h4>
 		                            <p>
-		                            	Voor de betaling word je doorgestuurd naar de beveiligde betaalomgeving van Buckaroo. Je kunt hier betalen met iDeal (NL) of Bancontant (BE).
+		                            	Voor de betaling word je doorgestuurd naar de beveiligde betaalomgeving van Buckaroo. Je kunt hier betalen met iDeal (NL) of Bancontant (BE). De keuze voor de betaalmethode kun je maken als je wordt doorgestuurd naar de betaalpagina.
 		                            </p>
-		                            <div class="tt-checkout__payment">
-		                                <ul>
-		                                    <li *ngFor="let paymentMethod of paymentMethods">
-		                                        <label class="tt-checkbox-circle">
-		                                            <input type="radio" name="paymentMethodGroup" [value]="paymentMethod.id" [(ngModel)]="selected.paymentMethod">
-		                                            <span></span>
-		                                        </label>
-		                                        {{ paymentMethod.name }}
-		                                    </li>
-		                                </ul>
-		                            </div>
-		                            <ng-container *ngIf="!globals.hasCoupons">
+<!-- 		                            <div class="tt-checkout__payment"> -->
+<!-- 		                                <ul> -->
+<!-- 		                                    <li *ngFor="let paymentMethod of paymentMethods"> -->
+<!-- 		                                        <label class="tt-checkbox-circle"> -->
+<!-- 		                                            <input type="radio" name="paymentMethodGroup" [value]="paymentMethod.id" [(ngModel)]="selected.paymentMethod"> -->
+<!-- 		                                            <span></span> -->
+<!-- 		                                        </label> -->
+<!-- 		                                        {{ paymentMethod.name }} -->
+<!-- 		                                    </li> -->
+<!-- 		                                </ul> -->
+<!-- 		                            </div> -->
+		                            <ng-container *ngIf="globals.hasCoupons">
 			                            <h4 class="tt-checkout--border ttg-mb--20">Heb je een kortingscode?</h4>
 			                            <div class="tt-checkout__coupon">
 			                                <form action="#">
@@ -481,11 +524,11 @@
 	                            	<div class="tt-tabs-my-account__table ttg-mb--30">
                                         <table class="table tt-tabs-my-account--table-sm">
                                             <tbody>
-                                            	<tr>
+                                            	<tr *ngIf="selectedShipment">
 	                                                <td class="ttg-color--gray-dark">Bezorging:</td>
 	                                                <td>{{ shipper }}</td>
 	                                            </tr>
-	                                            <tr>
+	                                            <tr *ngIf="selectedShipment">
 	                                                <td class="ttg-color--gray-dark">Bezorgmoment:</td>
 	                                                <td *ngIf="selectedShipment.timeframe_start">
 	                                                	Bezorging op {{ selectedShipment.timeframe_start | date:'dd-MM' }} tussen {{ selectedShipment.timeframe_start | date:'HH:mm' }} en {{ selectedShipment.timeframe_end | date:'HH:mm' }}
@@ -496,7 +539,7 @@
 	                                            </tr>
 	                                            <tr>
 	                                                <td class="ttg-color--gray-dark">Betaalmethode:</td>
-	                                                <td>{{ selected.paymentMethod == 1 ? 'iDeal' : 'Bancontant' }}</td>
+	                                                <td>Kiezen in Buckaroo</td>
 	                                            </tr>
                                         	</tbody>
                                         </table>
@@ -547,7 +590,7 @@
 	                            
 	                            <div style="padding-top: 15px;">
 		                            <a href="javascript:void(0);" class="btn ttg-mt--20" (click)="stepper(-1)" *ngIf="step > 1">Vorige stap</a>
-		                            <a href="javascript:void(0);" class="btn ttg-mt--20" (click)="stepper(1)" *ngIf="step < 3" [class.disabled]="(step == 1 && (!successMsg || !selectedShipment)) || (step == 2 && !selected.paymentMethod)">Volgende stap</a>
+		                            <a href="javascript:void(0);" class="btn ttg-mt--20" (click)="stepper(1)" *ngIf="step < 3" [class.disabled]="(step == 1 && (!successMsg || (!selectedShipment && showDelivery)))">Volgende stap</a>
 		                            <a href="javascript:void(0);" (click)="placeOrder()" class="tt-checkout__btn-order btn ttg-mt--20 btn-type--icon colorize-btn6" *ngIf="step == 3 && getOrderSubtotal() <= budget"><i class="icon-check"></i><span>Bestelling plaatsen</span></a>
 	                            </div>
 	                            

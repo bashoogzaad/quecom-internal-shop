@@ -1,46 +1,143 @@
-<!-- SITE MAIN CONTENT -->
-<main class="main-content">
-	<div class="map">
-		<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9910.886073128719!2d5.475192!3d51.609991!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xcb90d2c9701314ae!2sGezamenlijk+Voordeel+B.V.!5e0!3m2!1snl!2snl!4v1509119961530" style="border:0" allowfullscreen></iframe>
-	</div>
-	<div class="container">
-		<h1 class="pageTitle">Neem contact op</h1>
-		<div  class="row">
-			<div class="col-md-9 form-col">
-				<p>Heb je een vraag over een van de producten in de personeelsshop? Of wil je meer weten over Gezamenlijk Voordeel? Vul dan het contactformulier in en wij nemen binnen 24 uur contact met je op. Je kunt ons ook direct bereiken op onderstaande contactgegevens. </p>
-				<div class="form-vertical">
-					<form (ngSubmit)="onSubmit()" #contactForm="ngForm" id="contact_form" class="contact-form" accept-charset="UTF-8">
-						<input type="hidden" value="contact" name="form_type" />
-						<input type="hidden" name="utf8" value="✓" />
-						<label for="ContactFormName" class="hidden-label">Naam</label>
-						<input type="text" id="ContactFormName" class="input" name="contact[name]" [(ngModel)]="data.name" placeholder="Naam"  value="" required>
-						<label for="ContactFormEmail" class="hidden-label">E-mail</label>
-						<input type="email" id="ContactFormEmail" class="input" name="contact[email]" [(ngModel)]="data.emailaddress" placeholder="E-mailadres" value="" required>
-						<label for="ContactFormPhone" class="hidden-label">Telefoonnummer</label>
-						<input type="tel" id="ContactFormPhone" class="input" name="contact[phone-number]" [(ngModel)]="data.phone_number" placeholder="Telefoonnummer" pattern="[0-9\-]*" value="">
-						<label for="ContactFormMessage" class="hidden-label">Bericht</label>
-						<textarea rows="10" id="ContactFormMessage" class="input-full" name="contact[body]" [(ngModel)]="data.message" placeholder="Bericht" required></textarea>
-						<label [hidden]="!messageSent">Bedankt voor je bericht! We nemen zo snel mogelijk contact met je op.</label>
-						<input [disabled]="!contactForm.form.valid" type="submit" class="btn right" value="Verstuur">
-					</form>
+<ng-container *ngIf="globals.theme == 'nexgeek'">
+
+	<!-- SITE MAIN CONTENT -->
+	<main class="main-content">
+		<div class="map">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9910.886073128719!2d5.475192!3d51.609991!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xcb90d2c9701314ae!2sGezamenlijk+Voordeel+B.V.!5e0!3m2!1snl!2snl!4v1509119961530" style="border:0" allowfullscreen></iframe>
+		</div>
+		<div class="container">
+			<h1 class="pageTitle">Neem contact op</h1>
+			<div  class="row">
+				<div class="col-md-9 form-col">
+					<p>Heb je een vraag over een van de producten in de personeelsshop? Of wil je meer weten over Gezamenlijk Voordeel? Vul dan het contactformulier in en wij nemen binnen 24 uur contact met je op. Je kunt ons ook direct bereiken op onderstaande contactgegevens. </p>
+					<div class="form-vertical">
+						<form (ngSubmit)="onSubmit()" #contactForm="ngForm" id="contact_form" class="contact-form" accept-charset="UTF-8">
+							<input type="hidden" value="contact" name="form_type" />
+							<input type="hidden" name="utf8" value="✓" />
+							<label for="ContactFormName" class="hidden-label">Naam</label>
+							<input type="text" id="ContactFormName" class="input" name="contact[name]" [(ngModel)]="data.name" placeholder="Naam"  value="" required>
+							<label for="ContactFormEmail" class="hidden-label">E-mail</label>
+							<input type="email" id="ContactFormEmail" class="input" name="contact[email]" [(ngModel)]="data.emailaddress" placeholder="E-mailadres" value="" required>
+							<label for="ContactFormPhone" class="hidden-label">Telefoonnummer</label>
+							<input type="tel" id="ContactFormPhone" class="input" name="contact[phone-number]" [(ngModel)]="data.phone_number" placeholder="Telefoonnummer" pattern="[0-9\-]*" value="">
+							<label for="ContactFormMessage" class="hidden-label">Bericht</label>
+							<textarea rows="10" id="ContactFormMessage" class="input-full" name="contact[body]" [(ngModel)]="data.message" placeholder="Bericht" required></textarea>
+							<label [hidden]="!messageSent">Bedankt voor je bericht! We nemen zo snel mogelijk contact met je op.</label>
+							<input [disabled]="!contactForm.form.valid" type="submit" class="btn right" value="Verstuur">
+						</form>
+					</div>
 				</div>
-			</div>
-			<div class="col-md-3 ">
-				<div class="detail-col">
-					<h4>WIJ HELPEN GRAAG!</h4>
-					<p class="line"></p>
-					<p>U vindt onze contactgegevens hieronder.</p>
-					<p><strong>Gezamenlijk Voordeel B.V.</strong> <br>
-						Lorentzweg 1<br>
-						5482 TP Schijndel<br>
-						Nederland</p>
-					<p>
-						<strong>Email:</strong> <a href="mailto:info@gezamenlijkvoordeel.nl">info@gezamenlijkvoordeel.nl</a>
-					</p>
-					<p class="open-hours"><strong>Openingstijden:</strong><br>
-						Werkdagen: 09:00 - 17:00
+				<div class="col-md-3 ">
+					<div class="detail-col">
+						<h4>WIJ HELPEN GRAAG!</h4>
+						<p class="line"></p>
+						<p>U vindt onze contactgegevens hieronder.</p>
+						<p><strong>Gezamenlijk Voordeel B.V.</strong> <br>
+							Lorentzweg 1<br>
+							5482 TP Schijndel<br>
+							Nederland</p>
+						<p>
+							<strong>Email:</strong> <a href="mailto:info@gezamenlijkvoordeel.nl">info@gezamenlijkvoordeel.nl</a>
+						</p>
+						<p class="open-hours"><strong>Openingstijden:</strong><br>
+							Werkdagen: 09:00 - 17:00
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</main>
+	</main>
+
+</ng-container>
+
+<ng-container *ngIf="globals.theme == 'mogo'">
+	
+	<!-- MAIN -->
+	<main>
+	
+	    <div class="tt-layout tt-sticky-block__parent tt-layout__fullwidth">
+	        <div class="tt-layout__content">
+	            <div class="container">
+	
+	                <div class="tt-page__name text-center">
+	                    <h1>Neem contact op</h1>
+	                    <p>Heb je een vraag over een van de producten in de personeelsshop? Of wil je meer weten over Gezamenlijk Voordeel? Vul dan het contactformulier in en wij nemen binnen 24 uur contact met je op. Je kunt ons ook direct bereiken op onderstaande contactgegevens. </p>
+	                </div>
+	
+	                <div class="tt-contacts">
+	                    <div class="tt-contacts__adress">
+	                        <div class="row ttg-grid-padding--none">
+	                            <div class="col-md-6">
+	                                <div class="tt-contacts__map">
+	                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9910.886073128719!2d5.475192!3d51.609991!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xcb90d2c9701314ae!2sGezamenlijk+Voordeel+B.V.!5e0!3m2!1snl!2snl!4v1509119961530"
+	                                            frameborder="0" style="border:0" allowfullscreen></iframe>
+	                                </div>
+	                            </div>
+	                            <div class="col-md-6">
+	                                <div class="tt-contacts__info">
+	                                    <div class="tt-contacts__info_text text-center">
+	                                    	<p><b>Gezamenlijk Voordeel B.V.</b></p>
+	                                        <p>Adres: Lorentzweg 1</p>
+	                                        <p>Postcode & Plaats: 5482 TP Schijndel</p>
+	                                        <p>Openingstijden : werkdagen: 09:00 - 17:00</p>
+	                                        <p>E-mail: <a href="mailto:info@gezamenlijkvoordeel.nl">info@gezamenlijkvoordeel.nl</a></p>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="container">
+	                        <div class="tt-page__cont-small">
+	                            <div class="tt-contacts__form tt-form">
+	                                <div class="tt-contacts__form_title tt-form__title tt-form__title--lg text-center">Get
+	                                    in Touch
+	                                </div>
+	                                <p class="ttg__required text-center">Your email address will not be published. Required
+	                                    fields are marked</p>
+	                                <div class="tt-contacts__form_inputs tt-form__form">
+	                                    <label>
+	                                        <div class="row">
+	                                            <div class="col-md-2">
+	                                                <span class="ttg__required">Name:</span>
+	                                            </div>
+	                                            <div class="col-md-10">
+	                                                <input type="text" class="form-control colorize-theme6-bg" placeholder="Enter your name" required="required">
+	                                            </div>
+	                                        </div>
+	                                    </label>
+	                                    <label>
+	                                        <div class="row">
+	                                            <div class="col-md-2">
+	                                                <span class="ttg__required">E-mail:</span>
+	                                            </div>
+	                                            <div class="col-md-10">
+	                                                <input type="text" class="form-control colorize-theme6-bg" placeholder="John.smith@example.com" required="required">
+	                                            </div>
+	                                        </div>
+	                                    </label>
+	                                    <label>
+	                                        <div class="row">
+	                                            <div class="col-md-2">
+	                                                <span class="ttg__required">Message:</span>
+	                                            </div>
+	                                            <div class="col-md-10">
+	                                                <textarea class="form-control colorize-theme6-bg">Wtite your message here</textarea>
+	                                            </div>
+	                                        </div>
+	                                    </label>
+	                                    <div class="row">
+	                                        <div class="offset-md-2 col-md-10 text-center">
+	                                            <button class="btn btn--xs-flw">Submit</button>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	
+	</main>
+
+</ng-container>

@@ -22,14 +22,19 @@
 	                    <div class="tt-login__title">
 	                        <p>Account informatie</p>
 	                    </div>
-	                    <form action="#">
-	                        <div class="tt-form">
-	                            <div class="tt-form__form">
-	                            	   <label>
+	                    <form #userForm="ngForm" style="box-sizing: border-box !important;">
+	                        <div class="tt-contacts__form tt-form">
+	                            <div class="tt-contacts__form_inputs tt-form__form">
+	                            	<label>
 	                                    <div class="row">
-	                                        <div class="col-md-3"><span class="ttg__required">Global ID:</span></div>
+	                                        <div class="col-md-3"><span class="ttg__required">Organisatie:</span></div>
 	                                        <div class="col-md-9">
-	                                            <input type="text" class="form-control" [(ngModel)]="user.global_id" name="global_id" placeholder="Global ID...">
+	                                        	<div class="tt-select">
+		                                            <select class="form-control colorize-theme6-bg" [(ngModel)]="user.organization" name="organization">
+		                                            	<option value="" disabled="true" [selected]="!user.organization">Selecteer een organisatie...</option>
+		                                                <option *ngFor="let org of organizations" [value]="org.name">{{ org.name }}</option>
+		                                            </select>
+		                                        </div>
 	                                        </div>
 	                                    </div>
 	                                </label>
@@ -37,7 +42,7 @@
 	                                    <div class="row">
 	                                        <div class="col-md-3"><span class="ttg__required">E-mailadres:</span></div>
 	                                        <div class="col-md-9">
-	                                            <input type="text" class="form-control" [(ngModel)]="user.username" name="username" placeholder="E-mailadres...">
+	                                            <input type="text" class="form-control colorize-theme6-bg" [(ngModel)]="user.username" name="username" placeholder="">
 	                                        </div>
 	                                    </div>
 	                                </label>
@@ -45,7 +50,7 @@
 	                                    <div class="row">
 	                                        <div class="col-md-3"><span class="ttg__required">Wachtwoord:</span></div>
 	                                        <div class="col-md-9">
-	                                            <input type="password" class="form-control" [(ngModel)]="user.password" name="password" placeholder="Wachtwoord...">
+	                                            <input type="password" class="form-control colorize-theme6-bg" [(ngModel)]="user.password" name="password" placeholder="">
 	                                        </div>
 	                                    </div>
 	                                </label>
@@ -53,18 +58,43 @@
 	                                    <div class="row">
 	                                        <div class="col-md-3"><span class="ttg__required">Wachtwoord nogmaals:</span></div>
 	                                        <div class="col-md-9">
-	                                            <input type="password" class="form-control" placeholder="Wachtwoord nogmaals...">
+	                                            <input type="password" class="form-control colorize-theme6-bg" [(ngModel)]="user.password2" name="password2" placeholder="">
 	                                        </div>
 	                                    </div>
 	                                </label>
+	                                <p *ngIf="user.password && user.password2 && user.password !== user.password2" class="ttg-mt--30 ttg-mb--30" style="color: white; background-color: indianred; padding: 10px;">
+		                            	<i class="icon-cancel" style="color: white; padding-right: 10px;"></i>
+		                            	De ingevulde wachtwoorden komen niet overeen.
+		                            </p>
+		                            
+		                            <p *ngIf="user.password && user.password2 && user.password == user.password2" class="ttg-mt--30 ttg-mb--30" style="color: white; background-color: #1cc373; padding: 10px;">
+                            			<i class="icon-ok-2" style="color: white; padding-right: 10px;"></i>
+		                            	De ingevulde wachtwoorden komen overeen.
+		                            </p>
+			                                
 	                                <div class="tt-login__title">
-	                        		       <p>Persoonlijke informatie</p>
-	                    			   </div>
+	                        			<p>Persoonlijke informatie</p>
+	                    			</div>
+	                    			<label>
+	                                    <div class="row">
+	                                        <div class="col-md-3"><span class="ttg__required">Geslacht:</span></div>
+	                                        <div class="col-md-9">
+	                                        	<div class="tt-select">
+		                                            <select class="form-control colorize-theme6-bg" [(ngModel)]="user.gender" name="gender">
+		                                            	<option value="" disabled="true" [selected]="!user.gender">Selecteer een geslacht...</option>
+		                                                <option value="male">Man</option>
+		                                                <option value="female">Vrouw</option>
+		                                                <option value="unknown">Overig</option>
+		                                            </select>
+		                                        </div>
+	                                        </div>
+	                                    </div>
+	                                </label>
 		                            <label>
 	                                    <div class="row">
 	                                        <div class="col-md-3"><span class="ttg__required">Voornaam:</span></div>
 	                                        <div class="col-md-9">
-	                                            <input type="text" class="form-control" [(ngModel)]="user.first_name" name="first_name" placeholder="Voornaam...">
+	                                            <input type="text" class="form-control colorize-theme6-bg" [(ngModel)]="user.first_name" name="first_name" placeholder="">
 	                                        </div>
 	                                    </div>
 	                                </label>
@@ -72,47 +102,7 @@
 	                                    <div class="row">
 	                                        <div class="col-md-3"><span class="ttg__required">Achternaam:</span></div>
 	                                        <div class="col-md-9">
-	                                            <input type="text" class="form-control" [(ngModel)]="user.last_name" name="last_name" placeholder="Achternaam...">
-	                                        </div>
-	                                    </div>
-	                                </label>
-	                                <label>
-	                                    <div class="row">
-	                                        <div class="col-md-3"><span class="ttg__required">Postcode:</span></div>
-	                                        <div class="col-md-9">
-	                                            <input type="text" class="form-control" [(ngModel)]="user.postal_code" name="postal_code" placeholder="Postcode...">
-	                                        </div>
-	                                    </div>
-	                                </label>
-	                                <label>
-	                                    <div class="row">
-	                                        <div class="col-md-3"><span class="ttg__required">Huisnummer:</span></div>
-	                                        <div class="col-md-9">
-	                                            <input type="text" class="form-control" [(ngModel)]="user.house_number" name="house_number" placeholder="Huisnummer...">
-	                                        </div>
-	                                    </div>
-	                                </label>
-	                                <label>
-	                                    <div class="row">
-	                                        <div class="col-md-3"><span class="">Huisnummer toevoeging:</span></div>
-	                                        <div class="col-md-9">
-	                                            <input type="text" class="form-control" [(ngModel)]="user.house_number_extension" name="house_number_extension" placeholder="Huisnummer toevoeging...">
-	                                        </div>
-	                                    </div>
-	                                </label>
-	                                <label>
-	                                    <div class="row">
-	                                        <div class="col-md-3"><span class="ttg__required">Straat:</span></div>
-	                                        <div class="col-md-9">
-	                                            <input type="text" class="form-control" [(ngModel)]="user.street" name="street" placeholder="Automatisch...">
-	                                        </div>
-	                                    </div>
-	                                </label>
-	                                <label>
-	                                    <div class="row">
-	                                        <div class="col-md-3"><span class="ttg__required">Woonplaats:</span></div>
-	                                        <div class="col-md-9">
-	                                            <input type="text" class="form-control" [(ngModel)]="user.city" name="city" placeholder="Automatisch...">
+	                                            <input type="text" class="form-control colorize-theme6-bg" [(ngModel)]="user.last_name" name="last_name" placeholder="">
 	                                        </div>
 	                                    </div>
 	                                </label>
@@ -120,15 +110,75 @@
 	                                    <div class="row">
 	                                        <div class="col-md-3"><span class="ttg__required">Land:</span></div>
 	                                        <div class="col-md-9">
-	                                            <input type="text" class="form-control" [(ngModel)]="user.country" name="country" placeholder="Automatisch...">
+	                                        	<div class="tt-select">
+		                                            <select class="form-control colorize-theme6-bg" [(ngModel)]="user.country" name="country">
+		                                            	<option value="" disabled="true" [selected]="!user.country">Selecteer een land...</option>
+		                                                <option value="NL">Nederland</option>
+		                                                <option value="BE">België</option>
+		                                            </select>
+		                                        </div>
+	                                        </div>
+	                                    </div>
+	                                </label>
+	                                <label>
+	                                    <div class="row">
+	                                        <div class="col-md-3"><span class="ttg__required">Postcode:</span></div>
+	                                        <div class="col-md-9">
+	                                            <input type="text" class="form-control colorize-theme6-bg" [(ngModel)]="user.postal_code" [formControl]="postalCodeControl" name="postal_code" placeholder="">
+	                                        </div>
+	                                    </div>
+	                                </label>
+	                                <label>
+	                                    <div class="row">
+	                                        <div class="col-md-3"><span class="ttg__required">Huisnummer:</span></div>
+	                                        <div class="col-md-9">
+	                                            <input type="text" class="form-control colorize-theme6-bg" [(ngModel)]="user.house_number" [formControl]="houseNumberControl" name="house_number" placeholder="">
+	                                        </div>
+	                                    </div>
+	                                </label>
+	                                <label>
+	                                    <div class="row">
+	                                        <div class="col-md-3"><span class="">Huisnummer toevoeging:</span></div>
+	                                        <div class="col-md-9">
+	                                            <input type="text" class="form-control colorize-theme6-bg" [(ngModel)]="user.house_number_extension" [formControl]="houseNumberExtControl" name="house_number_extension" placeholder="">
+	                                        </div>
+	                                    </div>
+	                                </label>
+	                                <label>
+	                                    <div class="row">
+	                                        <div class="col-md-3"><span class="ttg__required">Straat:</span></div>
+	                                        <div class="col-md-9">
+	                                            <input type="text" class="form-control colorize-theme6-bg" [(ngModel)]="user.street" name="street" [placeholder]="user.country == 'NL' ? 'Automatisch...' : ''">
+	                                        </div>
+	                                    </div>
+	                                </label>
+	                                <label>
+	                                    <div class="row">
+	                                        <div class="col-md-3"><span class="ttg__required">Woonplaats:</span></div>
+	                                        <div class="col-md-9">
+	                                            <input type="text" class="form-control colorize-theme6-bg" [(ngModel)]="user.city" name="city" [placeholder]="user.country == 'NL' ? 'Automatisch...' : ''">
 	                                        </div>
 	                                    </div>
 	                                </label>
                                 </div>
 	                        </div>
+	                        
+                        	<p *ngIf="errorMsg" class="ttg-mt--30 ttg-mb--30" style="color: white; background-color: indianred; padding: 10px;">
+                            	<i class="icon-cancel" style="color: white; padding-right: 10px;"></i>
+                            	{{ errorMsg }}
+                            </p>
+                            <p *ngIf="successMsg" class="ttg-mt--30 ttg-mb--30" style="color: white; background-color: #1cc373; padding: 10px;">
+                            	<i class="icon-ok-2" style="color: white; padding-right: 10px;"></i>
+                            	{{ successMsg }}
+                            </p>
+	                        
 	                        <div class="row">
-	                            <div class="col-md-9 offset-md-3 ttg-mt--40">
-	                                <button type="submit" class="btn" (click)="doRegister()" [promiseBtn]="registerPromise">Registreren</button>
+	                            <div class="col-md-3 ttg-mt--40">
+	                                <button type="submit" class="btn" [disabled]="!checkFields()" (click)="doRegister()" [promiseBtn]="registerPromise">Registreren</button>
+	                            </div>
+	                            <div *ngIf="mainErrorMsg" class="col-md-7 ttg-mt--40" style="color: indianred; border: 2px solid indianred; display: flex; align-items: center; justify-content: flex-start;">
+	                            	<i class="icon-cancel" style="color: indianred; padding-right: 10px;"></i>
+	                            	{{ mainErrorMsg }}
 	                            </div>
 	                        </div>
 	                    </form>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Http, RequestOptions, Headers } from "@angular/http";
+import { Globals } from "../providers/globals";
 
 @Component({
   selector: 'app-contact',
@@ -12,7 +13,8 @@ export class ContactComponent implements OnInit {
     public messageSent: boolean = false;
     
     constructor(
-        public http: Http
+        public http: Http,
+        public globals: Globals
     ) {
         
     }

@@ -1028,7 +1028,7 @@ select.form-control {
     font-size: 18px; }
   .tt-logo img {
     max-width: 100%;
-    width: 132px;
+    width: 225px;
     height: auto; }
   @media only screen and (min-width: 1025px) {
     .tt-logo__curtain {
@@ -3499,6 +3499,12 @@ from .product__hover
   @media only screen and (min-width: 1025px) {
     .tt-product-head__sticky {
       width: 50%; } }
+    @media only screen and (min-width: 1025px) {
+    .tt-product-head__sticky-left {
+      width: 70%; } }
+     @media only screen and (min-width: 1025px) {
+    .tt-product-head__sticky-right {
+      width: 30%; } }
   .tt-product-head__images {
     visibility: hidden; }
     .tt-product-head__images--loaded {
@@ -7654,7 +7660,6 @@ from .product__hover
         min-height: 80px; } }
     .tt-header__logo > .tt-logo {
       margin: 0;
-      margin-top: 8px;
       line-height: 1;
       font-size: 16px;
       font-weight: 700; }
@@ -11150,7 +11155,7 @@ blockquote {
 #theme .tt-promobox__hover-bg {
   background-color: #ffffff; }
 #theme .tt-promobox__hover--up .tt-promobox__hover-bg {
-  background-color: var(--color-primary-var); }
+  background-color: #333333; }
 #theme .tt-promobox__mask {
   background-color: var(--color-primary-var); }
 #theme .tt-promobox__quantity {

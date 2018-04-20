@@ -13,6 +13,7 @@
 					<div class="products" *ngIf="products.length > 0">
 						<div class="products-grid">
 							<div class="grid_item col-xs-12 col-sm-6 col-md-4 col-lg-3 spacer" *ngFor="let product of products">
+							
 								<div class="product_image border_bottom">
 									<a [routerLink]="['/product', product.id]" class="force-image"> 
 										<img class="specific-image" [lazyLoad]="getImageUrl(product)" [defaultImage]="defaultImage" alt=""> 
@@ -40,6 +41,7 @@
 										</span>
 									</p>
 								</div>
+								
 							</div>
 						</div>
 					</div>
@@ -208,9 +210,8 @@
 	            <div class="container">
 	                <div class="tt-listing-page">
 	                
-	                    <a href="index.html?page=listing-with-custom-html-block.html"
-	                       class="tt-listing-page__promobox ttg-image-scale">
-	                        <img src="assets/templates/mogo/images/listing/category-04.jpg" alt="Image name">
+	                    <a href="index.html?page=listing-with-custom-html-block.html" class="tt-listing-page__promobox ttg-image-scale listing-img">
+	                        <img src="assets/templates/mogo/images/listing/{{ typeObject.main_name }}.jpg" alt="">
 	                        <div class="tt-listing-page__promobox-text tt-listing-page__promobox-design-white">
 	                            <div>{{ typeObject.name }}</div>
 	                            <p>{{ typeObject.description }}</p>
@@ -272,47 +273,47 @@
 	                        <div class="tt-product-view row">
 	                        
 	                            <div class="col-sm-6 col-xxl-4" *ngFor="let product of products">
-	                                <div class="tt-product tt-product__view-overlay ttg-text-animation-parent">
-	                                    <div class="tt-product__image">
-	                                        <a href="product-simple-variant-1.html">
-	                                            <img [lazyLoad]="getImageUrl(product)" [defaultImage]="defaultImage"
-	                                                 alt="Elegant and fresh. A most attractive mobile power supply.">
+	                            
+	                            	<div class="tt-product tt-product__view-sheet">
+		                                <div class="tt-product__image">
+	                                        <a href="javascript.void(0)" [routerLink]="['/product', product.id]">
+	                                            <img [lazyLoad]="getImageUrl(product)" [defaultImage]="defaultImage" alt="">
 	                                        </a>
 	                                    </div>
-	                                    <div class="tt-product__hover tt-product__clr-clk-transp" href="javascript.void(0)" [routerLink]="['/product', product.id]">
-	                                        <div class="tt-product__content">
-	                                            <h3>
-	                                            <span class="ttg-text-animation--emersion">
-	                                                <a>{{ product.title }}</a>
-	                                            </span>
-	                                            </h3>
-	                                            <p>
-	                                            <span class="ttg-text-animation--emersion">
-	                                                <a>{{ product.description_short }}</a>
-	                                            </span>
-	                                            </p>
-	                                            <div class="ttg-text-animation--emersion">
+		                                <div class="tt-product__hover tt-product__clr-clk-transp">
+		                                    <div class="tt-product__content ps ps--theme_default" data-ps-id="00975382-1327-ec44-c429-f9584e03808c">
+		                                        <h3>
+		                                            <span class="ttg-text-animation--emersion">
+		                                                <a href="javascript.void(0)" [routerLink]="['/product', product.id]">{{ product.category_name }} - {{ product.group_detail_name_singular }}</a>
+		                                            </span>
+		                                        </h3>
+		                                        <p>
+		                                            <span class="ttg-text-animation--emersion">
+		                                                <a href="javascript.void(0)" [routerLink]="['/product', product.id]">{{ product.description_short_api }}</a>
+		                                            </span>
+		                                        </p>
+		                                        <div class="ttg-text-animation--emersion">
 		                                            <span class="tt-product__price">
 		                                                <span class="tt-price">
 		                                                    <span>{{ product.price_total_netto*1.21 | currency:'EUR':'true' }}</span>
 		                                                </span>
 		                                            </span>
-	                                            </div>
-	
-	                                            <div class="ttg-text-animation--emersion">
-	                                                <div class="tt-product__buttons">
-	                                                    <a class="tt-btn colorize-btn5 tt-product__buttons_cart tt-btn__state--active">
-	                                                        <i class="icon-shop24"></i>
-	                                                        <span>Voeg toe aan winkelwagen</span>
-	                                                    </a>
-	                                                    <a href="javascript.void(0)" [routerLink]="['/product', product.id]" class="tt-btn colorize-btn4 tt-product__buttons_qv">
-	                                                        <i class="icon-eye"></i>
-	                                                    </a>
-	                                                </div>
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                </div>
+		                                        </div>
+		                                        <div class="ttg-text-animation--emersion">
+		                                            <div class="tt-product__buttons">
+		                                                <a href="#" class="tt-btn colorize-btn5 tt-product__buttons_cart">
+		                                                    <i class="icon-shop24"></i>
+		                                                    <span>Add to Cart</span>
+		                                                </a>
+		                                                <a href="javascript.void(0)" [routerLink]="['/product', product.id]" class="tt-btn colorize-btn4 tt-product__buttons_qv">
+		                                                    <i class="icon-eye"></i>
+		                                                </a>
+		                                            </div>
+		                                        </div>
+		                                    <div class="ps__scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps__scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__scrollbar-y-rail" style="top: 0px; right: 0px;"><div class="ps__scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
+		                                </div>
+		                            </div>
+	                            
 	                            </div>
 	                        </div>
 	                    </div>

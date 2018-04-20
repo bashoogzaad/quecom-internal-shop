@@ -25,6 +25,8 @@ export class ProductDetailComponent implements OnInit {
   selectedImageIndex = 0;
   
   innerWidth: any;
+  
+  show = 'description';
 
   public mainSliderConfig: SwiperConfigInterface = {
         effect: 'fade',
@@ -61,10 +63,14 @@ export class ProductDetailComponent implements OnInit {
                 this.amount = Number(this.product['minimum_order_quantity']);
                 this.minimumOrderQuantity = this.amount;
               
+              console.log(res);
+              
               this.product.image_urls = this.product.image_urls ? this.product.image_urls : [];
               this.product.image_urls.push(this.product.image_url);
-              this.product.image_urls.push('assets/templates/mogo/images/products/product-02-2.jpg');
-              this.product.image_urls.push('assets/templates/mogo/images/products/product-02-3.jpg');
+              
+              for (let img of this.product.additional_image_urls) {
+                this.product.image_urls.push(img);
+              }
               
             });
             

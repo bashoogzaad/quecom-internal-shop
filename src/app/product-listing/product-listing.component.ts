@@ -50,11 +50,20 @@ export class ProductListingComponent implements OnInit {
                 this.groupId = params.get('id');
                 
                 this.quecomProvider.getCategories().subscribe(res => {
-              
+                  console.log(res);
                   if (this.unparsedType === 'categorie') {
                     this.typeObject =  res['categories'].find(c => c.id === this.groupId);
-                  } else {
-                        
+                    this.typeObject['main_name'] = this.typeObject['name'];
+                  } else if (this.unparsedType === 'subcategorie') {
+                     
+                    for (let cat of res['categories']) {
+                        for (let subcat of cat.subcategories) {
+                            subcat['cat_name'] = cat['name'];
+                        } 
+                    }
+                      
+                    this.typeObject =  res['categories'].reduce((a, b) => a.concat(b.subcategories), []).find(c => c.id === this.groupId);
+                    this.typeObject['main_name'] = this.typeObject['cat_name'];
                   }
                       
                 });

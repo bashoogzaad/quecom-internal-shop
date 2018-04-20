@@ -1,7 +1,8 @@
+import { AuthService } from '../auth.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';
 
 import { LocalStorageService, LocalStorage } from 'ngx-webstorage';
 import { Order } from "../models/order";
@@ -47,7 +48,7 @@ export class CartProvider {
         this.order = new Order();
     }
     
-    placeOrder(customerData: CustomerData, discounts?: any[], selectedShipment?: any, paymentMethod?: any): Observable<any> {
+    placeOrder(customerData: CustomerData, discounts?: any[], selectedShipment?: any, paymentMethod?: any, id?: any, shippingMethod?: any): Observable<any> {
         
         let submitOrder;
         
@@ -105,9 +106,11 @@ export class CartProvider {
                 shipment: shipment,
                 billing: billing,
                 remarks: this.order.remarks,
-                reference: 'SONYSTAFF',
+                reference: 'SONYSTAFF-'+id,
                 type: 'dropshipment',
-                request_payment: '0'
+                request_payment: '1',
+                calculate_shipping_cost: '1',
+                ecommerce_user_id: id
         }
         
         if (discounts.length > 0) {
@@ -121,8 +124,10 @@ export class CartProvider {
       if (paymentMethod) {
         submitOrder['payment_method'] = paymentMethod;
       }
-        
-        console.log(JSON.stringify(submitOrder));
+      
+      if (shippingMethod && shippingMethod == 'pickup') {
+          submitOrder['route'] = 'ZAFH01';
+        }
         
         return this.quecomProvider.postOrder(submitOrder);
         

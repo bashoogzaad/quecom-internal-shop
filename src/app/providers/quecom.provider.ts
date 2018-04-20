@@ -100,5 +100,16 @@ export class QuecomProvider {
       const query = '?postal_code='+postalCode+'&country_code='+countryCode;
       return this.http.get(this.globals.baseUrl+'shipment/location'+query, options).map(res => res.json());
     }
-    
+  
+    public checkAddress(houseNumber: any, postalCode: any, houseNumberExt?: any) {
+      const options = this.initRequestOptions('GET');
+      let query = '?type=postcode_nl&postal_code='+postalCode+'&house_number='+houseNumber;
+      
+      if (houseNumberExt) {
+        query = query + '&house_number_extension='+houseNumberExt;
+      }
+      
+      return this.http.get(this.globals.baseUrl+'address'+query, options).map(res => res.json());
+    }
+  
 }

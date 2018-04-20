@@ -47,6 +47,11 @@ export class PimcoreProvider {
         return this.http.get(this.globals.pimcoreUrl+'customer', options).map(res => res.json());
     }
   
+    public getOrganizations() {
+        const options = this.initRequestOptions();
+        return this.http.get(this.globals.pimcoreUrl+'organization', options).map(res => res.json());
+    }
+  
     public getBudget(id: any, hash: any) {
         const options = this.initRequestOptions();
         options.headers.append('X-Pimcore-Hash', hash);
@@ -63,7 +68,15 @@ export class PimcoreProvider {
   
     public register(user: any) {
         const options = this.initRequestOptions();
+        console.log(JSON.stringify(user));
         return this.http.post(this.globals.pimcoreUrl+'register', JSON.stringify(user), options).map(res => res.json());
+    }
+  
+    public getOrders(id: any, hash: any) {
+      const options = this.initRequestOptions();
+      options.headers.append('X-Pimcore-Hash', hash);
+      options.headers.append('X-Pimcore-User', id);
+      return this.http.get(this.globals.pimcoreUrl+'order?reference=SONYSTAFF-'+id+'&vkorg=2000', options).map(res => res.json());
     }
     
 }

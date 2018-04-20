@@ -15,7 +15,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { CartComponent } from './cart/cart.component';
 import { CartProvider } from "./providers/cart.provider";
 import { CheckoutComponent } from './checkout/checkout.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { Angular2PromiseButtonModule } from 'angular2-promise-buttons/dist';
 import { AnkerComponent } from './anker/anker.component';
@@ -41,12 +41,20 @@ import { PimcoreProvider } from "./providers/pimcore.provider";
 import { RegisterComponent } from './register/register.component';
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { MyAccountComponent } from './my-account/my-account.component';
+import { RegisterSuccessComponent } from './register-success/register-success.component';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { MailSuccesfullComponent } from './mail-succesfull/mail-succesfull.component';
+import { UserSuccessComponent } from './user-success/user-success.component';
 registerLocaleData(localeNl);
 
 const appRoutes: Routes = [
-    { path: '', redirectTo: '/inloggen', pathMatch: 'full' },
+    { path: '', redirectTo: '/welkom', pathMatch: 'full' },
     { path: 'inloggen', component: LoginComponent },
     { path: 'registreren', component: RegisterComponent },
+    { path: 'registreren/succesvol', component: RegisterSuccessComponent },
+    { path: 'email-validatie/succesvol', component: MailSuccesfullComponent },
+    { path: 'gebruiker-validatie/succesvol', component: UserSuccessComponent },
+    { path: 'welkom', component: WelcomeComponent },
     { path: 'mijn-account', component: MyAccountComponent },
     { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'producten', component: ProductListingComponent, canActivate: [AuthGuard] },
@@ -88,7 +96,11 @@ const appRoutes: Routes = [
         ProductListingComponent,
         LoginComponent,
         RegisterComponent,
-        MyAccountComponent
+        MyAccountComponent,
+        RegisterSuccessComponent,
+        WelcomeComponent,
+        MailSuccesfullComponent,
+        UserSuccessComponent
     ],
     imports: [
         BrowserModule,
@@ -98,6 +110,7 @@ const appRoutes: Routes = [
         Ng2Webstorage,
         HttpModule,
         FormsModule,
+        ReactiveFormsModule,
         LazyLoadImageModule,
         NgStickyModule,
         SwiperModule

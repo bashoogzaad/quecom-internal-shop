@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
     public couponCode: string;
     public errorMessage: string = 'Spannend!!!';
 
+
     constructor(
         public quecomProvider: QuecomProvider,
         public cartProvider: CartProvider,

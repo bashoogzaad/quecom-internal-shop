@@ -71,7 +71,7 @@
 <ng-container *ngIf="globals.theme == 'mogo'">
 
 	<!-- MAIN -->
-	<main>
+	<main *ngIf="order.orderLines.length > 0">
 	
 	    <div class="tt-layout tt-sticky-block__parent ">
 	        <div class="tt-layout__content">
@@ -162,6 +162,25 @@
 	        </div>
 	    </div>
 	
+	</main>
+	
+	<main *ngIf="order.orderLines.length == 0">
+		<div class="tt-layout tt-sticky-block__parent ">
+	        <div class="tt-layout__content">
+	            <div class="container">
+	                <div class="tt-empty">
+	                    <i class="tt-empty__icon"><img src="assets/templates/mogo/images/empty/empty-shopping-cart.svg" alt=""></i>
+	                    <div class="tt-page__name text-center">
+	                        <h1>Leeg</h1>
+	                        <p>Er zitten nog geen producten in de winkelwagen.</p>
+	                    </div>
+	                    <div class="tt-empty__btn">
+	                        <a routerLink="/home" href="javascript:void(0);" class="btn">Beginnen met shoppen</a>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
 	</main>
 
 </ng-container>

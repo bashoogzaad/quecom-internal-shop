@@ -168,7 +168,53 @@
 	                </div>
 	                <div class="tt-header__btn-info"><i></i></div>
 	            </div>
-	            <div class="tt-header__nav">
+	            <div class="tt-header__nav" *ngIf="authService.isLoggedIn">
+	            	<div class="tt-header__menu">
+	                    <nav class="TonyM TonyM--header" data-tm-dir="row" data-tm-mob="true" data-tm-anm="emersion">
+	                        <ul class="TonyM__panel">
+	                            <li>
+	                                <a href="javascript:void(0);" routerLink="/home">
+	                                	<span>
+	                                		HOME
+	                                	</span>
+	                                </a>
+	                            </li>
+	                            <li>
+	                                <a href="javascript:void(0);" routerLink="/over-ons">
+	                                	<span>
+                                        	HOE WERKT HET?
+                                        </span>
+	                                </a>
+	                            </li>
+	                            <li>
+	                                <a href="javascript:void(0);">
+	                                    <span>
+	                                        KLANTENSERVICE
+	                                        <i class="TonyM__arw"></i>
+	                                    </span>
+	                                </a>
+	                                <div class="TonyM__mm TonyM__mm--simple" style="width: 280px; margin-left: -28px !important; left: auto;">
+	                                    <ul class="TonyM__list">
+	                                        <li><a href="javascript:void(0);" routerLink="/klantenservice/bestelling">Bestelling</a></li>
+	                                        <li><a href="javascript:void(0);" routerLink="/klantenservice/betaling">Betaling</a></li>
+	                                        <li><a href="javascript:void(0);" routerLink="/klantenservice/verzending">Verzending & Bezorging</a></li>
+	                                        <li><a href="javascript:void(0);" routerLink="/klantenservice/retouren">Retouren & Garantie</a></li>
+	                                        <li><a href="javascript:void(0);" routerLink="/klantenservice/voorwaarden">Algemene voorwaarden</a></li>
+	                                        <li><a href="javascript:void(0);" routerLink="/klantenservice/privacy">Privacy & Cookie Policy</a></li>
+	                                    </ul>
+	                                </div>
+	                            </li>
+	                            <li>
+	                                <a href="javascript:void(0);" routerLink="/contact">
+	                                    <span>
+	                                        CONTACT
+	                                    </span>
+	                                </a>
+	                            </li>
+	                        </ul>
+	                    </nav>
+	                </div>
+	                
 	                <div class="tt-header__sidebar">
 	                    <div class="tt-header__options">
 	                        <a href="#" class="tt-header__btn tt-header__btn-menu"><i class="icon-menu"></i></a>
@@ -196,7 +242,39 @@
 	                    </div>
 	                </div>
 	            </div>
-	        </div>
+	            
+		        <div class="tt-header__nav" *ngIf="!authService.isLoggedIn">
+	            	<div class="tt-header__menu">
+	                    <nav class="TonyM TonyM--header" data-tm-dir="row" data-tm-mob="true" data-tm-anm="emersion">
+	                        <ul class="TonyM__panel">
+	                            <li>
+	                                <a href="javascript:void(0);" routerLink="/welkom">
+	                                	<span>
+	                                		WELKOM
+	                                	</span>
+	                                </a>
+	                            </li>
+	                            <li>
+	                                <a href="javascript:void(0);" routerLink="/inloggen">
+	                                	<span>
+	                                       	INLOGGEN
+	                                       </span>
+	                                </a>
+	                            </li>
+	                            <li>
+	                                <a href="javascript:void(0);" routerLink="/registreren">
+	                                    <span>
+	                                        REGISTREREN
+	                                    </span>
+	                                </a>
+	                            </li>
+	                        </ul>
+	                    </nav>
+	                </div>
+	            </div>
+            
+            </div>
+	        
 	    </div>
 	</header>
 	
