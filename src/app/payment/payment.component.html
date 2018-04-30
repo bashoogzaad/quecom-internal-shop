@@ -1,13 +1,67 @@
-<!-- SITE MAIN CONTENT -->
-<main class="main-content">
-	<div class="container">
-		<h1 class="pageTitle">Betaling</h1>
-		<p>Een betaling afronden bij OutoftheBox.nl staat voor snel, gemakkelijk en bovenal zeer veilig. Kies zelf voor één van onderstaande betaalmethodes tijdens de bestelprocedure. Gezamenlijk Voordeel ondersteunt de volgende betaalmethodes.</p> 
-		<ul>
-			<li>iDeal</li>
-			<li>PayPal</li>
-			<li>Bancontact</li>
-		</ul>
-		<p>De betaling wordt verwerkt in de beveiligde omgeving van Buckaroo.</p>
-	</div>
-</main>
+<ng-container *ngIf="globals.theme == 'nexgeek'">
+
+	<!-- SITE MAIN CONTENT -->
+	<main class="main-content">
+		<div class="container">
+			<h1 class="pageTitle">Betaling</h1>
+			<p>Een betaling afronden bij OutoftheBox.nl staat voor snel, gemakkelijk en bovenal zeer veilig. Kies zelf voor één van onderstaande betaalmethodes tijdens de bestelprocedure. Gezamenlijk Voordeel ondersteunt de volgende betaalmethodes.</p> 
+			<ul>
+				<li>iDeal</li>
+				<li>PayPal</li>
+				<li>Bancontact</li>
+			</ul>
+			<p>De betaling wordt verwerkt in de beveiligde omgeving van Buckaroo.</p>
+		</div>
+	</main>
+
+</ng-container>
+
+<ng-container *ngIf="globals.theme == 'mogo'">
+
+	
+	<main>
+
+	    <div class="tt-layout tt-sticky-block__parent tt-layout__fullwidth">
+	        <div class="tt-layout__content">
+	            <div class="container">
+	
+	                <div class="tt-page__name text-center">
+	                    <h1>Betaling</h1>
+	                    <p>Alle informatie over de betaling van een bestelling</p>
+	                </div>
+	
+	                <div class="ttg-mt--90">
+	                    <div class="ttg-image-scale">
+	                        <img src="assets/templates/mogo/images/services/services-01.jpg" alt="Image name">
+	                    </div>
+	                </div>
+					
+					<div class="tt-page__name-sm text-center ttg-mt--90">
+						<p>Een betaling afronden bij GezamenlijkVoordeel staat voor snel, gemakkelijk en bovenal zeer veilig. Kies zelf voor één van onderstaande betaalmethodes tijdens de bestelprocedure. Gezamenlijk Voordeel ondersteunt de volgende betaalmethodes.</p> 
+						<ul>
+							<li>iDeal</li>
+							<li>Bancontact</li>
+						</ul>
+						<p>De betaling wordt verwerkt in de beveiligde omgeving van Buckaroo.</p>
+	                </div>
+					
+	                <div class="row ttg-grid-padding--none">
+	                    <div class="col-sm-6">
+	                        <div class="ttg-image-translate--left">
+	                            <img src="assets/templates/mogo/images/services/services-02.jpg" alt="Image name">
+	                        </div>
+	                    </div>
+	                    <div class="col-sm-6">
+	                        <div class="ttg-image-translate--top">
+	                            <img src="assets/templates/mogo/images/services/services-03.jpg" alt="Image name">
+	                        </div>
+	                    </div>
+	                </div>
+				</div>
+	        </div>
+	    </div>
+	
+	</main>
+	
+
+</ng-container>

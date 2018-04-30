@@ -9,11 +9,18 @@
 	            
 	            	<div class="tt-home__post-img-01">
 	                    <div class="tt-post-img tt-post-img--layers tt-post-img--curtain ttg-image-scale">
-	                        <img alt="image" src="assets/templates/mogo/images/blog/single/blog-single-06.jpg" style="display: block;">
+	                        <img alt="image" src="assets/templates/mogo/images/blog/single/Welkom.jpg" style="display: block;">
 	                        <div class="tt-post-img__text">
 	                            <div class="tt-post-img__title tt-post-img__title--long">Welkom in de shop</div>
-	                            <div class="tt-post-img__info ttg-f--16 ttg-fw--bold">Lorem ipsum dolor sit amet conse
-	                                ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+	                            <div class="tt-post-img__info ttg-f--16 ttg-fw--bold">
+	                            
+	                            	<ng-container *ngIf="globals.language == 'NL'">
+	                            		Welkom op de SonyShop! Scoor hier je Sony artikelen met flinke kortingen. Vul hieronder je e-mailadres in en de registratieprocedure zal van start gaan.
+	                            	</ng-container>
+	                            	<ng-container *ngIf="globals.language == 'EN'">
+	                            		Welcome to the SonyShop! Here you can score Sony products with huge discounts. Please enter your e-mailadress below and the registration procedure will start.
+	                            	</ng-container>
+	                            
 	                            </div>
 	                            <a href="javascript:void(0);" routerLink="/inloggen" class="btn">INLOGGEN</a>
 	                            <a href="javascript:void(0);" routerLink="/registreren" class="btn">REGISTREREN</a>

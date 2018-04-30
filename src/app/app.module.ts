@@ -45,6 +45,7 @@ import { RegisterSuccessComponent } from './register-success/register-success.co
 import { WelcomeComponent } from './welcome/welcome.component';
 import { MailSuccesfullComponent } from './mail-succesfull/mail-succesfull.component';
 import { UserSuccessComponent } from './user-success/user-success.component';
+import { SlideshowModule } from 'ng-simple-slideshow';
 registerLocaleData(localeNl);
 
 const appRoutes: Routes = [
@@ -113,7 +114,8 @@ const appRoutes: Routes = [
         ReactiveFormsModule,
         LazyLoadImageModule,
         NgStickyModule,
-        SwiperModule
+        SwiperModule,
+        SlideshowModule
     ],
     providers: [
         { provide: LOCALE_ID, useValue: "nl-NL" },

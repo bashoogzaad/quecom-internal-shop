@@ -31,7 +31,8 @@
         "assets/templates/nexgeek/css/style.scss",
         "assets/templates/nexgeek/css/media.scss"
       ],
-      "scripts": [],
+      "scripts": [
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

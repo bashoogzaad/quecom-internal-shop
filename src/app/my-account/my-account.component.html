@@ -38,6 +38,9 @@
 	                                    		<a *ngIf="showBudget" (click)="showBudget = false" href="javascript:void(0);" style="padding-left: 5px;"><b>{{ budget.value | currency:'EUR':'true' }}</b></a>
 	                                    		<a *ngIf="!showBudget" (click)="showBudget = true" href="javascript:void(0);" style="padding-left: 5px;"><b>Klik hier om je budget op te halen.</b></a>
 	                                    </p>
+	                                    <p>
+	                                    	Na een bestelling zal het budget verminderd worden het bedrag van de bestelling inclusief BTW en exclusief verzendkosten.
+	                                    </p>
 	                                    <p>Vanuit dit dashboard kun je jouw bestellingen inzien, facturen downloaden, je gegevens aanpassen en verzendingen volgen.</p>
 	                                </div>
 	                            </div>
@@ -68,29 +71,29 @@
 		                                    <h4>Bestelling #{{ currentOrder.Vbeln }}</h4>
 		                                    <div class="tt-tabs-my-account__table ttg-mb--30">
 		                                        <table class="table tt-tabs-my-account--table-sm">
+<!-- 		                                            <tr> -->
+<!-- 		                                                <th>Product</th> -->
+<!-- 		                                                <th>Total</th> -->
+<!-- 		                                            </tr> -->
+<!-- 		                                            <tr> -->
+<!-- 		                                                <td><a href="#">Nike Zoom Trail</a> x 1</td> -->
+<!-- 		                                                <td>$40</td> -->
+<!-- 		                                            </tr> -->
+<!-- 		                                            <tr> -->
+<!-- 		                                                <td class="ttg-color--gray-dark">Subtotal:</td> -->
+<!-- 		                                                <td>$40</td> -->
+<!-- 		                                            </tr> -->
+<!-- 		                                            <tr> -->
+<!-- 		                                                <td class="ttg-color--gray-dark">Shipping:</td> -->
+<!-- 		                                                <td>Free Shipping</td> -->
+<!-- 		                                            </tr> -->
+<!-- 		                                            <tr> -->
+<!-- 		                                                <td class="ttg-color--gray-dark">Payment Method:</td> -->
+<!-- 		                                                <td>Cashon Delivery</td> -->
+<!-- 		                                            </tr> -->
 		                                            <tr>
-		                                                <th>Product</th>
-		                                                <th>Total</th>
-		                                            </tr>
-		                                            <tr>
-		                                                <td><a href="#">Nike Zoom Trail</a> x 1</td>
-		                                                <td>$40</td>
-		                                            </tr>
-		                                            <tr>
-		                                                <td class="ttg-color--gray-dark">Subtotal:</td>
-		                                                <td>$40</td>
-		                                            </tr>
-		                                            <tr>
-		                                                <td class="ttg-color--gray-dark">Shipping:</td>
-		                                                <td>Free Shipping</td>
-		                                            </tr>
-		                                            <tr>
-		                                                <td class="ttg-color--gray-dark">Payment Method:</td>
-		                                                <td>Cashon Delivery</td>
-		                                            </tr>
-		                                            <tr>
-		                                                <td class="ttg-color--gray-dark">Total:</td>
-		                                                <td>$40</td>
+		                                                <td class="ttg-color--gray-dark">Totaal:</td>
+		                                                <td>{{ currentOrder.Netwr | currency:'EUR':'true' }}</td>
 		                                            </tr>
 		                                        </table>
 		                                    </div>
@@ -183,17 +186,12 @@
 	                                <span>NAW-Gegevens <i class="icon-down-open"></i></span>
 	                                <div class="tt-tabs__content">
 	                                	<h4>NAW-Gegevens</h4>
+	                                	<p>
+	                                		Je e-mailadres, voornaam en achternaam kunnen niet aangepast worden, aangezien deze gebruikt zijn bij de validatie van de registratie. Mochten deze toch aangepast moeten worden, neem dan contact op met de backoffice.
+	                                	</p>
 	                                    <form action="#">
 	                                        <div class="tt-form">
 	                                            <div class="tt-form__form">
-	                                            	<label>
-	                                                    <div class="row">
-	                                                        <div class="col-md-3"><span class="ttg__required">Global ID:</span></div>
-	                                                        <div class="col-md-9">
-	                                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" [(ngModel)]="user.global_id" name="globalId" disabled>
-	                                                        </div>
-	                                                    </div>
-	                                                </label>
 	                                            	<label>
 	                                                    <div class="row">
 	                                                        <div class="col-md-3"><span class="ttg__required">E-mailadres:</span></div>
@@ -206,7 +204,7 @@
 	                                                    <div class="row">
 	                                                        <div class="col-md-3"><span class="ttg__required">Voornaam:</span></div>
 	                                                        <div class="col-md-9">
-	                                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" [(ngModel)]="user.first_name" name="first_name">
+	                                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" [(ngModel)]="user.first_name" name="first_name" disabled>
 	                                                        </div>
 	                                                    </div>
 	                                                </label>
@@ -214,7 +212,7 @@
 	                                                    <div class="row">
 	                                                        <div class="col-md-3"><span class="ttg__required">Achternaam:</span></div>
 	                                                        <div class="col-md-9">
-	                                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" [(ngModel)]="user.last_name" name="last_name">
+	                                                            <input type="text" class="form-control colorize-theme6-bg" placeholder="" [(ngModel)]="user.last_name" name="last_name" disabled>
 	                                                        </div>
 	                                                    </div>
 	                                                </label>

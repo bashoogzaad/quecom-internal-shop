@@ -133,13 +133,21 @@
 	                        </div>
 	                        <div class="col-lg-4">
 	                            <div class="tt-summary">
-	                                <div class="tt-summary--border">
+	                                <div class="">
 	                                    <h4>Totalen</h4>
+	                                    <p style="font-size: 0.7em;">Alle bedragen zijn inclusief 21% BTW.</p>
 	                                </div>
-	                                <div class="tt-summary__form tt-summary--border">
+	                                <br />
+	                                <div class="tt-summary__form">
 	                                    <h5 class="ttg-mb--20">Verzendkosten</h5>
 	                                    <p>Vanaf {{ getDeliveryCost() | currency:'EUR':'true' }}</p>
 	                                    <p style="font-size: 0.7em;">Voor sommige bezorgopties kunnen extra kosten in rekening worden gebracht, zoals avond- of zondagbezorging.</p>
+	                                </div>
+	                                <br />
+	                                <div class="tt-summary__form tt-summary--border">
+	                                    <h5 class="ttg-mb--20">Huidig budget</h5>
+	                                    <p>Je resterende budget bedraagt {{ budget | currency:'EUR':'true' }}</p>
+	                                    <p style="font-size: 0.7em;">Na de bestelling zal het budget verminderd worden het bedrag van de bestelling inclusief BTW en exclusief verzendkosten.</p>
 	                                </div>
 	                                <div class="tt-summary__total">
 	                                    <p>Subtotaal: <span>{{ getOrderTotal() | currency:'EUR':'true' }}</span></p>

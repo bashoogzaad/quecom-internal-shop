@@ -65,8 +65,14 @@ export class AppComponent implements OnInit {
           
           this.loading = false;
           
+          this.globals.loading.subscribe(r => {
+              setTimeout(() => {
+                  this.loading = r;
+              }, 0);
+          })
+          
         });
-      
+        
     }
   
     getId() {

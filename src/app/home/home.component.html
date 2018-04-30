@@ -75,8 +75,12 @@
 	           
 	            <div class="container">
 	            
-	            		<!-- PARALLAX SLIDER -->
-	            	    <div></div>
+	            	<slideshow [imageUrls]="imageUrlArray" 
+	            			   [height]="'700px'"
+          					   [minHeight]="'700px'"
+          					   [autoPlay]="true"
+           					   [showArrows]="true"
+           					   [showDots]="true"></slideshow>
 	
 	                <div class="tt-home__shipping-info-02">
 	                    <div class="tt-shp-info tt-shp-info__design-02 tt-shp-info__align--left">

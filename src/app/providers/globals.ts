@@ -2,9 +2,18 @@
 import { Injectable } from "@angular/core";
 import { environment } from "../../environments/environment";
 
+import { LocalStorageService, LocalStorage } from 'ngx-webstorage';
+import { Observable } from "rxjs/Observable";
+import 'rxjs/add/observable/of';
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
+
 @Injectable()
 export class Globals {
         
+    //Session variables
+    @LocalStorage() public language;
+    public loading = new BehaviorSubject(false);
+    
     //Environment variables
     public baseUrl: string;
     public pimcoreUrl: string;
@@ -20,7 +29,19 @@ export class Globals {
     public deliveryIndication: string[] = ['Vóór 19:00 uur besteld', 'Volgende dag geleverd*'];
     public hasDeliveryCost: boolean = false;
     
+    public loadingOn() {
+        this.loading.next(true);
+    }
+    
+    public loadingOff() {
+        this.loading.next(false);
+    }
+    
     public init() {
+        
+        if (!this.language) {
+            this.language = 'NL';
+        }
         
         if (environment.production === undefined) {
             

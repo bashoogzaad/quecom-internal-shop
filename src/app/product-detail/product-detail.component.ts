@@ -57,20 +57,26 @@ export class ProductDetailComponent implements OnInit {
         
         this.route.paramMap.subscribe(params => {
             
+            this.globals.loadingOn();
+            
             const productId = params.get('id');
             this.quecomProvider.getProduct(productId).subscribe(res => {
                 this.product = res;
                 this.amount = Number(this.product['minimum_order_quantity']);
                 this.minimumOrderQuantity = this.amount;
               
-              console.log(res);
-              
-              this.product.image_urls = this.product.image_urls ? this.product.image_urls : [];
-              this.product.image_urls.push(this.product.image_url);
-              
-              for (let img of this.product.additional_image_urls) {
-                this.product.image_urls.push(img);
-              }
+                  console.log(res);
+                  
+                  this.product.image_urls = this.product.image_urls ? this.product.image_urls : [];
+                  this.product.image_urls.push(this.product.image_url);
+                  
+                  if (this.product.addtional_image_urls) {
+                      for (let img of this.product.additional_image_urls) {
+                        this.product.image_urls.push(img);
+                      }
+                  }
+                  
+                  this.globals.loadingOff();
               
             });
             

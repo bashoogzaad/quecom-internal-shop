@@ -5,6 +5,8 @@ import { CartProvider } from "../providers/cart.provider";
 import { Router } from "@angular/router";
 import { Globals } from "../providers/globals";
 
+import * as $ from 'jquery';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -20,6 +22,11 @@ export class HomeComponent implements OnInit {
     public couponCode: string;
     public errorMessage: string = 'Spannend!!!';
 
+    public imageUrlArray: string[] = [
+        'assets/templates/mogo/images/slider/01/slider-01.jpg',
+        'assets/templates/mogo/images/slider/01/slider-02.jpg',
+        'assets/templates/mogo/images/slider/01/slider-03.jpg',
+    ];
 
     constructor(
         public quecomProvider: QuecomProvider,

@@ -43,6 +43,7 @@ export class ProductListingComponent implements OnInit {
         
         this.route.paramMap.subscribe(params => {
             
+            this.globals.loadingOn();
             if (this.router.url.split("/")[1] !== 'producten') {
             
                 this.unparsedType = this.router.url.split("/")[1];
@@ -69,16 +70,19 @@ export class ProductListingComponent implements OnInit {
                 });
                 
                 this.route.queryParams.subscribe(qp => {
+                    this.globals.loadingOn();
                     this.page = qp['page'] ? Number.parseInt(qp['page']) : 1;
                     this.loadProducts(type);
                 });
               
             } else {
                 this.route.queryParams.subscribe(qp => {
+                    this.globals.loadingOn();
                     this.page = qp['page'] ? Number.parseInt(qp['page']) : 1;
                     this.loadProducts();
                 });
             }
+            
             
         });
         
@@ -95,9 +99,9 @@ export class ProductListingComponent implements OnInit {
           
             this.quecomProvider.getProductsPerGroup(type, this.groupId, this.limit, this.page).subscribe(res => {
                 this.products = res.products;
-                console.log(res.products);
                 this.pagination = res.pagination;
                 this.pageNumbers = this.fillArrayWithNumbers(this.pagination.number_of_pages);
+                this.globals.loadingOff();
             });
         
         } else {
@@ -106,6 +110,7 @@ export class ProductListingComponent implements OnInit {
                 this.products = res.products;
                 this.pagination = res.pagination;
                 this.pageNumbers = this.fillArrayWithNumbers(this.pagination.number_of_pages);
+                this.globals.loadingOff();
             });
             
         }
