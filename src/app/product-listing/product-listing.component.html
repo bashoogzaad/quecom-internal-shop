@@ -81,59 +81,61 @@
 	<!-- MAIN -->
 	<main>
 	
-	    <div class="tt-layout tt-sticky-block__parent tt-layout__sidebar-left">
-	        <aside class="tt-layout__sidebar tt-sticky-block">
-	            <div class="tt-layout__sidebar-sticky tt-sticky-block__inner">
-	                <div class="tt-sidebar">
-	                    <div class="tt-sidebar__btn">
-	                        <div class="tt-sidebar__btn-open">
-	                            <i class="icon-filter-1"></i><span>FILTER</span>
-	                        </div>
-	                        <div class="tt-sidebar__btn-close">
-	                            <i class="icon-cancel-1"></i><span>SLUIT</span>
-	                        </div>
-	                    </div>
-	                    <div class="tt-sidebar__content">
-	                        <div class="tt-layer-nav">
-	                            <div class="tt-layer-nav__title">Inch maat</div>
-	                            <ul class="tt-layer-nav__categories tt-categories tt-categories__toggle">
-	                                <li class="tt-categories__open">
-	                                    <a href="#">20-30 <span>16</span></a>
-	                                </li>
-	                                <li class="tt-categories__open">
-	                                    <a href="#">30-40 <span>16</span></a>
-	                                </li>
-	                                <li class="tt-categories__open">
-	                                    <a href="#">40-50 <span>16</span></a>
-	                                </li>
-	                                <li class="tt-categories__open">
-	                                    <a href="#">50-60 <span>16</span></a>
-	                                </li>
-	                                <li class="tt-categories__open">
-	                                    <a href="#">60-70 <span>16</span></a>
-	                                </li>
-	                            </ul>
-	                            <div class="tt-layer-nav__title">Prijs</div>
-	                            <div class="tt-layer-nav__price-section">
-	                                <div class="tt-layer-nav__price-range"><input type="hidden" data-min="0" data-max="500">
-	                                </div>
-	                            </div>
-	                            <ul class="tt-layer-nav__price tt-categories tt-categories__toggle">
-	                                <li><a href="#">10-100 <span>25</span></a></li>
-	                                <li><a href="#">100-200 <span>7</span></a></li>
-	                                <li><a href="#">200-500 <span>14</span></a></li>
-	                            </ul>
-	                        </div>
-	                    </div>
-	                </div>
-	                <div class="tt-sidebar__bg"></div>
-	            </div>
-	        </aside>
+	    <div class="tt-layout tt-sticky-block__parent tt-layout__fullwidth">
+	    
+<!-- 	        <aside class="tt-layout__sidebar tt-sticky-block"> -->
+<!-- 	            <div class="tt-layout__sidebar-sticky tt-sticky-block__inner"> -->
+<!-- 	                <div class="tt-sidebar"> -->
+<!-- 	                    <div class="tt-sidebar__btn"> -->
+<!-- 	                        <div class="tt-sidebar__btn-open"> -->
+<!-- 	                            <i class="icon-filter-1"></i><span>FILTER</span> -->
+<!-- 	                        </div> -->
+<!-- 	                        <div class="tt-sidebar__btn-close"> -->
+<!-- 	                            <i class="icon-cancel-1"></i><span>SLUIT</span> -->
+<!-- 	                        </div> -->
+<!-- 	                    </div> -->
+<!-- 	                    <div class="tt-sidebar__content"> -->
+<!-- 	                        <div class="tt-layer-nav"> -->
+<!-- 	                            <div class="tt-layer-nav__title">Inch maat</div> -->
+<!-- 	                            <ul class="tt-layer-nav__categories tt-categories tt-categories__toggle"> -->
+<!-- 	                                <li class="tt-categories__open"> -->
+<!-- 	                                    <a href="#">20-30 <span>16</span></a> -->
+<!-- 	                                </li> -->
+<!-- 	                                <li class="tt-categories__open"> -->
+<!-- 	                                    <a href="#">30-40 <span>16</span></a> -->
+<!-- 	                                </li> -->
+<!-- 	                                <li class="tt-categories__open"> -->
+<!-- 	                                    <a href="#">40-50 <span>16</span></a> -->
+<!-- 	                                </li> -->
+<!-- 	                                <li class="tt-categories__open"> -->
+<!-- 	                                    <a href="#">50-60 <span>16</span></a> -->
+<!-- 	                                </li> -->
+<!-- 	                                <li class="tt-categories__open"> -->
+<!-- 	                                    <a href="#">60-70 <span>16</span></a> -->
+<!-- 	                                </li> -->
+<!-- 	                            </ul> -->
+<!-- 	                            <div class="tt-layer-nav__title">Prijs</div> -->
+<!-- 	                            <div class="tt-layer-nav__price-section"> -->
+<!-- 	                                <div class="tt-layer-nav__price-range"><input type="hidden" data-min="0" data-max="500"> -->
+<!-- 	                                </div> -->
+<!-- 	                            </div> -->
+<!-- 	                            <ul class="tt-layer-nav__price tt-categories tt-categories__toggle"> -->
+<!-- 	                                <li><a href="#">10-100 <span>25</span></a></li> -->
+<!-- 	                                <li><a href="#">100-200 <span>7</span></a></li> -->
+<!-- 	                                <li><a href="#">200-500 <span>14</span></a></li> -->
+<!-- 	                            </ul> -->
+<!-- 	                        </div> -->
+<!-- 	                    </div> -->
+<!-- 	                </div> -->
+<!-- 	                <div class="tt-sidebar__bg"></div> -->
+<!-- 	            </div> -->
+<!-- 	        </aside> -->
+	        
 	        <div class="tt-layout__content" *ngIf="products.length > 0">
 	            <div class="container">
 	                <div class="tt-listing-page">
 	                
-	                    <a href="index.html?page=listing-with-custom-html-block.html" class="tt-listing-page__promobox ttg-image-scale listing-img">
+	                    <a class="tt-listing-page__promobox ttg-image-scale listing-img">
 	                        <img src="assets/templates/mogo/images/listing/{{ typeObject.main_name }}.jpg" alt="">
 	                        <div class="tt-listing-page__promobox-text tt-listing-page__promobox-design-white">
 	                            <div>{{ typeObject.name }}</div>
@@ -152,8 +154,8 @@
 	                                    </label>
 	                                </div>
 	                                <div class="tt-vw-opt__direction">
-	                                    <a href="#" class="active"><i class="icon-down"></i></a>
-	                                    <a href="#"><i class="icon-up"></i></a>
+	                                    <a href="javascript:void(0);" class="active"><i class="icon-down"></i></a>
+	                                    <a href="javascript:void(0);"><i class="icon-up"></i></a>
 	                                </div>
 	                            </div>
 	                            <div class="col-xl-3 col-lg-3 col-md-5 col-xs-8">
@@ -183,7 +185,7 @@
 	
 	                        <div class="tt-product-view row">
 	                        
-	                            <div class="col-sm-6 col-xxl-4" *ngFor="let product of products">
+	                            <div class="col-sm-3 col-xxl-2" *ngFor="let product of products">
 	                            
 	                            	<div class="tt-product tt-product__view-sheet">
 		                                <div class="tt-product__image">

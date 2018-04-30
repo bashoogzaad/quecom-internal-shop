@@ -38,9 +38,15 @@
 	            <div class="container">
 	
 	                <div class="tt-page__name text-center">
-	                    <h1>Inloggen</h1>
+	                    <h1>
+	                    	<ng-container *ngIf="globals.language == 'NL'">Inloggen</ng-container>
+	                        <ng-container *ngIf="globals.language == 'EN'">Log In</ng-container>
+	                    </h1>
 	                    <span>/</span>
-	                    <a routerLink="/registreren">Registreren</a>
+	                    <a routerLink="/registreren">
+	                    	<ng-container *ngIf="globals.language == 'NL'">Registreren</ng-container>
+	                        <ng-container *ngIf="globals.language == 'EN'">Register</ng-container>
+	                    </a>
 	                </div>
 	
 	                <div class="tt-login">
@@ -49,7 +55,11 @@
 	                            <div class="tt-form__form">
 	                                <label>
 	                                    <div class="row">
-	                                        <div class="col-md-3"><span class="ttg__required">E-mailadres:</span>
+	                                        <div class="col-md-3">
+	                                        	<span class="ttg__required">
+	                                        		<ng-container *ngIf="globals.language == 'NL'">E-mailadres:</ng-container>
+	                                        		<ng-container *ngIf="globals.language == 'EN'">Mailaddress:</ng-container>
+	                                        	</span>
 	                                        </div>
 	                                        <div class="col-md-9">
 	                                            <input type="text" class="form-control colorize-theme6-bg" [(ngModel)]="username" name="username"  placeholder="">
@@ -58,7 +68,12 @@
 	                                </label>
 	                                <label>
 	                                    <div class="row">
-	                                        <div class="col-md-3"><span class="ttg__required">Wachtwoord:</span></div>
+	                                        <div class="col-md-3">
+	                                        	<span class="ttg__required">
+	                                        		<ng-container *ngIf="globals.language == 'NL'">Wachtwoord:</ng-container>
+	                                        		<ng-container *ngIf="globals.language == 'EN'">Password:</ng-container>
+	                                        	</span>
+	                                        </div>
 	                                        <div class="col-md-9">
 	                                            <input type="password" class="form-control colorize-theme6-bg" [(ngModel)]="password" name="password" placeholder="">
 	                                        </div>
@@ -68,11 +83,17 @@
 	                        </div>
 	                        <div class="row ttg-mt--40">
 	                            <div class="col-md-9 offset-md-3">
-	                                <button type="submit" [disabled]="!username || !password" class="btn" (click)="loginServer()" [promiseBtn]="loginPromise">Inloggen</button>
+	                                <button type="submit" [disabled]="!username || !password" class="btn" (click)="loginServer()" [promiseBtn]="loginPromise">
+	                                	<ng-container *ngIf="globals.language == 'NL'">Inloggen</ng-container>
+	                                    <ng-container *ngIf="globals.language == 'EN'">Login</ng-container>
+	                                </button>
 	                            </div>
 	                        </div>
 	                        <div class="row ttg-mt--40">
-	                            <div class="col-md-4 col-sm-6 text-right"><a href="#">Wachtwoord vergeten?</a></div>
+	                            <div class="col-md-4 col-sm-6 text-right"><a href="#">
+	                            	<ng-container *ngIf="globals.language == 'NL'">Wachtwoord vergeten?</ng-container>
+                                    <ng-container *ngIf="globals.language == 'EN'">Forgot password?</ng-container>
+	                            </a></div>
 	                        </div>
 	                    </form>
 	                </div>

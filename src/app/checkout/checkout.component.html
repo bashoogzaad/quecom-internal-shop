@@ -276,19 +276,20 @@
 				                                </label>
 				                                Verzendadres is hetzelfde als factuuradres
 			                                </li>
-			                                <li *ngIf="user.country == 'BE'">
+			                                <li >
 			                                	<label class="tt-checkbox-circle">
 		                                            <input type="radio" name="shippingMethodGroup" value="central-office" [(ngModel)]="selected.shippingMethod" (ngModelChange)="toggleBillingToShipment()">
 		                                            <span></span>
 		                                        </label>
-		                                        Verzenden naar kantoor (een keer per week)
+		                                        Afhalen op kantoor Sony BE (Da vincilaan in Zaventem) (een keer per week)
 			                                </li>
+			                                <p style="font-size: 0.7rem; padding-left: 35px;">Voor dinsdag 21:00 besteld, de eerstvolgende vrijdag afhalen.</p>
 			                                <li>
 			                                	<label class="tt-checkbox-circle">
 		                                            <input type="radio" name="shippingMethodGroup" value="custom-address" [(ngModel)]="selected.shippingMethod" (ngModelChange)="toggleBillingToShipment()">
 		                                            <span></span>
 		                                        </label>
-		                                        Verzenden naar een ander adres
+		                                        Verzenden naar een ander adres (leveringen aan Sony in Hoofddorp uitgesloten)
 			                                </li>
 			                                <li>
 			                                	<label class="tt-checkbox-circle">
@@ -599,7 +600,7 @@
 	                            <div class="tt-summary">
 	                                <div class="tt-summary--border">
 	                                    <h4>Je bestelling</h4>
-	                                    <p style="font-size: 0.7em;">Alle bedragen zijn inclusief 21% BTW.</p>
+	                                    <p style="font-size: 0.7em;">Alle bedragen zijn inclusief personeelskorting en 21% BTW.</p>
 	                                </div>
 	                                <div class="tt-summary__products tt-summary--border">
 	                                    <ul>
