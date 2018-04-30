@@ -35,7 +35,7 @@ export class MyAccountComponent implements OnInit {
     
     this.pimcoreProvider.getOrders(this.user.id, this.user.hash).subscribe(res => {
       console.log(res);
-      this.orders = res['sap_order'];
+      this.orders = res['quecom_order'].filter(o => o['reference'].includes('GV'));
     });
     
   }

@@ -51,112 +51,104 @@
 	                                    <div class="tt-tabs-my-account__table ttg-mb--30">
 	                                        <table class="table">
 	                                            <tr>
+	                                                <th>Referentie</th>
 	                                                <th>Ordernummer</th>
 	                                                <th>Datum</th>
 	                                                <th>Status</th>
 	                                                <th>Totaal</th>
 	                                            </tr>
 	                                            <tr *ngFor="let order of orders">
-	                                                <td><a href="#">{{ order.Vbeln }}</a></td>
-	                                                <td>{{ order.Erdat | date:'d-MM-yyyy' }}</td>
+	                                                <td>{{ order.reference }}</td>
+	                                                <td>{{ order.order_id }}</td>
+	                                                <td>{{ order.created*1000 | date:'d-MM-yyyy' }}</td>
 	                                                <td>Ontvangen bij GezamenlijkVoordeel</td>
-	                                                <td>{{ order.Netwr | currency:'EUR':'true' }}</td>
-	                                                <td class="text-right"><a (click)="selectOrder(order)">Bekijk</a></td>
+	                                                <td>{{ +order.netto++order.specific_delivery_cost | currency:'EUR':'true' }}</td>
+	                                                <td class="text-right"><a (click)="selectOrder(order)" href="javascript:void(0);">Bekijk</a></td>
 	                                            </tr>
 	                                        </table>
 	                                    </div>
 	                                    
 	                                    <ng-container *ngIf="currentOrder">
 	                                    
-		                                    <h4>Bestelling #{{ currentOrder.Vbeln }}</h4>
+		                                    <h4>Bestelling #{{ currentOrder.order_id }}</h4>
 		                                    <div class="tt-tabs-my-account__table ttg-mb--30">
-		                                        <table class="table tt-tabs-my-account--table-sm">
-<!-- 		                                            <tr> -->
-<!-- 		                                                <th>Product</th> -->
-<!-- 		                                                <th>Total</th> -->
-<!-- 		                                            </tr> -->
-<!-- 		                                            <tr> -->
-<!-- 		                                                <td><a href="#">Nike Zoom Trail</a> x 1</td> -->
-<!-- 		                                                <td>$40</td> -->
-<!-- 		                                            </tr> -->
-<!-- 		                                            <tr> -->
-<!-- 		                                                <td class="ttg-color--gray-dark">Subtotal:</td> -->
-<!-- 		                                                <td>$40</td> -->
-<!-- 		                                            </tr> -->
-<!-- 		                                            <tr> -->
-<!-- 		                                                <td class="ttg-color--gray-dark">Shipping:</td> -->
-<!-- 		                                                <td>Free Shipping</td> -->
-<!-- 		                                            </tr> -->
-<!-- 		                                            <tr> -->
-<!-- 		                                                <td class="ttg-color--gray-dark">Payment Method:</td> -->
-<!-- 		                                                <td>Cashon Delivery</td> -->
-<!-- 		                                            </tr> -->
+		                                        <table class="table">
 		                                            <tr>
-		                                                <td class="ttg-color--gray-dark">Totaal:</td>
-		                                                <td>{{ currentOrder.Netwr | currency:'EUR':'true' }}</td>
+		                                            	<th>Aantal</th>
+		                                            	<th>EAN</th>
+		                                                <th>Product</th>
+		                                                <th>Totaal</th>
+		                                            </tr>
+		                                            <tr *ngFor="let line of currentOrder.lines">
+		                                            	<td>{{ line.amount }}</td>
+		                                            	<td>{{ line.product.ean }}</td>
+		                                                <td>{{ line.product.commercial_title }}</td>
+		                                                <td>{{ line.netto | currency:'EUR':'true' }}</td>
+		                                            </tr>
+		                                            <tr>
+		                                            	<td colspan="2"></td>
+		                                                <td class="ttg-color--gray-dark text-right">Subtotaal:</td>
+		                                                <td>{{ currentOrder.netto | currency:'EUR':'true' }}</td>
+		                                            </tr>
+		                                            <tr>
+		                                            	<td colspan="2"></td>
+		                                                <td class="ttg-color--gray-dark text-right">Verzendkosten:</td>
+		                                                <td>{{ (currentOrder.specific_delivery_cost ? currentOrder.specific_delivery_cost : 0) | currency:'EUR':'true' }}</td>
+		                                            </tr>
+		                                            <tr>
+		                                            	<td colspan="2"></td>
+		                                                <td class="ttg-color--gray-dark text-right">Totaal:</td>
+		                                                <td>{{ +currentOrder.netto++currentOrder.specific_delivery_cost | currency:'EUR':'true' }}</td>
 		                                            </tr>
 		                                        </table>
 		                                    </div>
-		                                    <h4>Customer Details</h4>
+		                                    <h4>Factuuradres</h4>
 		                                    <div class="tt-tabs-my-account__table ttg-mb--30">
 		                                        <table class="table tt-tabs-my-account--table-sm">
 		                                            <tr>
-		                                                <td class="ttg-color--gray-dark">E-mail:</td>
-		                                                <td>Admin@localhost.dev</td>
+		                                                <td class="ttg-color--gray-dark">Straat:</td>
+		                                                <td>{{ currentOrder.street }}</td>
 		                                            </tr>
 		                                            <tr>
-		                                                <td class="ttg-color--gray-dark">Telephone:</td>
-		                                                <td>888-8888888</td>
+		                                                <td class="ttg-color--gray-dark">Huisnummer:</td>
+		                                                <td>{{ currentOrder.housenumber }}</td>
+		                                            </tr>
+		                                            <tr>
+		                                                <td class="ttg-color--gray-dark">Huisnummertoevoeging:</td>
+		                                                <td>{{ currentOrder.housenumber2 }}</td>
+		                                            </tr>
+		                                            <tr>
+		                                                <td class="ttg-color--gray-dark">Postcode:</td>
+		                                                <td>{{ currentOrder.postalcode }}</td>
+		                                            </tr>
+		                                            <tr>
+		                                                <td class="ttg-color--gray-dark">Woonplaats:</td>
+		                                                <td>{{ currentOrder.city }} ({{ currentOrder.country }})</td>
 		                                            </tr>
 		                                        </table>
 		                                    </div>
-		                                    <h4>Billing Address</h4>
+		                                    <h4>Verzendadres</h4>
 		                                    <div class="tt-tabs-my-account__table ttg-mb--30">
 		                                        <table class="table tt-tabs-my-account--table-sm">
 		                                            <tr>
-		                                                <td class="ttg-color--gray-dark">Country:</td>
-		                                                <td>Lorem ipsum dolor sit amet conse ctetur</td>
+		                                                <td class="ttg-color--gray-dark">Straat:</td>
+		                                                <td>{{ currentOrder.street_shipping }}</td>
 		                                            </tr>
 		                                            <tr>
-		                                                <td class="ttg-color--gray-dark">Address:</td>
-		                                                <td>Ut enim ad minim veniam, quis nostrud</td>
+		                                                <td class="ttg-color--gray-dark">Huisnummer:</td>
+		                                                <td>{{ currentOrder.housenumber_shipping }}</td>
 		                                            </tr>
 		                                            <tr>
-		                                                <td class="ttg-color--gray-dark">Town/City:</td>
-		                                                <td>Eexercitation ullamco laboris nisi ut aliquip ex ea</td>
+		                                                <td class="ttg-color--gray-dark">Huisnummertoevoeging:</td>
+		                                                <td>{{ currentOrder.housenumber2_shipping }}</td>
 		                                            </tr>
 		                                            <tr>
-		                                                <td class="ttg-color--gray-dark">State/Country:</td>
-		                                                <td>Commodo consequat. Duis aute irure dol</td>
+		                                                <td class="ttg-color--gray-dark">Postcode:</td>
+		                                                <td>{{ currentOrder.postalcode_shipping }}</td>
 		                                            </tr>
 		                                            <tr>
-		                                                <td class="ttg-color--gray-dark">Postode/ZIP:</td>
-		                                                <td>88888</td>
-		                                            </tr>
-		                                        </table>
-		                                    </div>
-		                                    <h4>Shipping Address</h4>
-		                                    <div class="tt-tabs-my-account__table ttg-mb--30">
-		                                        <table class="table tt-tabs-my-account--table-sm">
-		                                            <tr>
-		                                                <td class="ttg-color--gray-dark">Country:</td>
-		                                                <td>Lorem ipsum dolor sit amet conse ctetur</td>
-		                                            </tr>
-		                                            <tr>
-		                                                <td class="ttg-color--gray-dark">Address:</td>
-		                                                <td>Ut enim ad minim veniam, quis nostrud</td>
-		                                            </tr>
-		                                            <tr>
-		                                                <td class="ttg-color--gray-dark">Town/City:</td>
-		                                                <td>Eexercitation ullamco laboris nisi ut aliquip ex ea</td>
-		                                            </tr>
-		                                            <tr>
-		                                                <td class="ttg-color--gray-dark">State/Country:</td>
-		                                                <td>Commodo consequat. Duis aute irure dol</td>
-		                                            </tr>
-		                                            <tr>
-		                                                <td class="ttg-color--gray-dark">Postode/ZIP:</td>
-		                                                <td>88888</td>
+		                                                <td class="ttg-color--gray-dark">Woonplaats:</td>
+		                                                <td>{{ currentOrder.city_shipping }} ({{ currentOrder.country_shipping }})</td>
 		                                            </tr>
 		                                        </table>
 		                                    </div>

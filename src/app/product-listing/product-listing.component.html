@@ -185,7 +185,7 @@
 	
 	                        <div class="tt-product-view row">
 	                        
-	                            <div class="col-sm-3 col-xxl-2" *ngFor="let product of products">
+	                            <div class="col-sm-6 col-md-4 col-xxl-3" *ngFor="let product of products">
 	                            
 	                            	<div class="tt-product tt-product__view-sheet">
 		                                <div class="tt-product__image">
@@ -214,10 +214,10 @@
 		                                        </div>
 		                                        <div class="ttg-text-animation--emersion">
 		                                            <div class="tt-product__buttons">
-		                                                <a href="#" class="tt-btn colorize-btn5 tt-product__buttons_cart">
-		                                                    <i class="icon-shop24"></i>
-		                                                    <span>Add to Cart</span>
-		                                                </a>
+<!-- 		                                                <a href="javascript:void(0);" (click)="addToCart(product)" class="tt-btn colorize-btn5 tt-product__buttons_cart"> -->
+<!-- 		                                                    <i class="icon-shop24"></i> -->
+<!-- 		                                                    <span>Voeg toe aan winkelwagen</span> -->
+<!-- 		                                                </a> -->
 		                                                <a href="javascript.void(0)" [routerLink]="['/product', product.id]" class="tt-btn colorize-btn4 tt-product__buttons_qv">
 		                                                    <i class="icon-eye"></i>
 		                                                </a>

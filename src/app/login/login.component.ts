@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit {
     public password: string;
     public loginPromise: Subscription;
     
+    public mainErrorMsg;
+
     constructor(
         public authService: AuthService,
         public globals: Globals,
@@ -37,7 +39,8 @@ export class LoginComponent implements OnInit {
           this.authService.saveUser(res.user);
           this.router.navigate(['/home']);
         } else if (res.status === 400) {
-          
+          console.log(res);
+          this.mainErrorMsg = res['localized_message'] ? res['localized_message'] : res['message'];
         }       
       }, (error: any) => {
         console.log('ERROR');

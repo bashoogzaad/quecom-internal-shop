@@ -56,6 +56,8 @@ export class CheckoutComponent implements OnInit {
     public budget: number;
     public payShipping = true;
   
+    public reloadDeliveryOptions = false;
+    
     constructor(
         public cartProvider: CartProvider,
         public route: ActivatedRoute,
@@ -103,50 +105,67 @@ export class CheckoutComponent implements OnInit {
         this.budget = res.value;
       });
       
-      this.quecomProvider.getShippingTimeframes(this.user.postal_code, this.user.house_number, this.user.country, this.user.house_number_extension).subscribe(tf => {
-        console.log(tf);
-        
-        for (const t of tf['Timeframes']['Timeframe']) {
-          for (const timeframe of t['Timeframes']['TimeframeTimeFrame']) {
-            
-            const parts = t['Date'].split('-');
-            const date = new Date(parts[2], parts[1]-1, parts[0]);
-            
-            const startDate = new Date(date.getTime());
-            startDate.setHours(timeframe['From'].split(':')[0]);
-            startDate.setMinutes(timeframe['From'].split(':')[1]);
-            
-            const endDate = new Date(date.getTime());
-            endDate.setHours(timeframe['To'].split(':')[0]);
-            endDate.setMinutes(timeframe['To'].split(':')[1]);
-            
-            const shm = new Object();
-            shm['timeframe_start'] = startDate;
-            shm['timeframe_end'] = endDate;
-            
-            shm['cost'] = timeframe['Options']['string'] == 'Evening' ? 2 : 0;
-            shm['option'] = timeframe['Options']['string'];
-            
-            this.shippingTimeframes.push(shm);
-            
-          }
-        }
-        
-        this.selectedShipment = this.shippingTimeframes[0];
-        
-      });
-      
-      this.quecomProvider.getShippingLocations(this.user.postal_code, this.user.country).subscribe(tf => {
-          console.log(tf);
-          if (tf['GetLocationsResult']) {
-              this.shippingLocations = tf['GetLocationsResult']['ResponseLocation'];
-          }
-      });
+      this.loadDeliveryOptions();
       
     }
 
     ngOnInit() {
         this.order = this.cartProvider.getCurrentOrder();
+    }
+    
+    doReloadDeliveryOptions() {
+        this.globals.loadingOn();
+        this.loadDeliveryOptions(true);
+    }
+    
+    loadDeliveryOptions(loader?: boolean) {
+        
+        this.quecomProvider.getShippingTimeframes(this.customerData.postalCode, this.customerData.houseNumber, this.customerData.country, this.customerData.houseNumberExtension).subscribe(tf => {
+            console.log(tf);
+            
+            for (const t of tf['Timeframes']['Timeframe']) {
+              for (const timeframe of t['Timeframes']['TimeframeTimeFrame']) {
+                
+                const parts = t['Date'].split('-');
+                const date = new Date(parts[2], parts[1]-1, parts[0]);
+                
+                const startDate = new Date(date.getTime());
+                startDate.setHours(timeframe['From'].split(':')[0]);
+                startDate.setMinutes(timeframe['From'].split(':')[1]);
+                
+                const endDate = new Date(date.getTime());
+                endDate.setHours(timeframe['To'].split(':')[0]);
+                endDate.setMinutes(timeframe['To'].split(':')[1]);
+                
+                const shm = new Object();
+                shm['timeframe_start'] = startDate;
+                shm['timeframe_end'] = endDate;
+                
+                shm['cost'] = timeframe['Options']['string'] == 'Evening' ? 2 : 0;
+                shm['option'] = timeframe['Options']['string'];
+                
+                this.shippingTimeframes.push(shm);
+                
+              }
+            }
+            
+            this.selectedShipment = this.shippingTimeframes[0];
+            this.reloadDeliveryOptions = false;
+            
+            if(loader) {
+                this.globals.loadingOff();
+            }
+            
+          });
+          
+          this.quecomProvider.getShippingLocations(this.customerData.postalCode, this.customerData.country).subscribe(tf => {
+              console.log(tf);
+              if (tf['GetLocationsResult']) {
+                  this.shippingLocations = tf['GetLocationsResult']['ResponseLocation'];
+              }
+              this.reloadDeliveryOptions = false;
+          });
+        
     }
     
     roundToTwo(num) {    
@@ -275,6 +294,7 @@ export class CheckoutComponent implements OnInit {
             
             this.selectedShipment = undefined;
             this.payShipping = true;
+            this.reloadDeliveryOptions = true;
             
         } else if (this.selected.shippingMethod == 'pickup') {
             
@@ -423,7 +443,6 @@ export class CheckoutComponent implements OnInit {
         this.customerData.houseNumber &&
         this.customerData.postalCode &&
         this.customerData.city &&
-        this.customerData.phoneNumber &&
         this.customerData.country) {
         this.successMsg = "De adresgegevens zijn gevalideerd.";
       } else {
@@ -431,6 +450,8 @@ export class CheckoutComponent implements OnInit {
       }
       
     }
+    
+    this.reloadDeliveryOptions = true;
     
   }
   

@@ -276,14 +276,16 @@
 				                                </label>
 				                                Verzendadres is hetzelfde als factuuradres
 			                                </li>
-			                                <li >
-			                                	<label class="tt-checkbox-circle">
-		                                            <input type="radio" name="shippingMethodGroup" value="central-office" [(ngModel)]="selected.shippingMethod" (ngModelChange)="toggleBillingToShipment()">
-		                                            <span></span>
-		                                        </label>
-		                                        Afhalen op kantoor Sony BE (Da vincilaan in Zaventem) (een keer per week)
-			                                </li>
-			                                <p style="font-size: 0.7rem; padding-left: 35px;">Voor dinsdag 21:00 besteld, de eerstvolgende vrijdag afhalen.</p>
+			                                <ng-container *ngIf="user.country == 'BE'">
+				                                <li>
+				                                	<label class="tt-checkbox-circle">
+			                                            <input type="radio" name="shippingMethodGroup" value="central-office" [(ngModel)]="selected.shippingMethod" (ngModelChange)="toggleBillingToShipment()">
+			                                            <span></span>
+			                                        </label>
+			                                        Afhalen op kantoor Sony BE (Da vincilaan in Zaventem) (een keer per week)
+				                                </li>
+				                                <p style="font-size: 0.7rem; padding-left: 35px;">Voor dinsdag 21:00 besteld, de eerstvolgende vrijdag afhalen.</p>
+			                                </ng-container>
 			                                <li>
 			                                	<label class="tt-checkbox-circle">
 		                                            <input type="radio" name="shippingMethodGroup" value="custom-address" [(ngModel)]="selected.shippingMethod" (ngModelChange)="toggleBillingToShipment()">
@@ -350,7 +352,7 @@
 			                                    <div class="col-md-2"><p>Land:</p></div>
 			                                    <div class="col-md-10">
 			                                        <div class="tt-select">
-			                                            <select class="form-control" [(ngModel)]="customerData.country" (ngModelChange)="checkAddress()">
+			                                            <select class="form-control colorize-theme6-bg" [(ngModel)]="customerData.country" (ngModelChange)="checkAddress()">
 			                                                <option value="NL">Nederland</option>
 			                                                <option value="BE">België</option>
 			                                            </select>
@@ -385,8 +387,13 @@
 		                            			<li>Kies hieronder een van de bezorgopties van PostNL. Je kunt zowel kiezen voor thuis bezorging als voor ophalen bij een van de PostNL afhaalpunten.</li>
 			                                </ul>
 		                                </div>
+		                                
+		                                <div *ngIf="reloadDeliveryOptions" class="ttg-mt--20">
+		                                	<button href="javascript:void(0);" [disabled]="!customerData.country || !customerData.postalCode || !customerData.houseNumber" class="btn btn-sm" (click)="doReloadDeliveryOptions()">Bezorgopties opnieuw laden met nieuwe adres</button>
+		                                </div>
+		                                <p style="font-size: 0,7rem;" *ngIf="!customerData.country || !customerData.postalCode || !customerData.houseNumber">Vul eerst een geldig adres in.</p>
 			                            
-			                            <div class="col-lg-12 col-md-12 col-sm-12 ttg-mt--20" style="background-color: #f5f5f5; padding-bottom: 25px;">
+			                            <div class="col-lg-12 col-md-12 col-sm-12 ttg-mt--20" style="background-color: #f5f5f5; padding-bottom: 25px;" *ngIf="!reloadDeliveryOptions">
 			                            
 			                            	<div style="display: flex;">
 			                            
@@ -398,7 +405,7 @@
 														<thead>
 															<tr>
 																<th colspan="5">
-																	{{ user.street }} {{ user.house_number }} {{ user.house_number_extension }} in {{ user.city }}
+																	{{ customerData.address }} {{ customerData.houseNumber }} {{ customerData.houseNumberExtension }} in {{ customerData.city }}
 																</th>
 															</tr>
 														</thead>

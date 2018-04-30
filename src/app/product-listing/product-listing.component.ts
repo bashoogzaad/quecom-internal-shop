@@ -128,12 +128,13 @@ export class ProductListingComponent implements OnInit {
     public addToCart(product: any) {
         
         let orderLine = new OrderLine();
-        orderLine.count = Number(product.minimum_order_quantity);
+        orderLine.count = 1;
         orderLine.subtotal = orderLine.count*product.price_total_netto*1.21;
         orderLine.product = product;
         this.cartProvider.addOrderLine(orderLine);
         
         this.router.navigateByUrl('/winkelwagen');
+        
     }
 
 }

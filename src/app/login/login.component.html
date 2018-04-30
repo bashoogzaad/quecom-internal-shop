@@ -81,12 +81,16 @@
 	                                </label>
 	                            </div>
 	                        </div>
-	                        <div class="row ttg-mt--40">
-	                            <div class="col-md-9 offset-md-3">
+	                        <div class="row">
+	                            <div class="col-md-3 ttg-mt--40">
 	                                <button type="submit" [disabled]="!username || !password" class="btn" (click)="loginServer()" [promiseBtn]="loginPromise">
 	                                	<ng-container *ngIf="globals.language == 'NL'">Inloggen</ng-container>
 	                                    <ng-container *ngIf="globals.language == 'EN'">Login</ng-container>
 	                                </button>
+	                            </div>
+	                            <div *ngIf="mainErrorMsg" class="col-md-7 ttg-mt--40" style="color: indianred; border: 2px solid indianred; display: flex; align-items: center; justify-content: flex-start;">
+	                            	<i class="icon-cancel" style="color: indianred; padding-right: 10px;"></i>
+	                            	{{ mainErrorMsg }}
 	                            </div>
 	                        </div>
 	                        <div class="row ttg-mt--40">
