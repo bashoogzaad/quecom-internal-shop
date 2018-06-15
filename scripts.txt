@@ -1,0 +1,2 @@
+BUILD FOR SONY
+ng build -bh /sony/ -prod

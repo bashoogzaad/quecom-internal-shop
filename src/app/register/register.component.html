@@ -114,27 +114,18 @@
                        					<ng-container *ngIf="globals.language == 'EN'">The filled passwords match :)</ng-container>
 		                            </p>
 			                                
+			                        <br />
 	                                <div class="tt-login__title">
 	                        			<p>Persoonlijke informatie</p>
 	                    			</div>
-	                    			<label>
-	                                    <div class="row">
-	                                        <div class="col-md-3"><span class="ttg__required">Geslacht:</span></div>
-	                                        <div class="col-md-9">
-	                                        	<div class="tt-select">
-		                                            <select class="form-control colorize-theme6-bg" [(ngModel)]="user.gender" name="gender">
-		                                            	<option value="" disabled="true" [selected]="!user.gender">Selecteer een geslacht...</option>
-		                                                <option value="male">Man</option>
-		                                                <option value="female">Vrouw</option>
-		                                                <option value="unknown">Overig</option>
-		                                            </select>
-		                                        </div>
-	                                        </div>
-	                                    </div>
-	                                </label>
 		                            <label>
 	                                    <div class="row">
-	                                        <div class="col-md-3"><span class="ttg__required">Voornaam:</span></div>
+	                                        <div class="col-md-3">
+	                                        	<span class="ttg__required">
+	                                        		<ng-container *ngIf="globals.language == 'NL'">Voornaam:</ng-container>
+	                                        		<ng-container *ngIf="globals.language == 'EN'">First name: </ng-container>
+                                        		</span>
+                                       		</div>
 	                                        <div class="col-md-9">
 	                                            <input type="text" class="form-control colorize-theme6-bg" [(ngModel)]="user.first_name" name="first_name" placeholder="">
 	                                        </div>
@@ -142,7 +133,12 @@
 	                                </label>
 	                                <label>
 	                                    <div class="row">
-	                                        <div class="col-md-3"><span class="ttg__required">Achternaam:</span></div>
+	                                        <div class="col-md-3">
+                                       			<span class="ttg__required">
+                                       				<ng-container *ngIf="globals.language == 'NL'">Achternaam:</ng-container>
+	                                        		<ng-container *ngIf="globals.language == 'EN'">Last name: </ng-container>
+                                       			</span>
+                                   			</div>
 	                                        <div class="col-md-9">
 	                                            <input type="text" class="form-control colorize-theme6-bg" [(ngModel)]="user.last_name" name="last_name" placeholder="">
 	                                        </div>
@@ -150,13 +146,27 @@
 	                                </label>
 	                                <label>
 	                                    <div class="row">
-	                                        <div class="col-md-3"><span class="ttg__required">Land:</span></div>
+	                                        <div class="col-md-3">
+	                                        	<span class="ttg__required">
+	                                        		<ng-container *ngIf="globals.language == 'NL'">Land:</ng-container>
+	                                        		<ng-container *ngIf="globals.language == 'EN'">Country:</ng-container>
+	                                        	</span>
+                                        	</div>
 	                                        <div class="col-md-9">
 	                                        	<div class="tt-select">
 		                                            <select class="form-control colorize-theme6-bg" [(ngModel)]="user.country" name="country">
-		                                            	<option value="" disabled="true" [selected]="!user.country">Selecteer een land...</option>
-		                                                <option value="NL">Nederland</option>
-		                                                <option value="BE">België</option>
+		                                            	<option value="" disabled="true" [selected]="!user.country">
+		                                            		<ng-container *ngIf="globals.language == 'NL'">Selecteer een land...</ng-container>
+	                                        				<ng-container *ngIf="globals.language == 'EN'">Select a country...</ng-container>	
+	                                            		</option>
+		                                                <option value="NL">
+		                                                	<ng-container *ngIf="globals.language == 'NL'">Nederland</ng-container>
+	                                        				<ng-container *ngIf="globals.language == 'EN'">The Netherlands</ng-container>
+		                                                </option>
+		                                                <option value="BE">
+		                                                	<ng-container *ngIf="globals.language == 'NL'">België</ng-container>
+	                                        				<ng-container *ngIf="globals.language == 'EN'">Belgium</ng-container>
+		                                                </option>
 		                                            </select>
 		                                        </div>
 	                                        </div>
@@ -164,7 +174,12 @@
 	                                </label>
 	                                <label>
 	                                    <div class="row">
-	                                        <div class="col-md-3"><span class="ttg__required">Postcode:</span></div>
+	                                        <div class="col-md-3">
+	                                        	<span class="ttg__required">
+	                                        		<ng-container *ngIf="globals.language == 'NL'">Postcode:</ng-container>
+	                                        		<ng-container *ngIf="globals.language == 'EN'">Postal code:</ng-container>
+	                                        	</span>
+                                        	</div>
 	                                        <div class="col-md-9">
 	                                            <input type="text" class="form-control colorize-theme6-bg" [(ngModel)]="user.postal_code" [formControl]="postalCodeControl" name="postal_code" placeholder="">
 	                                        </div>
@@ -172,7 +187,12 @@
 	                                </label>
 	                                <label>
 	                                    <div class="row">
-	                                        <div class="col-md-3"><span class="ttg__required">Huisnummer:</span></div>
+	                                        <div class="col-md-3">
+	                                        	<span class="ttg__required">
+	                                        		<ng-container *ngIf="globals.language == 'NL'">Huisnummer:</ng-container>
+	                                        		<ng-container *ngIf="globals.language == 'EN'">House number:</ng-container>
+                                        		</span>
+                                        	</div>
 	                                        <div class="col-md-9">
 	                                            <input type="text" class="form-control colorize-theme6-bg" [(ngModel)]="user.house_number" [formControl]="houseNumberControl" name="house_number" placeholder="">
 	                                        </div>
@@ -180,7 +200,12 @@
 	                                </label>
 	                                <label>
 	                                    <div class="row">
-	                                        <div class="col-md-3"><span class="">Huisnummer toevoeging:</span></div>
+	                                        <div class="col-md-3">
+	                                        	<span class="">
+	                                        		<ng-container *ngIf="globals.language == 'NL'">Huisnummer toevoeging:</ng-container>
+	                                        		<ng-container *ngIf="globals.language == 'EN'">House number extension:</ng-container>
+                                        		</span>
+                                       		</div>
 	                                        <div class="col-md-9">
 	                                            <input type="text" class="form-control colorize-theme6-bg" [(ngModel)]="user.house_number_extension" [formControl]="houseNumberExtControl" name="house_number_extension" placeholder="">
 	                                        </div>
@@ -188,7 +213,12 @@
 	                                </label>
 	                                <label>
 	                                    <div class="row">
-	                                        <div class="col-md-3"><span class="ttg__required">Straat:</span></div>
+	                                        <div class="col-md-3">
+	                                        	<span class="ttg__required">
+                                        			<ng-container *ngIf="globals.language == 'NL'">Straat:</ng-container>
+	                                        		<ng-container *ngIf="globals.language == 'EN'">Street:</ng-container>
+	                                        	</span>
+                                        	</div>
 	                                        <div class="col-md-9">
 	                                            <input type="text" class="form-control colorize-theme6-bg" [(ngModel)]="user.street" name="street" [placeholder]="user.country == 'NL' ? 'Automatisch...' : ''">
 	                                        </div>
@@ -196,7 +226,12 @@
 	                                </label>
 	                                <label>
 	                                    <div class="row">
-	                                        <div class="col-md-3"><span class="ttg__required">Woonplaats:</span></div>
+	                                        <div class="col-md-3">
+	                                        	<span class="ttg__required">
+	                                        		<ng-container *ngIf="globals.language == 'NL'">Woonplaats:</ng-container>
+	                                        		<ng-container *ngIf="globals.language == 'EN'">City:</ng-container>
+	                                        	</span>
+                                        	</div>
 	                                        <div class="col-md-9">
 	                                            <input type="text" class="form-control colorize-theme6-bg" [(ngModel)]="user.city" name="city" [placeholder]="user.country == 'NL' ? 'Automatisch...' : ''">
 	                                        </div>
@@ -216,7 +251,10 @@
 	                        
 	                        <div class="row">
 	                            <div class="col-md-3 ttg-mt--40">
-	                                <button type="submit" class="btn" [disabled]="!checkFields()" (click)="doRegister()" [promiseBtn]="registerPromise">Registreren</button>
+	                                <button type="submit" class="btn" [disabled]="!checkFields()" (click)="doRegister()" [promiseBtn]="registerPromise">
+                                		<ng-container *ngIf="globals.language == 'NL'">Registreren</ng-container>
+                                   		<ng-container *ngIf="globals.language == 'EN'">Register</ng-container>
+                               		</button>
 	                            </div>
 	                            <div *ngIf="mainErrorMsg" class="col-md-7 ttg-mt--40" style="color: indianred; border: 2px solid indianred; display: flex; align-items: center; justify-content: flex-start;">
 	                            	<i class="icon-cancel" style="color: indianred; padding-right: 10px;"></i>

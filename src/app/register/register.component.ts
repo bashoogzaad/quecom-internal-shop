@@ -125,7 +125,6 @@ export class RegisterComponent implements OnInit {
           this.user.password &&
           this.user.password2 &&
           this.user.password == this.user.password2 &&
-          this.user.gender &&
           this.user.first_name &&
           this.user.last_name &&
           this.user.postal_code &&

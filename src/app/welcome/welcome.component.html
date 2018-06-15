@@ -13,7 +13,7 @@
 	                        <div class="tt-post-img__text">
 	                            <div class="tt-post-img__title tt-post-img__title--long">
 	                            	<ng-container *ngIf="globals.language == 'NL'">Welkom in de shop</ng-container>
-	                            	<ng-container *ngIf="globals.language == 'EN'">Welcom to the shop</ng-container>
+	                            	<ng-container *ngIf="globals.language == 'EN'">Welcome to the shop</ng-container>
 	                            </div>
 	                            <div class="tt-post-img__info ttg-f--16 ttg-fw--bold">
 	                            
@@ -25,8 +25,22 @@
 	                            	</ng-container>
 	                            
 	                            </div>
-	                            <a href="javascript:void(0);" routerLink="/inloggen" class="btn">INLOGGEN</a>
-	                            <a href="javascript:void(0);" routerLink="/registreren" class="btn">REGISTREREN</a>
+	                            <a href="javascript:void(0);" routerLink="/inloggen" class="btn">
+	                            	<ng-container *ngIf="globals.language == 'NL'">
+	                            		INLOGGEN
+	                            	</ng-container>
+	                            	<ng-container *ngIf="globals.language == 'EN'">
+	                            		LOG IN
+	                            	</ng-container>
+                            	</a>
+	                            <a href="javascript:void(0);" routerLink="/registreren" class="btn">
+	                            	<ng-container *ngIf="globals.language == 'NL'">
+	                            		REGISTREREN
+	                            	</ng-container>
+	                            	<ng-container *ngIf="globals.language == 'EN'">
+	                            		REGISTER
+	                            	</ng-container>
+                            	</a>
 	                        </div>
 	                    </div>
 	                </div>
