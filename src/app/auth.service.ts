@@ -14,6 +14,7 @@ import { PimcoreProvider } from './providers/pimcore.provider';
 export class AuthService {
     
     @LocalStorage(environment.debtorNumber+'-storage') public isLoggedIn;
+    @LocalStorage(environment.debtorNumber+'-privacy') public hasAcceptedPrivacyPolicy;
     @LocalStorage() public user;
     redirectUrl: string;
 
@@ -26,6 +27,10 @@ export class AuthService {
         
     }
   
+    acceptPrivacyPolicy(){
+        this.hasAcceptedPrivacyPolicy = true;
+    }
+    
     saveUser(guid: string) {
       this.user = guid;
       this.isLoggedIn = true;
@@ -57,4 +62,5 @@ export class AuthService {
         this.user = undefined;
         this.isLoggedIn = this.isLoggedIn;
     }
+    
 }

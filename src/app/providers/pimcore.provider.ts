@@ -79,4 +79,11 @@ export class PimcoreProvider {
       return this.http.get(this.globals.pimcoreUrl+'order?reference=SONYSTAFF-'+id+'&vkorg=2000', options).map(res => res.json());
     }
     
+    public requestPassword(username: string) {
+        const options = this.initRequestOptions();
+        options.headers.append('username', username);
+        return this.http.get(this.globals.pimcoreUrl+'request_password', options).map(res => res.json());
+        
+    }
+    
 }

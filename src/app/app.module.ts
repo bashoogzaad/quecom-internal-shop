@@ -46,11 +46,14 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { MailSuccesfullComponent } from './mail-succesfull/mail-succesfull.component';
 import { UserSuccessComponent } from './user-success/user-success.component';
 import { SlideshowModule } from 'ng-simple-slideshow';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 registerLocaleData(localeNl);
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/welkom', pathMatch: 'full' },
     { path: 'inloggen', component: LoginComponent },
+    { path: 'wachtwoord-vergeten', component: ForgotPasswordComponent },
     { path: 'registreren', component: RegisterComponent },
     { path: 'registreren/succesvol', component: RegisterSuccessComponent },
     { path: 'email-validatie/succesvol', component: MailSuccesfullComponent },
@@ -68,6 +71,7 @@ const appRoutes: Routes = [
     { path: 'klantenservice/retouren', component: ReturnsComponent },
     { path: 'klantenservice/voorwaarden', component: TermsComponent },
     { path: 'klantenservice/privacy', component: PrivacyComponent },
+    { path: 'privacy-policy', component: PrivacyPolicyComponent },
     { path: 'product/:id', component: ProductDetailComponent, canActivate: [AuthGuard] },
     { path: 'anker', component: AnkerComponent, canActivate: [AuthGuard] },
     { path: 'over-ons', component: AboutUsComponent },
@@ -101,7 +105,9 @@ const appRoutes: Routes = [
         RegisterSuccessComponent,
         WelcomeComponent,
         MailSuccesfullComponent,
-        UserSuccessComponent
+        UserSuccessComponent,
+        ForgotPasswordComponent,
+        PrivacyPolicyComponent
     ],
     imports: [
         BrowserModule,

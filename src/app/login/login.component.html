@@ -94,10 +94,12 @@
 	                            </div>
 	                        </div>
 	                        <div class="row ttg-mt--40">
-	                            <div class="col-md-4 col-sm-6 text-right"><a href="#">
-	                            	<ng-container *ngIf="globals.language == 'NL'">Wachtwoord vergeten?</ng-container>
-                                    <ng-container *ngIf="globals.language == 'EN'">Forgot password?</ng-container>
-	                            </a></div>
+	                            <div class="col-md-4 col-sm-6 text-right">
+	                            	<a routerLink="/wachtwoord-vergeten">
+                            			<ng-container *ngIf="globals.language == 'NL'">Wachtwoord vergeten?</ng-container>
+                                   		<ng-container *ngIf="globals.language == 'EN'">Forgot password?</ng-container>
+	                            	</a>
+                            	</div>
 	                        </div>
 	                    </form>
 	                </div>
