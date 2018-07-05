@@ -15,6 +15,7 @@ export class ForgotPasswordComponent implements OnInit {
     public username: string;
     public requestPromise: Subscription;
     
+    public mainSuccessMsg;
     public mainErrorMsg;
     
     constructor(
@@ -33,14 +34,17 @@ export class ForgotPasswordComponent implements OnInit {
         
         this.requestPromise = this.pimcoreProvider.requestPassword(this.username).subscribe(res => {
           if (res.status === 200) {
-              
-              this.router.navigate(['/home']);
+              this.mainSuccessMsg = 'Wachtwoord succesvol gereset, zie je mail. U wordt nu doorgestuurd naar de login pagina.';
+              this.username = undefined;
+              setTimeout(() => {
+                this.router.navigate(['/home']);
+              }, 5000);
           } else if (res.status === 400) {
-            console.log(res);
             this.mainErrorMsg = res['localized_message'] ? res['localized_message'] : res['message'];
           }       
         }, (error: any) => {
           console.log('ERROR');
+          console.log(error);
         });
         
     }

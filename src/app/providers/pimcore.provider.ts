@@ -82,7 +82,7 @@ export class PimcoreProvider {
     public requestPassword(username: string) {
         const options = this.initRequestOptions();
         options.headers.append('username', username);
-        return this.http.get(this.globals.pimcoreUrl+'request_password', options).map(res => res.json());
+        return this.http.get(this.globals.pimcoreUrl+'password/request', options).map(res => res.json());
         
     }
     
