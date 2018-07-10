@@ -81,11 +81,9 @@ export class CheckoutComponent implements OnInit {
       
         this.user = this.authService.user;
         if (this.user.street) {
-            this.customerData.genderSh = this.user.gender;
             this.customerData.firstNameSh = this.user.first_name;
             this.customerData.lastNameSh = this.user.last_name;
             this.customerData.emailAddressSh = this.user.username;
-//            this.customerData.companyName = this.customerData.companyNameSh;
             this.customerData.addressSh = this.user.street;
             this.customerData.houseNumberSh = this.user.house_number;
             this.customerData.houseNumberExtensionSh = this.user.house_number_extension;
@@ -231,7 +229,6 @@ export class CheckoutComponent implements OnInit {
             this.billingToShipment = true;
             
             if (this.billingToShipment) {
-                this.customerData.gender = this.customerData.genderSh;
                 this.customerData.firstName = this.customerData.firstNameSh;
                 this.customerData.lastName = this.customerData.lastNameSh;
                 this.customerData.emailAddress = this.customerData.emailAddressSh;
@@ -244,7 +241,6 @@ export class CheckoutComponent implements OnInit {
                 this.customerData.phoneNumber = this.customerData.phoneNumberSh;
                 this.customerData.country = this.customerData.countrySh;
             } else {
-                this.customerData.gender = undefined;
                 this.customerData.firstName = undefined;
                 this.customerData.lastName = undefined;
                 this.customerData.emailAddress = undefined;
@@ -279,7 +275,6 @@ export class CheckoutComponent implements OnInit {
             
             this.billingToShipment = false;
             
-            this.customerData.gender = undefined;
             this.customerData.firstName = undefined;
             this.customerData.lastName = undefined;
             this.customerData.emailAddress = undefined;
@@ -298,7 +293,6 @@ export class CheckoutComponent implements OnInit {
             
         } else if (this.selected.shippingMethod == 'pickup') {
             
-            this.customerData.gender = this.customerData.genderSh;
             this.customerData.firstName = this.customerData.firstNameSh;
             this.customerData.lastName = this.customerData.lastNameSh;
             this.customerData.emailAddress = this.customerData.emailAddressSh;

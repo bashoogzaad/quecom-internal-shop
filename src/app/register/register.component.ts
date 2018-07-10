@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
   public registerPromise: Subscription;
   
   public organizations: any;
-  
+
   public postalCodeControl = new FormControl();
   public houseNumberControl = new FormControl();
   public houseNumberExtControl = new FormControl();
@@ -45,6 +45,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     
     this.pimcoreProvider.getOrganizations().subscribe(org => {
+      // this.organizations = org.filter(org => org.name != 'Test Organization');
       this.organizations = org;
     });
     
@@ -56,13 +57,16 @@ export class RegisterComponent implements OnInit {
   
   doRegister() {
     
+    if (!this.checkFields()) {
+      this.errorMsg = 'Niet alle velden ingevuld. Controleer de gegevens a.u.b.';
+      return;
+    }
+
     this.registerPromise = this.authService.register(this.user).subscribe(res => {
-      console.log(res);
       
       if (res['status'] && res['status'] == 200) {
           this.router.navigate(['/registreren/succesvol']);
       }
-      
       if (res['status'] && res['status'] == 400) {
           this.mainErrorMsg = res['localized_message'];
       }
@@ -80,19 +84,18 @@ export class RegisterComponent implements OnInit {
     }
     
     if (this.user.country == 'BE') {
-        return;
+      return;
     }
     
     if (this.user.postal_code.length < 6) {
             
-        this.user.street = '';
-        this.user.city = '';
+      this.user.street = '';
+      this.user.city = '';
         
-        return;
+      return;
     }
     
     this.quecomProvider.checkAddress(this.user.house_number, this.user.postal_code, this.user.house_number_extension).subscribe(i => {
-      console.log(i);  
       
       if (i.error) {
           
@@ -120,11 +123,10 @@ export class RegisterComponent implements OnInit {
   public checkFields() {
       
       if (
-          this.user.organization &&
-          this.user.username &&
-          this.user.password &&
-          this.user.password2 &&
-          this.user.password == this.user.password2 &&
+        this.user.username &&
+        this.user.password &&
+        this.user.password2 &&
+          this.user.password === this.user.password2 &&
           this.user.first_name &&
           this.user.last_name &&
           this.user.postal_code &&
@@ -133,9 +135,9 @@ export class RegisterComponent implements OnInit {
           this.user.city &&
           this.user.country
       ) {
-          return true;
+        return true;
       } else {
-          return false;
+        return false;
       }
       
   }

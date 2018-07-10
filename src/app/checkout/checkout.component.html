@@ -13,14 +13,6 @@
 								<div class="row">
 									<div class="col-md-3 col-sm-12">
 										<div class="form-group">
-											<select class="form-control selectpicker" name="genderSh" [(ngModel)]="customerData.genderSh" (ngModelChange)="change($event, 'gender')" required>
-												<option>Mevr.</option>
-												<option>De heer</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-md-3 col-sm-12">
-										<div class="form-group">
 											<input placeholder="Voornaam" type="text" class="form-control" name="firstNameSh" [(ngModel)]="customerData.firstNameSh" (ngModelChange)="change($event, 'firstName')"  required />
 										</div>
 									</div>
@@ -78,14 +70,6 @@
 							<div class="billing-details">
 								<h4 class="checkout-title">Factuuradres</h4>
 								<div class="row">
-									<div class="col-md-3 col-sm-12">
-										<div class="form-group">
-											<select class="form-control selectpicker" name="gender" [(ngModel)]="customerData.gender" required [disabled]="billingToShipment">
-												<option>Mevr.</option>
-												<option>De heer</option>
-											</select>
-										</div>
-									</div>
 									<div class="col-md-3 col-sm-12">
 										<div class="form-group">
 											<input placeholder="Voornaam" type="text" class="form-control" name="firstName" [(ngModel)]="customerData.firstName" required [disabled]="billingToShipment" />
@@ -307,17 +291,6 @@
 			                            <h4 class="ttg-mt--30 ttg-mb--20">Verzendadres</h4>
 			                            <div class="tt-checkout__form">
 			                                <div class="row">
-			                                	<div class="col-md-2">Geslacht:</div>
-		                                        <div class="col-md-10">
-		                                        	<div class="tt-select">
-			                                            <select class="form-control colorize-theme6-bg" [(ngModel)]="customerData.gender" name="gender">
-			                                            	<option value="" disabled="true" [selected]="!customerData.gender">Selecteer een geslacht...</option>
-			                                                <option value="male">Man</option>
-			                                                <option value="female">Vrouw</option>
-			                                                <option value="unknown">Overig</option>
-			                                            </select>
-			                                        </div>
-		                                        </div>
 			                                    <div class="col-md-2"><p>Voornaam:</p></div>
 			                                    <div class="col-md-10">
 			                                        <div class="tt-input">

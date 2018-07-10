@@ -146,8 +146,8 @@ button[disabled], html input[disabled] { cursor:default }
 
 .btn, .btn--secondary { display:inline-block; padding:8px 10px; width:auto; margin:0; line-height:1.42; font-weight:bold; text-decoration:none; text-align:center; vertical-align:middle; white-space:nowrap; cursor:pointer; border:1px solid transparent; -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none; -webkit-appearance:none; -moz-appearance:none; border-radius:0; text-transform:uppercase; letter-spacing:0.5px; font-size:14px; background-color:$color-secondary; color:#fff;
 transition:all 0.3s ease 0s; -webkit-transition:all 0.3s ease 0s; -moz-transition:all 0.3s ease 0s; }
-.btn--secondary { background-color:var(--color-primary-var) }
-.btn:hover{ background-color:var(--color-primary-var); color:#fff; }
+.btn--secondary { background-color:#FF6200;background-color:var(--color-primary-var); }
+.btn:hover{ background-color:#FF6200;background-color:var(--color-primary-var); color:#fff; }
 .btn--secondary:hover  { background-color:$color-secondary; color:#fff; }
 .btn:active, .btn:focus { background-color:#03262a; color:#fff; }
 .btn--secondary:active, .btn--secondary:focus  { background-color:#bc6a00; color:#fff; }
@@ -216,11 +216,11 @@ body { background-color:#fff; }
 .customer-links li { list-style:none; text-transform:uppercase; float:left; position:relative; padding:0; margin:0 }
 .customer-links li+li:before { color:$color-secondary; content:"|"; padding:0 8px; }
 .customer-links li a { color:#010909; font-size:12px; line-height:35px; }
-.customer-links li a:hover { color:var(--color-primary-var); text-decoration:none; }
-.customer-links li .fa { color:var(--color-primary-var); }
+.customer-links li a:hover { color:#FF6200;color:var(--color-primary-var); text-decoration:none; }
+.customer-links li .fa { color:#FF6200;color:var(--color-primary-var); }
 
 a.cart-toggle { color:#fff; font-size:12px; float:right; outline:none; padding:0 5px 0 10px; background:var(--color-primary-var); }
-a.cart-toggle:hover { color:#fff; text-decoration:none; background-color:var(--color-primary-var); }
+a.cart-toggle:hover { color:#fff; text-decoration:none; background-color:#FF6200;background-color:var(--color-primary-var); }
 a.cart-toggle .icon-cart { font-size:22px; float:left; }
 a.cart-toggle .CartCount { line-height:37px; padding:0 5px }
 a.sticky-cart { font-size:25px; line-height:39px; }
@@ -241,7 +241,7 @@ a.sticky-cart { font-size:25px; line-height:39px; }
 .shiping_text { float:right; }
 .shiping_text { font-size:16px; font-weight:700; text-transform:uppercase; margin-right:5%; }
 .shiping_text .icon { float:left; }
-.shiping_text p { color:var(--color-primary-var); float:left; line-height:16px; margin:0; }
+.shiping_text p { color:#FF6200;color:var(--color-primary-var); float:left; line-height:16px; margin:0; }
 .shiping_text p span { color:#333; display:block; font-size:13px; font-weight:400; }
 .shiping_text .icon { margin-top:-3px }
 .shiping_text .fa, .order_text .fa { color:$color-secondary; font-size:35px; margin-right:10px; }
@@ -249,7 +249,7 @@ a.sticky-cart { font-size:25px; line-height:39px; }
 .order_text { float:right; font-size:13px; font-weight:400; text-transform:uppercase; margin-right:5%; }
 .order_text .icon { float:left; }
 .order_text p { float:left; line-height:16px; margin:0 }
-.order_text p span { color:var(--color-primary-var); display:block; font-size:16px; font-weight:700 }
+.order_text p span { color:#FF6200;color:var(--color-primary-var); display:block; font-size:16px; font-weight:700 }
 
 .stickyNav { position:fixed; width:100%; top:0; z-index:888 }
 .sticky-home-logo { display:none; position:absolute; left:15px; top:0; color:#fff; font-size:25px; outline:none }
@@ -263,7 +263,7 @@ a.sticky-cart .CartCount { font-size:12px; line-height:39px; padding-left:5px }
 .stickyNav a.sticky-cart { display:block }
 
 /*============== Site navigation ==================*/
-.nav-bar { background-color:var(--color-primary-var) }
+.nav-bar { background-color:#FF6200;background-color:var(--color-primary-var) }
 
 div.main-menu ul, 
 .main-menu li { margin:0; padding:0; position:relative }
@@ -283,7 +283,7 @@ div.main-menu ul,
 .main-menu div.megamenu>ul { float:left; width:75%; }
 .main-menu div.megamenu>ul.fullWidth { width:75%; }
 .main-menu div.megamenu>ul>li { padding:15px; float:left; width:25%; list-style:none }
-.main-menu div.megamenu>ul>li>a { font-weight:700; padding:0 5px 8px; text-transform:uppercase; color:var(--color-primary-var); font-size:13px; }
+.main-menu div.megamenu>ul>li>a { font-weight:700; padding:0 5px 8px; text-transform:uppercase;color:#FF6200;color:var(--color-primary-var); font-size:13px; }
 .main-menu div.megamenu>ul>li>a:hover { color:$color-secondary }
 .main-menu div.megamenu>ul>li>ul { display:block; position:static; padding-top:10px; box-shadow:none }
 .main-menu div.megamenu>ul>li li a { padding:2px 6px; text-transform:capitalize; font-weight:400; color:#555555; font-size:13px; }
@@ -385,10 +385,10 @@ div.main-menu ul,
 #slider .container { position:absolute; height:100%; width:100%; top:0 }
 
 .flex-direction-nav li a {  background:rgba(255,255,255,0.8) }
-.flex-direction-nav li a:before { color:var(--color-primary-var) }
+.flex-direction-nav li a:before { color:#FF6200;color:var(--color-primary-var) }
 .flex-control-paging li a.flex-active,
-.flex-control-paging li a:hover { background:var(--color-primary-var) }
-.flex-control-paging li a.flex-active:before { border:1px solid var(--color-primary-var); position:absolute; content:""; left:-3px; top:-3px; bottom:-3px; right:-3px; }
+.flex-control-paging li a:hover { background:#FF6200;background:var(--color-primary-var) }
+.flex-control-paging li a.flex-active:before { border:1px solid #FF6200;border:1px solid var(--color-primary-var); position:absolute; content:""; left:-3px; top:-3px; bottom:-3px; right:-3px; }
 
 /* ====================================================================================================================
    4. HOME PAGE
@@ -447,14 +447,14 @@ h2.section-title:after { bottom:-12px; content:""; height:1px; left:50%; margin-
 /* ====================================================================================================================
    5. SITE FOOTER
  * ====================================================================================================================*/
-.site-footer { position:relative; background-color:var(--color-primary-var); color:#d6e7ea; }
+.site-footer { position:relative; background-color:#FF6200;background-color:var(--color-primary-var); color:#d6e7ea; }
 .site-footer p { margin-bottom:6px; color:#d6e7ea;}
 
 #scroll-top {  background:$color-secondary; -webkit-transition:all 0.3s ease 0s; -moz-transition:all 0.3s ease 0s; -o-transition:all 0.3s ease 0s; transition:all 0.3s ease 0s; height:40px; width:40px; position:absolute; top:-20px; text-align:center; color:#fff; font-size:15px; left:50%; margin-left:-20px; transform:rotate(46deg); -webkit-transform:rotate(46deg); cursor:pointer }
 #scroll-top .fa { transform:rotate(45deg) translateY(2px); -webkit-transform:rotate(45deg) translateY(2px); vertical-align:bottom }
 #scroll-top:hover { background:#000 }
 
-.newsletter { padding:60px 0 40px; text-align:center; background:var(--color-primary-var); }
+.newsletter { padding:60px 0 40px; text-align:center; background-color:#FF6200;background:var(--color-primary-var); }
 .newsletter .newsletter-title { margin-bottom:20px }
 .newsletter h3 { font-size:25px; text-transform:uppercase; margin-bottom:0; font-weight:700; line-height:21px; color:#fff; }
 .newsletter p { margin-bottom:0; font-size:15px; color:#fff; }
@@ -463,7 +463,7 @@ h2.section-title:after { bottom:-12px; content:""; height:1px; left:50%; margin-
 .newsletter form .btn { -webkit-transition:all 0.3s ease 0s; -moz-transition:all 0.3s ease 0s; -o-transition:all 0.3s ease 0s; transition:all 0.3s ease 0s; float:left; position:absolute; right:0; top:0; height:45px;
 font-family:"Roboto","HelveticaNeue","Helvetica Neue",sans-serif; font-size:14px; }
 .newsletter .newsletter-field { width:50%; margin:0 auto }
-.newsletter .btn { background: var(--color-primary-var);}
+.newsletter .btn { background:#FF6200;background: var(--color-primary-var);}
 .newsletter .btn:hover {background: $color-secondary;}
 
 .footer-top { padding:40px 0 30px; border-bottom:1px solid #fff }
@@ -501,7 +501,7 @@ font-family:"Roboto","HelveticaNeue","Helvetica Neue",sans-serif; font-size:14px
 .newsletter-left .input-group input { width:100%; margin:0 0 10px 0; -webkit-transition:all 0.3s ease 0s; -moz-transition:all 0.3s ease 0s; -o-transition:all 0.3s ease 0s; transition:all 0.3s ease 0s }
 .newsletter-left .social { margin:10px 0 0 }
 .newsletter-left .social li { display:inline-block; margin:0 5px; list-style:none }
-.newsletter-left .social li a { border:1px solid var(--color-primary-var); border-radius:50%; color:var(--color-primary-var); display:inline-block; font-size:14px; height:30px; line-height:20px; padding:5px; text-align:center; width:30px }
+.newsletter-left .social li a { border:1px solid #FF6200;border:1px solid var(--color-primary-var); border-radius:50%;color:#FF6200;color:var(--color-primary-var); display:inline-block; font-size:14px; height:30px; line-height:20px; padding:5px; text-align:center; width:30px }
 
 #newsletter-modal .closepopup { color:#fff; display:block; font-size:19px; height:30px; line-height:21px; padding:5px; position:absolute; right:-10px; top:-10px; width:30px; z-index:333; border-radius:50%; }
 #newsletter-modal .closepopup:hover { opacity:0.8 }
@@ -600,7 +600,7 @@ h3.product_name a{ color:#000000 }
 .action-buttons { position:absolute; left:-50px; top:5px; opacity:0; -webkit-transition:all 0.3s ease 0s; -moz-transition:all 0.3s ease 0s; -o-transition:all 0.3s ease 0s; transition:all 0.3s ease 0s }
 .not-available { position:absolute; left:0; top:0; height:100%; width:100%; text-transform:uppercase; font-weight:700; z-index:5; opacity:0; -webkit-transition:all 0.3s ease 0s; -moz-transition:all 0.3s ease 0s; -o-transition:all 0.3s ease 0s; transition:all 0.3s ease 0s; background:rgba(255,255,255,0.8); text-align:center }
 
-.btn-action { background:var(--color-primary-var); clear:both; color:#fff; font-size:15px; line-height:40px; display:inline-block; height:40px; width:40px; padding:0; margin-bottom:5px; text-align:center }
+.btn-action { background:#FF6200;background:var(--color-primary-var); clear:both; color:#fff; font-size:15px; line-height:40px; display:inline-block; height:40px; width:40px; padding:0; margin-bottom:5px; text-align:center }
 .btn-action:hover { background:$color-secondary; color:#fff; }
 
 .btn-action.add-to-cart { font-size:20px; display:block; text-decoration:none; }
@@ -661,7 +661,7 @@ h3.product_name a{ color:#000000 }
 .pagination ul li { float:left; list-style:none; margin:0 2px }
 .pagination ul li a { background:#ddd; border-radius:3px; color:#000; display:block; height:30px; line-height:30px; padding:0; text-align:center; width:30px; text-decoration:none }
 .pagination ul li.active a,
-.pagination ul li:hover a  { background:var(--color-primary-var); font-weight:700; color:#fff }
+.pagination ul li:hover a  { background:#FF6200;background:var(--color-primary-var); font-weight:700; color:#fff }
 .pagination a, .pagination .page.current { padding:8px; }
 
 
@@ -952,7 +952,7 @@ h2.sub-title { font-size:14px; font-weight:700; background:#fafafa; color:#444; 
 .account-pages .address { padding:0 12px; }
 
 .account-header a { color:#309fa9; text-decoration:none; }
-.account-header a:hover { color:var(--color-primary-var); text-decoration:none; }
+.account-header a:hover { color:#FF6200;color:var(--color-primary-var); text-decoration:none; }
 .account-header .welcome { text-align:center; padding-top:15px; }
 .account-header .links { color:#309fa9; text-align:right; padding-top:15px; }
 
@@ -979,7 +979,7 @@ h2.sub-title { font-size:14px; font-weight:700; background:#fafafa; color:#444; 
 
 .publish-detail { margin:0 0 10px 0 }
 .publish-detail li { color:#333; list-style:none; display:inline-block; margin-right:10px }
-.publish-detail li .fa { color:var(--color-primary-var); font-size:16px }
+.publish-detail li .fa { color:#FF6200;color:var(--color-primary-var); font-size:16px }
 .publish-detail li a { color:#333 }
 
 .inline-tags span { display:none }
@@ -1048,7 +1048,7 @@ h2.sub-title { font-size:14px; font-weight:700; background:#fafafa; color:#444; 
 /* ====================================================================================================================
    16. Checkout PAGE
  * ====================================================================================================================*/
-h4.checkout-title { color:var(--color-primary-var); font-size:15px; font-weight:600; text-transform:uppercase; padding:10px; }
+h4.checkout-title { color:#FF6200;color:var(--color-primary-var); font-size:15px; font-weight:600; text-transform:uppercase; padding:10px; }
 #checkoutform .cat-total { padding:10px; margin-bottom:12px; border-top:1px solid #ccc; border-bottom:1px solid #ccc; }
 
 input.form-control { border:1px solid #e5e5e5; box-shadow:none; border-radius:0; padding:8px 10px; }
