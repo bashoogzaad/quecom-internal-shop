@@ -30,7 +30,7 @@
 	                        </div>
 	                        <div class="tt-tabs__body tt-tabs-my-account">
 	                            <div [ngClass]="current === 'dashboard' ? 'show-account-section' : ''">
-	                                <span>Dashboard <i class="icon-down-open"></i></span>
+	                                <span (click)="current = 'dashboard'">Dashboard <i class="icon-down-open"></i></span>
 	                                <div class="tt-tabs__content">
 	                                	<h4>Dashboard</h4>
 	                                    <p class="ttg-mb--20">Welkom, {{ user.first_name }} {{ user.last_name }}.</p>
@@ -45,7 +45,7 @@
 	                                </div>
 	                            </div>
 	                            <div [ngClass]="current === 'orders' ? 'show-account-section' : ''">
-	                                <span>Bestellingen <i class="icon-down-open"></i></span>
+	                                <span (click)="current = 'orders'">Bestellingen <i class="icon-down-open"></i></span>
 	                                <div class="tt-tabs__content">
 	                                    <h4>Bestellingen</h4>
 	                                    <div class="tt-tabs-my-account__table ttg-mb--30">
@@ -158,7 +158,7 @@
 	                                </div>
 	                            </div>
 	                            <div [ngClass]="current === 'invoices' ? 'show-account-section' : ''">
-	                                <span>Downloads <i class="icon-down-open"></i></span>
+	                                <span (click)="current = 'invoices'">Downloads <i class="icon-down-open"></i></span>
 	                                <div class="tt-tabs__content">
 	                                    <h4>Downloads</h4>
 	                                    <div class="tt-tabs-my-account__table ttg-mb--30">
@@ -175,7 +175,7 @@
 	                                </div>
 	                            </div>
 	                            <div [ngClass]="current === 'personal-information' ? 'show-account-section' : ''">
-	                                <span>NAW-Gegevens <i class="icon-down-open"></i></span>
+	                                <span (click)="current = 'personal-information'">NAW-Gegevens <i class="icon-down-open"></i></span>
 	                                <div class="tt-tabs__content">
 	                                	<h4>NAW-Gegevens</h4>
 	                                	<p>
@@ -277,7 +277,7 @@
 	                                </div>
 	                            </div>
 	                            <div [ngClass]="current === 'logout' ? 'show-account-section' : ''">
-	                                <span>Logout <i class="icon-down-open"></i></span>
+	                                <span (click)="current = 'logout'">Logout <i class="icon-down-open"></i></span>
 	                                <div class="tt-tabs__content">
 	                                    <h4>Uitloggen</h4>
 	                                </div>

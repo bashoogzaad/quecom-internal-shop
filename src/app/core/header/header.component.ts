@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
     public categories: any[];
     
     public showUser = false;
+    public showMenuu = false;
     
     constructor(
         public localStorage: LocalStorageService,
@@ -62,6 +63,8 @@ export class HeaderComponent implements OnInit {
   
     goToDefaultPage(type: string) {
       this.forceHideMenu = true;
+      this.showMenuu = false;
+      this.showUser = false;
       this.router.navigate(['/'+type]);
     }
     
