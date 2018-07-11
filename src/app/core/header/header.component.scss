@@ -52,3 +52,9 @@
 	color: #fe5a1a;
 	color: var(--color-primary-var) !important;
 }
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+	.ie-header {
+		margin-left: -228px !important;
+	}
+}
