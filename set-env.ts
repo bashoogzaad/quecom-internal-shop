@@ -12,9 +12,7 @@ export const environment = {
 `;
 
 writeFile(targetPath, envConfigFile, function (err) {
-    if (err) {
-        console.log(err);
-    }
-
+    if (err) { console.log(err); }
+    console.log('EnvConfigFile: '+envConfigFile);
     console.log(`Output generated at ${targetPath}`);
 });

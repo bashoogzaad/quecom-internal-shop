@@ -1,2 +1,12 @@
 BUILD FOR SONY
 ng build -bh /sony/ -prod
+
+BUILD FOR JOBINVESTMENT
+
+npm config set quecom-internal-shop:apiUrl=https://api.quecom.nl/customer
+npm config set quecom-internal-shop:apiKey=oLouAeGDj9DgQfUzP6sLjsNzFqB5QXROmPBg4Z2t
+npm config set quecom-internal-shop:debtorNumber=103252
+npm config set quecom-internal-shop:version=v3
+npm config set quecom-internal-shop:production=true
+npm run config
+ng build -bh /jobinvestment/ -environment=prod

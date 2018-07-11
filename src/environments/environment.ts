@@ -1,8 +1,8 @@
 
 export const environment = {
-    production: undefined,
-    apiUrl: "undefined",
-    apiKey: "undefined",
-    debtorNumber: "undefined",
-    version: "undefined"
+    production: true,
+    version: "v3",
+    apiUrl: "https://api.quecom.nl/customer",
+    apiKey: "oLouAeGDj9DgQfUzP6sLjsNzFqB5QXROmPBg4Z2t",
+    debtorNumber: "103252"
 };
