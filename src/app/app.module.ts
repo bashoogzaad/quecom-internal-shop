@@ -48,6 +48,7 @@ import { UserSuccessComponent } from './user-success/user-success.component';
 import { SlideshowModule } from 'ng-simple-slideshow';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { OrderSuccessComponent } from './order-success/order-success.component';
 registerLocaleData(localeNl);
 
 const appRoutes: Routes = [
@@ -58,6 +59,7 @@ const appRoutes: Routes = [
     { path: 'registreren/succesvol', component: RegisterSuccessComponent },
     { path: 'email-validatie/succesvol', component: MailSuccesfullComponent },
     { path: 'gebruiker-validatie/succesvol', component: UserSuccessComponent },
+    { path: 'bestelling/succesvol', component: OrderSuccessComponent },
     { path: 'welkom', component: WelcomeComponent },
     { path: 'mijn-account', component: MyAccountComponent },
     { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
@@ -107,7 +109,8 @@ const appRoutes: Routes = [
         MailSuccesfullComponent,
         UserSuccessComponent,
         ForgotPasswordComponent,
-        PrivacyPolicyComponent
+        PrivacyPolicyComponent,
+        OrderSuccessComponent
     ],
     imports: [
         BrowserModule,
