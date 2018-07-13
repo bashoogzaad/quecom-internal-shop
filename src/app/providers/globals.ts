@@ -28,6 +28,7 @@ export class Globals {
     public hasCoupons: boolean = true;
     public deliveryIndication: string[] = ['Vóór 19:00 uur besteld', 'Volgende dag geleverd*'];
     public hasDeliveryCost: boolean = false;
+    public hasBudget: boolean = false;
     
     public loadingOn() {
         this.loading.next(true);

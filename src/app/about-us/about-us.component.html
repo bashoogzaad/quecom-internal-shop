@@ -59,8 +59,8 @@
 	                        
 	                        <div class="col-md-6">
 	                            <div class="tt-about__info">
-	                                <div>Sony Staff Shop</div>
-	                                <p>Speciaal voor alle werknemers hebben wij deze loyaliteitsshop ingericht. In deze shop kunnen alle collega’s Sony artikelen scoren met flinke kortingen. Happy Shopping!</p>
+	                                <div>Custom Shop</div>
+	                                <p>Deze loyaliteitsshop is speciaal voor je ingericht. In deze shop kun je veel producten scoren met flinke kortingen. Happy Shopping!</p>
 	                            </div>
 	                        </div>
 	                        
@@ -71,73 +71,78 @@
 	                        
 	                    </div>
 	                </div>
-	
-	                <div class="tt-page__name-sm text-center">
-	                    <h2>Ons team</h2>
-	                    <p>Maak kennis met het team van Gezamenlijk Voordeel:</p>
-	                </div>
-	
-	                <div class="container-fluid ttg-cont-padding--none ttg-mb--100 ttg-mt--50">
-	                    <div class="row ttg-grid-padding--none">
-	                        <div class="col-sm-6 col-xl-4">
-	                            <div class="tt-team ttg-text-animation-parent">
-	                                <div class="tt-team__image">
-	                                    <a href="#">
-	                                        <img src="assets/templates/mogo/images/about/team/Wesley.png" alt="Image name">
-	                                    </a>
-	                                </div>
-	                                <div class="tt-team__hover">
-	                                    <div class="tt-team__content">
-	                                        <div class="ttg-text-animation--emersion">
-	                                            <a href="#" class="tt-team__name">Wesley Meeuwsen</a>
-	                                        </div>
-	                                        <div class="ttg-text-animation--emersion">
-	                                            <span class="tt-team__status">Key Accountmanager</span>
-	                                        </div>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                        </div>
-	                        <div class="col-sm-6 col-xl-4">
-	                            <div class="tt-team ttg-text-animation-parent">
-	                                <div class="tt-team__image">
-	                                    <a href="#">
-	                                        <img src="assets/templates/mogo/images/about/team/Lars.png" alt="Image name">
-	                                    </a>
-	                                </div>
-	                                <div class="tt-team__hover">
-	                                    <div class="tt-team__content">
-	                                        <div class="ttg-text-animation--emersion">
-	                                            <a href="#" class="tt-team__name">Lars de Weerdt</a>
-	                                        </div>
-	                                        <div class="ttg-text-animation--emersion">
-	                                            <span class="tt-team__status">Business Unit Manager</span>
-	                                        </div>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                        </div>
-	                        <div class="col-sm-6 col-xl-4">
-	                            <div class="tt-team ttg-text-animation-parent">
-	                                <div class="tt-team__image">
-	                                    <a href="#">
-	                                        <img src="assets/templates/mogo/images/about/team/Paul.png" alt="Image name">
-	                                    </a>
-	                                </div>
-	                                <div class="tt-team__hover">
-	                                    <div class="tt-team__content">
-	                                        <div class="ttg-text-animation--emersion">
-	                                            <a href="#" class="tt-team__name">Paul van Amelsfort</a>
-	                                        </div>
-	                                        <div class="ttg-text-animation--emersion">
-	                                            <span class="tt-team__status">Projectmanager Zakelijk</span>
-	                                        </div>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div>
+					
+					<ng-container *ngIf="showTeam">
+
+						<div class="tt-page__name-sm text-center">
+							<h2>Ons team</h2>
+							<p>Maak kennis met het team van Gezamenlijk Voordeel:</p>
+						</div>
+		
+						<div class="container-fluid ttg-cont-padding--none ttg-mb--100 ttg-mt--50">
+							<div class="row ttg-grid-padding--none">
+								<div class="col-sm-6 col-xl-4">
+									<div class="tt-team ttg-text-animation-parent">
+										<div class="tt-team__image">
+											<a href="#">
+												<img src="assets/templates/mogo/images/about/team/Wesley.png" alt="Image name">
+											</a>
+										</div>
+										<div class="tt-team__hover">
+											<div class="tt-team__content">
+												<div class="ttg-text-animation--emersion">
+													<a href="#" class="tt-team__name">Wesley Meeuwsen</a>
+												</div>
+												<div class="ttg-text-animation--emersion">
+													<span class="tt-team__status">Key Accountmanager</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-6 col-xl-4">
+									<div class="tt-team ttg-text-animation-parent">
+										<div class="tt-team__image">
+											<a href="#">
+												<img src="assets/templates/mogo/images/about/team/Lars.png" alt="Image name">
+											</a>
+										</div>
+										<div class="tt-team__hover">
+											<div class="tt-team__content">
+												<div class="ttg-text-animation--emersion">
+													<a href="#" class="tt-team__name">Lars de Weerdt</a>
+												</div>
+												<div class="ttg-text-animation--emersion">
+													<span class="tt-team__status">Business Unit Manager</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-6 col-xl-4">
+									<div class="tt-team ttg-text-animation-parent">
+										<div class="tt-team__image">
+											<a href="#">
+												<img src="assets/templates/mogo/images/about/team/Paul.png" alt="Image name">
+											</a>
+										</div>
+										<div class="tt-team__hover">
+											<div class="tt-team__content">
+												<div class="ttg-text-animation--emersion">
+													<a href="#" class="tt-team__name">Paul van Amelsfort</a>
+												</div>
+												<div class="ttg-text-animation--emersion">
+													<span class="tt-team__status">Projectmanager Zakelijk</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					
+					</ng-container>
+
 				</div>
 	        </div>
 	    </div>

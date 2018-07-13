@@ -144,7 +144,7 @@
 	                                    <p style="font-size: 0.7em;">Voor sommige bezorgopties kunnen extra kosten in rekening worden gebracht, zoals avond- of zondagbezorging.</p>
 	                                </div>
 	                                <br />
-	                                <div class="tt-summary__form tt-summary--border">
+	                                <div class="tt-summary__form tt-summary--border" *ngIf="globals.hasBudget">
 	                                    <h5 class="ttg-mb--20">Huidig budget</h5>
 	                                    <p>Je resterende budget bedraagt {{ budget | currency:'EUR':'true' }}</p>
 	                                    <p style="font-size: 0.7em;">Na de bestelling zal het budget verminderd worden met het bedrag van de bestelling inclusief BTW en exclusief verzendkosten.</p>
@@ -155,10 +155,10 @@
 	                                <div class="tt-summary__total tt-summary__total--lg">
 	                                    <p>Totaal: <span>{{ getOrderTotal()+getDeliveryCost() | currency:'EUR':'true' }}</span></p>
 	                                </div>
-	                                <a href="javascript:void(0);" routerLink="/winkelwagen/bestellen" class="tt-summary__btn-checkout btn btn-type--icon colorize-btn6" *ngIf="getOrderTotal() <= budget">
+	                                <a href="javascript:void(0);" routerLink="/winkelwagen/bestellen" class="tt-summary__btn-checkout btn btn-type--icon colorize-btn6" *ngIf="(globals.hasBudget && getOrderTotal() <= budget) || !globals.hasBudget">
 	                                	<i class="icon-check"></i><span>Verder</span>
 	                                </a>
-	                                <p *ngIf="getOrderTotal() > budget" class="ttg-mt--30 ttg-mb--10" style="color: white; background-color: indianred; padding: 10px;">
+	                                <p *ngIf="globals.hasBudget && getOrderTotal() > budget" class="ttg-mt--30 ttg-mb--10" style="color: white; background-color: indianred; padding: 10px;">
 	                                	<i class="icon-cancel" style="color: white; padding-right: 10px;"></i>
 	                                	Je huidige budget is niet toereikend om deze bestelling te plaatsen. In 'Mijn Account' kun je je budget controleren.
 	                                </p>

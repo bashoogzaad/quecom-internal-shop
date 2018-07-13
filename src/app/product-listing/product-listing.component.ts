@@ -51,10 +51,13 @@ export class ProductListingComponent implements OnInit {
                 this.groupId = params.get('id');
                 
                 this.quecomProvider.getCategories().subscribe(res => {
-                  console.log(res);
+                
                   if (this.unparsedType === 'categorie') {
+
                     this.typeObject =  res['categories'].find(c => c.id === this.groupId);
                     this.typeObject['main_name'] = this.typeObject['name'];
+                    this.typeObject['parsed'] = this.typeObject['name'].replace(/[& ]/g, '');
+
                   } else if (this.unparsedType === 'subcategorie') {
                      
                     for (let cat of res['categories']) {
@@ -65,6 +68,7 @@ export class ProductListingComponent implements OnInit {
                       
                     this.typeObject =  res['categories'].reduce((a, b) => a.concat(b.subcategories), []).find(c => c.id === this.groupId);
                     this.typeObject['main_name'] = this.typeObject['cat_name'];
+                    this.typeObject['parsed'] = this.typeObject['cat_name'].replace(/[& ]/g,'');
                   }
                       
                 });

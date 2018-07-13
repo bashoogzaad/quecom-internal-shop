@@ -44,7 +44,13 @@ export class HomeComponent implements OnInit {
     ngOnInit() {
         
         this.quecomProvider.getCategories().subscribe(res => {
+
             this.categories = res['categories'];
+            for (let cat of this.categories) {
+                let parsedName = cat.name.replace(/[& ]/g,'');
+                cat['parsed_name'] = parsedName;
+            }
+
         });
         
     }

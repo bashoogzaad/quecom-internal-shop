@@ -62,6 +62,10 @@ export class AppComponent implements OnInit {
           if (res['has_delivery_cost']) {
             this.globals.hasDeliveryCost = res['has_delivery_cost']['data'] === true;
           }
+
+          if (res['has_budget']) {
+            this.globals.hasBudget = res['has_budget']['data'] === true;
+          }
           
           this.loading = false;
           

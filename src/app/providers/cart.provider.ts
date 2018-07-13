@@ -9,6 +9,7 @@ import { Order } from "../models/order";
 import { OrderLine } from "../models/order-line";
 import { CustomerData } from "../models/customer-data";
 import { QuecomProvider } from "./quecom.provider";
+import { Globals } from './globals';
 
 @Injectable()
 export class CartProvider {
@@ -18,7 +19,8 @@ export class CartProvider {
     
     constructor(
         private localStorage: LocalStorageService,
-        public quecomProvider: QuecomProvider
+        public quecomProvider: QuecomProvider,
+        public globals: Globals
     ) {}
     
     getCurrentOrder(): any {
@@ -62,7 +64,6 @@ export class CartProvider {
         }
         
         const billing: Object = new Object();
-        billing['gender'] = customerData.genderSh;
         billing['first_name'] = customerData.firstNameSh;
         billing['last_name'] = customerData.lastNameSh;
         billing['street'] = customerData.addressSh;
@@ -101,12 +102,14 @@ export class CartProvider {
         shipment['phone_number'] = customerData.phoneNumber;
         shipment['email'] = customerData.emailAddress;
         
+        let reference = this.globals.name;
+
         submitOrder = {
                 products: products,
                 shipment: shipment,
                 billing: billing,
                 remarks: this.order.remarks,
-                reference: 'SONYSTAFF-'+id,
+                reference: reference+'-'+id,
                 type: 'dropshipment',
                 request_payment: '1',
                 calculate_shipping_cost: '1',

@@ -78,7 +78,8 @@
 	            	<slideshow [imageUrls]="imageUrlArray" 
 	            			   [height]="'700px'"
           					   [minHeight]="'700px'"
-          					   [autoPlay]="true"
+							   [autoPlay]="true"
+							   [autoPlayInterval]="10000"
            					   [showArrows]="true"
            					   [showDots]="true"></slideshow>
 	
@@ -123,7 +124,7 @@
 	                        <div class="col-md-4 col-lg-4" *ngFor="let category of categories">
 	                            <a class="tt-promobox tt-promobox__size-square ttg-text-animation-parent ttg-image-translate--right ttg-animation-disable--md tt-promobox__hover-disable--md">
 	                                <div class="tt-promobox__content">
-	                                    <img src="assets/templates/mogo/images/promoboxes/{{ category.name }}.jpg" alt="">
+	                                    <img src="assets/templates/mogo/images/promoboxes/{{ category.parsed_name }}.jpg" alt="">
 	                                    <div class="tt-promobox__text"
 	                                         data-resp-md="md"
 	                                         data-resp-sm="md"

@@ -48,6 +48,7 @@ import { UserSuccessComponent } from './user-success/user-success.component';
 import { SlideshowModule } from 'ng-simple-slideshow';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { OrderSuccessComponent } from './order-success/order-success.component';
 registerLocaleData(localeNl);
 
 const appRoutes: Routes = [
@@ -107,7 +108,8 @@ const appRoutes: Routes = [
         MailSuccesfullComponent,
         UserSuccessComponent,
         ForgotPasswordComponent,
-        PrivacyPolicyComponent
+        PrivacyPolicyComponent,
+        OrderSuccessComponent
     ],
     imports: [
         BrowserModule,

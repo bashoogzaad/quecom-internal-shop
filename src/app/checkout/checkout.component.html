@@ -260,22 +260,12 @@
 				                                </label>
 				                                Verzendadres is hetzelfde als factuuradres
 			                                </li>
-			                                <ng-container *ngIf="user.country == 'BE'">
-				                                <li>
-				                                	<label class="tt-checkbox-circle">
-			                                            <input type="radio" name="shippingMethodGroup" value="central-office" [(ngModel)]="selected.shippingMethod" (ngModelChange)="toggleBillingToShipment()">
-			                                            <span></span>
-			                                        </label>
-			                                        Afhalen op kantoor Sony BE (Da vincilaan in Zaventem) (een keer per week)
-				                                </li>
-				                                <p style="font-size: 0.7rem; padding-left: 35px;">Voor dinsdag 21:00 besteld, de eerstvolgende vrijdag afhalen.</p>
-			                                </ng-container>
 			                                <li>
 			                                	<label class="tt-checkbox-circle">
 		                                            <input type="radio" name="shippingMethodGroup" value="custom-address" [(ngModel)]="selected.shippingMethod" (ngModelChange)="toggleBillingToShipment()">
 		                                            <span></span>
 		                                        </label>
-		                                        Verzenden naar een ander adres (leveringen aan Sony in Hoofddorp uitgesloten)
+		                                        Verzenden naar een ander adres
 			                                </li>
 			                                <li>
 			                                	<label class="tt-checkbox-circle">
@@ -573,7 +563,7 @@
 		                                </div>
 		                            </div>
 		                            
-		                            <p *ngIf="getOrderSubtotal() > budget" class="ttg-mt--30 ttg-mb--10" style="color: white; background-color: indianred; padding: 10px;">
+		                            <p *ngIf="globals.hasBudget && getOrderSubtotal() > budget" class="ttg-mt--30 ttg-mb--10" style="color: white; background-color: indianred; padding: 10px;">
 	                                	<i class="icon-cancel" style="color: white; padding-right: 10px;"></i>
 	                                	Je huidige budget is niet toereikend om deze bestelling te plaatsen. In 'Mijn Account' kun je je budget controleren.
 	                                </p>
@@ -583,7 +573,7 @@
 	                            <div style="padding-top: 15px;">
 		                            <a href="javascript:void(0);" class="btn ttg-mt--20" (click)="stepper(-1)" *ngIf="step > 1">Vorige stap</a>
 		                            <a href="javascript:void(0);" class="btn ttg-mt--20" (click)="stepper(1)" *ngIf="step < 3" [class.disabled]="(step == 1 && (!successMsg || (!selectedShipment && showDelivery)))">Volgende stap</a>
-		                            <a href="javascript:void(0);" (click)="placeOrder()" class="tt-checkout__btn-order btn ttg-mt--20 btn-type--icon colorize-btn6" *ngIf="step == 3 && getOrderSubtotal() <= budget"><i class="icon-check"></i><span>Bestelling plaatsen</span></a>
+		                            <a href="javascript:void(0);" (click)="placeOrder()" class="tt-checkout__btn-order btn ttg-mt--20 btn-type--icon colorize-btn6" *ngIf="step == 3 && ((globals.hasBudget && getOrderSubtotal() <= budget) || !globals.hasBudget)"><i class="icon-check"></i><span>Bestelling plaatsen</span></a>
 	                            </div>
 	                            
 	                        </div>
@@ -625,7 +615,7 @@
 	                                        <p>Totaal: <br /><span>{{ getTotal() | currency:'EUR':'true' }}</span></p>
 	                                    </div>
 	                                </div>
-	                                <div>
+	                                <div *ngIf="globals.hasBudget">
 	                                	<div class="tt-summary__total tt-summary__total--m-price-50">
 	                                        <p>Budget na bestelling: <br /><span>{{ getRestBudget() | currency:'EUR':'true' }}</span></p>
 	                                    </div>

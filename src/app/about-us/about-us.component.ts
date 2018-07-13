@@ -8,6 +8,8 @@ import { Globals } from "../providers/globals";
 })
 export class AboutUsComponent implements OnInit {
 
+    public showTeam: boolean = false;
+
     constructor(
         public globals: Globals
     ) { }

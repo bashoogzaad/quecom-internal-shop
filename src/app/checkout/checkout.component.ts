@@ -405,6 +405,7 @@ export class CheckoutComponent implements OnInit {
   
   stepper(num: number) {
     this.step = this.step + num;
+    console.log(this.selectedShipment);
     window.scrollTo(0,0);
   }
   

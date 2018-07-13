@@ -33,14 +33,16 @@
 	                                <span (click)="current = 'dashboard'">Dashboard <i class="icon-down-open"></i></span>
 	                                <div class="tt-tabs__content">
 	                                	<h4>Dashboard</h4>
-	                                    <p class="ttg-mb--20">Welkom, {{ user.first_name }} {{ user.last_name }}.</p>
-	                                    <p>Je huidige budget is nu: 
-	                                    		<a *ngIf="showBudget" (click)="showBudget = false" href="javascript:void(0);" style="padding-left: 5px;"><b>{{ budget.value | currency:'EUR':'true' }}</b></a>
-	                                    		<a *ngIf="!showBudget" (click)="showBudget = true" href="javascript:void(0);" style="padding-left: 5px;"><b>Klik hier om je budget op te halen.</b></a>
-	                                    </p>
-	                                    <p>
-	                                    	Na een bestelling zal het budget verminderd worden het bedrag van de bestelling inclusief BTW en exclusief verzendkosten.
-	                                    </p>
+										<p class="ttg-mb--20">Welkom, {{ user.first_name }} {{ user.last_name }}.</p>
+										<ng-container *ngIf="globals.hasBudget">
+											<p>Je huidige budget is nu: 
+													<a *ngIf="showBudget" (click)="showBudget = false" href="javascript:void(0);" style="padding-left: 5px;"><b>{{ budget.value | currency:'EUR':'true' }}</b></a>
+													<a *ngIf="!showBudget" (click)="showBudget = true" href="javascript:void(0);" style="padding-left: 5px;"><b>Klik hier om je budget op te halen.</b></a>
+											</p>
+											<p>
+												Na een bestelling zal het budget verminderd worden het bedrag van de bestelling inclusief BTW en exclusief verzendkosten.
+											</p>
+										</ng-container>
 	                                    <p>Vanuit dit dashboard kun je jouw bestellingen inzien, facturen downloaden, je gegevens aanpassen en verzendingen volgen.</p>
 	                                </div>
 	                            </div>

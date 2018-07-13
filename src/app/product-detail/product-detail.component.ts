@@ -70,10 +70,10 @@ export class ProductDetailComponent implements OnInit {
                   this.product.image_urls = this.product.image_urls ? this.product.image_urls : [];
                   this.product.image_urls.push(this.product.image_url);
                   
-                  if (this.product.addtional_image_urls) {
+                  if (this.product.additional_image_urls) {
                       for (let img of this.product.additional_image_urls) {
                         this.product.image_urls.push(img);
-                      }
+                      }              
                   }
                   
                   this.globals.loadingOff();
