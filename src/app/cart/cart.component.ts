@@ -76,7 +76,7 @@ export class CartComponent implements OnInit {
       //Check if there are any products which are bigger than or equal to 55 inch
       let deliveryCost = 6.95;
       for (const orderLine of this.order.orderLines) {
-        if (orderLine.product.inch_size && orderLine.product.inch_size >= 55) {
+        if ((orderLine.product.inch_size && orderLine.product.inch_size >= 55) || orderLine.product.productgroup_id == '38' || orderLine.product.productgroup_id == '40') {
           deliveryCost = 39.95;
         }
       }

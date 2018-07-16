@@ -137,9 +137,11 @@
 	                
 	                    <a class="tt-listing-page__promobox ttg-image-scale listing-img">
 	                        <img src="assets/templates/mogo/images/listing/{{ typeObject['parsed'] }}.jpg" alt="">
-	                        <div class="tt-listing-page__promobox-text tt-listing-page__promobox-design-white">
-	                            <div>{{ typeObject.name }}</div>
-	                            <p>{{ typeObject.description }}</p>
+	                        <div class="tt-listing-page__promobox-text tt-listing-page__promobox-design-white" style="padding-left: 0px; max-width: 500px;">
+								<div style="padding-left: 60px; background-color: rgba(255, 98, 0, 0.6);">
+									<div>{{ typeObject.name }}</div>
+									<p>{{ typeObject.description }}</p>
+								</div>
 	                        </div>
 	                    </a>
 	                    <div class="tt-listing-page__view-options tt-vw-opt">
@@ -195,14 +197,14 @@
 	                                    </div>
 		                                <div class="tt-product__hover tt-product__clr-clk-transp">
 		                                    <div class="tt-product__content ps ps--theme_default" data-ps-id="00975382-1327-ec44-c429-f9584e03808c">
-		                                        <h3>
+												<h3 style="height: 5.0ex; line-height: 2.5ex;">
+													<span class="ttg-text-animation--emersion">
+														<a href="javascript.void(0)" [routerLink]="['/product', product.id]">{{ product.description_short_api }}</a>
+													</span>
+												</h3>
+												<p>
 		                                            <span class="ttg-text-animation--emersion">
 		                                                <a href="javascript.void(0)" [routerLink]="['/product', product.id]">{{ product.category_name }} - {{ product.group_detail_name_singular }}</a>
-		                                            </span>
-		                                        </h3>
-		                                        <p>
-		                                            <span class="ttg-text-animation--emersion">
-		                                                <a href="javascript.void(0)" [routerLink]="['/product', product.id]">{{ product.description_short_api }}</a>
 		                                            </span>
 		                                        </p>
 		                                        <div class="ttg-text-animation--emersion">

@@ -606,18 +606,30 @@
 	                                </div>
 	                                <div class="tt-summary--border">
 	                                    <div class="tt-summary__total tt-summary__total--m-price-50">
-	                                        <p>Subtotaal: <br /><span>{{ getOrderSubtotal() | currency:'EUR':'true' }}</span></p>
+											<p>Subtotaal: <br /></p>
+											<p style="text-align: right;">{{ getOrderSubtotal() | currency:'EUR':'true' }}</p>
 	                                    </div>
 	                                    <div class="tt-summary__total tt-summary__total--m-price-50">
-	                                        <p>Verzendkosten: <br /><span>{{ getDeliveryCost() | currency:'EUR':'true' }}</span></p>
+											<p>Verzendkosten: <br /></p>
+											<p style="text-align: right;">+ {{ getDeliveryCost() | currency:'EUR':'true' }}</p>
+										</div>
+										<div class="tt-summary__total tt-summary__total--m-price-50" style="border-top: 3px solid #ebebeb; padding-top: 10px;" *ngIf="getDiscountTotal() > 0">
+											<p>Subtotaal incl. verzendkosten: <br /></p>
+											<p style="text-align: right;">{{ (getOrderSubtotal()+getDeliveryCost()) | currency:'EUR':'true' }}</p>
+										</div>
+										<div class="tt-summary__total tt-summary__total--m-price-50" *ngIf="getDiscountTotal() > 0">
+											<p>Korting: <br /></p>
+											<p style="text-align: right;">- {{ getDiscountTotal() | currency:'EUR':'true' }}</p>
 	                                    </div>
-	                                    <div class="tt-summary__total tt-summary__total--m-price-50">
-	                                        <p>Totaal: <br /><span>{{ getTotal() | currency:'EUR':'true' }}</span></p>
+	                                    <div class="tt-summary__total tt-summary__total--m-price-50" style="border-top: 3px solid #ebebeb; padding-top: 10px;">
+											<p>Totaal: <br /></p>
+											<p style="text-align: right; color: var(--color-primary-var); font-size: 2.0rem;">{{ getTotal() | currency:'EUR':'true' }}</p>
 	                                    </div>
 	                                </div>
 	                                <div *ngIf="globals.hasBudget">
 	                                	<div class="tt-summary__total tt-summary__total--m-price-50">
-	                                        <p>Budget na bestelling: <br /><span>{{ getRestBudget() | currency:'EUR':'true' }}</span></p>
+											<p>Budget na bestelling: <br /></p>
+											<p style="text-align: right;">{{ getRestBudget() | currency:'EUR':'true' }}</p>
 	                                    </div>
 	                                </div>
 	                            </div>
