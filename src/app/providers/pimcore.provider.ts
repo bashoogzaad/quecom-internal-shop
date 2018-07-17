@@ -65,18 +65,31 @@ export class PimcoreProvider {
         options.headers.append('password', password);
         return this.http.get(this.globals.pimcoreUrl+'login', options).map(res => res.json());
     }
+
+    public updateUser(postData: any, id: any, hash: any) {
+        const options = this.initRequestOptions();
+        options.headers.append('X-Pimcore-Hash', hash);
+        options.headers.append('X-Pimcore-User', id);
+        return this.http.post(this.globals.pimcoreUrl+'user/update', JSON.stringify(postData), options).map(res => res.json());
+    }
   
     public register(user: any) {
         const options = this.initRequestOptions();
-        console.log(JSON.stringify(user));
         return this.http.post(this.globals.pimcoreUrl+'register', JSON.stringify(user), options).map(res => res.json());
     }
   
-    public getOrders(id: any, hash: any) {
+    public getOrders(id: any, hash: any, shopName: string) {
       const options = this.initRequestOptions();
       options.headers.append('X-Pimcore-Hash', hash);
       options.headers.append('X-Pimcore-User', id);
-      return this.http.get(this.globals.pimcoreUrl+'order?reference=SONYSTAFF-'+id+'&vkorg=2000', options).map(res => res.json());
+      return this.http.get(this.globals.pimcoreUrl+'order?reference='+shopName+'-'+id+'&vkorg=2000', options).map(res => res.json());
+    }
+
+    public getInvoices(id: any, hash: any, shopName: string) {
+      const options = this.initRequestOptions();
+      options.headers.append('X-Pimcore-Hash', hash);
+      options.headers.append('X-Pimcore-User', id);
+      return this.http.get(this.globals.pimcoreUrl+'invoice?reference='+shopName+'-'+id+'&vkorg=2000', options).map(res => res.json()); 
     }
     
     public requestPassword(username: string) {

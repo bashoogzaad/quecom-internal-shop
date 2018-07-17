@@ -158,19 +158,20 @@
 	                                </div>
 	                            </div>
 	                            <div [ngClass]="current === 'invoices' ? 'show-account-section' : ''">
-	                                <span (click)="current = 'invoices'">Downloads <i class="icon-down-open"></i></span>
+	                                <span (click)="current = 'invoices'">Facturen <i class="icon-down-open"></i></span>
 	                                <div class="tt-tabs__content">
-	                                    <h4>Downloads</h4>
+	                                    <h4>Facturen</h4>
 	                                    <div class="tt-tabs-my-account__table ttg-mb--30">
-	                                        <table class="table ttg-mb--30">
+	                                        <table class="table ttg-mb--30" *ngIf="invoices && invoices.length > 0">
 	                                            <tr>
 	                                                <th>Bestand</th>
 	                                            </tr>
-	                                            <tr>
-	                                                <td><a>Factuur 123</a></td>
-	                                                <td class="text-right"><a href="#">Download</a></td>
+	                                            <tr *ngFor="let invoice of invoices">
+	                                                <td><a>Factuur #{{ invoice.invoice_sap_code }}</a></td>
+	                                                <td class="text-right"><a download="PDF" href="data:application/pdf;base64,{{ invoice.data }}" title='Download pdf document'>Download</a></td>
 	                                            </tr>
-	                                        </table>
+											</table>
+											<p *ngIf="invoices && invoices.length == 0">Nog geen facturen beschikbaar</p>
 	                                    </div>
 	                                </div>
 	                            </div>
@@ -266,13 +267,13 @@
 	                                        <div class="tt-tabs-my-account__form ttg-mt--40">
 	                                            <div class="tt-tabs-my-account__form_title">Wachtwoord veranderen</div>
 	                                            <p>Huidige wachtwoord (laat leeg om onveranderd te laten)</p>
-	                                            <input type="password" class="form-control" placeholder="">
+	                                            <input type="password" class="form-control" [(ngModel)]="oldPass" name="oldPass" placeholder="">
 	                                            <p>Nieuw wachtwoord (laat leeg om onveranderd te laten)</p>
-	                                            <input type="password" class="form-control" placeholder="">
+	                                            <input type="password" class="form-control" [(ngModel)]="newPass1" name="newPass1" placeholder="">
 	                                            <p>Nieuw wachtwoord nogmaals (laat leeg om onveranderd te laten)</p>
-	                                            <input type="password" class="form-control" placeholder="">
+	                                            <input type="password" class="form-control" [(ngModel)]="newPass2" name="newPass2" placeholder="">
 	                                        </div>
-	                                        <button class="btn ttg-mt--40">Opslaan</button>
+	                                        <button class="btn ttg-mt--40" (click)="updateUser()">Opslaan</button>
 	                                    </form>
 	                                </div>
 	                            </div>
