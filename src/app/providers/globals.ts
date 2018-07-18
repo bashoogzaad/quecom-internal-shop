@@ -29,6 +29,8 @@ export class Globals {
     public deliveryIndication: string[] = ['Vóór 19:00 uur besteld', 'Volgende dag geleverd*'];
     public hasDeliveryCost: boolean = false;
     public hasBudget: boolean = false;
+
+    public initDone = new BehaviorSubject(false);
     
     public loadingOn() {
         this.loading.next(true);
@@ -47,7 +49,8 @@ export class Globals {
         if (environment.production === undefined) {
             
             this.version = 'v3';
-            
+            this.name = "SONYSTAFF";
+
             const url = 'https://api.quecom.nl/customer';
             this.baseUrl = url + '/' + this.version + '/';
             this.pimcoreUrl = (url.endsWith('/') ? url.replace(new RegExp('/' + '$'), '-cms/') : (url + '-cms/')) + this.version + '/';
@@ -67,6 +70,8 @@ export class Globals {
             this.debtorNumber = environment.debtorNumber;
             
         }
+
+        this.initDone.next(true);
             
     }
     
