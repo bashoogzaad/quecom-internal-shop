@@ -54,3 +54,25 @@
     right: -9999px;
     margin: auto;
 }
+
+.available {
+  color: green;
+  font-size: small;
+  font-weight: 100;
+
+}
+
+.no-results {
+  h1 {
+    margin-top: 80px;
+    font-size: 1.7rem;
+    text-align: center;
+  }
+}
+
+.not-available {
+  color: red;
+  font-size: small;
+  font-weight: 100;
+
+}

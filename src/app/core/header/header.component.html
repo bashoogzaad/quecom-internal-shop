@@ -1,307 +1,314 @@
 <ng-container *ngIf="globals.theme == 'nexgeek'">
 
-	<!-- SITE HEADER -->
-	<header class="site-header">
-		<div class="top-header">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-8">
-						<ul class="customer-links" *ngIf="authService.isLoggedIn">
-							<li>
-								<i class="fa fa-sign-out" aria-hidden="true"></i>
-								<a (click)="logout()" style="cursor: pointer;" title="Uitloggen">Uitloggen</a>
-							</li>
-						</ul>
-					</div>
-					<div class="col-sm-4">
-						<a id="cart-number" routerLink="/winkelwagen" class="cart-toggle js-drawer-open-right" aria-controls="CartDrawer" aria-expanded="false" *ngIf="authService.isLoggedIn">
-							<span class="fa fa-shopping-cart" aria-hidden="true"></span>
-							<span class="CartCount">{{ count() }}</span>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="main-header">
-			<div class="container">
-				<div class="row row-table">
-					<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 row-cell">
-						<div class="site-header_logo" itemscope="" itemtype="http://schema.org/Organization"><a routerLink="/home" title="Quecom QuickShop"><img src="assets/templates/nexgeek/images/logo.png" alt="Quecom QuickShop"> </a> </div>
-					</div>
-					<div class="col-xs-12 col-sm-8 col-md-9 col-lg-9 row-cell">
-						<div class="shiping_text"> <span class="icon"> <i class="fa fa-truck"></i> </span>
-							<p>{{ globals.deliveryIndication[0] }}<span>{{ globals.deliveryIndication[1] }}</span></p>
-						</div>
-						<div class="order_text"> <span class="icon"> <i class="fa fa-phone-square"></i> </span>
-							<p>Vragen? Mail ons<span>info@gezamenlijkvoordeel.nl</span></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
-	
-	<!-- SITE NAVIGATION -->
-	<nav class="nav-bar nav-bar-custom" *ngIf="authService.isLoggedIn">
-		<a href="#" class="sticky-home-logo" title="Home"><i class="fa fa-home" aria-hidden="true"></i></a>
-		<div class="container">
-			<div class="main-menu main-menu-custom"> 
-			<ul class="clearfix main-nav" id="AccessibleNav">
-				<li routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/home" class="site-nav__link">Home</a></li>
-				<li routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/over-ons" class="site-nav__link">Hoe werkt het?</a></li>
-				<li class="has-dropdown dropdown" routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}">
-					<a class="site-nav__link" (mouseenter)="forceHideMenu = false">Klantenservice</a>
-					<ul class="sub-menu" *ngIf="forceHideMenu === false">
-						<li> <a routerLink="/klantenservice/bestelling" (click)="forceHideMenu = true" class="site-nav__link">Bestelling</a></li>
-						<li> <a routerLink="/klantenservice/betaling" (click)="forceHideMenu = true" class="site-nav__link">Betaling</a></li>
-						<li> <a routerLink="/klantenservice/verzending" (click)="forceHideMenu = true" class="site-nav__link">Verzending & Bezorging</a></li>
-						<li> <a routerLink="/klantenservice/retouren" (click)="forceHideMenu = true" class="site-nav__link">Retouren & Garantie</a></li>
-						<li> <a routerLink="/klantenservice/voorwaarden" (click)="forceHideMenu = true" class="site-nav__link">Algemene voorwaarden</a></li>
-						<li> <a routerLink="/klantenservice/privacy" (click)="forceHideMenu = true" class="site-nav__link">Privacy & Cookie Policy</a></li>
-					</ul>
-				</li>
-				<li routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/contact" class="site-nav__link">Contact</a></li>
-			</ul>
-			</div>
-		</div>
-	</nav>	
-	<nav class="nav-bar" *ngIf="authService.isLoggedIn">	
-		<div class="container">
-			<div class="main-menu"> 
-				<!-- begin site-nav -->
-				<ul class="clearfix main-nav" id="AccessibleNav">
-				
-					<li class="has-dropdown megamenu" *ngFor="let category of categories">
-						<a class="site-nav__link" (mouseenter)="forceHideMenu = false" (click)="goToPage('categorie', category.id)" routerLinkActive="site-nav--active">{{ category.name }}</a> 
-						<i class="fa fa-plus"></i>
-						<div class="megamenu" *ngIf="forceHideMenu === false && category.subcategories.length > 0">
-							<ul class="sub-menu">
-								<li *ngFor="let subcategory of category.subcategories">
-									<a class="site-nav__link" (click)="goToPage('subcategorie', subcategory.id)">{{ subcategory.name }}</a> 
-									<i class="fa fa-plus"></i>
-									<ul class="sub-menu">
-										<li *ngFor="let productgroup of subcategory.product_groups">
-											<a class="site-nav__link" (click)="goToPage('product-groep', productgroup.id)">{{ productgroup.name }}</a>
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</div>
-					</li>
-				
-				</ul>
-				<!-- end site-nav --> 
-			</div>
-			<div class="mobileview">
-				<div class="row">
-					<div class="col-xs-6 mobilecol">
-						<div class="site-nav--mobile">
-							<button type="button" class="site-nav__link" (click)="toggleMenu = !toggleMenu"> <span class="fa fa-bars" aria-hidden="true"></span></button>
-						</div>
-					</div>
-					<div class="col-xs-6 mobilecol">
-						<div class="site-nav--mobile"><a routerLink="/winkelwagen" class="site-nav__link"><span class="fa fa-shopping-cart" aria-hidden="true"></span></a> </div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<a routerLink="/winkelwagen" class="cart-toggle sticky-cart">
-			<span class="icon icon-cart" aria-hidden="true"></span> <span class="CartCount">{{ count }}</span> 
-		</a>
-	</nav>
-	
-	<!-- MOBILE HANDLE -->
-	<div class="drawer drawer--left" [ngClass]="toggleMenu ? 'op-left' : ''">
-		<div class="drawer__header">
-			<div class="drawer__title h3">Gezamenlijk Voordeel</div>
-			<div class="drawer__close js-drawer-close">
-				<button type="button" (click)="toggleMenu = !toggleMenu"> <span class="fa fa-times" aria-hidden="true"></span></button>
-			</div>
-		</div>
-		<!-- MOBILE NAV -->
-		<ul class="mobile-nav">
-			<li class="mobile-nav__item" routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/home" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Home</a></li>
-			<li class="mobile-nav__item" routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}">
-				<a routerLink="/over-ons" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Hoe werkt het?</a>
-			</li>
-			<li class="mobile-nav__item" *ngFor="let category of categories">
-				<a (click)="goToPage('categorie', category.id, true)" class="mobile-nav__link">{{ category.name }}</a>
-			</li>
-			<li class="mobile-nav__item" routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}">
-				<div class="mobile-nav__has-sublist">
-					<a class="mobile-nav__link">Klantenservice </a>
-					<div class="mobile-nav__toggle">
-						<button [hidden]="toggleCustomerService" (click)="toggleCustomerService = !toggleCustomerService" type="button" class="mobile-nav__toggle-open"> <span class="fa fa-plus" aria-hidden="true"></span></button>
-						<button [hidden]="!toggleCustomerService" (click)="toggleCustomerService = !toggleCustomerService" type="button" class="mobile-nav__toggle-open"> <span class="fa fa-minus" aria-hidden="true"></span></button>
-					</div>
-				</div>
-				<ul class="mobile-nav__sublist" [ngClass]="toggleCustomerService ? 'show-cs' : 'hide-cs'">
-					<li class="mobile-nav__item"><a routerLink="/klantenservice/bestelling" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Bestelling</a> </li>
-					<li class="mobile-nav__item"><a routerLink="/klantenservice/betaling" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Betaling</a> </li>
-					<li class="mobile-nav__item"><a routerLink="/klantenservice/verzending" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Verzending & Bezorging</a> </li>
-					<li class="mobile-nav__item"><a routerLink="/klantenservice/retouren" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Retouren & Garantie</a> </li>
-					<li class="mobile-nav__item"><a routerLink="/klantenservice/voorwaarden" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Algemene voorwaarden</a> </li>
-					<li class="mobile-nav__item"><a routerLink="/klantenservice/privacy" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Privacy & Cookie Policy</a> </li>
-				</ul>
-			</li>
-			<li class="mobile-nav__item" routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/contact" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Contact</a></li>
-		</ul>
-		<!-- MOBILE NAV END --> 
-	</div>
-	<!-- MOBILE HANDLE END --> 
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="top-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8">
+            <ul class="customer-links" *ngIf="authService.isLoggedIn">
+              <li>
+                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                <a (click)="logout()" style="cursor: pointer;" title="Uitloggen">Uitloggen</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-sm-4">
+            <a id="cart-number" routerLink="/winkelwagen" class="cart-toggle js-drawer-open-right" aria-controls="CartDrawer" aria-expanded="false" *ngIf="authService.isLoggedIn">
+              <span class="fa fa-shopping-cart" aria-hidden="true"></span>
+              <span class="CartCount">{{ count() }}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="main-header">
+      <div class="container">
+        <div class="row row-table">
+          <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 row-cell">
+            <div class="site-header_logo" itemscope="" itemtype="http://schema.org/Organization"><a routerLink="/home" title="Quecom QuickShop"><img src="assets/templates/mongo/images/logo.png" alt="Quecom QuickShop"> </a> </div>
+          </div>
+          <div class="col-xs-12 col-sm-8 col-md-9 col-lg-9 row-cell">
+            <div class="shiping_text"> <span class="icon"> <i class="fa fa-truck"></i> </span>
+              <p>{{ globals.deliveryIndication[0] }}<span>{{ globals.deliveryIndication[1] }}</span></p>
+            </div>
+            <div class="order_text"> <span class="icon"> <i class="fa fa-phone-square"></i> </span>
+              <p>Vragen? Mail ons<span>info@gezamenlijkvoordeel.nl</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- SITE NAVIGATION -->
+  <nav class="nav-bar nav-bar-custom" *ngIf="authService.isLoggedIn">
+    <a href="#" class="sticky-home-logo" title="Home"><i class="fa fa-home" aria-hidden="true"></i></a>
+    <div class="container">
+      <div class="main-menu main-menu-custom">
+        <ul class="clearfix main-nav" id="AccessibleNav">
+          <li routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/home" class="site-nav__link">Home</a></li>
+          <li routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/over-ons" class="site-nav__link">Hoe werkt het?</a></li>
+          <li class="has-dropdown dropdown" routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}">
+            <a class="site-nav__link" (mouseenter)="forceHideMenu = false">Klantenservice</a>
+            <ul class="sub-menu" *ngIf="forceHideMenu === false">
+              <li> <a routerLink="/klantenservice/bestelling" (click)="forceHideMenu = true" class="site-nav__link">Bestelling</a></li>
+              <li> <a routerLink="/klantenservice/betaling" (click)="forceHideMenu = true" class="site-nav__link">Betaling</a></li>
+              <li> <a routerLink="/klantenservice/verzending" (click)="forceHideMenu = true" class="site-nav__link">Verzending & Bezorging</a></li>
+              <li> <a routerLink="/klantenservice/retouren" (click)="forceHideMenu = true" class="site-nav__link">Retouren & Garantie</a></li>
+              <li> <a routerLink="/klantenservice/voorwaarden" (click)="forceHideMenu = true" class="site-nav__link">Algemene voorwaarden</a></li>
+              <li> <a routerLink="/klantenservice/privacy" (click)="forceHideMenu = true" class="site-nav__link">Privacy & Cookie Policy</a></li>
+            </ul>
+          </li>
+          <li routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/contact" class="site-nav__link">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <nav class="nav-bar" *ngIf="authService.isLoggedIn">
+    <div class="container">
+      <div class="main-menu">
+        <!-- begin site-nav -->
+        <ul class="clearfix main-nav" id="AccessibleNav">
+
+          <li class="has-dropdown megamenu" *ngFor="let category of categories">
+            <a class="site-nav__link" (mouseenter)="forceHideMenu = false" (click)="goToPage('categorie', category.id)" routerLinkActive="site-nav--active">{{ category.name }}</a>
+            <i class="fa fa-plus"></i>
+            <div class="megamenu" *ngIf="forceHideMenu === false && category.subcategories.length > 0">
+              <ul class="sub-menu">
+                <li *ngFor="let subcategory of category.subcategories">
+                  <a class="site-nav__link" (click)="goToPage('subcategorie', subcategory.id)">{{ subcategory.name }}</a>
+                  <i class="fa fa-plus"></i>
+                  <ul class="sub-menu">
+                    <li *ngFor="let productgroup of subcategory.product_groups">
+                      <a class="site-nav__link" (click)="goToPage('product-groep', productgroup.id)">{{ productgroup.name }}</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+        </ul>
+        <!-- end site-nav -->
+      </div>
+      <div class="mobileview">
+        <div class="row">
+          <div class="col-xs-6 mobilecol">
+            <div class="site-nav--mobile">
+              <button type="button" class="site-nav__link" (click)="toggleMenu = !toggleMenu"> <span class="fa fa-bars" aria-hidden="true"></span></button>
+            </div>
+          </div>
+          <div class="col-xs-6 mobilecol">
+            <div class="site-nav--mobile"><a routerLink="/winkelwagen" class="site-nav__link"><span class="fa fa-shopping-cart" aria-hidden="true"></span></a> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a routerLink="/winkelwagen" class="cart-toggle sticky-cart">
+      <span class="icon icon-cart" aria-hidden="true"></span> <span class="CartCount">{{ count }}</span>
+    </a>
+  </nav>
+
+  <!-- MOBILE HANDLE -->
+  <div class="drawer drawer--left" [ngClass]="toggleMenu ? 'op-left' : ''">
+    <div class="drawer__header">
+      <div class="drawer__title h3">Gezamenlijk Voordeel</div>
+      <div class="drawer__close js-drawer-close">
+        <button type="button" (click)="toggleMenu = !toggleMenu"> <span class="fa fa-times" aria-hidden="true"></span></button>
+      </div>
+    </div>
+    <!-- MOBILE NAV -->
+    <ul class="mobile-nav">
+      <li class="mobile-nav__item" routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/home" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Home</a></li>
+      <li class="mobile-nav__item" routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}">
+        <a routerLink="/over-ons" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Hoe werkt het?</a>
+      </li>
+      <li class="mobile-nav__item" *ngFor="let category of categories">
+        <a (click)="goToPage('categorie', category.id, true)" class="mobile-nav__link">{{ category.name }}</a>
+      </li>
+      <li class="mobile-nav__item" routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}">
+        <div class="mobile-nav__has-sublist">
+          <a class="mobile-nav__link">Klantenservice </a>
+          <div class="mobile-nav__toggle">
+            <button [hidden]="toggleCustomerService" (click)="toggleCustomerService = !toggleCustomerService" type="button" class="mobile-nav__toggle-open"> <span class="fa fa-plus" aria-hidden="true"></span></button>
+            <button [hidden]="!toggleCustomerService" (click)="toggleCustomerService = !toggleCustomerService" type="button" class="mobile-nav__toggle-open"> <span class="fa fa-minus" aria-hidden="true"></span></button>
+          </div>
+        </div>
+        <ul class="mobile-nav__sublist" [ngClass]="toggleCustomerService ? 'show-cs' : 'hide-cs'">
+          <li class="mobile-nav__item"><a routerLink="/klantenservice/bestelling" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Bestelling</a> </li>
+          <li class="mobile-nav__item"><a routerLink="/klantenservice/betaling" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Betaling</a> </li>
+          <li class="mobile-nav__item"><a routerLink="/klantenservice/verzending" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Verzending & Bezorging</a> </li>
+          <li class="mobile-nav__item"><a routerLink="/klantenservice/retouren" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Retouren & Garantie</a> </li>
+          <li class="mobile-nav__item"><a routerLink="/klantenservice/voorwaarden" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Algemene voorwaarden</a> </li>
+          <li class="mobile-nav__item"><a routerLink="/klantenservice/privacy" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Privacy & Cookie Policy</a> </li>
+        </ul>
+      </li>
+      <li class="mobile-nav__item" routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/contact" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Contact</a></li>
+    </ul>
+    <!-- MOBILE NAV END -->
+  </div>
+  <!-- MOBILE HANDLE END -->
 
 </ng-container>
 
 <ng-container *ngIf="globals.theme == 'mogo'">
 
-	<header>
-	
-	    <div class="tt-header tt-header--build-01 tt-header--style-01 tt-header--sticky">
-<!-- 	    		<div class="tt-header__spacer tt-header__spacer--d tt-header__spacer--visible" [ngClass]="scrolledY ? 'adjust-height' : ''"></div> -->
-<!-- 	        <div class="tt-header__content" ng-sticky [offSet]="0" [addClass]="'mogo-is-sticky'"> -->
-	        <div class="tt-header__content">
-	            <div class="tt-header__logo">
-	                <div class="h1 tt-logo">
-	                    <a routerLink="/home">
-	                        <img src="assets/templates/mogo/images/logo.png" alt="logo">
-	                    </a>
-	                </div>
-	            </div>
-	            <div class="tt-header__nav">
-	            	
-	            	<div class="tt-header__menu" *ngIf="authService.isLoggedIn">
-	                    <nav class="TonyM TonyM--header" data-tm-dir="row" data-tm-mob="true" data-tm-anm="emersion">
-	                        <ul class="TonyM__panel">
-	                            <li>
-	                                <a href="javascript:void(0);" routerLink="/home">
+  <header>
+
+    <div class="tt-header tt-header--build-01 tt-header--style-01 tt-header--sticky">
+      <!-- 	    		<div class="tt-header__spacer tt-header__spacer--d tt-header__spacer--visible" [ngClass]="scrolledY ? 'adjust-height' : ''"></div> -->
+      <!-- 	        <div class="tt-header__content" ng-sticky [offSet]="0" [addClass]="'mogo-is-sticky'"> -->
+      <div class="tt-header__content">
+        <div class="tt-header__logo">
+          <div class="h1 tt-logo">
+            <a routerLink="/home">
+              <img src="assets/templates/mogo/images/logo.png" alt="logo">
+            </a>
+          </div>
+        </div>
+        <div class="tt-header__nav">
+
+          <div class="tt-header__menu" *ngIf="authService.isLoggedIn">
+            <nav class="TonyM TonyM--header" data-tm-dir="row" data-tm-mob="true" data-tm-anm="emersion">
+              <ul class="TonyM__panel">
+                <li>
+                  <a href="javascript:void(0);" routerLink="/home">
 	                                	<span>
 	                                		HOME
 	                                	</span>
-	                                </a>
-	                            </li>
-	                            <li>
-	                                <a href="javascript:void(0);" routerLink="/over-ons">
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);" routerLink="/over-ons">
 	                                	<span>
                                         	HOE WERKT HET?
                                         </span>
-	                                </a>
-	                            </li>
-	                            <li>
-	                                <a href="javascript:void(0);">
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);">
 	                                    <span>
 	                                        KLANTENSERVICE
 	                                        <i class="TonyM__arw"></i>
 	                                    </span>
-	                                </a>
-	                                <div class="TonyM__mm TonyM__mm--simple ie-header" style="width: 280px; margin-left: -28px; left: auto;">
-	                                    <ul class="TonyM__list">
-	                                        <li><a href="javascript:void(0);" routerLink="/klantenservice/bestelling">Bestelling</a></li>
-	                                        <li><a href="javascript:void(0);" routerLink="/klantenservice/betaling">Betaling</a></li>
-	                                        <li><a href="javascript:void(0);" routerLink="/klantenservice/verzending">Verzending & Bezorging</a></li>
-	                                        <li><a href="javascript:void(0);" routerLink="/klantenservice/retouren">Retouren & Garantie</a></li>
-	                                        <li><a href="javascript:void(0);" routerLink="/klantenservice/voorwaarden">Algemene voorwaarden</a></li>
-	                                        <li><a href="javascript:void(0);" routerLink="/klantenservice/privacy">Privacy & Cookie Policy</a></li>
-	                                    </ul>
-	                                </div>
-	                            </li>
-	                            <li>
-	                                <a href="javascript:void(0);" routerLink="/contact">
+                  </a>
+                  <div class="TonyM__mm TonyM__mm--simple ie-header" style="width: 280px; margin-left: -28px; left: auto;">
+                    <ul class="TonyM__list">
+                      <li><a href="javascript:void(0);" routerLink="/klantenservice/bestelling">Bestelling</a></li>
+                      <li><a href="javascript:void(0);" routerLink="/klantenservice/betaling">Betaling</a></li>
+                      <li><a href="javascript:void(0);" routerLink="/klantenservice/verzending">Verzending & Bezorging</a></li>
+                      <li><a href="javascript:void(0);" routerLink="/klantenservice/retouren">Retouren & Garantie</a></li>
+                      <li><a href="javascript:void(0);" routerLink="/klantenservice/voorwaarden">Algemene voorwaarden</a></li>
+                      <li><a href="javascript:void(0);" routerLink="/klantenservice/privacy">Privacy & Cookie Policy</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li>
+                  <a href="javascript:void(0);" routerLink="/contact">
 	                                    <span>
 	                                        CONTACT
 	                                    </span>
-	                                </a>
-	                            </li>
-	                        </ul>
-	                    </nav>
-	                </div>
-	                
-	                <div class="tt-header__menu" *ngIf="!authService.isLoggedIn">
-	                    <nav class="TonyM TonyM--header" data-tm-dir="row" data-tm-mob="true" data-tm-anm="emersion">
-	                        <ul class="TonyM__panel">
-	                            <li>
-	                                <a href="javascript:void(0);" routerLink="/welkom">
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+          <div class="tt-header__menu" *ngIf="!authService.isLoggedIn">
+            <nav class="TonyM TonyM--header" data-tm-dir="row" data-tm-mob="true" data-tm-anm="emersion">
+              <ul class="TonyM__panel">
+                <li>
+                  <a href="javascript:void(0);" routerLink="/welkom">
 	                                	<span>
 	                                		WELKOM
 	                                	</span>
-	                                </a>
-	                            </li>
-	                            <li>
-	                                <a href="javascript:void(0);" routerLink="/inloggen">
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);" routerLink="/inloggen">
 	                                	<span>
 	                                       	INLOGGEN
 	                                       </span>
-	                                </a>
-	                            </li>
-	                            <li>
-	                                <a href="javascript:void(0);" routerLink="/registreren">
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);" routerLink="/registreren">
 	                                    <span>
 	                                        REGISTREREN
 	                                    </span>
-	                                </a>
-	                            </li>
-	                        </ul>
-	                    </nav>
-	                </div>
-	                
-	                <div class="tt-header__sidebar">
-	                
-	                    <div class="tt-header__options">
-	                    
-							<a href="javascript:void(0);" class="tt-header__btn tt-header__btn-menu" (click)="showMenuu = !showMenuu; forceHideMenu = false; showUser = false;"><i class="icon-menu"></i></a>
-							<div *ngIf="showMenuu && !forceHideMenu" class="tt-header__user tt-header__option-open ps ps--theme_default override-display" style="max-height: 881px;">
-								<ul class="tt-list-toggle">
-									<li><a href="javascript:void(0);" (click)="goToDefaultPage('home')">Home</a></li>
-									<li><a href="javascript:void(0);" (click)="goToDefaultPage('over-ons')">Hoe werkt het?</a></li>
-									<li><a href="javascript:void(0);" (click)="goToDefaultPage('contact')">Contact</a></li>
-									<li><a href="javascript:void(0);" (click)="goToDefaultPage('klantenservice/bestelling')">Bestelling</a></li>
-									<li><a href="javascript:void(0);" (click)="goToDefaultPage('klantenservice/betaling')">Betaling</a></li>
-									<li><a href="javascript:void(0);" (click)="goToDefaultPage('klantenservice/verzending')">Verzending & Bezorging</a></li>
-									<li><a href="javascript:void(0);" (click)="goToDefaultPage('klantenservice/retouren')">Retouren & Garantie</a></li>
-									<li><a href="javascript:void(0);" (click)="goToDefaultPage('klantenservice/voorwaarden')">Algemene voorwaarden</a></li>
-									<li><a href="javascript:void(0);" (click)="goToDefaultPage('klantenservice/privacy')">Privacy & Cookie Policy</a></li>
-								</ul>
-							</div>
-<!-- 	                        <div role="search" class="tt-header__search" *ngIf="authService.isLoggedIn"> -->
-<!-- 	                            <form action="#" class="tt-header__search-form"> -->
-<!-- 	                                <input type="search" name="q" class="form-control" placeholder="Zoeken..."> -->
-<!-- 	                            </form> -->
-<!-- 	                            <div class="tt-header__search-dropdown"></div> -->
-<!-- 	                            <a href="#" class="tt-header__btn tt-header__btn-open-search"><i class="icon-search"></i></a> -->
-<!-- 	                            <a href="#" class="tt-header__btn tt-header__btn-close-search"><i class="icon-cancel-1"></i></a> -->
-<!-- 	                        </div> -->
-	                        <div *ngIf="authService.isLoggedIn">
-	                            <a href="javascript:void(0);" class="tt-header__btn tt-header__btn-user" (click)="showUser = !showUser; forceHideMenu = false; showMenuu = false;"><i class="icon-user-outline"></i></a>
-	                            <div *ngIf="showUser && !forceHideMenu" class="tt-header__user tt-header__option-open ps ps--theme_default override-display" style="max-height: 881px;">
-	                                <ul class="tt-list-toggle">
-	                                    <li><a href="javascript:void(0);" (click)="goToDefaultPage('mijn-account')">Mijn Account</a></li>
-	                                    <li><a href="javascript:void(0);" (click)="logout()">Uitloggen</a></li>
-	                                </ul>
-	                            </div>
-	                        </div>
-                            <a routerLink="/winkelwagen" class="tt-header__btn tt-header__btn-cart" *ngIf="authService.isLoggedIn">
-                                <i class="icon-shop24"></i>
-                                <span>{{ getCartCount() }}</span>
-                            </a>
-                            
-                            <div>
-			                    <a href="javascript:void(0);" class="tt-header__btn tt-header__btn-settings" (click)="showSettings = !showSettings; forceHideMenu = false;"><i class="icon-cog"></i></a>
-			                    <div *ngIf="showSettings && !forceHideMenu" class="tt-header__settings tt-header__option-open ps ps--theme_default override-display" style="max-height: 881px;">
-	                                <ul class="tt-list-toggle">
-	                                    <li><a href="javascript:void(0);" [ngClass]="globals.language == 'NL' ? 'active-custom' : ''" (click)="globals.language = 'NL'; showSettings = false;">NL</a></li>
-	                                    <li><a href="javascript:void(0);" [ngClass]="globals.language == 'EN' ? 'active-custom' : ''" (click)="globals.language = 'EN'; showSettings = false;">EN</a></li>
-	                                </ul>
-			                    </div>
-			                </div>
-                            
-	                    </div>
-	                    
-	                </div>
-	                
-	            </div>
-	            
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+          <div class="tt-header__sidebar">
+
+            <div class="tt-header__options">
+
+              <a href="javascript:void(0);" class="tt-header__btn tt-header__btn-menu" (click)="showMenuu = !showMenuu; forceHideMenu = false; showUser = false;"><i class="icon-menu"></i></a>
+              <div *ngIf="showMenuu && !forceHideMenu" class="tt-header__user tt-header__option-open ps ps--theme_default override-display" style="max-height: 881px;">
+                <ul class="tt-list-toggle">
+                  <li><a href="javascript:void(0);" (click)="goToDefaultPage('home')">Home</a></li>
+                  <li><a href="javascript:void(0);" (click)="goToDefaultPage('over-ons')">Hoe werkt het?</a></li>
+                  <li><a href="javascript:void(0);" (click)="goToDefaultPage('contact')">Contact</a></li>
+                  <li><a href="javascript:void(0);" (click)="goToDefaultPage('klantenservice/bestelling')">Bestelling</a></li>
+                  <li><a href="javascript:void(0);" (click)="goToDefaultPage('klantenservice/betaling')">Betaling</a></li>
+                  <li><a href="javascript:void(0);" (click)="goToDefaultPage('klantenservice/verzending')">Verzending & Bezorging</a></li>
+                  <li><a href="javascript:void(0);" (click)="goToDefaultPage('klantenservice/retouren')">Retouren & Garantie</a></li>
+                  <li><a href="javascript:void(0);" (click)="goToDefaultPage('klantenservice/voorwaarden')">Algemene voorwaarden</a></li>
+                  <li><a href="javascript:void(0);" (click)="goToDefaultPage('klantenservice/privacy')">Privacy & Cookie Policy</a></li>
+                </ul>
+              </div>
+              <div role="search" class="tt-header__search" *ngIf="authService.isLoggedIn">
+                <form action="#" class="search-form-hs" [ngClass]="searchFocus ? 'hasFocus' : ''" (submit)="goToSearchPage($event)">
+                  <input type="search" name="q" (keyup)="liveSearch($event)" (focus)="searchFocus=true" (blur)="blur()" class="form-control custom-search" placeholder="Zoeken...">
+
+                  <div class="search-results-container" *ngIf="searchResults.length > 0">
+                    <a href="javascript:void(0);" *ngFor="let result of searchResults" (click)="clearSearchAndGoToProduct(result.id)">
+                      <img src="{{ result.image }}">
+                      <span>{{ result.title }}</span>
+                    </a>
+                  </div>
+                </form>
+                <!--<div class="tt-header__search-dropdown"></div>
+                 <a href="#" class="tt-header__btn tt-header__btn-open-search"><i class="icon-search"></i></a>
+                  <a href="#" class="tt-header__btn tt-header__btn-close-search"><i class="icon-cancel-1"></i></a>-->
+              </div>
+              <div *ngIf="authService.isLoggedIn">
+                <a href="javascript:void(0);" class="tt-header__btn tt-header__btn-user" (click)="showUser = !showUser; forceHideMenu = false; showMenuu = false;"><i class="icon-user-outline"></i></a>
+                <div *ngIf="showUser && !forceHideMenu" class="tt-header__user tt-header__option-open ps ps--theme_default override-display" style="max-height: 881px;">
+                  <ul class="tt-list-toggle">
+                    <li><a href="javascript:void(0);" (click)="goToDefaultPage('mijn-account')">Mijn Account</a></li>
+                    <li><a href="javascript:void(0);" (click)="logout()">Uitloggen</a></li>
+                  </ul>
+                </div>
+              </div>
+              <a routerLink="/winkelwagen" class="tt-header__btn tt-header__btn-cart" *ngIf="authService.isLoggedIn">
+                <i class="icon-shop24"></i>
+                <span>{{ getCartCount() }}</span>
+              </a>
+
+              <div>
+                <a href="javascript:void(0);" class="tt-header__btn tt-header__btn-settings" (click)="showSettings = !showSettings; forceHideMenu = false;"><i class="icon-cog"></i></a>
+                <div *ngIf="showSettings && !forceHideMenu" class="tt-header__settings tt-header__option-open ps ps--theme_default override-display" style="max-height: 881px;">
+                  <ul class="tt-list-toggle">
+                    <li><a href="javascript:void(0);" [ngClass]="globals.language == 'NL' ? 'active-custom' : ''" (click)="globals.language = 'NL'; showSettings = false;">NL</a></li>
+                    <li><a href="javascript:void(0);" [ngClass]="globals.language == 'EN' ? 'active-custom' : ''" (click)="globals.language = 'EN'; showSettings = false;">EN</a></li>
+                  </ul>
+                </div>
+              </div>
+
             </div>
-	        
-	    </div>
-	</header>
-	
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
 </ng-container>

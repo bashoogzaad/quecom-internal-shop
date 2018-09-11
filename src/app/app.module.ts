@@ -79,7 +79,8 @@ const appRoutes: Routes = [
     { path: 'over-ons', component: AboutUsComponent },
     { path: 'contact', component: ContactComponent },
     { path: 'winkelwagen', component: CartComponent, canActivate: [AuthGuard] },
-    { path: 'winkelwagen/bestellen', component: CheckoutComponent, canActivate: [AuthGuard] }
+    { path: 'winkelwagen/bestellen', component: CheckoutComponent, canActivate: [AuthGuard] },
+    { path: 'search/:query', component: ProductListingComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

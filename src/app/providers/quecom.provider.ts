@@ -111,5 +111,16 @@ export class QuecomProvider {
       
       return this.http.get(this.globals.baseUrl+'address'+query, options).map(res => res.json());
     }
+
+    public getSearchResults(sq: string, full?: boolean) {
+      const options = this.initRequestOptions('POST');
+
+      let query = {"sq" : sq};
+      if(full) {
+        query['full'] = true;
+      }
+
+      return this.http.post(this.globals.baseUrl + 'search', JSON.stringify(query), options).map(res => res.json());
+    }
   
 }
