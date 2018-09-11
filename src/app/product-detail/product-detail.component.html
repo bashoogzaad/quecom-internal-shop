@@ -188,7 +188,7 @@
 	                                   			<li *ngFor="let usp of extractUniqueSellingPoints(product.unique_selling_points)">{{ usp }}</li>
 	                                   		</ul>
 	                                   	</div>
-	                                    <div class="tt-product-head__control">
+	                                    <div class="tt-product-head__control" *ngIf="product.available > 0">
 	                                        <div class="tt-product-head__counter tt-counter tt-counter__inner" data-min="1" data-max="10">
 	                                            <input type="text" class="form-control" value="{{ amount }}">
 	                                            <div class="tt-counter__control">
@@ -200,7 +200,10 @@
 	                                            <i class="icon-shop24"></i>
 	                                            <span>Voeg toe aan winkelwagen</span>
 	                                        </a>
-	                                    </div>
+										</div>
+										<div class="tt-product-head__control" *ngIf="product.available == 0">
+											<span class="red">Product tijdelijk niet op voorraad</span>
+										</div>
 	                                    <div class="addthis_inline_share_toolbox"></div>
 	                                </form>
 	                            </div>

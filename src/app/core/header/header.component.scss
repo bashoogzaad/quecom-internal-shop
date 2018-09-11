@@ -58,3 +58,47 @@
 		margin-left: -228px !important;
 	}
 }
+
+.custom-search {
+	display:none;
+}
+
+.custom-search {
+	display: none;
+	margin-top: 14px;
+	background: #f8f9fa !important;
+}
+
+@media only screen and (min-width: 1025px) {
+	.custom-search {
+		display: block;
+	}
+}
+
+.search-form-hs {
+	position: relative;
+	width: 200px;
+	transition: width .2s;
+
+	.search-results-container {
+		position: absolute;
+		top: 48px;
+		width: 100%;
+		overflow: visible;
+		background: #fff;
+		border: 1px solid #fe5a1a;
+		
+		a {
+			display: block;
+			padding: 10px;
+
+			img {
+				max-width: 70px;
+			}
+		}
+	}
+
+	&.hasFocus {
+		width: 350px;
+	}
+}

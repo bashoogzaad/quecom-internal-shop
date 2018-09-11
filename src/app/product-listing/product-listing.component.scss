@@ -54,3 +54,35 @@
     right: -9999px;
     margin: auto;
 }
+
+.tt-round-btn {
+	display: flex;
+    width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: red;
+	align-self: center;
+	margin-left: 5px;
+}
+
+.available {
+	color: green;
+    font-size: small;
+    font-weight: 100;
+
+}
+
+.no-results {
+	h1 {
+		margin-top: 80px;
+		font-size: 1.7rem;
+		text-align: center;
+	}
+}
+
+.not-available {
+	color: red;
+    font-size: small;
+    font-weight: 100;
+
+}

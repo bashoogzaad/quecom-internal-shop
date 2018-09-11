@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { QuecomProvider } from "../providers/quecom.provider";
 import { ActivatedRoute, Router } from "@angular/router";
 import { LocalStorage } from "ngx-webstorage";
-import { OrderLine } from "../models/order-line";
 import { CartProvider } from "../providers/cart.provider";
+import { OrderLine } from "../models/order-line";
 import { Globals } from '../providers/globals';
 
 @Component({
@@ -18,6 +18,7 @@ export class ProductListingComponent implements OnInit {
     public unparsedType: string;
     public groupId: any;
     public typeObject: any;
+    public isSearch = false;
     
     public limit = 12;
     public page = 1;
@@ -42,52 +43,56 @@ export class ProductListingComponent implements OnInit {
         this.groupMap.set('product-groep', 'product_group');
         
         this.route.paramMap.subscribe(params => {
-            
             this.globals.loadingOn();
-            if (this.router.url.split("/")[1] !== 'producten') {
-            
-                this.unparsedType = this.router.url.split("/")[1];
-                const type = this.groupMap.get(this.unparsedType);
-                this.groupId = params.get('id');
-                
-                this.quecomProvider.getCategories().subscribe(res => {
-                
-                  if (this.unparsedType === 'categorie') {
 
-                    this.typeObject =  res['categories'].find(c => c.id === this.groupId);
-                    this.typeObject['main_name'] = this.typeObject['name'];
-                    this.typeObject['parsed'] = this.typeObject['name'].replace(/[& ]/g, '');
-
-                  } else if (this.unparsedType === 'subcategorie') {
-                     
-                    for (let cat of res['categories']) {
-                        for (let subcat of cat.subcategories) {
-                            subcat['cat_name'] = cat['name'];
-                        } 
-                    }
-                      
-                    this.typeObject =  res['categories'].reduce((a, b) => a.concat(b.subcategories), []).find(c => c.id === this.groupId);
-                    this.typeObject['main_name'] = this.typeObject['cat_name'];
-                    this.typeObject['parsed'] = this.typeObject['cat_name'].replace(/[& ]/g,'');
-                  }
-                      
-                });
-                
-                this.route.queryParams.subscribe(qp => {
-                    this.globals.loadingOn();
-                    this.page = qp['page'] ? Number.parseInt(qp['page']) : 1;
-                    this.loadProducts(type);
-                });
-              
+            if(params.get("query") !== null) {
+                this.isSearch = true;
+                this.loadSearchProducts(params.get("query"));
             } else {
-                this.route.queryParams.subscribe(qp => {
-                    this.globals.loadingOn();
-                    this.page = qp['page'] ? Number.parseInt(qp['page']) : 1;
-                    this.loadProducts();
-                });
-            }
-            
-            
+                this.globals.loadingOn();
+                if (this.router.url.split("/")[1] !== 'producten') {
+                
+                    this.unparsedType = this.router.url.split("/")[1];
+                    const type = this.groupMap.get(this.unparsedType);
+                    this.groupId = params.get('id');
+                    
+                    this.quecomProvider.getCategories().subscribe(res => {
+                    
+                    if (this.unparsedType === 'categorie') {
+
+                        this.typeObject =  res['categories'].find(c => c.id === this.groupId);
+                        this.typeObject['main_name'] = this.typeObject['name'];
+                        this.typeObject['parsed'] = this.typeObject['name'].replace(/[& ]/g, '');
+
+                    } else if (this.unparsedType === 'subcategorie') {
+                        
+                        for (let cat of res['categories']) {
+                            for (let subcat of cat.subcategories) {
+                                subcat['cat_name'] = cat['name'];
+                            } 
+                        }
+                        
+                        this.typeObject =  res['categories'].reduce((a, b) => a.concat(b.subcategories), []).find(c => c.id === this.groupId);
+                        this.typeObject['main_name'] = this.typeObject['cat_name'];
+                        this.typeObject['parsed'] = this.typeObject['cat_name'].replace(/[& ]/g,'');
+                    }
+                        
+                    });
+                    
+                    this.route.queryParams.subscribe(qp => {
+                        this.globals.loadingOn();
+                        this.page = qp['page'] ? Number.parseInt(qp['page']) : 1;
+                        this.loadProducts(type);
+                    });
+                
+                } else {
+                    this.route.queryParams.subscribe(qp => {
+                        this.globals.loadingOn();
+                        this.page = qp['page'] ? Number.parseInt(qp['page']) : 1;
+                        this.loadProducts();
+                    });
+                }
+            } 
         });
         
     }
@@ -98,7 +103,6 @@ export class ProductListingComponent implements OnInit {
     }
     
     public loadProducts(type?: string) {
-        
         if (type) {
           
             this.quecomProvider.getProductsPerGroup(type, this.groupId, this.limit, this.page).subscribe(res => {
@@ -120,6 +124,15 @@ export class ProductListingComponent implements OnInit {
         }
         
     }
+
+    public loadSearchProducts(sq: string) {
+        this.quecomProvider.getSearchResults(sq, true).subscribe(res => {
+            this.products = res.products;
+            this.pageNumbers = [1];
+            this.pagination = 1
+            this.globals.loadingOff();
+        });
+    }
     
     public getImageUrl(product: any) {
         if (product.image_url) {
@@ -130,15 +143,22 @@ export class ProductListingComponent implements OnInit {
     }
     
     public addToCart(product: any) {
+        product.image_urls = product.image_urls ? product.image_urls : [];
+        product.image_urls.push(product.image_url);
         
-        let orderLine = new OrderLine();
+        if (product.additional_image_urls) {
+            for (let img of product.additional_image_urls) {
+              product.image_urls.push(img);
+            }              
+        }
+
+        const orderLine = new OrderLine();
         orderLine.count = 1;
         orderLine.subtotal = orderLine.count*product.price_total_netto*1.21;
         orderLine.product = product;
         this.cartProvider.addOrderLine(orderLine);
         
         this.router.navigateByUrl('/winkelwagen');
-        
     }
 
 }

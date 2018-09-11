@@ -26,6 +26,11 @@ export class HeaderComponent implements OnInit {
     
     public showUser = false;
     public showMenuu = false;
+
+    public searchResults = [];
+    public searchFocus = false;
+
+    private bubble;
     
     constructor(
         public localStorage: LocalStorageService,
@@ -80,6 +85,53 @@ export class HeaderComponent implements OnInit {
         this.forceHideMenu = true;
         this.authService.logout();
         this.router.navigate(['/inloggen']);
+    }
+
+    goToSearchPage(event: Event) {
+        event.preventDefault();
+        let sq = (<HTMLInputElement>document.querySelector('.custom-search')).value.trim();
+
+        if(sq !== ''){
+            this.blur();
+            this.router.navigate(['/search', sq.toLowerCase()]);
+        }
+    }
+
+    liveSearch(evnt: any) {
+        console.log(evnt);
+        clearTimeout(this.bubble);
+
+        let keyMap = [8, 9, 13, 16, 17, 18, 19, 20, 27, 33, 34, 35, 36, 37, 38, 39, 40];
+
+        if(keyMap.indexOf(evnt.keyCode) > 0) {
+            return;
+        }
+
+        this.bubble = setTimeout(()=> {
+            this.quecomProvider.getSearchResults(evnt.srcElement.value.trim()).subscribe(res => {
+                this.searchResults = res;
+            });
+        }, 300);
+    }
+
+    clearSearchAndGoToProduct(productId) {
+        this.clearSearch();
+        this.router.navigate(['/product', productId]);
+    }
+
+    clearSearch() {
+        this.searchResults = [];
+        this.searchFocus = false;
+        let form: HTMLInputElement = document.querySelector('.custom-search');
+        form.value = '';
+        form.blur();
+    }
+
+    blur() {
+        setTimeout(() => { 
+            this.searchFocus = false;
+            this.clearSearch();
+        }, 200);
     }
   
   getCartCount() {

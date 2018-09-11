@@ -130,12 +130,14 @@
 <!-- 	                <div class="tt-sidebar__bg"></div> -->
 <!-- 	            </div> -->
 <!-- 	        </aside> -->
-	        
+			<div class="tt-layout__content no-results" *ngIf="products.length == 0">
+				<h1>Helaas, geen zoekresultaten gevonden</h1>
+			</div>
 	        <div class="tt-layout__content" *ngIf="products.length > 0">
 	            <div class="container">
 	                <div class="tt-listing-page">
 	                
-	                    <a class="tt-listing-page__promobox ttg-image-scale listing-img">
+	                    <a class="tt-listing-page__promobox ttg-image-scale listing-img" *ngIf="typeObject !== undefined">
 	                        <img src="assets/templates/mogo/images/listing/{{ typeObject['parsed'] }}.jpg" alt="">
 	                        <div class="tt-listing-page__promobox-text tt-listing-page__promobox-design-white" style="padding-left: 0px; max-width: 500px;">
 								<div style="padding-left: 60px; background-color: rgba(255, 98, 0, 0.6);">
@@ -162,7 +164,7 @@
 	                            </div>
 	                            <div class="col-xl-3 col-lg-3 col-md-5 col-xs-8">
 	                                <div class="tt-vw-opt__info">
-	                                    <span>1-12 resultaten op deze pagina</span>
+	                                    <span>1-{{!!isSearch ? products.length : products.length > 12 ? 12 : products.length  }} resultaten op deze pagina</span>
 	                                </div>
 	                            </div>
 	                            <div class="col-xl-3 col-lg-4 col-md-2 col-xs-4">
@@ -207,21 +209,26 @@
 		                                                <a href="javascript.void(0)" [routerLink]="['/product', product.id]">{{ product.category_name }} - {{ product.group_detail_name_singular }}</a>
 		                                            </span>
 		                                        </p>
+												<div>
+													<span [attr.class]="product.available > 0 ? 'available' : 'not-available'">
+														{{ product.available > 0 ? "Product op voorraad" : "Product tijdelijk niet op voorraad" }}
+													</span>
+												</div>
 		                                        <div class="ttg-text-animation--emersion">
-		                                            <span class="tt-product__price">
-		                                                <span class="tt-price">
-		                                                    <span>{{ product.price_total_netto*1.21 | currency:'EUR':'true' }}</span>
+													<span class="tt-product__price">
+														<span class="tt-price">
+															<span>{{ product.price_total_netto*1.21 | currency:'EUR':'true' }}</span>
 		                                                </span>
 		                                            </span>
-		                                        </div>
+												</div>
 		                                        <div class="ttg-text-animation--emersion">
 		                                            <div class="tt-product__buttons">
-<!-- 		                                                <a href="javascript:void(0);" (click)="addToCart(product)" class="tt-btn colorize-btn5 tt-product__buttons_cart"> -->
-<!-- 		                                                    <i class="icon-shop24"></i> -->
-<!-- 		                                                    <span>Voeg toe aan winkelwagen</span> -->
-<!-- 		                                                </a> -->
+		                                                <a *ngIf="product.available > 0" href="javascript:void(0);" (click)="addToCart(product)" class="tt-btn colorize-btn5 tt-product__buttons_cart">
+		                                                    <i class="icon-shop24"></i> 
+		                                                    <span>Voeg toe aan winkelwagen</span>
+ 		                                                </a> 
 		                                                <a href="javascript.void(0)" [routerLink]="['/product', product.id]" class="tt-btn colorize-btn4 tt-product__buttons_qv">
-		                                                    <i class="icon-eye"></i>
+		                                               		<i class="icon-eye"></i>
 		                                                </a>
 		                                            </div>
 		                                        </div>
