@@ -2,6 +2,7 @@ import { AuthService } from '../auth.service';
 import { Globals } from '../providers/globals';
 import { PimcoreProvider } from '../providers/pimcore.provider';
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-my-account',
@@ -14,7 +15,7 @@ export class MyAccountComponent implements OnInit {
   public user: any;
   public budget: any;
   public showBudget = false;
-  
+
   public orders: any;
   public invoices: any;
   public currentOrder;
@@ -22,13 +23,14 @@ export class MyAccountComponent implements OnInit {
   public oldPass: string;
   public newPass1: string;
   public newPass2: string;
-  
+
   constructor(
     public globals: Globals,
     public authService: AuthService,
-    public pimcoreProvider: PimcoreProvider
+    public pimcoreProvider: PimcoreProvider,
+    private sanitizer: DomSanitizer
   ) {
-    
+
   }
 
   ngOnInit() {
@@ -41,7 +43,7 @@ export class MyAccountComponent implements OnInit {
       this.pimcoreProvider.getBudget(this.user.id, this.user.hash).subscribe(res => {
         this.budget = res;
       });
-      
+
       this.pimcoreProvider.getOrders(this.user.id, this.user.hash, shopName).subscribe(res => {
         this.orders = res['quecom_order'].filter(o => o['reference'].includes('GV'));
       });
@@ -53,7 +55,11 @@ export class MyAccountComponent implements OnInit {
     });
 
   }
-  
+
+  createInvoice(invoice){
+    return this.sanitizer.bypassSecurityTrustUrl('data:application/pdf;base64,' + invoice.data);
+  }
+
   public selectOrder(order) {
       this.currentOrder = order;
   }
@@ -82,7 +88,7 @@ export class MyAccountComponent implements OnInit {
       this.newPass1 = undefined;
       this.newPass2 = undefined;
     });
-    
+
   }
 
 }

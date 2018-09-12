@@ -6,15 +6,15 @@
 
 	<!-- MAIN -->
 	<main>
-	
+
 	    <div class="tt-layout tt-sticky-block__parent ">
 	        <div class="tt-layout__content">
 	            <div class="container">
-	
+
 	                <div class="tt-page__name text-center">
 	                    <h1>Mijn account</h1>
 	                </div>
-	
+
 	                <div class="tt-my-account">
 	                    <div class="tt-my-account__tabs tt-tabs tt-layout__mobile-full" data-tt-type="vertical">
 	                        <div class="tt-tabs__head">
@@ -34,7 +34,7 @@
 	                                <div class="tt-tabs__content">
 	                                	<h4>Dashboard</h4>
 	                                    <p class="ttg-mb--20">Welkom, {{ user.first_name }} {{ user.last_name }}.</p>
-	                                    <p>Je huidige budget is nu: 
+	                                    <p>Je huidige budget is nu:
 	                                    		<a *ngIf="showBudget" (click)="showBudget = false" href="javascript:void(0);" style="padding-left: 5px;"><b>{{ budget.value | currency:'EUR':'true' }}</b></a>
 	                                    		<a *ngIf="!showBudget" (click)="showBudget = true" href="javascript:void(0);" style="padding-left: 5px;"><b>Klik hier om je budget op te halen.</b></a>
 	                                    </p>
@@ -67,9 +67,9 @@
 	                                            </tr>
 	                                        </table>
 	                                    </div>
-	                                    
+
 	                                    <ng-container *ngIf="currentOrder">
-	                                    
+
 		                                    <h4>Bestelling #{{ currentOrder.order_id }}</h4>
 		                                    <div class="tt-tabs-my-account__table ttg-mb--30">
 		                                        <table class="table">
@@ -152,9 +152,9 @@
 		                                            </tr>
 		                                        </table>
 		                                    </div>
-	                                    
+
 	                                    </ng-container>
-	                                    
+
 	                                </div>
 	                            </div>
 	                            <div [ngClass]="current === 'invoices' ? 'show-account-section' : ''">
@@ -168,7 +168,7 @@
 	                                            </tr>
 	                                            <tr *ngFor="let invoice of invoices">
 	                                                <td><a>Factuur #{{ invoice.invoice_sap_code }}</a></td>
-	                                                <td class="text-right"><a download="PDF" href="data:application/pdf;base64,{{ invoice.data }}" title='Download pdf document'>Download</a></td>
+	                                                <td class="text-right"><a download="PDF" [href]="createInvoice(invoice)" title='Download pdf document'>Download</a></td>
 	                                            </tr>
 											</table>
 											<p *ngIf="invoices && invoices.length == 0">Nog geen facturen beschikbaar</p>
@@ -289,7 +289,7 @@
 	            </div>
 	        </div>
 	    </div>
-	
+
 	</main>
 
 </ng-container>
