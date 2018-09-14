@@ -626,7 +626,7 @@ var appRoutes = [
     { path: 'gebruiker-validatie/succesvol', component: __WEBPACK_IMPORTED_MODULE_43__user_success_user_success_component__["a" /* UserSuccessComponent */] },
     { path: 'welkom', component: __WEBPACK_IMPORTED_MODULE_41__welcome_welcome_component__["a" /* WelcomeComponent */] },
     { path: 'mijn-account', component: __WEBPACK_IMPORTED_MODULE_39__my_account_my_account_component__["a" /* MyAccountComponent */] },
-    { path: 'home', component: __WEBPACK_IMPORTED_MODULE_8__home_home_component__["a" /* HomeComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_32__auth_guard_service__["a" /* AuthGuard */]] },
+    { path: 'home', redirectTo: '/categorie/89', canActivate: [__WEBPACK_IMPORTED_MODULE_32__auth_guard_service__["a" /* AuthGuard */]] },
     { path: 'producten', component: __WEBPACK_IMPORTED_MODULE_30__product_listing_product_listing_component__["a" /* ProductListingComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_32__auth_guard_service__["a" /* AuthGuard */]] },
     { path: 'categorie/:id', component: __WEBPACK_IMPORTED_MODULE_30__product_listing_product_listing_component__["a" /* ProductListingComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_32__auth_guard_service__["a" /* AuthGuard */]] },
     { path: 'subcategorie/:id', component: __WEBPACK_IMPORTED_MODULE_30__product_listing_product_listing_component__["a" /* ProductListingComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_32__auth_guard_service__["a" /* AuthGuard */]] },
@@ -3802,8 +3802,8 @@ var environment = {
     production: true,
     version: "v3",
     apiUrl: "https://api.quecom.nl/customer",
-    apiKey: "oLouAeGDj9DgQfUzP6sLjsNzFqB5QXROmPBg4Z2t",
-    debtorNumber: "103252"
+    apiKey: "l5CJaVRlvuWW2JwBi2fqsvyQBu1KZdW2AxPYhxW1",
+    debtorNumber: "103318"
 };
 
 

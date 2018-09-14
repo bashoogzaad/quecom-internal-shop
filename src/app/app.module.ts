@@ -61,7 +61,7 @@ const appRoutes: Routes = [
     { path: 'gebruiker-validatie/succesvol', component: UserSuccessComponent },
     { path: 'welkom', component: WelcomeComponent },
     { path: 'mijn-account', component: MyAccountComponent },
-    { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+    { path: 'home', redirectTo: '/categorie/89', canActivate: [AuthGuard] },
     { path: 'producten', component: ProductListingComponent, canActivate: [AuthGuard] },
     { path: 'categorie/:id', component: ProductListingComponent, canActivate: [AuthGuard] },
     { path: 'subcategorie/:id', component: ProductListingComponent, canActivate: [AuthGuard] },

@@ -10,3 +10,8 @@ npm config set quecom-internal-shop:version=v3
 npm config set quecom-internal-shop:production=true
 npm run config
 ng build -bh /jobinvestment/ -environment=prod
+
+
+BUILD FOR SUPERLOKAAL
+
+ng build -bh /superlokaal/ -environment=prod
