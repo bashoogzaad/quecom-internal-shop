@@ -394,7 +394,6 @@
 																		{{ timeFrame.timeframe_start | date:'HH:mm' }} - {{ timeFrame.timeframe_end | date:'HH:mm' }}
 																	</td>
 																	<td style="padding: 0.3em; vertical-align: middle;">
-																		+ {{ timeFrame.cost | currency:'EUR':'true' }}
 																	</td>
 																	<td>
 																		<label class="tt-checkbox-circle">
@@ -484,20 +483,6 @@
 <!-- 		                                    </li> -->
 <!-- 		                                </ul> -->
 <!-- 		                            </div> -->
-		                            <ng-container *ngIf="globals.hasCoupons">
-			                            <h4 class="tt-checkout--border ttg-mb--20">Heb je een kortingscode?</h4>
-			                            <div class="tt-checkout__coupon">
-			                                <form action="#">
-			                                    <label>
-			                                        <p>Kortingscode:</p>
-			                                        <input type="text" class="form-control" placeholder="" [(ngModel)]="couponCode" name="couponCode" />
-			                                    </label>
-			                                    <button type="submit" class="btn" [disabled]="!couponCode" (click)="checkCouponCode()">Toepassen</button>
-			                                </form>
-			                                <div *ngIf="showError">{{ errorMessage }}</div>
-			                            </div>
-		                            </ng-container>
-	                            
 	                            </ng-container>
 	                            
 	                            <ng-container *ngIf="step === 3">

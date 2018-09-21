@@ -30,11 +30,9 @@
 							<p>
 								<ng-container *ngIf="globals.language == 'NL'">
 									Via het onderstaande formulier kun je je registreren voor de webshop. <br/><br/>
-									<b>Na de registratie zal er een validatie door een administrator uitgevoerd worden alvorens je als gebruiker toegang krijgt tot de shop.</b>
 								</ng-container>
 								<ng-container *ngIf="globals.language == 'EN'">
-									With the form below you have the ability to register for the Sony Staff Shop. <br/><br/>
-									<b>After the register process a validation will be executed by an administator before access to the shop is granted.</b>
+									With the form below you have the ability to register for the web Shop. <br/><br/>
 								</ng-container>
 							</p>
 						</div>
@@ -49,24 +47,23 @@
 	                        <div class="tt-contacts__form tt-form">
 	                            <div class="tt-contacts__form_inputs tt-form__form">
 	                            	<label>
-	                                    <div class="row">
-	                                        <div class="col-md-3"><span class="ttg__required">
-												<ng-container *ngIf="globals.language == 'NL'">Organisatie:</ng-container>
-	                        					<ng-container *ngIf="globals.language == 'EN'">Organization:</ng-container>
-											</span></div>
-	                                        <div class="col-md-9">
-	                                        	<div class="tt-select">
-		                                            <select class="form-control colorize-theme6-bg" [(ngModel)]="user.organization" name="organization">
-		                                            	<option value="" disabled="true" [selected]="!user.organization">
-															<ng-container *ngIf="globals.language == 'NL'">Selecteer een organisatie...</ng-container>
-	                        								<ng-container *ngIf="globals.language == 'EN'">Select an organization...</ng-container>
-														</option>
-		                                                <option *ngFor="let org of organizations" [value]="org.name">{{ org.name }}</option>
-		                                            </select>
-		                                        </div>
-	                                        </div>
-	                                    </div>
-	                                </label>
+										            <input type="hidden" name="organization" value="Super Lokaal">
+									</label>
+                                <p *ngIf="user.couponValid !== undefined && !user.couponValid" class="ttg-mt--30 ttg-mb--30" style="color: white; background-color: indianred; padding: 10px;">
+                                  <i class="icon-cancel" style="color: white; padding-right: 10px;"></i>
+                                  De ingevulde voucher is ongeldig
+                                </p>
+                                <label>
+                                    <div class="row">
+                                      <div class="col-md-3"><span class="ttg__required">
+                                        <ng-container *ngIf="globals.language == 'NL'">Vouchercode</ng-container>
+                                        <ng-container *ngIf="globals.language == 'EN'">Vouchercode</ng-container>
+                                      </span></div>
+                                      <div class="col-md-9">
+                                        <input type="text" class="form-control colorize-theme6-bg" [(ngModel)]="user.voucher" (blur)="checkVoucher($event)" name="voucher" placeholder="">
+                                      </div>
+                                    </div>
+                                  </label>
 	                                <label>
 	                                    <div class="row">
 	                                        <div class="col-md-3"><span class="ttg__required">

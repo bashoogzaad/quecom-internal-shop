@@ -25,7 +25,7 @@ export class Globals {
     public theme: string;
     public name: string = "HAMA";
     public password: string = 'GezamenlijkLoyaltyVoordeel';
-    public hasCoupons: boolean = true;
+    public hasCoupons: boolean = false;
     public deliveryIndication: string[] = ['Vóór 19:00 uur besteld', 'Volgende dag geleverd*'];
     public hasDeliveryCost: boolean = false;
     public hasBudget: boolean = false;

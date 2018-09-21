@@ -141,8 +141,10 @@ export class CheckoutComponent implements OnInit {
                 
                 shm['cost'] = timeframe['Options']['string'] == 'Evening' ? 2 : 0;
                 shm['option'] = timeframe['Options']['string'];
-                
-                this.shippingTimeframes.push(shm);
+
+                if(timeframe['Options']['string'] != 'Evening') {
+                  this.shippingTimeframes.push(shm);
+                }
                 
               }
             }
@@ -175,21 +177,7 @@ export class CheckoutComponent implements OnInit {
     }
     
     getDeliveryCost() {
-      
-      if (!this.globals.hasDeliveryCost || !this.payShipping) {
-        return 0.0;
-      }
-      
-      let baseCost = 6.95;
-      const extraCost = (this.selectedShipment && this.selectedShipment.cost) ? this.selectedShipment.cost : 0;
-      
-      for (const orderLine of this.order.orderLines) {
-        if (orderLine.product.inch_size && orderLine.product.inch_size >= 55) {
-          baseCost = 39.95;
-        }
-      }
-      
-      return (baseCost + extraCost) * 1.21;
+      return (this.getOrderSubtotal() >= 50 ? 0 : 3.50);
     }
     
     getOrderSubtotal() {

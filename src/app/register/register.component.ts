@@ -43,12 +43,15 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.user.ign_v = 'true';
     
     this.pimcoreProvider.getOrganizations().subscribe(org => {
       // this.organizations = org.filter(org => org.name != 'Test Organization');
-      this.organizations = org;
+      this.organizations = org[0];
+      this.user.organization = "Super Lokaal";
+
     });
-    
+
     this.postalCodeControl.valueChanges.debounceTime(400).distinctUntilChanged().subscribe(newVal => this.checkAddress(newVal));
     this.houseNumberControl.valueChanges.debounceTime(400).distinctUntilChanged().subscribe(newVal => this.checkAddress(newVal));
     this.houseNumberExtControl.valueChanges.debounceTime(400).distinctUntilChanged().subscribe(newVal => this.checkAddress(newVal));
@@ -119,9 +122,15 @@ export class RegisterComponent implements OnInit {
     });
     
   }
+
+  public checkVoucher(e) {
+    this.quecomProvider.checkCouponCode(this.user.voucher).subscribe(data => {
+        this.user.couponValid = (data.coupon_code !== undefined);
+    });
+  }
   
   public checkFields() {
-      
+
       if (
         this.user.username &&
         this.user.password &&
@@ -130,6 +139,8 @@ export class RegisterComponent implements OnInit {
           this.user.first_name &&
           this.user.last_name &&
           this.user.postal_code &&
+          this.user.voucher &&
+          this.user.couponValid &&
           this.user.house_number &&
           this.user.street &&
           this.user.city &&

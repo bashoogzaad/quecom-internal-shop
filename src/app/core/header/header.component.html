@@ -48,11 +48,11 @@
 			<div class="main-menu main-menu-custom"> 
 			<ul class="clearfix main-nav" id="AccessibleNav">
 				<li routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/home" class="site-nav__link">Home</a></li>
-				<li routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/over-ons" class="site-nav__link">Hoe werkt het?</a></li>
+				<li routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/klantenservice/bestelling" class="site-nav__link">Hoe werkt het?</a></li>
 				<li class="has-dropdown dropdown" routerLinkActive="site-nav--active" [routerLinkActiveOptions]="{exact: true}">
 					<a class="site-nav__link" (mouseenter)="forceHideMenu = false">Klantenservice</a>
 					<ul class="sub-menu" *ngIf="forceHideMenu === false">
-						<li> <a routerLink="/klantenservice/bestelling" (click)="forceHideMenu = true" class="site-nav__link">Bestelling</a></li>
+						<li> <a routerLink="/over-ons" (click)="forceHideMenu = true" class="site-nav__link">Over ons</a></li>
 						<li> <a routerLink="/klantenservice/betaling" (click)="forceHideMenu = true" class="site-nav__link">Betaling</a></li>
 						<li> <a routerLink="/klantenservice/verzending" (click)="forceHideMenu = true" class="site-nav__link">Verzending & Bezorging</a></li>
 						<li> <a routerLink="/klantenservice/retouren" (click)="forceHideMenu = true" class="site-nav__link">Retouren & Garantie</a></li>
@@ -160,7 +160,7 @@
 <!-- 	    		<div class="tt-header__spacer tt-header__spacer--d tt-header__spacer--visible" [ngClass]="scrolledY ? 'adjust-height' : ''"></div> -->
 <!-- 	        <div class="tt-header__content" ng-sticky [offSet]="0" [addClass]="'mogo-is-sticky'"> -->
 	        <div class="tt-header__content">
-	            <div class="tt-header__logo">
+	            <div class="tt-header__logo" style="background: #000;">
 	                <div class="h1 tt-logo">
 	                    <a routerLink="/home">
 	                        <img src="assets/templates/mogo/images/logo/{{ globals.name }}.png" alt="logo">
@@ -180,7 +180,7 @@
 	                                </a>
 	                            </li>
 	                            <li>
-	                                <a href="javascript:void(0);" routerLink="/over-ons">
+	                                <a href="javascript:void(0);" routerLink="/klantenservice/bestelling">
 	                                	<span>
                                         	HOE WERKT HET?
                                         </span>
@@ -195,13 +195,13 @@
 	                                </a>
 	                                <div class="TonyM__mm TonyM__mm--simple ie-header" style="width: 280px; margin-left: -28px; left: auto;">
 	                                    <ul class="TonyM__list">
-	                                        <li><a href="javascript:void(0);" routerLink="/klantenservice/bestelling">Bestelling</a></li>
 	                                        <li><a href="javascript:void(0);" routerLink="/klantenservice/betaling">Betaling</a></li>
 	                                        <li><a href="javascript:void(0);" routerLink="/klantenservice/verzending">Verzending & Bezorging</a></li>
 	                                        <li><a href="javascript:void(0);" routerLink="/klantenservice/retouren">Retouren & Garantie</a></li>
 	                                        <li><a href="javascript:void(0);" routerLink="/klantenservice/voorwaarden">Algemene voorwaarden</a></li>
 	                                        <li><a href="javascript:void(0);" routerLink="/klantenservice/privacy">Privacy & Cookie Policy</a></li>
-	                                    </ul>
+                                          <li><a href="javascript:void(0);" routerLink="/over-ons">Over ons</a></li>
+                                      </ul>
 	                                </div>
 	                            </li>
 	                            <li>
@@ -251,9 +251,9 @@
 							<div *ngIf="showMenuu && !forceHideMenu" class="tt-header__user tt-header__option-open ps ps--theme_default override-display" style="max-height: 881px;">
 								<ul class="tt-list-toggle">
 									<li><a href="javascript:void(0);" (click)="goToDefaultPage('home')">Home</a></li>
-									<li><a href="javascript:void(0);" (click)="goToDefaultPage('over-ons')">Hoe werkt het?</a></li>
+									<li><a href="javascript:void(0);" (click)="goToDefaultPage('klantenservice/bestelling')">Hoe werkt het?</a></li>
 									<li><a href="javascript:void(0);" (click)="goToDefaultPage('contact')">Contact</a></li>
-									<li><a href="javascript:void(0);" (click)="goToDefaultPage('klantenservice/bestelling')">Bestelling</a></li>
+									<li><a href="javascript:void(0);" (click)="goToDefaultPage('over-ons')">Over ons</a></li>
 									<li><a href="javascript:void(0);" (click)="goToDefaultPage('klantenservice/betaling')">Betaling</a></li>
 									<li><a href="javascript:void(0);" (click)="goToDefaultPage('klantenservice/verzending')">Verzending & Bezorging</a></li>
 									<li><a href="javascript:void(0);" (click)="goToDefaultPage('klantenservice/retouren')">Retouren & Garantie</a></li>
