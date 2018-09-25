@@ -213,7 +213,6 @@
               <div class="tt-tabs__head">
                 <div class="tt-tabs__slider">
                   <div class="tt-tabs__btn" [ngClass]="show === 'description' ? 'active' : ''" (click)="show = 'description'"><span>Omschrijving</span></div>
-                  <div class="tt-tabs__btn" [ngClass]="show === 'additional' ? 'active' : ''" (click)="show = 'additional'"><span>Aanvullende informatie</span></div>
                 </div>
               </div>
               <div class="tt-tabs__body tt-tabs-product">
@@ -223,37 +222,6 @@
                     <div style="white-space: pre-line;">
                       <div [innerHTML]="getDescription(product)"></div>
                     </div>
-                  </div>
-                </div>
-                <div *ngIf="show === 'additional'">
-                  <div class="tt-tabs__content" style="display: block !important;">
-                    <div class="tt-tabs__content-head">Aanvullende informatie</div>
-                    <table class="table">
-                      <tr>
-                        <td>Headphone Fit</td>
-                        <td>Over-the-Ear</td>
-                      </tr>
-                      <tr>
-                        <td>Wireless</td>
-                        <td>Yes</td>
-                      </tr>
-                      <tr>
-                        <td>Headphone Fit</td>
-                        <td>Yes</td>
-                      </tr>
-                      <tr>
-                        <td>Built-In Bluetooth</td>
-                        <td>Yes</td>
-                      </tr>
-                      <tr>
-                        <td>Built-In Microphone</td>
-                        <td>Yes</td>
-                      </tr>
-                      <tr>
-                        <td>Behind The Neck</td>
-                        <td>Yes</td>
-                      </tr>
-                    </table>
                   </div>
                 </div>
               </div>
