@@ -6,8 +6,8 @@ export const environment = {
     production: true,
     version: "v3",
     apiUrl: "https://api.quecom.nl/customer",
-    apiKey: "YgPDN2CGOavpg1RIqqKbRHM9ELzwtE6W6VaY9kCA",
-    debtorNumber: "103334"
+    apiKey: "W8YGdBVDEtui8WmuqlO7HPiq3FERmtmiyP27Hxkm",
+    debtorNumber: "103338"
 };
 `;
 
