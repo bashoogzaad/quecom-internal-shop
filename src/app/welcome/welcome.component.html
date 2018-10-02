@@ -8,9 +8,9 @@
 	            <div class="container">
 	            
 	            	<div class="tt-home__post-img-01">
-	                    <div class="tt-post-img tt-post-img--layers tt-post-img--curtain ttg-image-scale">
+	                    <div class="tt-post-img" style="position: relative">
 	                        <img alt="image" src="assets/templates/mogo/images/blog/single/Welkom.jpg" style="display: block;">
-	                        <div class="tt-post-img__text">
+	                        <!--<div class="tt-post-img__text">
 	                            <div class="tt-post-img__title tt-post-img__title--long">
 	                            	<ng-container *ngIf="globals.language == 'NL'">Welkom in de shop</ng-container>
 	                            	<ng-container *ngIf="globals.language == 'EN'">Welcome to the shop</ng-container>
@@ -24,7 +24,8 @@
 	                            		Welcome to the webshop! Here you can score lots of products with huge discounts. Please enter your e-mailadress below and the registration procedure will start.
 	                            	</ng-container>
 	                            
-	                            </div>
+	                            </div>-->
+                            <div class="bpls">
 	                            <a href="javascript:void(0);" routerLink="/inloggen" class="btn">
 	                            	<ng-container *ngIf="globals.language == 'NL'">
 	                            		INLOGGEN
@@ -41,14 +42,66 @@
 	                            		REGISTER
 	                            	</ng-container>
                             	</a>
-	                        </div>
+                            </div>
+
+                          <!--</div>-->
 	                    </div>
 	                </div>
 	            
 	            </div>
             </div>
         </div>
-        
+
+        <div class="" *ngIf="products.length > 0 && showProducts">
+          <div class="tt-listing-page__products tt-layout__mobile-full">
+
+            <div class="tt-product-view row">
+
+              <div class="col-sm-6 col-md-4 col-xxl-3" *ngFor="let product of products">
+
+                <div class="tt-product tt-product__view-sheet">
+                  <div class="tt-product__image">
+                    <a routerLink="/registreren">
+                      <img [lazyLoad]="getImageUrl(product)" alt="">
+                    </a>
+                  </div>
+                  <div class="tt-product__hover tt-product__clr-clk-transp">
+                    <div class="tt-product__content ps ps--theme_default" data-ps-id="00975382-1327-ec44-c429-f9584e03808c">
+                      <h3 style="height: 5.0ex; line-height: 2.5ex;">
+													<span class="ttg-text-animation--emersion">
+														<a href="javascript.void(0)" [routerLink]="['/product', product.id]">{{ product.description_short_api }}</a>
+													</span>
+                      </h3>
+                      <p>
+		                                            <span class="ttg-text-animation--emersion">
+		                                                <a href="javascript.void(0)" [routerLink]="['/product', product.id]">{{ product.category_name }} - {{ product.group_detail_name_singular }}</a>
+		                                            </span>
+                      </p>
+                      <div class="ttg-text-animation--emersion">
+													<span class="tt-product__price">
+														<span class="tt-price">
+															<span>{{ product.price_total_netto*1.21 | currency:'EUR':'true' }}</span>
+		                                                </span>
+		                                            </span>
+                      </div>
+                      <div class="ttg-text-animation--emersion">
+                      </div>
+                      <div class="ps__scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps__scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__scrollbar-y-rail" style="top: 0px; right: 0px;"><div class="ps__scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="!showProducts" class="coupon">
+          <span>Voer je voucher code in om toegang te krijgen tot de shop</span>
+          <form (ngSubmit)="showProducts = true">
+            <input type="text">
+            <input type="submit" value="Controleren">
+          </form>
+        </div>
     </main>
 
 </ng-container>

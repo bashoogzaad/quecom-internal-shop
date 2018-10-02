@@ -137,7 +137,7 @@
 	            <div class="container">
 	                <div class="tt-listing-page">
 	                
-	                    <a class="tt-listing-page__promobox ttg-image-scale listing-img" *ngIf="typeObject !== undefined">
+	                    <a class="tt-listing-page__promobox listing-img" *ngIf="typeObject !== undefined">
 	                        <img src="assets/templates/mogo/images/listing/{{ typeObject['parsed'] }}.jpg" alt="">
 	                        <div class="tt-listing-page__promobox-text tt-listing-page__promobox-design-white" style="padding-left: 0px; max-width: 500px;">
 								<div style="padding-left: 60px; background-color: rgba(255, 98, 0, 0.6);">
@@ -146,45 +146,7 @@
 								</div>
 	                        </div>
 	                    </a>
-	                    <div class="tt-listing-page__view-options tt-vw-opt">
-	                        <div class="row">
-	                            <div class="col-xl-6 col-lg-5 col-md-5 col-xs-12">
-	                                <div class="tt-vw-opt__sort">
-	                                    <span>Sorteer:</span>
-	                                    <label class="tt-select">
-	                                        <select class="form-control">
-	                                            <option>Standaard</option>
-	                                        </select>
-	                                    </label>
-	                                </div>
-	                                <div class="tt-vw-opt__direction">
-	                                    <a href="javascript:void(0);" class="active"><i class="icon-down"></i></a>
-	                                    <a href="javascript:void(0);"><i class="icon-up"></i></a>
-	                                </div>
-	                            </div>
-	                            <div class="col-xl-3 col-lg-3 col-md-5 col-xs-8">
-	                                <div class="tt-vw-opt__info">
-	                                    <span>1-{{!!isSearch ? products.length : products.length > 12 ? 12 : products.length  }} resultaten op deze pagina</span>
-	                                </div>
-	                            </div>
-	                            <div class="col-xl-3 col-lg-4 col-md-2 col-xs-4">
-	                                <div class="tt-vw-opt__grid">
-	                                    <div class="tt-product-btn-vw" data-control=".tt-product-view">
-	                                        <label>
-	                                            <input type="radio" name="product-btn-vw" checked>
-	                                            <i class="icon-th-large"></i>
-	                                            <i class="icon-check-empty"></i>
-	                                        </label>
-	                                        <label>
-	                                            <input type="radio" name="product-btn-vw"
-	                                                   data-view-class="tt-product-view--list">
-	                                            <i class="icon-th"></i>
-	                                        </label>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                        </div>
-	                    </div>
+
 	                    <div class="tt-listing-page__products tt-layout__mobile-full">
 	
 	                        <div class="tt-product-view row">
@@ -211,7 +173,7 @@
 		                                        </p>
 												<div>
 													<span [attr.class]="product.available > 0 ? 'available' : 'not-available'">
-														{{ product.available > 0 ? "Product op voorraad" : "Product tijdelijk niet op voorraad" }}
+														{{ product.available > 0 ? "Product op voorraad" : "Tijdelijk uitverkocht" }}
 													</span>
 												</div>
 		                                        <div class="ttg-text-animation--emersion">
