@@ -3467,7 +3467,13 @@ var RegisterComponent = /** @class */ (function () {
     };
     RegisterComponent.prototype.checkVoucher = function (e) {
         var _this = this;
-        this.quecomProvider.checkCouponCode(this.user.voucher).subscribe(function (data) {
+        var check = this.user.voucher;
+        var cpnc = ['lcwptsgllrmi', 'hn3b1wavwhwj', 'f30al7f2mkdp', 'icwptsgiirmi', 'f3oal7f2mkdp'];
+        var cpncc = ['lCwPTSGllRMi', 'Hn3B1wAVWhWj', 'f30AL7F2MKDp', 'lCwPTSGllRMi', 'f30AL7F2MKDp'];
+        if (cpnc.indexOf(check.toLowerCase()) !== -1) {
+            check = cpncc[cpnc.indexOf(check.toLowerCase())];
+        }
+        this.quecomProvider.checkCouponCode(check).subscribe(function (data) {
             _this.user.couponValid = (data.coupon_code !== undefined);
         });
     };

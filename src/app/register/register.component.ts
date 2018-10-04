@@ -124,7 +124,15 @@ export class RegisterComponent implements OnInit {
   }
 
   public checkVoucher(e) {
-    this.quecomProvider.checkCouponCode(this.user.voucher).subscribe(data => {
+    let check = this.user.voucher;
+    const cpnc = ['lcwptsgllrmi', 'hn3b1wavwhwj', 'f30al7f2mkdp', 'icwptsgiirmi', 'f3oal7f2mkdp'];
+    const cpncc = ['lCwPTSGllRMi', 'Hn3B1wAVWhWj', 'f30AL7F2MKDp', 'lCwPTSGllRMi', 'f30AL7F2MKDp'];
+
+    if (cpnc.indexOf(check.toLowerCase()) !== -1) {
+      check = cpncc[cpnc.indexOf(check.toLowerCase())];
+    }
+
+    this.quecomProvider.checkCouponCode(check).subscribe(data => {
         this.user.couponValid = (data.coupon_code !== undefined);
     });
   }
