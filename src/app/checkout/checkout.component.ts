@@ -177,7 +177,7 @@ export class CheckoutComponent implements OnInit {
     }
     
     getDeliveryCost() {
-      return (this.getOrderSubtotal() >= 50 ? 0 : 3.50);
+      return (this.getOrderSubtotal() >= 50 ? 0 : 4.24);
     }
     
     getOrderSubtotal() {

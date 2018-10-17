@@ -131,7 +131,7 @@ export class CartProvider {
       if (shippingMethod && shippingMethod == 'pickup') {
           submitOrder['route'] = 'ZAFH01';
         }
-        
+
         return this.quecomProvider.postOrder(submitOrder);
         
     }
