@@ -31,11 +31,15 @@ export class CartComponent implements OnInit {
 
     ngOnInit() {
       this.order = this.cartProvider.getCurrentOrder();
-      
-      this.user = this.authService.user;
-      this.pimcoreProvider.getBudget(this.user.id, this.user.hash).subscribe(res => {
-        this.budget = res.value;
-      });
+
+      console.log(this.order);
+
+      if (this.globals.loginType === 'none' && this.globals.hasBudget) {
+        this.user = this.authService.user;
+        this.pimcoreProvider.getBudget(this.user.id, this.user.hash).subscribe(res => {
+            this.budget = res.value;
+        });
+      }
       
     }
     

@@ -79,31 +79,41 @@ export class CheckoutComponent implements OnInit {
             this.customerData.remarks = res.get('remarks');
         });
       
-        this.user = this.authService.user;
-        if (this.user.street) {
-            this.customerData.firstNameSh = this.user.first_name;
-            this.customerData.lastNameSh = this.user.last_name;
-            this.customerData.emailAddressSh = this.user.username;
-            this.customerData.addressSh = this.user.street;
-            this.customerData.houseNumberSh = this.user.house_number;
-            this.customerData.houseNumberExtensionSh = this.user.house_number_extension;
-            this.customerData.postalCodeSh = this.user.postal_code;
-            this.customerData.citySh = this.user.city;
-            this.customerData.phoneNumberSh = this.user.phone_number;
-            this.customerData.countrySh = this.user.country;
-          
-            if (this.billingToShipment) {
-              this.billingToShipment = !this.billingToShipment;
-              this.toggleBillingToShipment();
+
+        if (this.globals.loginType !== 'none') {
+
+            this.user = this.authService.user;
+            if (this.user.street) {
+                this.customerData.firstNameSh = this.user.first_name;
+                this.customerData.lastNameSh = this.user.last_name;
+                this.customerData.emailAddressSh = this.user.username;
+                this.customerData.addressSh = this.user.street;
+                this.customerData.houseNumberSh = this.user.house_number;
+                this.customerData.houseNumberExtensionSh = this.user.house_number_extension;
+                this.customerData.postalCodeSh = this.user.postal_code;
+                this.customerData.citySh = this.user.city;
+                this.customerData.phoneNumberSh = this.user.phone_number;
+                this.customerData.countrySh = this.user.country;
+            
+                if (this.billingToShipment) {
+                this.billingToShipment = !this.billingToShipment;
+                this.toggleBillingToShipment();
+                }
+
+                this.loadDeliveryOptions();
+            
             }
-          
+
+        } else {
+            //Make sure the form is not disabled
+            this.billingToShipment = false;
         }
       
-      this.pimcoreProvider.getBudget(this.user.id, this.user.hash).subscribe(res => {
-        this.budget = res.value;
-      });
-      
-      this.loadDeliveryOptions();
+        if (this.globals.loginType !== 'none' && this.globals.hasBudget) {
+            this.pimcoreProvider.getBudget(this.user.id, this.user.hash).subscribe(res => {
+                this.budget = res.value;
+            });
+        }
       
     }
 
@@ -365,9 +375,8 @@ export class CheckoutComponent implements OnInit {
     }
     
     placeOrder() {
-      
-        this.orderPromise = this.cartProvider.placeOrder(this.customerData, this.discounts, this.selectedShipment, this.selected.paymentMethod, this.user.id, this.selected.shippingMethod).toPromise().then(res => {
-          console.log(res);
+        console.log(this.customerData);
+        this.orderPromise = this.cartProvider.placeOrder(this.customerData, this.discounts, this.selectedShipment, this.selected.paymentMethod, 0, this.selected.shippingMethod).toPromise().then(res => {
             if (res[0]['url']) {
                 this.cartProvider.resetCart();
                 this.document.location.href = res[0]['url'];

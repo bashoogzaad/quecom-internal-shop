@@ -248,39 +248,66 @@
 	                            </div>
 	                        	
 	                        	<ng-container *ngIf="step === 1">
-		                            
-		                            <h4 class="ttg-mt--50 ttg-mb--20">Je verzending</h4>
-	                            	<div class="tt-checkout__payment">
-	                            		<ul>
-	                            			<li>Het factuuradres is hetzelfde adres als je hebt opgegeven bij de registratie. Je kunt deze aanpassen in je profiel.</li>
-	                            			<li>
-				                                <label class="tt-checkbox-circle">
-				                                	<input type="radio" name="shippingMethodGroup" value="same-as-invoice" [(ngModel)]="selected.shippingMethod" (ngModelChange)="toggleBillingToShipment()">
-				                                    <span></span>
-				                                </label>
-				                                Verzendadres is hetzelfde als factuuradres
-			                                </li>
-			                                <li>
-			                                	<label class="tt-checkbox-circle">
-		                                            <input type="radio" name="shippingMethodGroup" value="custom-address" [(ngModel)]="selected.shippingMethod" (ngModelChange)="toggleBillingToShipment()">
-		                                            <span></span>
-		                                        </label>
-		                                        Verzenden naar een ander adres
-			                                </li>
-			                                <li>
-			                                	<label class="tt-checkbox-circle">
-		                                            <input type="radio" name="shippingMethodGroup" value="pickup" [(ngModel)]="selected.shippingMethod" (ngModelChange)="toggleBillingToShipment()">
-		                                            <span></span>
-		                                        </label>
-		                                        Afhalen bij Amacom, The Amazing Company (De Tweeling 24A, 5215MC, 's-Hertogenbosch)
-			                                </li>
-		                                </ul>
-	                                </div>
+									
+									<ng-container *ngIf="globals.loginType !== 'none'">
+
+										<h4 class="ttg-mt--50 ttg-mb--20">Je verzending</h4>
+										<div class="tt-checkout__payment">
+											<ul>
+												<li>Het factuuradres is hetzelfde adres als je hebt opgegeven bij de registratie. Je kunt deze aanpassen in je profiel.</li>
+												<li>
+													<label class="tt-checkbox-circle">
+														<input type="radio" name="shippingMethodGroup" value="same-as-invoice" [(ngModel)]="selected.shippingMethod" (ngModelChange)="toggleBillingToShipment()">
+														<span></span>
+													</label>
+													Verzendadres is hetzelfde als factuuradres
+												</li>
+												<li>
+													<label class="tt-checkbox-circle">
+														<input type="radio" name="shippingMethodGroup" value="custom-address" [(ngModel)]="selected.shippingMethod" (ngModelChange)="toggleBillingToShipment()">
+														<span></span>
+													</label>
+													Verzenden naar een ander adres
+												</li>
+												<li *ngIf="globals.pickupAtAmacomAllowed">
+													<label class="tt-checkbox-circle">
+														<input type="radio" name="shippingMethodGroup" value="pickup" [(ngModel)]="selected.shippingMethod" (ngModelChange)="toggleBillingToShipment()">
+														<span></span>
+													</label>
+													Afhalen bij Amacom, The Amazing Company (De Tweeling 24A, 5215MC, 's-Hertogenbosch)
+												</li>
+											</ul>
+										</div>
+									
+									</ng-container>
+
+									<ng-container *ngIf="globals.loginType === 'none'">
+
+										<h4 class="ttg-mt--50 ttg-mb--20">Je gegevens</h4>
+										<div class="tt-checkout__payment">
+											<ul>
+												<li>Registreren is niet nodig op deze pagina, laat alleen even je gegevens achter zodat wij de bestelling naar je kunnen verzenden.</li>
+											</ul>
+										</div>
+
+									</ng-container>
 	                                
 	                                <ng-container *ngIf="selected.shippingMethod != 'pickup'">
-			                            <h4 class="ttg-mt--30 ttg-mb--20">Verzendadres</h4>
+			                            <h4 class="ttg-mt--30 ttg-mb--20">
+											Verzendadres
+										</h4>
 			                            <div class="tt-checkout__form">
 			                                <div class="row">
+
+												<ng-container *ngIf="globals.loginType === 'none'">
+													<div class="col-md-2"><p>E-mailadres:</p></div>
+													<div class="col-md-10">
+														<div class="tt-input">
+															<input type="text" class="form-control colorize-theme6-bg" placeholder="" name="emailSh" [(ngModel)]="customerData.emailAddress" required>
+														</div>
+													</div>
+												</ng-container>
+
 			                                    <div class="col-md-2"><p>Voornaam:</p></div>
 			                                    <div class="col-md-10">
 			                                        <div class="tt-input">
@@ -358,7 +385,7 @@
 			                            
 			                            <div class="tt-checkout__payment">
 		                            		<ul>
-		                            			<li>Kies hieronder een van de bezorgopties van PostNL. Je kunt zowel kiezen voor thuis bezorging als voor ophalen bij een van de PostNL afhaalpunten.</li>
+		                            			<li>Kies hieronder een van de bezorgopties van PostNL. Je kunt zowel kiezen voor thuis bezorging als voor ophalen bij een van de PostNL afhaalpunten. Let op: de onderstaande tijden zijn een benadering vanuit PostNL.</li>
 			                                </ul>
 		                                </div>
 		                                
@@ -367,7 +394,7 @@
 		                                </div>
 		                                <p style="font-size: 0,7rem;" *ngIf="!customerData.country || !customerData.postalCode || !customerData.houseNumber">Vul eerst een geldig adres in.</p>
 			                            
-			                            <div class="col-lg-12 col-md-12 col-sm-12 ttg-mt--20" style="background-color: #f5f5f5; padding-bottom: 25px;" *ngIf="!reloadDeliveryOptions">
+			                            <div class="col-lg-12 col-md-12 col-sm-12 ttg-mt--20" style="background-color: #f5f5f5; padding-bottom: 25px;" *ngIf="!reloadDeliveryOptions && !(!customerData.country || !customerData.postalCode || !customerData.houseNumber)">
 			                            
 			                            	<div style="display: flex;">
 			                            
@@ -566,7 +593,7 @@
 	                            <div class="tt-summary">
 	                                <div class="tt-summary--border">
 	                                    <h4>Je bestelling</h4>
-	                                    <p style="font-size: 0.7em;">Alle bedragen zijn inclusief personeelskorting en 21% BTW.</p>
+	                                    <p style="font-size: 0.7em;">Alle bedragen zijn inclusief korting en 21% BTW.</p>
 	                                </div>
 	                                <div class="tt-summary__products tt-summary--border">
 	                                    <ul>

@@ -28,10 +28,43 @@ export class CartProvider {
     }
   
     addOrderLine(orderLine: OrderLine): void {
-        this.order.orderLines.push(orderLine);
-        this.order = this.order;
+        let push = true;
+        this.order.orderLines.forEach((ol) => {
+          if(ol.product.id === orderLine.product.id) {
+            this.adjustOrderLine(ol, 1);
+            push = false;
+          }
+        });
+
+        if(push) {
+          this.order.orderLines.push(orderLine);
+          this.order = this.order;
+
+          if(this.order.orderLines.length === 1){
+            this.quecomProvider.getProduct("1475240").subscribe(res => {
+
+              res.price_total_netto = 0;
+
+              res.image_urls = res.image_urls ? res.image_urls : [];
+              res.image_urls.push(res.image_url);
+
+              if (res.additional_image_urls) {
+                for (let img of res.additional_image_urls) {
+                  res.image_urls.push(img);
+                }
+              }
+
+              const ol = new OrderLine();
+              ol.count = 1;
+              ol.subtotal = 0;
+              ol.product = res;
+
+              this.addOrderLine(ol);
+            });
+          }
+        }
     }
-    
+
     adjustOrderLine(orderLine: OrderLine, amount: number): void {
         orderLine.count += amount;
         this.order = this.order;
@@ -39,11 +72,13 @@ export class CartProvider {
     
     removeOrderLine(orderLine: OrderLine): void {
         this.order.orderLines.splice(this.order.orderLines.indexOf(orderLine), 1);
-        this.order = this.order;
-        
-        if (this.order.orderLines.length == 0) {
-            this.resetCart();
+
+        if (this.order.orderLines.length === 1) {
+            this.order.orderLines = [];
         }
+
+      this.order = this.order;
+
     }
     
     resetCart(): void {
@@ -53,14 +88,17 @@ export class CartProvider {
     placeOrder(customerData: CustomerData, discounts?: any[], selectedShipment?: any, paymentMethod?: any, id?: any, shippingMethod?: any): Observable<any> {
         
         let submitOrder;
-        
+
         const products = [];
         for (const orderLine of this.order.orderLines) {
-            const productEntry = {
+            if(orderLine.product.product_id !== '1475240') {
+              const productEntry = {
                 product_id: orderLine.product.product_id,
                 amount: orderLine.count
+              }
+
+              products.push(productEntry);
             }
-            products.push(productEntry);
         }
         
         const billing: Object = new Object();
@@ -71,7 +109,7 @@ export class CartProvider {
         billing['house_number_extension'] = customerData.houseNumberExtensionSh;
         billing['city'] = customerData.citySh;
         
-        if (customerData.postalCodeSh.length === 6) {
+        if (customerData.postalCodeSh !== undefined && customerData.postalCodeSh.length === 6) {
             customerData.postalCodeSh = customerData.postalCodeSh.substr(0, 4)+' '+customerData.postalCodeSh.substr(4, 2);
         }
         
@@ -92,8 +130,8 @@ export class CartProvider {
         shipment['house_number'] = customerData.houseNumber;
         shipment['house_number_extension'] = customerData.houseNumberExtension;
         shipment['city'] = customerData.city;
-        
-        if (customerData.postalCode.length === 6) {
+
+        if (customerData.postalCode !== undefined && customerData.postalCode.length === 6) {
             customerData.postalCode = customerData.postalCode.substr(0, 4)+' '+customerData.postalCode.substr(4, 2);
         }
         
@@ -114,7 +152,7 @@ export class CartProvider {
                 request_payment: '1',
                 calculate_shipping_cost: '1',
                 ecommerce_user_id: id
-        }
+        };
         
         if (discounts.length > 0) {
             submitOrder['discounts'] = discounts;

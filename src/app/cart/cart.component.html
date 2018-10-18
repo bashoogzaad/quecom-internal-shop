@@ -96,10 +96,11 @@
 	                                <div class="tt-cart__product" *ngFor="let order_line of order.orderLines">
 	                                    <div class="row">
 	                                        <div class="col-md-7">
-	                                            <a (click)="removeFromCart(order_line)" href="javascript:void(0);" class="tt-cart__product_del"><i class="icon-trash"></i></a>
+	                                            <a (click)="removeFromCart(order_line)" *ngIf="order_line.product.id !== '1475240'" href="javascript:void(0);" class="tt-cart__product_del"><i class="icon-trash"></i></a>
+                                              <a *ngIf="order_line.product.id == '1475240'" style="cursor: default" href="javascript:void(0);" class="tt-cart__product_del"><i style="opacity: 0;" class="icon-trash"></i></a>
 	                                            <a href="#" class="tt-cart__product_image"><img [src]="order_line.product.image_urls[0]" alt="image"></a>
 	                                            <div class="tt-cart__product_info">
-	                                                <a [routerLink]="['/product', order_line.product.id]"><p>{{ order_line.product.title }}</p></a>
+	                                                <a [routerLink]="order_line.product.id !== '1475240' ? ['/product', order_line.product.id] : []"><p>{{ order_line.product.title }}</p></a>
 	                                                <p>Categorie: <span>{{ order_line.product.category_name }}</span></p>
 	                                                <p>Merk: <span>{{ order_line.product.brand_name }}</span></p>
 	                                            </div>
@@ -107,14 +108,14 @@
 	                                        <div class="col-md-2 col-xs-4 text-center">
 	                                            <div class="tt-cart__product_price">
 	                                                <div class="tt-price">
-	                                                    <span>{{ order_line.product?.price_total_netto*1.21 | currency:'EUR':'true' }}</span>
+	                                                    <span>{{ order_line.product.id == '1475240' ? 'Gratis' : order_line.product?.price_total_netto*1.21 | currency:'EUR':'true' }}</span>
 	                                                </div>
 	                                            </div>
 	                                        </div>
 	                                        <div class="col-md-1 col-xs-4 text-center">
 	                                            <div class="tt-counter tt-counter__inner" data-min="1" data-max="10">
-	                                                <input type="text" class="form-control" value="{{ order_line.count }}">
-	                                                <div class="tt-counter__control">
+	                                                <input type="text" class="form-control" value="{{ order_line.count }}" [disabled]="order_line.product.id == '1475240'">
+	                                                <div class="tt-counter__control" *ngIf="order_line.product.id !== '1475240'">
 	                                                    <span class="icon-up-circle" data-direction="next" (click)="adjustOrderLine(order_line, getOrderQuantity(order_line))"></span>
 	                                                    <span class="icon-down-circle" data-direction="prev" (click)="adjustOrderLine(order_line, -getOrderQuantity(order_line))"></span>
 	                                                </div>
@@ -123,7 +124,7 @@
 	                                        <div class="col-md-2 col-xs-4 text-center">
 	                                            <div class="tt-cart__product_price">
 	                                                <div class="tt-price">
-	                                                    <span>{{ getOrderLineSubtotal(order_line) | currency:'EUR':'true' }}</span>
+	                                                    <span>{{ order_line.product.id == '1475240' ? 'Gratis' : getOrderLineSubtotal(order_line) | currency:'EUR':'true' }}</span>
 	                                                </div>
 	                                            </div>
 	                                        </div>

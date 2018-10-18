@@ -1,37 +1,38 @@
-@import "~scss/variables.css";
-
-.custom-bg {
+.usp-background {
 	background-color: #f1f1f1;
-	margin-bottom: 30px;
+	padding-left: 10px;
 }
 
-.flexing {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+.custom-size {
+	font-size: 30px;
 }
 
-.banner {
-	margin-top: 30px;
-	background-color: var(--color-primary);
+.red {
+	color: red !important;
 }
 
-.banner h4 {
-	color: white;
+.green {
+	color: green !important;
 }
 
-.show-coupon {
-	color: var(--color-primary);
-	font-weight: bold;
-	font-size: 60px;
+.loader {
+	height: 100vh;
 }
 
-.remove-padder {
-	padding-right: 0 !important;
+.tt-product-head__images {
+	visibility: visible;
 }
 
-.tt-promobox__hover.tt-promobox__hover--up {
-    top: calc(100% - 0px);
+@media (min-width: 0px) and (max-width: 1400px) {
+    .tt-big-container {
+        display: none !important;
+    }
+}
+
+@media (min-width: 1400px) and (max-width: 14000px) {
+    .tt-small-container {
+        display: none !important;
+    }
 }
 
 .bag-promo-header {

@@ -267,7 +267,8 @@ body.ttg-ovf-hidden {
 ul.ttg-list li::before {
   display: inline-block;
   content: '';
-  margin-right: 12px;
+  margin-right: 9px;
+  margin-left: -15px;
   border-radius: 50%;
   width: 6px;
   height: 6px; }

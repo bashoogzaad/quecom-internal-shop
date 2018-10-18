@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, LOCALE_ID } from '@angular/core';
+import { NgModule, LOCALE_ID, APP_INITIALIZER } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { Ng2Webstorage } from 'ngx-webstorage';
@@ -49,7 +49,12 @@ import { SlideshowModule } from 'ng-simple-slideshow';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
+import { StartupService } from './startup.service';
 registerLocaleData(localeNl);
+
+export function startupServiceFactory(startupService: StartupService): Function {
+    return () => startupService.load();
+}
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/welkom', pathMatch: 'full' },
@@ -61,7 +66,7 @@ const appRoutes: Routes = [
     { path: 'gebruiker-validatie/succesvol', component: UserSuccessComponent },
     { path: 'welkom', component: WelcomeComponent },
     { path: 'mijn-account', component: MyAccountComponent },
-    { path: 'home', redirectTo: '/categorie/89', canActivate: [AuthGuard] },
+    { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'producten', component: ProductListingComponent, canActivate: [AuthGuard] },
     { path: 'categorie/:id', component: ProductListingComponent, canActivate: [AuthGuard] },
     { path: 'subcategorie/:id', component: ProductListingComponent, canActivate: [AuthGuard] },
@@ -134,7 +139,14 @@ const appRoutes: Routes = [
         AuthService,
         Globals,
         PimcoreProvider,
-        AuthGuard
+        AuthGuard,
+        StartupService,
+        {
+            provide: APP_INITIALIZER,
+            useFactory: startupServiceFactory,
+            deps: [StartupService],
+            multi: true
+        }
     ],
     bootstrap: [AppComponent]
 })

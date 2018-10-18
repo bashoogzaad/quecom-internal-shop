@@ -29,6 +29,9 @@ export class Globals {
     public deliveryIndication: string[] = ['Vóór 19:00 uur besteld', 'Volgende dag geleverd*'];
     public hasDeliveryCost: boolean = false;
     public hasBudget: boolean = false;
+    public categoriesOnHome: boolean = false;
+    public loginType: string = 'simple';
+    public pickupAtAmacomAllowed: boolean = true;
 
     public initDone = new BehaviorSubject(false);
     
@@ -71,8 +74,6 @@ export class Globals {
             
         }
 
-        this.initDone.next(true);
-            
     }
     
 }

@@ -43,56 +43,65 @@ export class ProductListingComponent implements OnInit {
         this.groupMap.set('product-groep', 'product_group');
         
         this.route.paramMap.subscribe(params => {
+
             this.globals.loadingOn();
 
-            if(params.get("query") !== null) {
+            if (params.get("query") !== null) {
+
                 this.isSearch = true;
                 this.loadSearchProducts(params.get("query"));
+
             } else {
+
                 this.globals.loadingOn();
+
                 if (this.router.url.split("/")[1] !== 'producten') {
-                
+            
                     this.unparsedType = this.router.url.split("/")[1];
                     const type = this.groupMap.get(this.unparsedType);
                     this.groupId = params.get('id');
                     
                     this.quecomProvider.getCategories().subscribe(res => {
                     
-                    if (this.unparsedType === 'categorie') {
+                        if (this.unparsedType === 'categorie') {
 
-                        this.typeObject =  res['categories'].find(c => c.id === this.groupId);
-                        this.typeObject['main_name'] = this.typeObject['name'];
-                        this.typeObject['parsed'] = this.typeObject['name'].replace(/[& ]/g, '');
+                            this.typeObject =  res['categories'].find(c => c.id === this.groupId);
+                            this.typeObject['main_name'] = this.typeObject['name'];
+                            this.typeObject['parsed'] = this.typeObject['name'].replace(/[& ]/g, '');
 
-                    } else if (this.unparsedType === 'subcategorie') {
-                        
-                        for (let cat of res['categories']) {
-                            for (let subcat of cat.subcategories) {
-                                subcat['cat_name'] = cat['name'];
-                            } 
+                        } else if (this.unparsedType === 'subcategorie') {
+                            
+                            for (let cat of res['categories']) {
+                                for (let subcat of cat.subcategories) {
+                                    subcat['cat_name'] = cat['name'];
+                                } 
+                            }
+                            
+                            this.typeObject =  res['categories'].reduce((a, b) => a.concat(b.subcategories), []).find(c => c.id === this.groupId);
+                            this.typeObject['main_name'] = this.typeObject['cat_name'];
+                            this.typeObject['parsed'] = this.typeObject['cat_name'].replace(/[& ]/g,'');
                         }
                         
-                        this.typeObject =  res['categories'].reduce((a, b) => a.concat(b.subcategories), []).find(c => c.id === this.groupId);
-                        this.typeObject['main_name'] = this.typeObject['cat_name'];
-                        this.typeObject['parsed'] = this.typeObject['cat_name'].replace(/[& ]/g,'');
-                    }
-                        
                     });
-                    
+                
                     this.route.queryParams.subscribe(qp => {
                         this.globals.loadingOn();
                         this.page = qp['page'] ? Number.parseInt(qp['page']) : 1;
                         this.loadProducts(type);
                     });
-                
+            
                 } else {
+
                     this.route.queryParams.subscribe(qp => {
                         this.globals.loadingOn();
                         this.page = qp['page'] ? Number.parseInt(qp['page']) : 1;
                         this.loadProducts();
                     });
+
                 }
+
             } 
+
         });
         
     }
@@ -106,7 +115,7 @@ export class ProductListingComponent implements OnInit {
         if (type) {
           
             this.quecomProvider.getProductsPerGroup(type, this.groupId, this.limit, this.page).subscribe(res => {
-                this.products = res.products;
+                this.products = this.filterProduct(res.products);
                 this.pagination = res.pagination;
                 this.pageNumbers = this.fillArrayWithNumbers(this.pagination.number_of_pages);
                 this.globals.loadingOff();
@@ -115,19 +124,29 @@ export class ProductListingComponent implements OnInit {
         } else {
             
             this.quecomProvider.getProducts(this.limit, this.page).subscribe(res => {
-                this.products = res.products;
+                this.products = this.filterProduct(res.products);
                 this.pagination = res.pagination;
                 this.pageNumbers = this.fillArrayWithNumbers(this.pagination.number_of_pages);
                 this.globals.loadingOff();
             });
-            
         }
-        
+    }
+
+    private filterProduct(products) {
+      const prds = [];
+
+      products.forEach((elm, id) => {
+        if(elm.id !== '1475240'){
+          prds.push(elm);
+        }
+      });
+
+      return prds;
     }
 
     public loadSearchProducts(sq: string) {
         this.quecomProvider.getSearchResults(sq, true).subscribe(res => {
-            this.products = res.products;
+            this.products = this.filterProduct(res.products);
             this.pageNumbers = [1];
             this.pagination = 1
             this.globals.loadingOff();

@@ -160,7 +160,7 @@
 <!-- 	    		<div class="tt-header__spacer tt-header__spacer--d tt-header__spacer--visible" [ngClass]="scrolledY ? 'adjust-height' : ''"></div> -->
 <!-- 	        <div class="tt-header__content" ng-sticky [offSet]="0" [addClass]="'mogo-is-sticky'"> -->
 	        <div class="tt-header__content">
-	            <div class="tt-header__logo" style="background: #FFF;">
+	            <div class="tt-header__logo" style="background: #FFF; border-bottom: solid 1px #ebebeb;">
 	                <div class="h1 tt-logo">
 	                    <a routerLink="/home">
 	                        <img src="assets/templates/mogo/images/logo/{{ globals.name }}.png" alt="logo">
@@ -169,25 +169,32 @@
 	            </div>
 	            <div class="tt-header__nav">
 	            	
-	            	<div class="tt-header__menu" *ngIf="authService.isLoggedIn">
+	            	<div class="tt-header__menu" *ngIf="globals.loginType === 'none' || authService.isLoggedIn">
 	                    <nav class="TonyM TonyM--header" data-tm-dir="row" data-tm-mob="true" data-tm-anm="emersion">
 	                        <ul class="TonyM__panel">
-	                            <li>
-	                                <a href="javascript:void(0);" routerLink="/home">
+								<li>
+	                                <a href="javascript:void(0);" routerLink="/home" routerLinkActive="menu-item-active">
+	                                	<span>
+	                                		HOME
+	                                	</span>
+	                                </a>
+	                            </li>
+								<li>
+	                                <a href="javascript:void(0);" routerLink="/producten" routerLinkActive="menu-item-active">
 	                                	<span>
 	                                		PRODUCTEN
 	                                	</span>
 	                                </a>
 	                            </li>
 	                            <li>
-	                                <a href="javascript:void(0);" routerLink="/klantenservice/bestelling">
+	                                <a href="javascript:void(0);" routerLink="/klantenservice/bestelling" routerLinkActive="menu-item-active">
 	                                	<span>
                                         	HOE WERKT HET?
                                         </span>
 	                                </a>
 	                            </li>
 	                            <li>
-	                                <a href="javascript:void(0);">
+	                                <a href="javascript:void(0);" routerLinkActive="menu-item-active">
 	                                    <span>
 	                                        KLANTENSERVICE
 	                                        <i class="TonyM__arw"></i>
@@ -205,7 +212,7 @@
 	                                </div>
 	                            </li>
 	                            <li>
-	                                <a href="javascript:void(0);" routerLink="/contact">
+	                                <a href="javascript:void(0);" routerLink="/contact" routerLinkActive="menu-item-active">
 	                                    <span>
 	                                        CONTACT
 	                                    </span>
@@ -215,7 +222,7 @@
 	                    </nav>
 	                </div>
 	                
-	                <div class="tt-header__menu" *ngIf="!authService.isLoggedIn">
+	                <div class="tt-header__menu" *ngIf="!authService.isLoggedIn && globals.loginType !== 'none'">
 	                    <nav class="TonyM TonyM--header" data-tm-dir="row" data-tm-mob="true" data-tm-anm="emersion">
 	                        <ul class="TonyM__panel">
 	                            <li>
@@ -285,7 +292,7 @@
 	                                </ul>
 	                            </div>
 	                        </div>
-                            <a routerLink="/winkelwagen" class="tt-header__btn tt-header__btn-cart" *ngIf="authService.isLoggedIn">
+                            <a routerLink="/winkelwagen" class="tt-header__btn tt-header__btn-cart" *ngIf="authService.isLoggedIn || globals.loginType === 'none'">
                                 <i class="icon-shop24"></i>
                                 <span>{{ getCartCount() }}</span>
                             </a>

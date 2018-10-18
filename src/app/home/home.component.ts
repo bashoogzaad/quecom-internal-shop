@@ -23,9 +23,7 @@ export class HomeComponent implements OnInit {
     public errorMessage: string = 'Spannend!!!';
 
     public imageUrlArray: string[] = [
-        'assets/templates/mogo/images/slider/01/slider-01.jpg',
-        'assets/templates/mogo/images/slider/01/slider-02.jpg',
-        'assets/templates/mogo/images/slider/01/slider-03.jpg',
+        'assets/templates/mogo/images/slider/01/slide-01.jpg'
     ];
 
     constructor(
@@ -53,6 +51,10 @@ export class HomeComponent implements OnInit {
 
         });
         
+    }
+
+    goToMainShop() {
+        this.router.navigate(['/producten']);
     }
     
     addToCart(product: any) {

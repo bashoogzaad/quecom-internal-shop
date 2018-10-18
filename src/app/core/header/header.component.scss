@@ -102,3 +102,7 @@
 		width: 350px;
 	}
 }
+
+.menu-item-active > span {
+    color: var(--color-primary-var);
+}
