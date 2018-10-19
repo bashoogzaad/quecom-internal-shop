@@ -3024,7 +3024,7 @@ var CartProvider = /** @class */ (function () {
             remarks: this.order.remarks,
             reference: reference + '-' + id,
             type: 'dropshipment',
-            request_payment: '0',
+            request_payment: '1',
             calculate_shipping_cost: '0',
             ecommerce_user_id: id
         };
