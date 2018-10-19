@@ -5,6 +5,7 @@ import { LocalStorage } from "ngx-webstorage";
 import { CartProvider } from "../providers/cart.provider";
 import { OrderLine } from "../models/order-line";
 import { Globals } from '../providers/globals';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-product-listing',
@@ -127,13 +128,12 @@ export class ProductListingComponent implements OnInit {
                 this.products = this.filterProduct(res.products);
                 this.pagination = res.pagination;
                 this.pageNumbers = this.fillArrayWithNumbers(this.pagination.number_of_pages);
-                this.globals.loadingOff();
             });
         }
     }
 
     private filterProduct(products) {
-      const prds = [];
+      let prds = [];
 
       products.forEach((elm, id) => {
         if(elm.id !== '1475240'){
@@ -141,7 +141,38 @@ export class ProductListingComponent implements OnInit {
         }
       });
 
+      let productsToAdd = new Array();
+      let obs = new Array();
+      products.forEach(pr => {
+
+        const id = pr.product_id;
+
+        if (pr.variations && pr.variations.length > 1) {
+            pr.variations.forEach(vr => {
+                if (vr.product_id != id) {
+                    let ob = this.quecomProvider.getProduct(vr.product_id).map(r => {
+                        productsToAdd.push(r);
+                    });
+                    obs.push(ob);
+                }
+            });
+        }
+
+      });
+
+      Observable.forkJoin(obs).subscribe(res => {
+        productsToAdd.forEach(r => {
+            prds.push(r);
+        });
+        prds.sort((a, b) => {
+            return a.product_id.localeCompare(b.product_id);
+        });
+        this.globals.loadingOff();
+      });
+
+
       return prds;
+
     }
 
     public loadSearchProducts(sq: string) {

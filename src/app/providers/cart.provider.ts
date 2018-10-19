@@ -10,6 +10,7 @@ import { OrderLine } from "../models/order-line";
 import { CustomerData } from "../models/customer-data";
 import { QuecomProvider } from "./quecom.provider";
 import { Globals } from './globals';
+import { UserSuccessComponent } from '../user-success/user-success.component';
 
 @Injectable()
 export class CartProvider {
@@ -20,7 +21,8 @@ export class CartProvider {
     constructor(
         private localStorage: LocalStorageService,
         public quecomProvider: QuecomProvider,
-        public globals: Globals
+        public globals: Globals,
+        public authService: AuthService
     ) {}
     
     getCurrentOrder(): any {
@@ -84,9 +86,13 @@ export class CartProvider {
     resetCart(): void {
         this.order = new Order();
     }
-    
+
     placeOrder(customerData: CustomerData, discounts?: any[], selectedShipment?: any, paymentMethod?: any, id?: any, shippingMethod?: any): Observable<any> {
-        
+        return this.doPlaceOrder(customerData, discounts, selectedShipment, paymentMethod, id, shippingMethod);
+    }
+
+    doPlaceOrder(customerData: CustomerData, discounts?: any[], selectedShipment?: any, paymentMethod?: any, id?: any, shippingMethod?: any): Observable<any> {
+
         let submitOrder;
 
         const products = [];
@@ -143,35 +149,35 @@ export class CartProvider {
         let reference = this.globals.name;
 
         submitOrder = {
-                products: products,
-                shipment: shipment,
-                billing: billing,
-                remarks: this.order.remarks,
-                reference: reference+'-'+id,
-                type: 'dropshipment',
-                request_payment: '1',
-                calculate_shipping_cost: '1',
-                ecommerce_user_id: id
+            products: products,
+            shipment: shipment,
+            billing: billing,
+            remarks: this.order.remarks,
+            reference: reference+'-'+id,
+            type: 'dropshipment',
+            request_payment: '0',
+            calculate_shipping_cost: '0',
+            ecommerce_user_id: id
         };
         
         if (discounts.length > 0) {
             submitOrder['discounts'] = discounts;
         }
       
-      if (selectedShipment) {
-        submitOrder['selected_shipment'] = selectedShipment;
-      }
+        if (selectedShipment) {
+            submitOrder['selected_shipment'] = selectedShipment;
+        }
       
-      if (paymentMethod) {
-        submitOrder['payment_method'] = paymentMethod;
-      }
+        if (paymentMethod) {
+            submitOrder['payment_method'] = paymentMethod;
+        }
       
-      if (shippingMethod && shippingMethod == 'pickup') {
-          submitOrder['route'] = 'ZAFH01';
+        if (shippingMethod && shippingMethod == 'pickup') {
+            submitOrder['route'] = 'ZAFH01';
         }
 
         return this.quecomProvider.postOrder(submitOrder);
-        
+
     }
 
 }

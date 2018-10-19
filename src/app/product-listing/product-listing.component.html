@@ -166,14 +166,22 @@
 														<a href="javascript.void(0)" [routerLink]="['/product', product.id]">{{ product.description_short_api }}</a>
 													</span>
 												</h3>
-												<p>
+												<!-- <p>
 		                                            <span class="ttg-text-animation--emersion">
-		                                                <a href="javascript.void(0)" [routerLink]="['/product', product.id]">{{ product.category_name }} - {{ product.group_detail_name_singular }}</a>
+		                                                <a href="javascript.void(0)" [routerLink]="['/product', product.id]" class="title-color">{{ product.category_name }} - {{ product.group_detail_name_singular }}</a>
 		                                            </span>
-		                                        </p>
+		                                        </p> -->
 												<div>
 													<span [attr.class]="product.available > 0 ? 'available' : 'not-available'">
 														{{ product.available > 0 ? "Product op voorraad" : "Tijdelijk uitverkocht" }}
+													</span>
+												</div>
+												<div class="ttg-text-animation--emersion">
+													<span class="tt-product__price">
+														<!-- <div style="font-size: 13px;">Van</div> -->
+														<span class="tt-price">
+															<span><div style="font-size: 15px; text-decoration: line-through;">{{ product.retail_price | currency:'EUR':'true' }}</div></span>
+														</span>
 													</span>
 												</div>
 		                                        <div class="ttg-text-animation--emersion">

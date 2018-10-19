@@ -22,7 +22,6 @@ export class AuthService {
         private localStorage: LocalStorageService,
         private globals: Globals,
         private pimcoreProvider: PimcoreProvider,
-        private cartProvider: CartProvider
     ) {
         
     }
@@ -57,7 +56,7 @@ export class AuthService {
     }
 
     logout(): void {
-        this.cartProvider.resetCart();      
+        // this.cartProvider.resetCart();      
         this.isLoggedIn = false;
         this.user = undefined;
         this.isLoggedIn = this.isLoggedIn;

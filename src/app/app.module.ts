@@ -57,7 +57,7 @@ export function startupServiceFactory(startupService: StartupService): Function 
 }
 
 const appRoutes: Routes = [
-    { path: '', redirectTo: '/welkom', pathMatch: 'full' },
+    { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'inloggen', component: LoginComponent },
     { path: 'wachtwoord-vergeten', component: ForgotPasswordComponent },
     { path: 'registreren', component: RegisterComponent },

@@ -585,7 +585,7 @@
 	                            <div style="padding-top: 15px;">
 		                            <a href="javascript:void(0);" class="btn ttg-mt--20" (click)="stepper(-1)" *ngIf="step > 1">Vorige stap</a>
 		                            <a href="javascript:void(0);" class="btn ttg-mt--20" (click)="stepper(1)" *ngIf="step < 3" [class.disabled]="(step == 1 && (!successMsg || (!selectedShipment && showDelivery)))">Volgende stap</a>
-		                            <a href="javascript:void(0);" (click)="placeOrder()" class="tt-checkout__btn-order btn ttg-mt--20 btn-type--icon colorize-btn6" *ngIf="step == 3 && ((globals.hasBudget && getOrderSubtotal() <= budget) || !globals.hasBudget)"><i class="icon-check"></i><span>Bestelling plaatsen</span></a>
+		                            <a href="javascript:void(0);" (click)="placeOrder()" class="tt-checkout__btn-order btn ttg-mt--20 btn-type--icon colorize-btn6" *ngIf="step == 3 && ((globals.hasBudget && getOrderSubtotal() <= budget) || !globals.hasBudget) && !loadingPayment"><i class="icon-check"></i><span>Bestelling plaatsen</span></a>
 	                            </div>
 	                            
 	                        </div>

@@ -10,3 +10,12 @@ a.disabled {
     color: gray;
     cursor: not-allowed;
 }
+
+input:focus {
+  border-color: var(--color-primary-var) !important;
+}
+
+.btn {
+  background-color: var(--color-primary-var) !important;
+  border-color: var(--color-primary-var) !important;
+}

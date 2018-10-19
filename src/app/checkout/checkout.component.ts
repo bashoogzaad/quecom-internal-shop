@@ -35,6 +35,7 @@ export class CheckoutComponent implements OnInit {
   
     public user: any;
     public step = 1;
+    public loadingPayment = false;
   
     public paymentMethods = new Array();
   
@@ -375,8 +376,67 @@ export class CheckoutComponent implements OnInit {
     }
     
     placeOrder() {
-        console.log(this.customerData);
-        this.orderPromise = this.cartProvider.placeOrder(this.customerData, this.discounts, this.selectedShipment, this.selected.paymentMethod, 0, this.selected.shippingMethod).toPromise().then(res => {
+
+        this.loadingPayment = true;
+
+        if (this.globals.loginType == 'none') {
+
+            const dummyPass = '23kkeu7Yhdn';
+
+            const user = new Object();
+            user['username'] = this.customerData['emailAddress'];
+            user['password'] = dummyPass;
+            user['password2'] = dummyPass;
+
+            user['first_name'] = this.customerData['firstName'];
+            user['last_name'] = this.customerData['lastName'];
+            user['postal_code'] = this.customerData['postalCode'];
+            user['house_number'] = this.customerData['houseNumber'];
+            user['street'] = this.customerData['address'];
+            user['phone'] = this.customerData['phoneNumber'];
+            user['city'] = this.customerData['city'];
+            user['country'] = this.customerData['country'];
+            user['organization'] = 'segway';
+
+            user['no_login'] = '1';
+            user['ign_v'] = '1';
+
+            this.authService.register(user).subscribe(res => {
+
+                this.authService.loginServer(user['username'], dummyPass).subscribe(rr => {
+
+                    let id = rr.user.id;
+
+                    //Fill billing
+                    this.customerData['firstNameSh'] = this.customerData['firstName'];
+                    this.customerData['lastNameSh'] = this.customerData['lastName'];
+                    this.customerData['addressSh'] = this.customerData['address'];
+                    this.customerData['houseNumberSh'] = this.customerData['houseNumber'];
+                    this.customerData['houseNumbeExtensionrSh'] = this.customerData['houseNumberExtension'];
+                    this.customerData['citySh'] = this.customerData['city'];
+                    this.customerData['postalCodeSh'] = this.customerData['postalCode'];
+                    this.customerData['countrySh'] = this.customerData['country'];
+                    this.customerData['phoneNumberSh'] = this.customerData['phoneNumber'];
+                    this.customerData['emailAddressSh'] = this.customerData['emailAddress'];
+                    
+                    this.doPlaceOrder(id);
+
+                });
+
+            }, (error) => {
+              console.log(error);
+            });
+
+        } else {
+            this.doPlaceOrder();
+        }
+
+    }
+
+    doPlaceOrder(id?) {
+
+        this.orderPromise = this.cartProvider.placeOrder(this.customerData, this.discounts, this.selectedShipment, this.selected.paymentMethod, id ? id : 0, this.selected.shippingMethod).toPromise().then(res => {
+            this.loadingPayment = false;
             if (res[0]['url']) {
                 this.cartProvider.resetCart();
                 this.document.location.href = res[0]['url'];
@@ -388,12 +448,12 @@ export class CheckoutComponent implements OnInit {
                     showCancelButton: false,
                     confirmButtonColor: 'green',
                     confirmButtonText: 'Oke!'
-                  }).then((result) => {
+                }).then((result) => {
                     if (result.value) {
                         this.cartProvider.resetCart();
                         this.router.navigateByUrl('/home');
                     }
-                  });
+                });
             }
         }, error => {
             console.log(error);

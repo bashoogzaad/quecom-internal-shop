@@ -10,3 +10,7 @@
 .footer--top .addressFooter { margin-bottom:20px }
 .footer--top .addressFooter li { text-transform:capitalize; font-size:14px }
 .footer--top .addressFooter li .fa { float:left; margin:1px 6px 6px 0; width:15px; color:#ffffff; }
+
+.custom-color a {
+    color: var(--color-primary-var) !important;
+}

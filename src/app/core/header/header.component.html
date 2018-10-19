@@ -292,10 +292,10 @@
 	                                </ul>
 	                            </div>
 	                        </div>
-                            <a routerLink="/winkelwagen" class="tt-header__btn tt-header__btn-cart" *ngIf="authService.isLoggedIn || globals.loginType === 'none'">
-                                <i class="icon-shop24"></i>
+                            <a routerLink="/winkelwagen" class="tt-header__btn tt-header__btn-cart icon-color-custom-span" *ngIf="authService.isLoggedIn || globals.loginType === 'none'">
+                                <i class="icon-shop24 icon-color-custom"></i>
                                 <span>{{ getCartCount() }}</span>
-                            </a>
+                            </a> 
                             
                             <div>
 			                    <a href="javascript:void(0);" class="tt-header__btn tt-header__btn-settings" (click)="showSettings = !showSettings; forceHideMenu = false;"><i class="icon-cog"></i></a>
