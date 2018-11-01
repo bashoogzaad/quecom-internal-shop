@@ -4,5 +4,6 @@ export const environment = {
     version: "v3",
     apiUrl: "https://api.quecom.nl/customer",
     apiKey: "W8YGdBVDEtui8WmuqlO7HPiq3FERmtmiyP27Hxkm",
-    debtorNumber: "103338"
+    debtorNumber: "103338",
+    gaid: "UA-128475948-3"
 };
