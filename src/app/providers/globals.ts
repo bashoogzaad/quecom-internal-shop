@@ -20,6 +20,7 @@ export class Globals {
     public apiKey: string;
     public debtorNumber: string;
     public version: string;
+    public gaid: string;
     
     //Config (later fill with api call to Pimcore)
     public theme: string;
@@ -67,6 +68,7 @@ export class Globals {
             
             this.apiKey = environment.apiKey;
             this.debtorNumber = environment.debtorNumber;
+            this.gaid = environment.gaid;
             
         }
 
