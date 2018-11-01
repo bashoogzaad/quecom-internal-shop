@@ -20,8 +20,9 @@ export class Globals {
     public apiKey: string;
     public debtorNumber: string;
     public version: string;
-    
-    //Config (later fill with api call to Pimcore)
+    public gaid: string;
+
+  //Config (later fill with api call to Pimcore)
     public theme: string;
     public name: string = "HAMA";
     public password: string = 'GezamenlijkLoyaltyVoordeel';
@@ -68,6 +69,7 @@ export class Globals {
             
             this.apiKey = environment.apiKey;
             this.debtorNumber = environment.debtorNumber;
+            this.gaid = environment.gaid;
             
         }
 
