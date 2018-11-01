@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from "@angular/router";
+import {Router, NavigationEnd, NavigationStart} from "@angular/router";
 import { environment } from "../environments/environment";
 import { Globals } from "./providers/globals";
 import { PimcoreProvider } from "./providers/pimcore.provider";
@@ -18,12 +18,24 @@ export class AppComponent implements OnInit {
         private router: Router,
         public globals: Globals,
         private pimcoreProvider: PimcoreProvider
-    ) { }
+    ) {
+      this.globals.init();
+
+      const script = document.createElement('script');
+      script.src = "https://www.googletagmanager.com/gtag/js?id=" + this.globals.gaid;
+      script.async = true;
+      document.head.appendChild(script);
+
+      this.router.events.filter(event => event instanceof NavigationStart).subscribe(event => {
+        const url = event['url'];
+        if (url !== null && url !== undefined && url !== '' && url.indexOf('null') < 0) {
+          // @ts-ignore
+          gtag('config', this.globals.gaid, {'page_path': url, 'send_page_view': true });
+        }
+      });
+    }
     
     ngOnInit() {
-        
-        this.globals.init();
-        
         //Subscribe on each event when route changes
         this.router.events.subscribe((event) => {
             if (!(event instanceof NavigationEnd)) {
