@@ -41,7 +41,7 @@ export class CheckoutComponent implements OnInit {
   
     public selected = {
       paymentMethod: undefined,
-      shippingMethod: 'pickup'
+      shippingMethod: 'same-as-invoice'
     };
   
     public shippingTimeframes: any[] = new Array();
@@ -188,7 +188,7 @@ export class CheckoutComponent implements OnInit {
     }
     
     getDeliveryCost() {
-      return (this.getOrderSubtotal() >= 50 ? 0 : 4.24);
+      return 6.95;
     }
     
     getOrderSubtotal() {

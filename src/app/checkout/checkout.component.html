@@ -245,7 +245,7 @@
                     <div class="tt-checkout__payment">
                       <ul>
                         <li>Het factuuradres is hetzelfde adres als je hebt opgegeven bij de registratie. Je kunt deze aanpassen in je profiel.</li>
-                        <!--<li>
+                        <li>
                            <label class="tt-checkbox-circle">
                                <input type="radio" name="shippingMethodGroup" value="same-as-invoice" [(ngModel)]="selected.shippingMethod" (ngModelChange)="toggleBillingToShipment()">
                                <span></span>
@@ -258,7 +258,7 @@
                                <span></span>
                            </label>
                            Verzenden naar een ander adres
-                           </li>-->
+                           </li>
                         <li *ngIf="globals.pickupAtAmacomAllowed">
                           <label class="tt-checkbox-circle">
                             <input type="radio" name="shippingMethodGroup" value="pickup" [(ngModel)]="selected.shippingMethod" (ngModelChange)="toggleBillingToShipment()">
@@ -279,7 +279,7 @@
                   </ng-container>
                   <ng-container>
                     <h4 class="ttg-mt--30 ttg-mb--20">
-                      Adres
+                      Verzendadres
                     </h4>
                     <div class="tt-checkout__form">
                       <div class="row">
