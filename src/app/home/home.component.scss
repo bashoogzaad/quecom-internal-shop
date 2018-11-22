@@ -86,22 +86,45 @@
   z-index: 1000;
 
   h1, p {
+    font-size: 1.3rem;
     color: #fff;
     text-align: center;
-    text-shadow: 1px 1px 3px #000;
+  }
+
+  p {
+    margin-top: 20px;
+    font-size: .9rem;
+    font-weight: 700;
   }
 
   .btn {
     display: block;
     width: 200px;
-    margin: 30px auto 0 auto;
+    margin: 60px auto 0 auto;
     text-align: center;
     background: var(--color-primary-var) !important;
     border: var(--color-primary-var) !important;
+    padding: 20px 40px;
 
     &:hover {
       color: var(--color-primary-var) !important;
       background: #fff !important;
+    }
+  }
+}
+
+@media (min-width: 900px) {
+  .overlay {
+    width: 800px;
+    left: calc(50% - 400px);
+
+
+    h1 {
+      font-size: 3rem;
+    }
+
+    p {
+      font-size: 1.1rem;
     }
   }
 }
