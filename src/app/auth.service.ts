@@ -9,6 +9,7 @@ import 'rxjs/add/operator/delay';
 import { LocalStorageService, LocalStorage } from "ngx-webstorage";
 import { Globals } from "./providers/globals";
 import { PimcoreProvider } from './providers/pimcore.provider';
+import {QuecomProvider} from "./providers/quecom.provider";
 
 @Injectable()
 export class AuthService {
@@ -16,12 +17,14 @@ export class AuthService {
     @LocalStorage(environment.debtorNumber+'-storage') public isLoggedIn;
     @LocalStorage(environment.debtorNumber+'-privacy') public hasAcceptedPrivacyPolicy;
     @LocalStorage() public user;
+    @LocalStorage(environment.debtorNumber+'-cpn') public couponAccess;
     redirectUrl: string;
 
     constructor(
         private localStorage: LocalStorageService,
         private globals: Globals,
         private pimcoreProvider: PimcoreProvider,
+        private quecomProvider: QuecomProvider
     ) {
         
     }

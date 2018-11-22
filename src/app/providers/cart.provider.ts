@@ -41,29 +41,6 @@ export class CartProvider {
         if(push) {
           this.order.orderLines.push(orderLine);
           this.order = this.order;
-
-          if(this.order.orderLines.length === 1){
-            this.quecomProvider.getProduct("1475240").subscribe(res => {
-
-              res.price_total_netto = 0;
-
-              res.image_urls = res.image_urls ? res.image_urls : [];
-              res.image_urls.push(res.image_url);
-
-              if (res.additional_image_urls) {
-                for (let img of res.additional_image_urls) {
-                  res.image_urls.push(img);
-                }
-              }
-
-              const ol = new OrderLine();
-              ol.count = 1;
-              ol.subtotal = 0;
-              ol.product = res;
-
-              this.addOrderLine(ol);
-            });
-          }
         }
     }
 
@@ -74,11 +51,6 @@ export class CartProvider {
     
     removeOrderLine(orderLine: OrderLine): void {
         this.order.orderLines.splice(this.order.orderLines.indexOf(orderLine), 1);
-
-        if (this.order.orderLines.length === 1) {
-            this.order.orderLines = [];
-        }
-
       this.order = this.order;
 
     }
@@ -97,14 +69,12 @@ export class CartProvider {
 
         const products = [];
         for (const orderLine of this.order.orderLines) {
-            if(orderLine.product.product_id !== '1475240') {
-              const productEntry = {
-                product_id: orderLine.product.product_id,
-                amount: orderLine.count
-              }
+          const productEntry = {
+            product_id: orderLine.product.product_id,
+            amount: orderLine.count
+          }
 
-              products.push(productEntry);
-            }
+          products.push(productEntry);
         }
         
         const billing: Object = new Object();

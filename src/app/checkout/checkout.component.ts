@@ -41,7 +41,7 @@ export class CheckoutComponent implements OnInit {
   
     public selected = {
       paymentMethod: undefined,
-      shippingMethod: 'same-as-invoice'
+      shippingMethod: 'pickup'
     };
   
     public shippingTimeframes: any[] = new Array();
@@ -81,7 +81,7 @@ export class CheckoutComponent implements OnInit {
         });
       
 
-        if (this.globals.loginType !== 'none') {
+        if (this.globals.loginType !== 'none' && this.globals.loginType !== 'code') {
 
             this.user = this.authService.user;
             if (this.user.street) {

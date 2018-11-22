@@ -1,0 +1,28 @@
+<ng-container *ngIf="globals.theme == 'mogo'">
+
+  <!-- MAIN -->
+  <main>
+
+    <div class="tt-layout tt-sticky-block__parent tt-layout__fullwidth">
+      <div class="tt-layout__content" style="min-height: 200px">
+        <div class="container">
+            <slideshow [imageUrls]="imageUrlArray" [height]="'200px'" [minHeight]="'200px'" [autoPlay]="imageUrlArray.length > 1 ? true : false" [autoPlayInterval]="10000" [showArrows]="imageUrlArray.length > 1 ? true : false" [showDots]="imageUrlArray.length > 1 ? true : false"></slideshow>
+        </div>
+      </div>
+    </div>
+
+    <div class="coupon">
+      <h1>Begin met shoppen</h1>
+      <p>Vul de toegangscode in op toegang te krijgen tot de shop</p>
+
+      <form (submit)="checkCode($event)">
+        <p class="error" *ngIf="invalidcoupon">Foutieve toeganscode</p>
+
+        <label>Toegangscode</label>
+        <input name="code">
+        <button class="btn" type="submit">Controleren</button>
+      </form>
+    </div>
+  </main>
+
+</ng-container>

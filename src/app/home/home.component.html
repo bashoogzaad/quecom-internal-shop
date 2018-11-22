@@ -73,15 +73,20 @@
 	    <div class="tt-layout tt-sticky-block__parent tt-layout__fullwidth">
 	        <div class="tt-layout__content">
 	           
-	            <div class="container">
-	            
+	            <div class="container" style="position: relative">
+                <div class="overlay">
+                  <h1>Koptekst</h1>
+                  <p>Body tekst</p>
+                  <a href="/producten" class="btn">Start met shoppen</a>
+                </div>
 	            	<slideshow (click)="goToMainShop()" [imageUrls]="imageUrlArray" 
 	            			   [height]="'700px'"
           					   [minHeight]="'700px'"
 							   [autoPlay]="imageUrlArray.length > 1 ? true : false"
 							   [autoPlayInterval]="10000"
            					   [showArrows]="imageUrlArray.length > 1 ? true : false"
-           					   [showDots]="imageUrlArray.length > 1 ? true : false"></slideshow>
+           					   [showDots]="imageUrlArray.length > 1 ? true : false">
+                </slideshow>
 	
 	                <div class="tt-home__shipping-info-02">
 	                    <div class="tt-shp-info tt-shp-info__design-02 tt-shp-info__align--left">
@@ -117,17 +122,6 @@
 	                    </div>
 					</div>
 
-          <div class="row" style="align-items: center;">
-            <div class="col-md-6">
-              <div class="ttg-image-translate--left">
-                <img src="assets/templates/mogo/images/home/bag.jpg">
-              </div>
-            </div>
-            <div class="col-md-6 bag-promo-header">
-              <h1>Gratis USB Backpack!</h1>
-              <p>Bij iedere Segway bestelling ontvang je nu een gratis USB backpack!</p>
-            </div>
-          </div>
 					
 					<div *ngIf="!globals.categoriesOnHome">
 

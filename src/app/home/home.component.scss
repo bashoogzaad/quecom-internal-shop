@@ -77,3 +77,31 @@
     }
   }
 }
+
+.overlay {
+  position: absolute;
+  width: 400px;
+  left: calc(50% - 200px);
+  top: 100px;
+  z-index: 1000;
+
+  h1, p {
+    color: #fff;
+    text-align: center;
+    text-shadow: 1px 1px 3px #000;
+  }
+
+  .btn {
+    display: block;
+    width: 200px;
+    margin: 30px auto 0 auto;
+    text-align: center;
+    background: var(--color-primary-var) !important;
+    border: var(--color-primary-var) !important;
+
+    &:hover {
+      color: var(--color-primary-var) !important;
+      background: #fff !important;
+    }
+  }
+}

@@ -163,13 +163,13 @@
 	            <div class="tt-header__logo" style="background: #FFF; border-bottom: solid 1px #ebebeb;">
 	                <div class="h1 tt-logo">
 	                    <a routerLink="/home">
-	                        <img src="assets/templates/mogo/images/logo/{{ globals.name }}.png" alt="logo">
+	                        <img src="assets/templates/mogo/images/logo/{{ globals.name }}.svg" alt="logo">
 	                    </a>
 	                </div>
 	            </div>
 	            <div class="tt-header__nav">
 	            	
-	            	<div class="tt-header__menu" *ngIf="globals.loginType === 'none' || authService.isLoggedIn">
+	            	<div class="tt-header__menu" *ngIf="globals.loginType === 'none' || authService.couponAccess || authService.isLoggedIn">
 	                    <nav class="TonyM TonyM--header" data-tm-dir="row" data-tm-mob="true" data-tm-anm="emersion">
 	                        <ul class="TonyM__panel">
 								<li>
@@ -225,27 +225,34 @@
 	                <div class="tt-header__menu" *ngIf="!authService.isLoggedIn && globals.loginType !== 'none'">
 	                    <nav class="TonyM TonyM--header" data-tm-dir="row" data-tm-mob="true" data-tm-anm="emersion">
 	                        <ul class="TonyM__panel">
-	                            <li>
+	                            <li *ngIf="!authService.isLoggedIn && globals.loginType !== 'code' && globals.loginType !== 'none'">
 	                                <a href="javascript:void(0);" routerLink="/welkom">
 	                                	<span>
 	                                		WELKOM
 	                                	</span>
 	                                </a>
 	                            </li>
-	                            <li>
+	                            <li *ngIf="!authService.isLoggedIn && globals.loginType !== 'code' && globals.loginType !== 'none'">
 	                                <a href="javascript:void(0);" routerLink="/inloggen">
 	                                	<span>
 	                                       	INLOGGEN
 	                                       </span>
 	                                </a>
 	                            </li>
-	                            <li>
+	                            <li *ngIf="!authService.isLoggedIn && globals.loginType !== 'code' && globals.loginType !== 'none'">
 	                                <a href="javascript:void(0);" routerLink="/registreren">
 	                                    <span>
 	                                        REGISTREREN
 	                                    </span>
 	                                </a>
 	                            </li>
+                              <li *ngIf="!authService.isLoggedIn && !authService.couponAccess && globals.loginType === 'code'">
+                                <a href="javascript:void(0);" routerLink="/coupon">
+                                        <span>
+                                            BEGINNEN
+                                        </span>
+                                </a>
+                              </li>
 	                        </ul>
 	                    </nav>
 	                </div>
@@ -292,7 +299,7 @@
 	                                </ul>
 	                            </div>
 	                        </div>
-                            <a routerLink="/winkelwagen" class="tt-header__btn tt-header__btn-cart icon-color-custom-span" *ngIf="authService.isLoggedIn || globals.loginType === 'none'">
+                            <a routerLink="/winkelwagen" class="tt-header__btn tt-header__btn-cart icon-color-custom-span" *ngIf="authService.isLoggedIn || globals.loginType === 'none' || (globals.loginType === 'code' && authService.couponAccess)">
                                 <i class="icon-shop24 icon-color-custom"></i>
                                 <span>{{ getCartCount() }}</span>
                             </a> 

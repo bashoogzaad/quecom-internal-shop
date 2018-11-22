@@ -17,6 +17,10 @@ export class AuthGuard implements CanActivate {
         if (this.globals.loginType === 'none') {
             return true;
         }
+
+        if (this.globals.loginType === 'code') {
+            return this.checkCoupon();
+        }
         
         let url: string = state.url;
         return this.checkLogin(url);
@@ -51,5 +55,14 @@ export class AuthGuard implements CanActivate {
             
         }
 
+    }
+
+    checkCoupon() {
+      if (!this.authService.couponAccess) {
+        this.router.navigate(['/coupon']);
+        return false;
+      }
+
+      return true;
     }
 }

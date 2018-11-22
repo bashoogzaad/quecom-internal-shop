@@ -50,6 +50,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { StartupService } from './startup.service';
+import { CouponComponent } from './coupon/coupon.component';
 registerLocaleData(localeNl);
 
 export function startupServiceFactory(startupService: StartupService): Function {
@@ -59,12 +60,13 @@ export function startupServiceFactory(startupService: StartupService): Function 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'inloggen', component: LoginComponent },
+    { path: 'coupon', component: CouponComponent },
     { path: 'wachtwoord-vergeten', component: ForgotPasswordComponent },
     { path: 'registreren', component: RegisterComponent },
     { path: 'registreren/succesvol', component: RegisterSuccessComponent },
     { path: 'email-validatie/succesvol', component: MailSuccesfullComponent },
     { path: 'gebruiker-validatie/succesvol', component: UserSuccessComponent },
-    { path: 'welkom', component: WelcomeComponent },
+    //{ path: 'welkom', component: WelcomeComponent },
     { path: 'mijn-account', component: MyAccountComponent },
     { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'producten', component: ProductListingComponent, canActivate: [AuthGuard] },
@@ -115,7 +117,8 @@ const appRoutes: Routes = [
         UserSuccessComponent,
         ForgotPasswordComponent,
         PrivacyPolicyComponent,
-        OrderSuccessComponent
+        OrderSuccessComponent,
+        CouponComponent
     ],
     imports: [
         BrowserModule,
