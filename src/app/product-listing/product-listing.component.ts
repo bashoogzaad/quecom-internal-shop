@@ -29,6 +29,8 @@ export class ProductListingComponent implements OnInit {
     public pagination: any;
     public groupMap: Map<string, string> = new Map<string, string>();
 
+    public type: string;
+
     constructor(
         public route: ActivatedRoute,
         public quecomProvider: QuecomProvider,
@@ -56,8 +58,10 @@ export class ProductListingComponent implements OnInit {
 
                 this.globals.loadingOn();
 
-                if (this.router.url.split("/")[1] !== 'producten') {
+                if (this.router.url.split("/")[1].indexOf('producten') === -1) {
             
+                    this.setType('categories');
+
                     this.unparsedType = this.router.url.split("/")[1];
                     const type = this.groupMap.get(this.unparsedType);
                     this.groupId = params.get('id');
@@ -93,6 +97,8 @@ export class ProductListingComponent implements OnInit {
             
                 } else {
 
+                    this.setType('product-only');
+
                     this.route.queryParams.subscribe(qp => {
                         this.globals.loadingOn();
                         this.page = qp['page'] ? Number.parseInt(qp['page']) : 1;
@@ -105,6 +111,10 @@ export class ProductListingComponent implements OnInit {
 
         });
         
+    }
+
+    public setType(type: string) {
+        this.type = type;
     }
     
     public fillArrayWithNumbers(n) {
@@ -159,6 +169,11 @@ export class ProductListingComponent implements OnInit {
         }
 
       });
+
+      if (obs.length === 0) {
+          this.globals.loadingOff();
+          return prds;
+      }
 
       Observable.forkJoin(obs).subscribe(res => {
         productsToAdd.forEach(r => {
