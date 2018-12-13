@@ -171,6 +171,11 @@
                         <li *ngFor="let usp of extractUniqueSellingPoints(product.unique_selling_points)">{{ usp }}</li>
                       </ul>
                     </div>
+
+                    <div *ngIf="product.category_name == 'TV'" style="color: #D03637;">
+                      Cashback acties van leveranciers zijn niet geldig met deze aanbieding.<br><br>
+                    </div>
+
                     <div class="tt-product-head__control" *ngIf="product.available > 0">
                       <div class="tt-product-head__counter tt-counter tt-counter__inner" data-min="1" data-max="10">
                         <input type="text" class="form-control" value="{{ amount }}">
@@ -184,6 +189,7 @@
                         <span>Voeg toe aan winkelwagen</span>
                       </a>
                     </div>
+
                     <div class="tt-product-head__control" *ngIf="product.available == 0">
                       <span class="red">Tijdelijk uitverkocht</span>
                     </div>

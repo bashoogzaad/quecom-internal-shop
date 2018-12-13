@@ -217,7 +217,7 @@
 	                                		<a [ngClass]="pageNumber == page ? 'route-active' : ''" *ngIf="unparsedType && groupId" title="" [routerLink]="['', unparsedType, groupId]" [queryParams]="{ page: pageNumber }">{{ pageNumber }}</a>
 	                                </span>
 	                            </div>
-	                            <a [routerLink]="['', unparsedType, groupId]" [queryParams]="{ page: page+1 }" class="btn tt-pagination__next" [ngClass]="pageNumbers.length > 5 ? '' : 'ttg-hidden'">Volgende</a>
+	                            <a [routerLink]="['', unparsedType, groupId]" [queryParams]="{ page: page+1 }" class="btn tt-pagination__next" [ngClass]="pageNumbers.length > 1 ? '' : 'ttg-hidden'">Volgende</a>
 	                        </div>
 						</div>
 						<div class="tt-page__pagination" *ngIf="type && type === 'product-only' && products.length > 0">
@@ -228,7 +228,7 @@
 	                                		<a [ngClass]="pageNumber == page ? 'route-active' : ''" title="" routerLink="/producten" [queryParams]="{ page: pageNumber }">{{ pageNumber }}</a>
 	                                </span>
 	                            </div>
-	                            <a routerLink="/producten" [queryParams]="{ page: page+1 }" class="btn tt-pagination__next" [ngClass]="pageNumbers.length > 5 ? '' : 'ttg-hidden'">Volgende</a>
+	                            <a routerLink="/producten" [queryParams]="{ page: page+1 }" class="btn tt-pagination__next" [ngClass]="pageNumbers.length > 1 && pageNumbers.length != page ? '' : 'ttg-hidden'">Volgende</a>
 	                        </div>
 	                    </div>
 	                    

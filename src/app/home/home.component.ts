@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
     public showCouponCheck: boolean = false;
     public couponCode: string;
     public errorMessage: string = 'Spannend!!!';
+    public dealAmount: string = '';
 
     public imageUrlArray: string[] = [
         'assets/templates/mogo/images/slider/01/slide-01.jpg'
@@ -32,7 +33,9 @@ export class HomeComponent implements OnInit {
         public router: Router,
         public globals: Globals
     ) {
-        
+        this.quecomProvider.getProducts(500, 1).subscribe(prod => {
+          this.dealAmount = prod.products.length
+        });
     }
     
     toggleCouponCheck() {

@@ -21,7 +21,7 @@ export class ProductListingComponent implements OnInit {
     public typeObject: any;
     public isSearch = false;
     
-    public limit = 12;
+    public limit = 25;
     public page = 1;
     public pageNumbers: number[];
     

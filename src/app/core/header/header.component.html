@@ -275,16 +275,16 @@
 									<li><a href="javascript:void(0);" (click)="goToDefaultPage('klantenservice/privacy')">Privacy & Cookie Policy</a></li>
 								</ul>
 							</div>
-	                        <div role="search" class="tt-header__search" *ngIf="authService.isLoggedIn">
+	                        <div role="search" class="tt-header__search" *ngIf="authService.isLoggedIn || (globals.loginType === 'code' && authService.couponAccess)">
 	                            <form action="#" class="search-form-hs" [ngClass]="searchFocus ? 'hasFocus' : ''" (submit)="goToSearchPage($event)">
-									 <input type="search" name="q" (keyup)="liveSearch($event)" (focus)="searchFocus=true" (blur)="blur()" class="form-control custom-search" placeholder="Zoeken..."> 
-									 
-									 <div class="search-results-container" *ngIf="searchResults.length > 0">
-										 <a href="javascript:void(0);" *ngFor="let result of searchResults" (click)="clearSearchAndGoToProduct(result.id)">
-											 <img src="{{ result.image }}">
-											 <span>{{ result.title }}</span>
-										 </a>
-									 </div>
+                               <input type="search" name="q" (keyup)="liveSearch($event)" (focus)="searchFocus=true" (blur)="blur()" class="form-control custom-search" placeholder="Zoeken...">
+
+                               <div class="search-results-container" *ngIf="searchResults.length > 0">
+                                 <a href="javascript:void(0);" *ngFor="let result of searchResults" (click)="clearSearchAndGoToProduct(result.id)">
+                                   <img src="{{ result.image }}">
+                                   <span>{{ result.title }}</span>
+                                 </a>
+                               </div>
  	                            </form> 
  	                            <!--<div class="tt-header__search-dropdown"></div> 
 	                            <a href="#" class="tt-header__btn tt-header__btn-open-search"><i class="icon-search"></i></a> 
