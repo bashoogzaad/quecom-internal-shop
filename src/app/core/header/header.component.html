@@ -275,7 +275,7 @@
 									<li><a href="javascript:void(0);" (click)="goToDefaultPage('klantenservice/privacy')">Privacy & Cookie Policy</a></li>
 								</ul>
 							</div>
-	                        <div role="search" class="tt-header__search" *ngIf="authService.isLoggedIn">
+	                        <div role="search" class="tt-header__search" *ngIf="authService.isLoggedIn || (globals.loginType === 'code' && authService.couponAccess)">
 	                            <form action="#" class="search-form-hs" [ngClass]="searchFocus ? 'hasFocus' : ''" (submit)="goToSearchPage($event)">
 									 <input type="search" name="q" (keyup)="liveSearch($event)" (focus)="searchFocus=true" (blur)="blur()" class="form-control custom-search" placeholder="Zoeken..."> 
 									 
