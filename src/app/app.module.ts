@@ -51,6 +51,7 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { StartupService } from './startup.service';
 import { CouponComponent } from './coupon/coupon.component';
+import { BolComponent } from './bol/bol.component';
 registerLocaleData(localeNl);
 
 export function startupServiceFactory(startupService: StartupService): Function {
@@ -86,7 +87,8 @@ const appRoutes: Routes = [
     { path: 'contact', component: ContactComponent },
     { path: 'winkelwagen', component: CartComponent, canActivate: [AuthGuard] },
     { path: 'winkelwagen/bestellen', component: CheckoutComponent, canActivate: [AuthGuard] },
-    { path: 'search/:query', component: ProductListingComponent, canActivate: [AuthGuard] }
+    { path: 'search/:query', component: ProductListingComponent, canActivate: [AuthGuard] },
+    { path: 'bol', component: BolComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
@@ -118,7 +120,8 @@ const appRoutes: Routes = [
         ForgotPasswordComponent,
         PrivacyPolicyComponent,
         OrderSuccessComponent,
-        CouponComponent
+        CouponComponent,
+        BolComponent
     ],
     imports: [
         BrowserModule,
