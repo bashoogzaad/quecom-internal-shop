@@ -476,6 +476,23 @@
                   <p>
                     Voor de betaling word je doorgestuurd naar de beveiligde betaalomgeving van Buckaroo. Je kunt hier betalen met iDeal (NL) of Bancontant (BE). De keuze voor de betaalmethode kun je maken als je wordt doorgestuurd naar de betaalpagina.
                   </p>
+                  <div class="row" *ngIf="globals.hasCoupons">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <h4 class="checkout-title" style="margin-top: 40px">Kortingscode</h4>
+                      <div class="form-group">
+                        <strong>Heeft u een kortingscode? Voer deze dan hieronder in.</strong>
+                        <div class="row">
+                          <div class="col-md-8 col-sm-8 col-xs-8">
+                            <input placeholder="Kortingscode" type="text" class="form-control colorize-theme6-bg" name="coupon_code" [(ngModel)]="couponCode" />
+                          </div>
+                          <div class="col-md-2 col-sm-2 col-xs-2">
+                            <button class="btn" [disabled]="!couponCode" (click)="checkCouponCode()">Toepassen</button>
+                          </div>
+                        </div>
+                        <div *ngIf="showError">{{ errorMessage }}</div>
+                      </div>
+                    </div>
+                  </div>
                   <!-- 		                            <div class="tt-checkout__payment"> -->
                   <!-- 		                                <ul> -->
                   <!-- 		                                    <li *ngFor="let paymentMethod of paymentMethods"> -->
