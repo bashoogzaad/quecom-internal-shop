@@ -14,21 +14,21 @@ import { UserSuccessComponent } from '../user-success/user-success.component';
 
 @Injectable()
 export class CartProvider {
-    
+
     //Global variables
     @LocalStorage() public order: Order;
-    
+
     constructor(
         private localStorage: LocalStorageService,
         public quecomProvider: QuecomProvider,
         public globals: Globals,
         public authService: AuthService
     ) {}
-    
+
     getCurrentOrder(): any {
         return this.order;
     }
-  
+
     addOrderLine(orderLine: OrderLine): void {
         let push = true;
         this.order.orderLines.forEach((ol) => {
@@ -48,13 +48,13 @@ export class CartProvider {
         orderLine.count += amount;
         this.order = this.order;
     }
-    
+
     removeOrderLine(orderLine: OrderLine): void {
         this.order.orderLines.splice(this.order.orderLines.indexOf(orderLine), 1);
       this.order = this.order;
 
     }
-    
+
     resetCart(): void {
         this.order = new Order();
     }
@@ -76,7 +76,7 @@ export class CartProvider {
 
           products.push(productEntry);
         }
-        
+
         const billing: Object = new Object();
         billing['first_name'] = customerData.firstNameSh;
         billing['last_name'] = customerData.lastNameSh;
@@ -84,20 +84,20 @@ export class CartProvider {
         billing['house_number'] = customerData.houseNumberSh;
         billing['house_number_extension'] = customerData.houseNumberExtensionSh;
         billing['city'] = customerData.citySh;
-        
+
         if (customerData.postalCodeSh !== undefined && customerData.postalCodeSh.length === 6) {
             customerData.postalCodeSh = customerData.postalCodeSh.substr(0, 4)+' '+customerData.postalCodeSh.substr(4, 2);
         }
-        
+
         billing['postal_code'] = customerData.postalCodeSh;
         billing['country'] = 'NL';
         billing['phone_number'] = customerData.phoneNumberSh;
         billing['email'] = customerData.emailAddressSh;
-        
+
         if (customerData.companyName) {
             billing['company_name'] = customerData.companyName;
         }
-        
+
         const shipment: Object = new Object();
         shipment['gender'] = customerData.gender;
         shipment['first_name'] = customerData.firstName;
@@ -110,12 +110,12 @@ export class CartProvider {
         if (customerData.postalCode !== undefined && customerData.postalCode.length === 6) {
             customerData.postalCode = customerData.postalCode.substr(0, 4)+' '+customerData.postalCode.substr(4, 2);
         }
-        
+
         shipment['postal_code'] = customerData.postalCode;
         shipment['country'] = 'NL';
         shipment['phone_number'] = customerData.phoneNumber;
         shipment['email'] = customerData.emailAddress;
-        
+
         let reference = this.globals.name;
 
         submitOrder = {
@@ -126,22 +126,22 @@ export class CartProvider {
             reference: reference+'-'+id,
             type: 'dropshipment',
             request_payment: '1',
-            calculate_shipping_cost: '0',
+            calculate_shipping_cost: this.globals.hasDeliveryCost ? '1' : '0',
             ecommerce_user_id: id
         };
-        
+
         if (discounts.length > 0) {
             submitOrder['discounts'] = discounts;
         }
-      
+
         if (selectedShipment) {
             submitOrder['selected_shipment'] = selectedShipment;
         }
-      
+
         if (paymentMethod) {
             submitOrder['payment_method'] = paymentMethod;
         }
-      
+
         if (shippingMethod && shippingMethod == 'pickup') {
             submitOrder['route'] = 'ZAFH01';
         }

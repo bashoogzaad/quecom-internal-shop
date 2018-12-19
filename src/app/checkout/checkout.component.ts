@@ -21,7 +21,7 @@ export class CheckoutComponent implements OnInit {
 
     public limit1 = 5;
     public limit2 = 2;
-  
+
     public order: Order;
     public customerData: CustomerData;
     public billingToShipment = true;
@@ -32,33 +32,33 @@ export class CheckoutComponent implements OnInit {
     public showError = false;
 
     public discounts: any[] = new Array();
-  
+
     public user: any;
     public step = 1;
     public loadingPayment = false;
-  
+
     public paymentMethods = new Array();
-  
+
     public selected = {
       paymentMethod: undefined,
       shippingMethod: 'same-as-invoice'
     };
-  
+
     public shippingTimeframes: any[] = new Array();
     public shippingLocations: any[] = new Array();
-  
+
     public shipper = "PostNL";
     public selectedShipment: any;
     public showDelivery = true;
     public successMsg;
     public errorMsg;
-  
+
     public extraShippingCost: number = 0;
     public budget: number;
     public payShipping = true;
-  
+
     public reloadDeliveryOptions = false;
-    
+
     constructor(
         public cartProvider: CartProvider,
         public route: ActivatedRoute,
@@ -69,17 +69,17 @@ export class CheckoutComponent implements OnInit {
         public authService: AuthService,
         public pimcoreProvider: PimcoreProvider
     ) {
-      
+
         this.paymentMethods =   [
           { id: 1, name: 'iDeal' },
           { id: 2, name: 'Bancontant' }
         ];
-      
+
         this.customerData = new CustomerData();
         this.route.paramMap.subscribe(res => {
             this.customerData.remarks = res.get('remarks');
         });
-      
+
 
         if (this.globals.loginType !== 'none' && this.globals.loginType !== 'code') {
 
@@ -95,80 +95,80 @@ export class CheckoutComponent implements OnInit {
                 this.customerData.citySh = this.user.city;
                 this.customerData.phoneNumberSh = this.user.phone_number;
                 this.customerData.countrySh = this.user.country;
-            
+
                 if (this.billingToShipment) {
                 this.billingToShipment = !this.billingToShipment;
                 this.toggleBillingToShipment();
                 }
 
                 this.loadDeliveryOptions();
-            
+
             }
 
         } else {
             //Make sure the form is not disabled
             this.billingToShipment = false;
         }
-      
+
         if (this.globals.loginType !== 'none' && this.globals.hasBudget) {
             this.pimcoreProvider.getBudget(this.user.id, this.user.hash).subscribe(res => {
                 this.budget = res.value;
             });
         }
-      
+
     }
 
     ngOnInit() {
         this.order = this.cartProvider.getCurrentOrder();
     }
-    
+
     doReloadDeliveryOptions() {
         this.globals.loadingOn();
         this.loadDeliveryOptions(true);
     }
-    
+
     loadDeliveryOptions(loader?: boolean) {
-        
+
         this.quecomProvider.getShippingTimeframes(this.customerData.postalCode, this.customerData.houseNumber, this.customerData.country, this.customerData.houseNumberExtension).subscribe(tf => {
             console.log(tf);
-            
+
             for (const t of tf['Timeframes']['Timeframe']) {
               for (const timeframe of t['Timeframes']['TimeframeTimeFrame']) {
-                
+
                 const parts = t['Date'].split('-');
                 const date = new Date(parts[2], parts[1]-1, parts[0]);
-                
+
                 const startDate = new Date(date.getTime());
                 startDate.setHours(timeframe['From'].split(':')[0]);
                 startDate.setMinutes(timeframe['From'].split(':')[1]);
-                
+
                 const endDate = new Date(date.getTime());
                 endDate.setHours(timeframe['To'].split(':')[0]);
                 endDate.setMinutes(timeframe['To'].split(':')[1]);
-                
+
                 const shm = new Object();
                 shm['timeframe_start'] = startDate;
                 shm['timeframe_end'] = endDate;
-                
+
                 shm['cost'] = timeframe['Options']['string'] == 'Evening' ? 2 : 0;
                 shm['option'] = timeframe['Options']['string'];
 
                 if(timeframe['Options']['string'] != 'Evening') {
                   this.shippingTimeframes.push(shm);
                 }
-                
+
               }
             }
-            
+
             this.selectedShipment = this.shippingTimeframes[0];
             this.reloadDeliveryOptions = false;
-            
+
             if(loader) {
                 this.globals.loadingOff();
             }
-            
+
           });
-          
+
           this.quecomProvider.getShippingLocations(this.customerData.postalCode, this.customerData.country).subscribe(tf => {
               console.log(tf);
               if (tf['GetLocationsResult']) {
@@ -176,21 +176,29 @@ export class CheckoutComponent implements OnInit {
               }
               this.reloadDeliveryOptions = false;
           });
-        
+
     }
-    
-    roundToTwo(num) {    
+
+    roundToTwo(num) {
         return Math.round(num * 100) / 100;
     }
-    
+
     getOrderLineSubtotal(orderLine: OrderLine) {
         return this.roundToTwo(orderLine.count*orderLine.product.price_total_netto*1.21);
     }
-    
+
     getDeliveryCost() {
-      return 6.95;
+      //Check if there are any products which are bigger than or equal to 55 inch
+      let deliveryCost = 6.95;
+      for (const orderLine of this.order.orderLines) {
+        if (orderLine.product.inch_size && orderLine.product.inch_size >= 55) {
+          deliveryCost = 39.95;
+        }
+      }
+
+      return deliveryCost*1.21;
     }
-    
+
     getOrderSubtotal() {
         let subtotal = 0.0;
         for(const orderLine of this.order.orderLines) {
@@ -198,13 +206,13 @@ export class CheckoutComponent implements OnInit {
         }
         return this.roundToTwo(subtotal);
     }
-    
+
     getOrderTotal() {
         let total = this.getOrderSubtotal();
         total = total + this.getDeliveryCost();
         return this.roundToTwo(total);
     }
-    
+
     getDiscountTotal() {
         let total = 0.0;
         for(let discount of this.discounts) {
@@ -212,21 +220,21 @@ export class CheckoutComponent implements OnInit {
         }
         return this.roundToTwo(total);
     }
-    
+
     getTotal() {
         return this.getOrderTotal()-this.getDiscountTotal();
     }
-    
+
     getRestBudget() {
       return this.budget - (this.getOrderSubtotal() - this.getDiscountTotal());
     }
-    
+
     toggleBillingToShipment() {
-        
+
         if (this.selected.shippingMethod == 'same-as-invoice') {
-            
+
             this.billingToShipment = true;
-            
+
             if (this.billingToShipment) {
                 this.customerData.firstName = this.customerData.firstNameSh;
                 this.customerData.lastName = this.customerData.lastNameSh;
@@ -252,13 +260,13 @@ export class CheckoutComponent implements OnInit {
                 this.customerData.phoneNumber = undefined;
                 this.customerData.country = undefined;
             }
-            
+
             this.payShipping = true;
-          
+
           this.checkAddress();
-      
+
         } else if (this.selected.shippingMethod == 'central-office') {
-            
+
             this.customerData.address = 'Da vincilaan';
             this.customerData.houseNumber = '7 D1';
             this.customerData.houseNumberExtension = '';
@@ -266,14 +274,14 @@ export class CheckoutComponent implements OnInit {
             this.customerData.city = 'Zaventem';
             this.customerData.phoneNumber = this.customerData.phoneNumberSh;
             this.customerData.country = 'BE';
-            
+
             this.selectedShipment = undefined;
             this.payShipping = false;
-            
+
         } else if (this.selected.shippingMethod == 'custom-address') {
-            
+
             this.billingToShipment = false;
-            
+
             this.customerData.firstName = undefined;
             this.customerData.lastName = undefined;
             this.customerData.emailAddress = undefined;
@@ -285,13 +293,13 @@ export class CheckoutComponent implements OnInit {
             this.customerData.city = undefined;
             this.customerData.phoneNumber = undefined;
             this.customerData.country = undefined;
-            
+
             this.selectedShipment = undefined;
             this.payShipping = true;
             this.reloadDeliveryOptions = true;
-            
+
         } else if (this.selected.shippingMethod == 'pickup') {
-            
+
             this.customerData.firstName = this.customerData.firstNameSh;
             this.customerData.lastName = this.customerData.lastNameSh;
             this.customerData.emailAddress = this.customerData.emailAddressSh;
@@ -303,16 +311,16 @@ export class CheckoutComponent implements OnInit {
             this.customerData.city = this.customerData.citySh;
             this.customerData.phoneNumber = this.customerData.phoneNumberSh;
             this.customerData.country = this.customerData.countrySh;
-            
+
             this.selectedShipment = undefined;
             this.payShipping = false;
-            
+
         }
-      
+
     }
-    
+
     public checkCouponCode() {
-        
+
         let obj = this.discounts.find(x => (x.coupon_code === this.couponCode));
         if (obj) {
             this.errorMessage = 'Kortingscode al gebruikt in deze bestelling.';
@@ -320,19 +328,19 @@ export class CheckoutComponent implements OnInit {
             this.couponCode = undefined;
             return;
         }
-        
+
         this.quecomProvider.checkCouponCode(this.couponCode).subscribe(res => {
-            
+
             if (res['status']) {
                 this.errorMessage = 'Kortingscode is niet gevonden of al gebruikt.';
                 this.showError = true;
             } else {
-                
+
                 console.log('Order total: '+this.getOrderTotal());
                 console.log('Coupon: '+this.roundToTwo(res['value']));
-                
+
                 if (this.roundToTwo(res['value']) > this.getOrderTotal()) {
-                    
+
                     swal({
                         title: 'Weet je het zeker?',
                         text: "De kortingsbon is meer waard dan de waarde van de order. Als je doorgaat, gaat de overige waarde van de bon verloren.",
@@ -352,7 +360,7 @@ export class CheckoutComponent implements OnInit {
                             this.showError = true;
                         }
                       });
-                    
+
                 } else {
                     this.errorMessage = 'Kortingsbon ('+res['coupon_code']+') ter waarde van €'+res['value'].replace(".", ",")+' verwerkt.';
                     this.showError = true;
@@ -361,20 +369,20 @@ export class CheckoutComponent implements OnInit {
                         coupon_code: res['coupon_code']
                     });
                 }
-                
+
             }
         });
-        
+
         this.couponCode = undefined;
-        
+
     }
-    
+
     change(event: any, field: string) {
         if (this.billingToShipment) {
             this.customerData[field] = event;
         }
     }
-    
+
     placeOrder() {
 
         this.loadingPayment = true;
@@ -418,7 +426,7 @@ export class CheckoutComponent implements OnInit {
                     this.customerData['countrySh'] = this.customerData['country'];
                     this.customerData['phoneNumberSh'] = this.customerData['phoneNumber'];
                     this.customerData['emailAddressSh'] = this.customerData['emailAddress'];
-                    
+
                     this.doPlaceOrder(id);
 
                 });
@@ -459,36 +467,36 @@ export class CheckoutComponent implements OnInit {
             console.log(error);
         });
     }
-  
+
   stepper(num: number) {
     this.step = this.step + num;
     console.log(this.selectedShipment);
     window.scrollTo(0,0);
   }
-  
+
   public loadMore(): void {
     this.limit1 += 5;
     this.limit2 += 2;
   }
-  
+
   public checkAddress() {
-    
+
     if (
-        this.customerData.address && this.customerData.address.toLowerCase() === 'taurusavenue' && 
-        this.customerData.houseNumber && this.customerData.houseNumber === '16' && 
+        this.customerData.address && this.customerData.address.toLowerCase() === 'taurusavenue' &&
+        this.customerData.houseNumber && this.customerData.houseNumber === '16' &&
         this.customerData.city && this.customerData.city.toLowerCase() === 'hoofddorp' &&
         this.customerData.country === 'NL'
     ) {
         this.errorMsg = 'Je bestelling op het ingevulde adres ontvangen is niet mogelijk. Pas het adres aan.';
     } else if (
-        this.customerData.address && this.customerData.address.toLowerCase() === 'da vincilaan' && 
+        this.customerData.address && this.customerData.address.toLowerCase() === 'da vincilaan' &&
         this.customerData.city && this.customerData.city.toLowerCase() === 'zaventem' &&
         this.customerData.country === 'BE'
     ) {
         this.errorMsg = 'Je bestelling op het ingevulde adres ontvangen is niet mogelijk. Pas het adres aan.';
     } else {
       this.errorMsg = undefined;
-      
+
       if (this.customerData.firstName &&
         this.customerData.lastName &&
         this.customerData.address &&
@@ -500,20 +508,20 @@ export class CheckoutComponent implements OnInit {
       } else {
         this.successMsg = undefined;
       }
-      
+
     }
-    
+
     this.reloadDeliveryOptions = true;
-    
+
   }
-  
+
   public showDeliveryOptions() {
-      
+
       if (this.selected.shippingMethod == 'central-office' || this.selected.shippingMethod == 'pickup') {
           this.showDelivery = false;
           return false;
       }
-      
+
     for (const orderLine of this.order.orderLines) {
         if (orderLine.product.inch_size && orderLine.product.inch_size >= 55) {
             this.selectedShipment = undefined;
@@ -523,5 +531,5 @@ export class CheckoutComponent implements OnInit {
       }
     return true;
   }
-  
+
 }

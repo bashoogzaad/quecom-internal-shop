@@ -17,10 +17,10 @@ export class CartComponent implements OnInit {
 
     public order: Order;
     public remarks: string;
-    
+
     public user: any;
     public budget: number;
-    
+
     constructor(
         public cartProvider: CartProvider,
         public router: Router,
@@ -40,17 +40,17 @@ export class CartComponent implements OnInit {
             this.budget = res.value;
         });
       }
-      
+
     }
-    
-    roundToTwo(num) {    
+
+    roundToTwo(num) {
         return Math.round(num * 100) / 100;
     }
-    
+
     getOrderLineSubtotal(orderLine: OrderLine) {
         return this.roundToTwo(orderLine.count*orderLine.product.price_total_netto*1.21);
     }
-    
+
     adjustOrderLine(orderLine: OrderLine, amount: number): void {
         if (orderLine.count+amount !== 0) {
           this.cartProvider.adjustOrderLine(orderLine, amount);
@@ -58,15 +58,15 @@ export class CartComponent implements OnInit {
           this.removeFromCart(orderLine);
         }
     }
-    
+
     getOrderQuantity(orderLine: OrderLine) {
         return Number(orderLine.product.minimum_order_quantity);
     }
-    
+
     removeFromCart(orderLine: OrderLine) {
         this.cartProvider.removeOrderLine(orderLine);
     }
-    
+
     getOrderTotal() {
         let total = 0.0;
         for(let orderLine of this.order.orderLines) {
@@ -74,11 +74,19 @@ export class CartComponent implements OnInit {
         }
         return this.roundToTwo(total);
     }
-    
+
     getDeliveryCost() {
-      return 6.95
+      //Check if there are any products which are bigger than or equal to 55 inch
+      let deliveryCost = 6.95;
+      for (const orderLine of this.order.orderLines) {
+        if (orderLine.product.inch_size && orderLine.product.inch_size >= 55) {
+          deliveryCost = 39.95;
+        }
+      }
+
+      return deliveryCost*1.21;
     }
-    
+
     goToPlaceOrder() {
         this.order.remarks = this.remarks;
         this.router.navigateByUrl('/winkelwagen/bestellen');
