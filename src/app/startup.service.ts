@@ -34,6 +34,7 @@ export class StartupService {
       
       if ('has_coupons' in res) {
         this.globals.hasCoupons = res['has_coupons']['data'] === true;
+        console.log(this.globals.hasCoupons);
       }
 
       if (res['login_type']) {

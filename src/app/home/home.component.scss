@@ -99,15 +99,17 @@
 
   .btn {
     display: block;
+    color: var(--color-primary-var) !important;
     width: 200px;
-    margin: 80px auto 0 auto;
+    margin: 60px auto 0 auto;
     text-align: center;
-    background: var(--color-primary-var) !important;
-    border: var(--color-primary-var) !important;
+    background: #fff !important;
+    border: #fff !important;
+    padding: 20px 40px;
 
     &:hover {
-      color: var(--color-primary-var) !important;
-      background: #fff !important;
+      color: #fff !important;
+      background: var(--color-primary-var) !important;
     }
   }
 }
@@ -127,4 +129,3 @@
     }
   }
 }
-

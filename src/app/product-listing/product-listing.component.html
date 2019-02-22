@@ -15,7 +15,7 @@
 							<div class="grid_item col-xs-12 col-sm-6 col-md-4 col-lg-3 spacer" *ngFor="let product of products">
 							
 								<div class="product_image border_bottom">
-									<a [routerLink]="['/product', product.id]" class="force-image"> 
+									<a *ngIf="product" [routerLink]="['/product', product.id]" class="force-image"> 
 										<img class="specific-image" [lazyLoad]="getImageUrl(product)" [defaultImage]="defaultImage" alt=""> 
 									</a>
 									<div class="action-buttons">
@@ -29,7 +29,7 @@
 								</div>
 								<div class="product_detail custom-bg">
 									<h3 class="product_name product-cont">
-										<b><a [routerLink]="['/product', product.id]">{{ product.title }}</a></b>
+										<b><a *ngIf="product" [routerLink]="['/product', product.id]">{{ product.title }}</a></b>
 									</h3>
 									<p>
 										Van {{ product.retail_price | currency:'EUR':'true' }}
@@ -80,9 +80,7 @@
 
 	<!-- MAIN -->
 	<main>
-	
 	    <div class="tt-layout tt-sticky-block__parent tt-layout__fullwidth">
-	    
 <!-- 	        <aside class="tt-layout__sidebar tt-sticky-block"> -->
 <!-- 	            <div class="tt-layout__sidebar-sticky tt-sticky-block__inner"> -->
 <!-- 	                <div class="tt-sidebar"> -->
@@ -136,16 +134,6 @@
 	        <div class="tt-layout__content" *ngIf="products.length > 0">
 	            <div class="container">
 	                <div class="tt-listing-page">
-	                
-	                    <a class="tt-listing-page__promobox listing-img" *ngIf="typeObject !== undefined">
-	                        <img src="assets/templates/mogo/images/listing/{{ typeObject['parsed'] }}.jpg" alt="">
-	                        <div class="tt-listing-page__promobox-text tt-listing-page__promobox-design-white" style="padding-left: 0px; max-width: 500px;">
-								<div style="padding-left: 60px; background-color: rgba(255, 98, 0, 0.6);">
-									<div>Travel</div>
-									<p>{{ typeObject.description }}</p>
-								</div>
-	                        </div>
-	                    </a>
 
 	                    <div class="tt-listing-page__products tt-layout__mobile-full">
 	
@@ -155,7 +143,7 @@
 	                            
 	                            	<div class="tt-product tt-product__view-sheet">
 		                                <div class="tt-product__image">
-	                                        <a href="javascript.void(0)" [routerLink]="['/product', product.id]">
+	                                        <a href="javascript.void(0)" *ngIf="product" [routerLink]="['/product', product.id]">
 	                                            <img [lazyLoad]="getImageUrl(product)" [defaultImage]="defaultImage" alt="">
 	                                        </a>
 	                                    </div>
@@ -163,7 +151,7 @@
 		                                    <div class="tt-product__content ps ps--theme_default" data-ps-id="00975382-1327-ec44-c429-f9584e03808c">
 												<h3 style="height: 5.0ex; line-height: 2.5ex;">
 													<span class="ttg-text-animation--emersion">
-														<a href="javascript.void(0)" [routerLink]="['/product', product.id]">{{ product.description_short_api }}</a>
+														<a href="javascript.void(0)" *ngIf="product" [routerLink]="['/product', product.id]">{{ product.description_short_api }}</a>
 													</span>
 												</h3>
 												<!-- <p>
@@ -197,7 +185,7 @@
 		                                                    <i class="icon-shop24"></i> 
 		                                                    <span>Voeg toe aan winkelwagen</span>
  		                                                </a> 
-		                                                <a href="javascript.void(0)" [routerLink]="['/product', product.id]" class="tt-btn colorize-btn4 tt-product__buttons_qv">
+		                                                <a href="javascript.void(0)" *ngIf="product" [routerLink]="['/product', product.id]" class="tt-btn colorize-btn4 tt-product__buttons_qv">
 		                                               		<i class="icon-eye"></i>
 		                                                </a>
 		                                            </div>
@@ -209,7 +197,7 @@
 	                            </div>
 	                        </div>
 	                    </div>
-	                    <div class="tt-page__pagination" *ngIf="type === 'categories' && products.length > 0">
+	                    <div class="tt-page__pagination" *ngIf="type && type === 'categories' && products.length > 0">
 	                        <div class="tt-pagination">
 	                            <a [routerLink]="['', unparsedType, groupId]" [queryParams]="{ page: page-1 }" class="btn tt-pagination__prev" [ngClass]="page > 1 ? '' : 'ttg-hidden'">Vorige</a>
 	                            <div class="tt-pagination__numbs">
@@ -220,7 +208,7 @@
 	                            <a [routerLink]="['', unparsedType, groupId]" [queryParams]="{ page: page+1 }" class="btn tt-pagination__next" [ngClass]="pageNumbers.length > 1 ? '' : 'ttg-hidden'">Volgende</a>
 	                        </div>
 						</div>
-						<div class="tt-page__pagination" *ngIf="type === 'product-only' && products.length > 0">
+						<div class="tt-page__pagination" *ngIf="type && type === 'product-only' && products.length > 0">
 	                        <div class="tt-pagination">
 	                            <a routerLink="/producten" [queryParams]="{ page: page-1 }" class="btn tt-pagination__prev" [ngClass]="page > 1 ? '' : 'ttg-hidden'">Vorige</a>
 	                            <div class="tt-pagination__numbs">
@@ -228,7 +216,7 @@
 	                                		<a [ngClass]="pageNumber == page ? 'route-active' : ''" title="" routerLink="/producten" [queryParams]="{ page: pageNumber }">{{ pageNumber }}</a>
 	                                </span>
 	                            </div>
-	                            <a routerLink="/producten" [queryParams]="{ page: page+1 }" class="btn tt-pagination__next" [ngClass]="pageNumbers.length > 1 && 1 && pageNumbers.length != page ? '' : 'ttg-hidden'">Volgende</a>
+	                            <a routerLink="/producten" [queryParams]="{ page: page+1 }" class="btn tt-pagination__next" [ngClass]="pageNumbers.length > 1 && pageNumbers.length != page ? '' : 'ttg-hidden'">Volgende</a>
 	                        </div>
 	                    </div>
 	                    

@@ -47,23 +47,9 @@
 	                        <div class="tt-contacts__form tt-form">
 	                            <div class="tt-contacts__form_inputs tt-form__form">
 	                            	<label>
-										            <input type="hidden" name="organization" value="Super Lokaal">
+										            <input type="hidden" name="organization" value="Bhave">
+
 									</label>
-                                <p *ngIf="user.couponValid !== undefined && !user.couponValid" class="ttg-mt--30 ttg-mb--30" style="color: white; background-color: indianred; padding: 10px;">
-                                  <i class="icon-cancel" style="color: white; padding-right: 10px;"></i>
-                                  De ingevulde voucher is ongeldig
-                                </p>
-                                <label>
-                                    <div class="row">
-                                      <div class="col-md-3"><span class="ttg__required">
-                                        <ng-container *ngIf="globals.language == 'NL'">Vouchercode</ng-container>
-                                        <ng-container *ngIf="globals.language == 'EN'">Vouchercode</ng-container>
-                                      </span></div>
-                                      <div class="col-md-9">
-                                        <input type="text" class="form-control colorize-theme6-bg" [(ngModel)]="user.voucher" (blur)="checkVoucher($event)" name="voucher" placeholder="">
-                                      </div>
-                                    </div>
-                                  </label>
 	                                <label>
 	                                    <div class="row">
 	                                        <div class="col-md-3"><span class="ttg__required">

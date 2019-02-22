@@ -54,7 +54,6 @@
 					<ul class="sub-menu" *ngIf="forceHideMenu === false">
 						<li> <a routerLink="/over-ons" (click)="forceHideMenu = true" class="site-nav__link">Over ons</a></li>
 						<li> <a routerLink="/klantenservice/betaling" (click)="forceHideMenu = true" class="site-nav__link">Betaling</a></li>
-						<li> <a routerLink="/klantenservice/verzending" (click)="forceHideMenu = true" class="site-nav__link">Verzending & Bezorging</a></li>
 						<li> <a routerLink="/klantenservice/retouren" (click)="forceHideMenu = true" class="site-nav__link">Retouren & Garantie</a></li>
 						<li> <a routerLink="/klantenservice/voorwaarden" (click)="forceHideMenu = true" class="site-nav__link">Algemene voorwaarden</a></li>
 						<li> <a routerLink="/klantenservice/privacy" (click)="forceHideMenu = true" class="site-nav__link">Privacy & Cookie Policy</a></li>
@@ -138,7 +137,6 @@
 				<ul class="mobile-nav__sublist" [ngClass]="toggleCustomerService ? 'show-cs' : 'hide-cs'">
 					<li class="mobile-nav__item"><a routerLink="/klantenservice/bestelling" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Bestelling</a> </li>
 					<li class="mobile-nav__item"><a routerLink="/klantenservice/betaling" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Betaling</a> </li>
-					<li class="mobile-nav__item"><a routerLink="/klantenservice/verzending" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Verzending & Bezorging</a> </li>
 					<li class="mobile-nav__item"><a routerLink="/klantenservice/retouren" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Retouren & Garantie</a> </li>
 					<li class="mobile-nav__item"><a routerLink="/klantenservice/voorwaarden" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Algemene voorwaarden</a> </li>
 					<li class="mobile-nav__item"><a routerLink="/klantenservice/privacy" (click)="toggleMenu = !toggleMenu" class="mobile-nav__link">Privacy & Cookie Policy</a> </li>
@@ -163,7 +161,7 @@
 	            <div class="tt-header__logo" style="background: #FFF; border-bottom: solid 1px #ebebeb;">
 	                <div class="h1 tt-logo">
 	                    <a routerLink="/home">
-	                        <img src="assets/templates/mogo/images/logo/{{ globals.name }}.svg" alt="logo">
+	                        <img src="assets/templates/mogo/images/logo/bhave.png" alt="logo">
 	                    </a>
 	                </div>
 	            </div>
@@ -203,7 +201,6 @@
 	                                <div class="TonyM__mm TonyM__mm--simple ie-header" style="width: 280px; margin-left: -28px; left: auto;">
 	                                    <ul class="TonyM__list">
 	                                        <li><a href="javascript:void(0);" routerLink="/klantenservice/betaling">Betaling</a></li>
-	                                        <li><a href="javascript:void(0);" routerLink="/klantenservice/verzending">Verzending & Bezorging</a></li>
 	                                        <li><a href="javascript:void(0);" routerLink="/klantenservice/retouren">Retouren & Garantie</a></li>
 	                                        <li><a href="javascript:void(0);" routerLink="/klantenservice/voorwaarden">Algemene voorwaarden</a></li>
 	                                        <li><a href="javascript:void(0);" routerLink="/klantenservice/privacy">Privacy & Cookie Policy</a></li>
@@ -269,7 +266,6 @@
 									<li><a href="javascript:void(0);" (click)="goToDefaultPage('contact')">Contact</a></li>
 									<li><a href="javascript:void(0);" (click)="goToDefaultPage('over-ons')">Over ons</a></li>
 									<li><a href="javascript:void(0);" (click)="goToDefaultPage('klantenservice/betaling')">Betaling</a></li>
-									<li><a href="javascript:void(0);" (click)="goToDefaultPage('klantenservice/verzending')">Verzending & Bezorging</a></li>
 									<li><a href="javascript:void(0);" (click)="goToDefaultPage('klantenservice/retouren')">Retouren & Garantie</a></li>
 									<li><a href="javascript:void(0);" (click)="goToDefaultPage('klantenservice/voorwaarden')">Algemene voorwaarden</a></li>
 									<li><a href="javascript:void(0);" (click)="goToDefaultPage('klantenservice/privacy')">Privacy & Cookie Policy</a></li>
@@ -277,14 +273,14 @@
 							</div>
 	                        <div role="search" class="tt-header__search" *ngIf="authService.isLoggedIn || (globals.loginType === 'code' && authService.couponAccess)">
 	                            <form action="#" class="search-form-hs" [ngClass]="searchFocus ? 'hasFocus' : ''" (submit)="goToSearchPage($event)">
-									 <input type="search" name="q" (keyup)="liveSearch($event)" (focus)="searchFocus=true" (blur)="blur()" class="form-control custom-search" placeholder="Zoeken..."> 
-									 
-									 <div class="search-results-container" *ngIf="searchResults.length > 0">
-										 <a href="javascript:void(0);" *ngFor="let result of searchResults" (click)="clearSearchAndGoToProduct(result.id)">
-											 <img src="{{ result.image }}">
-											 <span>{{ result.title }}</span>
-										 </a>
-									 </div>
+                               <input type="search" name="q" (keyup)="liveSearch($event)" (focus)="searchFocus=true" (blur)="blur()" class="form-control custom-search" placeholder="Zoeken...">
+
+                               <div class="search-results-container" *ngIf="searchResults.length > 0">
+                                 <a href="javascript:void(0);" *ngFor="let result of searchResults" (click)="clearSearchAndGoToProduct(result.id)">
+                                   <img src="{{ result.image }}">
+                                   <span>{{ result.title }}</span>
+                                 </a>
+                               </div>
  	                            </form> 
  	                            <!--<div class="tt-header__search-dropdown"></div> 
 	                            <a href="#" class="tt-header__btn tt-header__btn-open-search"><i class="icon-search"></i></a> 

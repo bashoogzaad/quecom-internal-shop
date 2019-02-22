@@ -75,13 +75,10 @@
 	           
 	            <div class="container" style="position: relative">
                 <div class="overlay">
-                  <h1>Amazing Christmas Deals!</h1>
-                  <p>Hier koop je de leukste cadeaus met flinke kortingen voor de feestdagen.</p>
-                  <a href="producten" class="btn">Start met shoppen</a>
                 </div>
-	            	<slideshow (click)="goToMainShop()" [imageUrls]="imageUrlArray" 
-	            			   [height]="'700px'"
-          					   [minHeight]="'700px'"
+	            	<slideshow (click)="goToMainShop()" [imageUrls]="imageUrlArray"
+	            			   [height]="'500px'"
+          					   [minHeight]="'500px'"
 							   [autoPlay]="imageUrlArray.length > 1 ? true : false"
 							   [autoPlayInterval]="10000"
            					   [showArrows]="imageUrlArray.length > 1 ? true : false"
@@ -105,7 +102,7 @@
 	                                    <i class="icon-box"></i>
 	                                    <div>
 	                                        <div class="tt-shp-info__strong">Snelle levering</div>
-	                                        <p>Voor 19:00 uur besteld, morgen in huis.</p>
+	                                        <p>Voor 22:00 uur besteld, morgen in huis.</p>
 	                                    </div>
 	                                </a>
 	                            </div>
@@ -122,54 +119,50 @@
 	                    </div>
 					</div>
 
-					
-					<div *ngIf="!globals.categoriesOnHome">
 
-					</div>
-	                
-	                <div *ngIf="globals.categoriesOnHome" class="container-fluid ttg-cont-padding--none">
-	                
-                    	    <div class="row ttg-grid-padding--none">
-                    	    
-	                        <div class="col-md-4 col-lg-4" *ngFor="let category of categories">
-	                            <a class="tt-promobox tt-promobox__size-square ttg-text-animation-parent ttg-image-translate--right ttg-animation-disable--md tt-promobox__hover-disable--md">
-	                                <div class="tt-promobox__content">
-	                                    <img src="assets/templates/mogo/images/promoboxes/{{ category.parsed_name }}.jpg" alt="">
-	                                    <div class="tt-promobox__text"
-	                                         data-resp-md="md"
-	                                         data-resp-sm="md"
-	                                         data-resp-xs="sm">
-	                                        <div><a href="javascript:void(0);" (click)="goToPage('categorie', category.id)">{{ category.name }}</a></div>
-	                                    </div>
-	                                    
-	                                    <div class="tt-promobox__hover tt-promobox__hover--up">
-                                            <div class="tt-promobox__hover-bg
+                <div class="container-fluid ttg-cont-padding--none">
+
+                  <div class="row ttg-grid-padding--none">
+
+                    <div class="col-md-4 col-lg-4" *ngFor="let category of categories">
+                      <a class="tt-promobox tt-promobox__size-square ttg-text-animation-parent ttg-image-translate--right ttg-animation-disable--md tt-promobox__hover-disable--md">
+                        <div class="tt-promobox__content">
+                          <img src="assets/templates/mogo/images/promoboxes/{{ category.parsed_name }}.jpg" alt="">
+                          <div class="tt-promobox__text"
+                               data-resp-md="md"
+                               data-resp-sm="md"
+                               data-resp-xs="sm">
+                            <div><a href="javascript:void(0);" (click)="goToPage('categorie', category.id)">{{ category.name }}</a></div>
+                          </div>
+
+                          <div class="tt-promobox__hover tt-promobox__hover--up">
+                            <div class="tt-promobox__hover-bg
                                                         tt-promobox__hover-bg--visible
                                                         ttg-bg--theme">
-                                            </div>
-                                            <div class="tt-promobox__text
+                            </div>
+                            <div class="tt-promobox__text
                                                         tt-promobox__point-lg--top
                                                         tt-promobox__point-lg--left">
-                                                <a class="colorize-theme2-c" href="javascript:void(0)" (click)="goToPage('categorie', category.id)">{{ category.name }}</a>
-                                                <ul>
-                                                    <li *ngFor="let subcategory of category.subcategories">
-                                                    	<a href="javascript:void(0)" (click)="goToPage('subcategorie', subcategory.id)">{{ subcategory.name }}</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-	                                    
-	                                </div>
-	                            </a>
-	                        </div>
-	                        
-                    		</div>
-                		</div>
-	            </div>
-	        </div>
-	    </div>
-	
-	</main>
-	
+                              <a class="colorize-theme2-c" href="javascript:void(0)" (click)="goToPage('categorie', category.id)">{{ category.name }}</a>
+                              <ul>
+                                <li *ngFor="let subcategory of category.subcategories">
+                                  <a href="javascript:void(0)" (click)="goToPage('subcategorie', subcategory.id)">{{ subcategory.name }}</a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+
+                        </div>
+                      </a>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div>
+
+  </main>
+
 
 </ng-container>

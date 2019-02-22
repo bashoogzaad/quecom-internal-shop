@@ -15,16 +15,16 @@ import * as $ from 'jquery';
 export class HomeComponent implements OnInit {
     
     public products: any[] = new Array();
-    public useCategories: boolean = true;
+    public useCategories = true;
     public categories: any[] = new Array();
     
-    public showCouponCheck: boolean = false;
+    public showCouponCheck = false;
     public couponCode: string;
-    public errorMessage: string = 'Spannend!!!';
-    public dealAmount: string = '';
+    public errorMessage = 'Spannend!!!';
+    public dealAmount = '';
 
     public imageUrlArray: string[] = [
-        'assets/templates/mogo/images/slider/01/slide-01.jpg'
+        'assets/templates/mogo/images/slider/default/banner-3.jpg'
     ];
 
     constructor(
@@ -33,9 +33,9 @@ export class HomeComponent implements OnInit {
         public router: Router,
         public globals: Globals
     ) {
-      this.quecomProvider.getProducts(500, 1).subscribe(prod => {
-        this.dealAmount = prod.products.length
-      });
+        this.quecomProvider.getProducts(500, 1).subscribe(prod => {
+          this.dealAmount = prod.products.length
+        });
     }
     
     toggleCouponCheck() {

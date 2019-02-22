@@ -56,6 +56,22 @@ export class CheckoutComponent implements OnInit {
     public extraShippingCost: number = 0;
     public budget: number;
     public payShipping = true;
+
+    public extraCostGroupNames = [
+      'HG-AFZUIG',
+      'HG-COMBI',
+      'HG-DROGEN',
+      'HG-FORNUI',
+      'HG-IOVENS',
+      'HG-KOELEN',
+      'HG-KOOKPL',
+      'HG-VAATWA',
+      'HG-VRIEZE',
+      'HG-WASDRO',
+      'HG-WASSEN',
+      'HK-STRTAF',
+      'HK-VOVENS'
+    ];
   
     public reloadDeliveryOptions = false;
     
@@ -186,9 +202,28 @@ export class CheckoutComponent implements OnInit {
     getOrderLineSubtotal(orderLine: OrderLine) {
         return this.roundToTwo(orderLine.count*orderLine.product.price_total_netto*1.21);
     }
-    
+
     getDeliveryCost() {
-      return 6.95;
+      if (!this.globals.hasDeliveryCost || !this.payShipping) {
+        return 0.0;
+      }
+
+      let baseCost = 6.95;
+      const extraCost = (this.selectedShipment && this.selectedShipment.cost) ? this.selectedShipment.cost : 0;
+
+      for (const orderLine of this.order.orderLines) {
+        if (orderLine.product.inch_size && orderLine.product.inch_size >= 55) {
+          baseCost = 39.95;
+        }
+
+        for (const groupCode of this.extraCostGroupNames){
+          if(groupCode === orderLine.product.group_name){
+            baseCost = 39.95;
+          }
+        }
+      }
+
+      return (baseCost + extraCost) * 1.21;
     }
     
     getOrderSubtotal() {
@@ -379,7 +414,7 @@ export class CheckoutComponent implements OnInit {
 
         this.loadingPayment = true;
 
-        if (this.globals.loginType == 'none') {
+        if (this.globals.loginType === 'none') {
 
             const dummyPass = '23kkeu7Yhdn';
 
@@ -396,7 +431,7 @@ export class CheckoutComponent implements OnInit {
             user['phone'] = this.customerData['phoneNumber'];
             user['city'] = this.customerData['city'];
             user['country'] = this.customerData['country'];
-            user['organization'] = 'segway';
+            user['organization'] = 'bhave';
 
             user['no_login'] = '1';
             user['ign_v'] = '1';

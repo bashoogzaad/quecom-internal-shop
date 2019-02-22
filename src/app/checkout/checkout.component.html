@@ -1,4 +1,5 @@
 <ng-container *ngIf="globals.theme == 'nexgeek'">
+
   <!-- SITE MAIN CONTENT -->
   <main class="main-content">
     <div class="container">
@@ -210,19 +211,25 @@
       <p>&nbsp;</p>
     </div>
   </main>
+
 </ng-container>
 <ng-container *ngIf="globals.theme == 'mogo'">
+
   <!-- MAIN -->
   <main>
+
     <div class="tt-layout tt-sticky-block__parent ">
       <div class="tt-layout__content">
         <div class="container">
+
           <div class="tt-page__name text-center">
             <h1>Bestelling plaatsen</h1>
           </div>
+
           <div class="tt-checkout">
             <div class="row">
               <div class="col-lg-8">
+
                 <div class="tt-checkout__steps">
                   <div [ngClass]="step > 1 ? 'tt-checkout__step-03' : 'tt-checkout__step-01'">
                     <i *ngIf="step > 1" class="icon-ok-2"></i>
@@ -239,119 +246,84 @@
                     <p>Controleren</p>
                   </div>
                 </div>
+
                 <ng-container *ngIf="step === 1">
-                  <ng-container *ngIf="globals.loginType !== 'none'">
-                    <h4 class="ttg-mt--50 ttg-mb--20">Je verzending</h4>
-                    <div class="tt-checkout__payment">
-                      <ul>
-                        <li>Het factuuradres is hetzelfde adres als je hebt opgegeven bij de registratie. Je kunt deze aanpassen in je profiel.</li>
-                        <li>
-                           <label class="tt-checkbox-circle">
-                               <input type="radio" name="shippingMethodGroup" value="same-as-invoice" [(ngModel)]="selected.shippingMethod" (ngModelChange)="toggleBillingToShipment()">
-                               <span></span>
-                           </label>
-                           Verzendadres is hetzelfde als factuuradres
-                           </li>
-                           <li>
-                           <label class="tt-checkbox-circle">
-                               <input type="radio" name="shippingMethodGroup" value="custom-address" [(ngModel)]="selected.shippingMethod" (ngModelChange)="toggleBillingToShipment()">
-                               <span></span>
-                           </label>
-                           Verzenden naar een ander adres
-                           </li>
-                        <li *ngIf="globals.pickupAtAmacomAllowed">
-                          <label class="tt-checkbox-circle">
-                            <input type="radio" name="shippingMethodGroup" value="pickup" [(ngModel)]="selected.shippingMethod" (ngModelChange)="toggleBillingToShipment()">
-                            <span></span>
-                          </label>
-                          Afhalen bij Amacom, The Amazing Company (De Tweeling 24A, 5215MC, 's-Hertogenbosch)
-                        </li>
-                      </ul>
-                    </div>
-                  </ng-container>
-                  <ng-container *ngIf="globals.loginType === 'none' || globals.loginType === 'code'">
-                    <h4 class="ttg-mt--50 ttg-mb--20">Je gegevens</h4>
-                    <div class="tt-checkout__payment">
-                      <ul>
-                        <li>Registreren is niet nodig op deze pagina, laat alleen even je gegevens achter zodat wij de bestelling naar je kunnen verzenden.</li>
-                      </ul>
-                    </div>
-                  </ng-container>
-                  <ng-container>
-                    <h4 class="ttg-mt--30 ttg-mb--20">
-                      Verzendadres
-                    </h4>
+
+                  <h4 class="ttg-mt--50 ttg-mb--20">Je verzending</h4>
+                  <div class="tt-checkout__payment">
+                    <ul>
+                      <li>Het factuuradres is hetzelfde adres als je hebt opgegeven bij de registratie. Je kunt deze aanpassen in je profiel.</li>
+                      <li>
+                        <label class="tt-checkbox-circle">
+                          <input type="radio" name="shippingMethodGroup" value="same-as-invoice" [(ngModel)]="selected.shippingMethod" (ngModelChange)="toggleBillingToShipment()">
+                          <span></span>
+                        </label>
+                        Verzendadres is hetzelfde als factuuradres
+                      </li>
+                      <li>
+                        <label class="tt-checkbox-circle">
+                          <input type="radio" name="shippingMethodGroup" value="custom-address" [(ngModel)]="selected.shippingMethod" (ngModelChange)="toggleBillingToShipment()">
+                          <span></span>
+                        </label>
+                        Verzenden naar een ander adres
+                      </li>
+                      <li>
+                        <label class="tt-checkbox-circle">
+                          <input type="radio" name="shippingMethodGroup" value="pickup" [(ngModel)]="selected.shippingMethod" (ngModelChange)="toggleBillingToShipment()">
+                          <span></span>
+                        </label>
+                        Afhalen bij Amacom, The Amazing Company (De Tweeling 24A, 5215MC, 's-Hertogenbosch)
+                      </li>
+                    </ul>
+                  </div>
+
+                  <ng-container *ngIf="selected.shippingMethod != 'pickup'">
+                    <h4 class="ttg-mt--30 ttg-mb--20">Verzendadres</h4>
                     <div class="tt-checkout__form">
                       <div class="row">
-                        <ng-container *ngIf="globals.loginType === 'none' || globals.loginType === 'code'">
-                          <div class="col-md-2">
-                            <p>E-mailadres:</p>
-                          </div>
-                          <div class="col-md-10">
-                            <div class="tt-input">
-                              <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="emailSh" [(ngModel)]="customerData.emailAddress" required>
-                            </div>
-                          </div>
-                        </ng-container>
-                        <div class="col-md-2">
-                          <p>Voornaam:</p>
-                        </div>
+                        <div class="col-md-2"><p>Voornaam:</p></div>
                         <div class="col-md-10">
                           <div class="tt-input">
                             <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="firstNameSh" [(ngModel)]="customerData.firstName" (ngModelChange)="checkAddress()" [disabled]="billingToShipment" required>
                           </div>
                         </div>
-                        <div class="col-md-2">
-                          <p>Achternaam:</p>
-                        </div>
+                        <div class="col-md-2"><p>Achternaam:</p></div>
                         <div class="col-md-10">
                           <div class="tt-input">
                             <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="lastNameSh" [(ngModel)]="customerData.lastName" (ngModelChange)="checkAddress()" [disabled]="billingToShipment" required>
                           </div>
                         </div>
-                        <div class="col-md-2">
-                          <p>Straat:</p>
-                        </div>
+                        <div class="col-md-2"><p>Straat:</p></div>
                         <div class="col-md-10">
                           <div class="tt-input tt-input-valid--true">
                             <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="addressSh" [(ngModel)]="customerData.address" [disabled]="billingToShipment" (ngModelChange)="checkAddress()" required>
                           </div>
                         </div>
-                        <div class="col-md-2">
-                          <p>Huisnummer:</p>
-                        </div>
+                        <div class="col-md-2"><p>Huisnummer:</p></div>
                         <div class="col-md-10">
                           <div class="tt-input tt-input-valid--false">
                             <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="houseNumberSh" [(ngModel)]="customerData.houseNumber" (ngModelChange)="checkAddress()" [disabled]="billingToShipment" required>
                           </div>
                         </div>
-                        <div class="col-md-2">
-                          <p>Toevoeging:</p>
-                        </div>
+                        <div class="col-md-2"><p>Toevoeging:</p></div>
                         <div class="col-md-10">
                           <div class="tt-input">
                             <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="houseNumberExtensionSh" [(ngModel)]="customerData.houseNumberExtension" (ngModelChange)="checkAddress()" [disabled]="billingToShipment">
                           </div>
                         </div>
-                        <div class="col-md-2">
-                          <p>Postcode:</p>
-                        </div>
+                        <div class="col-md-2"><p>Postcode:</p></div>
                         <div class="col-md-10">
                           <div class="tt-input">
                             <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="postalCodeSh" [(ngModel)]="customerData.postalCode" (ngModelChange)="checkAddress()" [disabled]="billingToShipment" required>
                           </div>
                         </div>
-                        <div class="col-md-2">
-                          <p>Plaatsnaam:</p>
-                        </div>
+                        <div class="col-md-2"><p>Plaatsnaam:</p></div>
                         <div class="col-md-10">
                           <div class="tt-input">
                             <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="citySh" [(ngModel)]="customerData.city" (ngModelChange)="checkAddress()" [disabled]="billingToShipment" required>
                           </div>
                         </div>
-                        <div class="col-md-2">
-                          <p>Land:</p>
-                        </div>
+                        <div class="col-md-2"><p>Land:</p></div>
                         <div class="col-md-10">
                           <div class="tt-select">
                             <select class="form-control colorize-theme6-bg" [(ngModel)]="customerData.country" (ngModelChange)="checkAddress()">
@@ -360,9 +332,7 @@
                             </select>
                           </div>
                         </div>
-                        <div class="col-md-2">
-                          <p>Telefoonnummer:</p>
-                        </div>
+                        <div class="col-md-2"><p>Telefoonnummer:</p></div>
                         <div class="col-md-10">
                           <div class="tt-input">
                             <input type="text" class="form-control colorize-theme6-bg" placeholder="" name="phoneNumberSh" [(ngModel)]="customerData.phoneNumber" (ngModelChange)="checkAddress()" [disabled]="billingToShipment" required>
@@ -370,6 +340,7 @@
                         </div>
                       </div>
                     </div>
+
                     <p *ngIf="errorMsg" class="ttg-mt--10 ttg-mb--10" style="color: white; background-color: indianred; padding: 10px;">
                       <i class="icon-cancel" style="color: white; padding-right: 10px;"></i>
                       {{ errorMsg }}
@@ -378,22 +349,32 @@
                       <i class="icon-ok-2" style="color: white; padding-right: 10px;"></i>
                       {{ successMsg }}
                     </p>
+
                   </ng-container>
+
                   <ng-container *ngIf="showDeliveryOptions()">
+
                     <h4 class="tt-checkout--border ttg-mt--50 ttg-mb--20">Bezorgopties</h4>
+
                     <div class="tt-checkout__payment">
                       <ul>
-                        <li>Kies hieronder een van de bezorgopties van PostNL. Je kunt zowel kiezen voor thuis bezorging als voor ophalen bij een van de PostNL afhaalpunten. Let op: de onderstaande tijden zijn een benadering vanuit PostNL.</li>
+                        <li>Kies hieronder een van de bezorgopties van PostNL. Je kunt zowel kiezen voor thuis bezorging als voor ophalen bij een van de PostNL afhaalpunten.</li>
                       </ul>
                     </div>
+
                     <div *ngIf="reloadDeliveryOptions" class="ttg-mt--20">
                       <button href="javascript:void(0);" [disabled]="!customerData.country || !customerData.postalCode || !customerData.houseNumber" class="btn btn-sm" (click)="doReloadDeliveryOptions()">Bezorgopties opnieuw laden met nieuwe adres</button>
                     </div>
                     <p style="font-size: 0,7rem;" *ngIf="!customerData.country || !customerData.postalCode || !customerData.houseNumber">Vul eerst een geldig adres in.</p>
-                    <div class="col-lg-12 col-md-12 col-sm-12 ttg-mt--20" style="background-color: #f5f5f5; padding-bottom: 25px;" *ngIf="!reloadDeliveryOptions && !(!customerData.country || !customerData.postalCode || !customerData.houseNumber)">
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 ttg-mt--20" style="background-color: #f5f5f5; padding-bottom: 25px;" *ngIf="!reloadDeliveryOptions">
+
                       <div style="display: flex;">
+
                         <div class="col-lg-6 col-md-6 col-sm-6 tt-summary" style="padding-left: 25px !important; padding-right: 25px !important; margin-bottom: 0px !important;">
+
                           <p class="shipment-title">BEZORGEN</p>
+
                           <table class="col-lg-12 col-md-12 col-sm-12 table type1">
                             <thead>
                             <tr>
@@ -413,6 +394,7 @@
                                   {{ timeFrame.timeframe_start | date:'HH:mm' }} - {{ timeFrame.timeframe_end | date:'HH:mm' }}
                                 </td>
                                 <td style="padding: 0.3em; vertical-align: middle;">
+                                  + {{ timeFrame.cost | currency:'EUR':'true' }}
                                 </td>
                                 <td>
                                   <label class="tt-checkbox-circle">
@@ -424,10 +406,15 @@
                             </tr>
                             </tbody>
                           </table>
+
                         </div>
+
                         <div class="col-lg-6 col-md-6 col-sm-6 tt-summary" style="padding-left: 25px !important; padding-right: 25px !important; margin-bottom: 0px !important;">
+
                           <p class="shipment-title">OF OPHALEN</p>
+
                           <div *ngFor="let location of shippingLocations; let i=index">
+
                             <ng-template [ngIf]="i<limit2">
                               <table class="col-lg-12 col-md-12 col-sm-12 table type1">
                                 <thead>
@@ -454,24 +441,34 @@
                                 </tbody>
                               </table>
                             </ng-template>
+
                           </div>
+
                         </div>
+
                       </div>
+
                       <div class="col-lg-12 col-md-12 col-sm-12" style="display: flex; justify-content: flex-end;">
                         <a class="btn btn-sm" (click)="loadMore()">Laad meer...</a>
                       </div>
+
                     </div>
+
                   </ng-container>
+
                   <ng-container *ngIf="!showDeliveryOptions()">
                     <h4 class="tt-checkout--border ttg-mt--50 ttg-mb--20">Bezorgopties</h4>
+
                     <div class="tt-checkout__payment">
                       <ul>
                         <li>Deze levering wordt bezorgd met eigen vervoer van Amacom.</li>
                       </ul>
                     </div>
                   </ng-container>
+
                 </ng-container>
                 <ng-container *ngIf="step === 2">
+
                   <h4 class="ttg-mt--60 ttg-mb--30">Betaalmethoden</h4>
                   <p>
                     Voor de betaling word je doorgestuurd naar de beveiligde betaalomgeving van Buckaroo. Je kunt hier betalen met iDeal (NL) of Bancontant (BE). De keuze voor de betaalmethode kun je maken als je wordt doorgestuurd naar de betaalpagina.
@@ -487,8 +484,24 @@
                   <!-- 		                                    </li> -->
                   <!-- 		                                </ul> -->
                   <!-- 		                            </div> -->
+                  <ng-container *ngIf="globals.hasCoupons">
+                    <h4 class="tt-checkout--border ttg-mb--20">Heb je een kortingscode?</h4>
+                    <div class="tt-checkout__coupon">
+                      <form action="#">
+                        <label>
+                          <p>Kortingscode:</p>
+                          <input type="text" class="form-control" placeholder="" [(ngModel)]="couponCode" name="couponCode" />
+                        </label>
+                        <button type="submit" class="btn" [disabled]="!couponCode" (click)="checkCouponCode()">Toepassen</button>
+                      </form>
+                      <div *ngIf="showError">{{ errorMessage }}</div>
+                    </div>
+                  </ng-container>
+
                 </ng-container>
+
                 <ng-container *ngIf="step === 3">
+
                   <h4>Bestelling</h4>
                   <div class="tt-tabs-my-account__table ttg-mb--30">
                     <table class="table tt-tabs-my-account--table-sm">
@@ -513,6 +526,7 @@
                       </tbody>
                     </table>
                   </div>
+
                   <h4>Verzendadres</h4>
                   <div class="tt-tabs-my-account__table ttg-mb--30">
                     <table class="table tt-tabs-my-account--table-sm">
@@ -540,6 +554,7 @@
                       </tbody>
                     </table>
                   </div>
+
                   <div class="tt-checkout__methods">
                     <div class="">
                       <h4 class="ttg-mb--20">Opmerking</h4>
@@ -547,22 +562,26 @@
                       <textarea class="form-control" style="border: solid 1px gray;" [(ngModel)]="order.remarks"></textarea>
                     </div>
                   </div>
+
                   <p *ngIf="globals.hasBudget && getOrderSubtotal() > budget" class="ttg-mt--30 ttg-mb--10" style="color: white; background-color: indianred; padding: 10px;">
                     <i class="icon-cancel" style="color: white; padding-right: 10px;"></i>
                     Je huidige budget is niet toereikend om deze bestelling te plaatsen. In 'Mijn Account' kun je je budget controleren.
                   </p>
+
                 </ng-container>
+
                 <div style="padding-top: 15px;">
                   <a href="javascript:void(0);" class="btn ttg-mt--20" (click)="stepper(-1)" *ngIf="step > 1">Vorige stap</a>
                   <a href="javascript:void(0);" class="btn ttg-mt--20" (click)="stepper(1)" *ngIf="step < 3" [class.disabled]="(step == 1 && (!successMsg || (!selectedShipment && showDelivery)))">Volgende stap</a>
-                  <a href="javascript:void(0);" (click)="placeOrder()" class="tt-checkout__btn-order btn ttg-mt--20 btn-type--icon colorize-btn6" *ngIf="step == 3 && ((globals.hasBudget && getOrderSubtotal() <= budget) || !globals.hasBudget) && !loadingPayment"><i class="icon-check"></i><span>Bestelling plaatsen</span></a>
+                  <a href="javascript:void(0);" (click)="placeOrder()" class="tt-checkout__btn-order btn ttg-mt--20 btn-type--icon colorize-btn6" *ngIf="step == 3 && ((globals.hasBudget && getOrderSubtotal() <= budget) || !globals.hasBudget)"><i class="icon-check"></i><span>Bestelling plaatsen</span></a>
                 </div>
+
               </div>
               <div class="col-lg-4">
                 <div class="tt-summary">
                   <div class="tt-summary--border">
                     <h4>Je bestelling</h4>
-                    <p style="font-size: 0.7em;">Alle bedragen zijn inclusief korting en 21% BTW.</p>
+                    <p style="font-size: 0.7em;">Alle bedragen zijn inclusief personeelskorting en 21% BTW.</p>
                   </div>
                   <div class="tt-summary__products tt-summary--border">
                     <ul>
@@ -573,14 +592,14 @@
                         <div>
                           <p><a href="javascript:void(0);">{{ order_line.product.title }}</a></p>
                           <span class="tt-summary__products_price">
-                                       <span class="tt-summary__products_price-count">{{ order_line.count }}</span>
-                                       <span>x</span>
-                                       <span class="tt-summary__products_price-val">
-                                       <span class="tt-price">
-                                       <span>{{ order_line.product?.price_total_netto*1.21 | currency:'EUR':'true' }}</span>
-                                       </span>
-                                       </span>
-                                       </span>
+					                                    <span class="tt-summary__products_price-count">{{ order_line.count }}</span>
+					                                    <span>x</span>
+					                                    <span class="tt-summary__products_price-val">
+					                                        <span class="tt-price">
+					                                            <span>{{ order_line.product?.price_total_netto*1.21 | currency:'EUR':'true' }}</span>
+					                                        </span>
+					                                    </span>
+					                                </span>
                         </div>
                       </li>
                     </ul>
@@ -620,5 +639,7 @@
         </div>
       </div>
     </div>
+
   </main>
+
 </ng-container>

@@ -43,12 +43,12 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.user.ign_v = 'true';
+    //this.user.ign_v = 'true';
     
     this.pimcoreProvider.getOrganizations().subscribe(org => {
       // this.organizations = org.filter(org => org.name != 'Test Organization');
       this.organizations = org[0];
-      this.user.organization = "Super Lokaal";
+      this.user.organization = "bhave";
 
     });
 
@@ -66,11 +66,10 @@ export class RegisterComponent implements OnInit {
     }
 
     this.registerPromise = this.authService.register(this.user).subscribe(res => {
-      
-      if (res['status'] && res['status'] == 200) {
+      if (res['status'] && res['status'] === 200) {
           this.router.navigate(['/registreren/succesvol']);
       }
-      if (res['status'] && res['status'] == 400) {
+      if (res['status'] && res['status'] === 400) {
           this.mainErrorMsg = res['localized_message'];
       }
       
@@ -86,7 +85,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
     
-    if (this.user.country == 'BE') {
+    if (this.user.country === 'BE') {
       return;
     }
     
@@ -122,20 +121,6 @@ export class RegisterComponent implements OnInit {
     });
     
   }
-
-  public checkVoucher(e) {
-    let check = this.user.voucher;
-    const cpnc = ['lcwptsgllrmi', 'hn3b1wavwhwj', 'f30al7f2mkdp', 'icwptsgiirmi', 'f3oal7f2mkdp'];
-    const cpncc = ['lCwPTSGllRMi', 'Hn3B1wAVWhWj', 'f30AL7F2MKDp', 'lCwPTSGllRMi', 'f30AL7F2MKDp'];
-
-    if (cpnc.indexOf(check.toLowerCase()) !== -1) {
-      check = cpncc[cpnc.indexOf(check.toLowerCase())];
-    }
-
-    this.quecomProvider.checkCouponCode(check).subscribe(data => {
-        this.user.couponValid = (data.coupon_code !== undefined);
-    });
-  }
   
   public checkFields() {
 
@@ -147,8 +132,6 @@ export class RegisterComponent implements OnInit {
           this.user.first_name &&
           this.user.last_name &&
           this.user.postal_code &&
-          this.user.voucher &&
-          this.user.couponValid &&
           this.user.house_number &&
           this.user.street &&
           this.user.city &&

@@ -59,7 +59,7 @@ export class ProductListingComponent implements OnInit {
                 this.globals.loadingOn();
 
                 if (this.router.url.split("/")[1].indexOf('producten') === -1) {
-            
+                    
                     this.setType('categories');
 
                     this.unparsedType = this.router.url.split("/")[1];
@@ -113,7 +113,7 @@ export class ProductListingComponent implements OnInit {
         
     }
 
-    public setType(type: string) {
+    public setType(type: string){
         this.type = type;
     }
     
@@ -138,6 +138,9 @@ export class ProductListingComponent implements OnInit {
                 this.products = this.filterProduct(res.products);
                 this.pagination = res.pagination;
                 this.pageNumbers = this.fillArrayWithNumbers(this.pagination.number_of_pages);
+            }, error => {
+                console.log(error);
+                this.globals.loadingOff();
             });
         }
     }
@@ -171,8 +174,7 @@ export class ProductListingComponent implements OnInit {
       });
 
       if (obs.length === 0) {
-          this.globals.loadingOff();
-          return prds;
+        this.globals.loadingOff();
       }
 
       Observable.forkJoin(obs).subscribe(res => {
@@ -183,6 +185,8 @@ export class ProductListingComponent implements OnInit {
             return a.product_id.localeCompare(b.product_id);
         });
         this.globals.loadingOff();
+      }, error => {
+          console.log(error);
       });
 
 

@@ -76,7 +76,7 @@ export class CartComponent implements OnInit {
     }
     
     getDeliveryCost() {
-      return 6.95
+      return (this.getOrderTotal() >= 50 ? 0 : 4.24);
     }
     
     goToPlaceOrder() {

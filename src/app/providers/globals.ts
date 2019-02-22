@@ -27,7 +27,7 @@ export class Globals {
     public password: string = 'GezamenlijkLoyaltyVoordeel';
     public hasCoupons: boolean = false;
     public deliveryIndication: string[] = ['Vóór 19:00 uur besteld', 'Volgende dag geleverd*'];
-    public hasDeliveryCost: boolean = false;
+    public hasDeliveryCost: boolean = true;
     public hasBudget: boolean = false;
     public categoriesOnHome: boolean = false;
     public loginType: string = 'simple';
