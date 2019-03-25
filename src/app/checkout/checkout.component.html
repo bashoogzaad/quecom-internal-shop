@@ -260,16 +260,6 @@
 				                                </label>
 				                                Verzendadres is hetzelfde als factuuradres
 			                                </li>
-			                                <ng-container *ngIf="user.country == 'BE'">
-				                                <li>
-				                                	<label class="tt-checkbox-circle">
-			                                            <input type="radio" name="shippingMethodGroup" value="central-office" [(ngModel)]="selected.shippingMethod" (ngModelChange)="toggleBillingToShipment()">
-			                                            <span></span>
-			                                        </label>
-			                                        Afhalen op kantoor Sony BE (Da vincilaan in Zaventem) (een keer per week)
-				                                </li>
-				                                <p style="font-size: 0.7rem; padding-left: 35px;">Voor dinsdag 21:00 besteld, de eerstvolgende vrijdag afhalen.</p>
-			                                </ng-container>
 			                                <li>
 			                                	<label class="tt-checkbox-circle">
 		                                            <input type="radio" name="shippingMethodGroup" value="custom-address" [(ngModel)]="selected.shippingMethod" (ngModelChange)="toggleBillingToShipment()">

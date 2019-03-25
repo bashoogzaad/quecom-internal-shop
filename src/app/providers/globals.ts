@@ -68,7 +68,7 @@ export class Globals {
             
             this.apiKey = environment.apiKey;
             this.debtorNumber = environment.debtorNumber;
-            this.gaid = environment.gaid;
+            //this.gaid = environment.gaid;
             
         }
 
