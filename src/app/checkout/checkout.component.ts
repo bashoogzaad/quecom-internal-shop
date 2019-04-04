@@ -423,8 +423,7 @@ export class CheckoutComponent implements OnInit {
     ) {
         this.errorMsg = 'Je bestelling op het ingevulde adres ontvangen is niet mogelijk. Pas het adres aan.';
     } else if (
-        this.customerData.address && this.customerData.address.toLowerCase() === 'da vincilaan' && 
-        this.customerData.city && this.customerData.city.toLowerCase() === 'zaventem' &&
+        this.customerData.postalCode && this.customerData.postalCode === '1935' &&
         this.customerData.country === 'BE'
     ) {
         this.errorMsg = 'Je bestelling op het ingevulde adres ontvangen is niet mogelijk. Pas het adres aan.';
